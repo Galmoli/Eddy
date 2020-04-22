@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [Header("Editable Values")] 
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private float joystickDeadZone;
     
     //Player Inputs
     private InputActions _input;
@@ -43,6 +45,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         var vector3D = RetargetVector(movementVector);
         RotateTowardsForward(vector3D);
+
+        vector3D.Normalize();
+        vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
+        
         #region Jump
 
         if (_onGround && _jump)
@@ -53,7 +59,7 @@ public class PlayerMovementController : MonoBehaviour
 
         _verticalSpeed += Physics.gravity.y * Time.deltaTime;
         vector3D.y = _verticalSpeed;
-        var collisionFlags = _characterController.Move(vector3D * (movementSpeed * Time.deltaTime));
+        var collisionFlags = _characterController.Move(vector3D * Time.deltaTime);
 
         if ((collisionFlags & CollisionFlags.Below) != 0)
         {
@@ -72,6 +78,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector3 RetargetVector(Vector2 input)
     {
+        if(input.magnitude <= joystickDeadZone) return Vector3.zero;
+        
         Vector3 outputVector;
 
         outputVector.x = -input.y;
