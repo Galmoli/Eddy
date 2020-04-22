@@ -44,27 +44,29 @@ public class PlayerMovementController : MonoBehaviour
         var vector3D = RetargetVector(movementVector);
         RotateTowardsForward(vector3D);
         #region Jump
+
         if (_onGround && _jump)
         {
             _verticalSpeed = jumpSpeed;
             _jump = false;
         }
-        
+
         _verticalSpeed += Physics.gravity.y * Time.deltaTime;
         vector3D.y = _verticalSpeed;
-        CollisionFlags collisionFlags = _characterController.Move(vector3D * (movementSpeed * Time.deltaTime));
-        
+        var collisionFlags = _characterController.Move(vector3D * (movementSpeed * Time.deltaTime));
+
         if ((collisionFlags & CollisionFlags.Below) != 0)
         {
             _onGround = true;
             _verticalSpeed = 0;
         }
-        else _onGround = false;
-
-        if ((collisionFlags & CollisionFlags.Above) != 0 && _verticalSpeed > 0)
+        else
         {
-            _verticalSpeed = 0;
+            _onGround = false;
         }
+
+        if ((collisionFlags & CollisionFlags.Above) != 0 && _verticalSpeed > 0) _verticalSpeed = 0;
+
         #endregion
     }
 
