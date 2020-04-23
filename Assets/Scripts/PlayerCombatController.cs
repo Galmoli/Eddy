@@ -10,6 +10,9 @@ public class PlayerCombatController : MonoBehaviour
     //Player Input
     private InputActions _input;
     
+    //Components
+    private BasicAttack _basicAttack;
+    
     //Local variables
     private bool _attack;
 
@@ -17,6 +20,7 @@ public class PlayerCombatController : MonoBehaviour
     {
         _input = new InputActions();
         _input.PlayerControls.Attack.started += Attack;
+        _basicAttack = GetComponent<BasicAttack>();
     }
 
     private void Start()
@@ -37,6 +41,9 @@ public class PlayerCombatController : MonoBehaviour
     private void Attack(InputAction.CallbackContext context)
     {
         tempSword.SetActive(true);
+        if(_basicAttack.Attack()) print("Dummy Hit");
+        
+        
         StartCoroutine(Co_Attack());
     }
 

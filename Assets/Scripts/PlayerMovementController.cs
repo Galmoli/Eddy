@@ -46,7 +46,6 @@ public class PlayerMovementController : MonoBehaviour
         var vector3D = RetargetVector(movementVector);
         RotateTowardsForward(vector3D);
 
-        vector3D.Normalize();
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
         
         #region Jump
