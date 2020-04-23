@@ -9,6 +9,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private float joystickDeadZone;
     
     //Player Inputs
@@ -56,7 +57,7 @@ public class PlayerMovementController : MonoBehaviour
             _jump = false;
         }
 
-        _verticalSpeed += Physics.gravity.y * Time.deltaTime;
+        _verticalSpeed += Physics.gravity.y * Time.deltaTime * gravityMultiplier;
         vector3D.y = _verticalSpeed;
         var collisionFlags = _characterController.Move(vector3D * Time.deltaTime);
 
