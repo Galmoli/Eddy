@@ -147,17 +147,17 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool StandEdge()
     {
-        Vector2 edgeForward = new Vector2(edgeGameObject.transform.forward.x, edgeGameObject.transform.forward.z);
-        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), Mathf.RoundToInt(movementVector.x));
-        if (edgeForward.normalized == input) return true;
+        Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
+        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), -Mathf.RoundToInt(movementVector.x));
+        if (edgeForward == input) return true;
         return false;
     }
 
     private bool FallEdge()
     {
-        Vector2 edgeForward = new Vector2(edgeGameObject.transform.forward.x, edgeGameObject.transform.forward.z);
-        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), Mathf.RoundToInt(movementVector.x));
-        if (edgeForward.normalized == -input) return true;
+        Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
+        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), -Mathf.RoundToInt(movementVector.x));
+        if (edgeForward == -input) return true;
         return false;
     }
 
@@ -166,7 +166,7 @@ public class PlayerMovementController : MonoBehaviour
         _characterController.enabled = false;
         _standing = true;
         
-        //Movement in Y
+        //Vertical Movement
         while (Math.Abs(finalPos.y - transform.position.y) > _characterController.height)
         {
             var lerpVector = Vector3.Lerp(transform.position, finalPos, lerpVelocity);
@@ -176,13 +176,11 @@ public class PlayerMovementController : MonoBehaviour
             yield return null;
         }
         
-        //Movement in Z
-        while (Math.Abs(transform.position.z - finalPos.z) > 0.1f)
+        //Horizontal Movement
+        while ((transform.position - finalPos).magnitude >  _characterController.height)
         {
-            var lerpVector = Vector3.Lerp(transform.position, finalPos, lerpVelocity);
-            var moveVector = new Vector3((lerpVector - transform.position).z, 0, 0);
-
-            transform.Translate(moveVector);
+            var moveVector = new Vector3(finalPos.x, transform.position.y, finalPos.z);
+            transform.position = Vector3.MoveTowards(transform.position, moveVector, lerpVelocity);
             yield return null;
         }
 
