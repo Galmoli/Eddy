@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    public float detectionRadius;
+    public float scannerRadius;
 
     public GameObject sword;
     public Transform hand;
@@ -21,7 +21,6 @@ public class Scanner : MonoBehaviour
 
     private GameObject[] hiddenObjects;
     private GameObject[] hideableObjects;
-
 
     void Start()
     {
@@ -43,19 +42,27 @@ public class Scanner : MonoBehaviour
                 }
                 else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f))
                 {
-                    sword.transform.parent = hit.collider.gameObject.transform;
                     swordHolder = hit.collider.gameObject;
+                    sword.transform.parent = null;
 
                     //hardcoding
                     sword.transform.eulerAngles = new Vector3(0, 90, 0);
                     sword.transform.position -= new Vector3(0, 0.25f, 0);
+                    //
+
+                    sword.transform.parent = swordHolder.transform;
                 }
             }
             else
             {
-                sword.transform.position = hand.position;
+                sword.transform.parent = null;
+
+                //hardcoding
                 sword.transform.rotation = hand.rotation;
-                sword.transform.parent = hand;
+                sword.transform.position = hand.position;
+                //
+
+                sword.transform.parent = hand;;
 
                 if(swordHolder.layer == hiddenObjectsLayer)
                 {
@@ -69,7 +76,7 @@ public class Scanner : MonoBehaviour
         }
 
         //Scanner
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && sword.transform.parent == hand)
         {
             if (!activeScanner)
             {
@@ -77,11 +84,20 @@ public class Scanner : MonoBehaviour
                 hideableObjects = FindObjectsInLayer(hideableObjectsLayer);
 
                 activeScanner = true;            
-            } 
-            
+            }          
+        }
+        else if (activeScanner && sword.transform.parent == hand)
+        {
+            ScannerOff();
+
+            activeScanner = false;
+        }
+
+        if (activeScanner)
+        {   
             for (int i = 0; i < hiddenObjects.Length; i++)
             {
-                if (Vector3.Distance(sword.transform.position, hiddenObjects[i].transform.position) > detectionRadius)
+                if (Vector3.Distance(sword.transform.position, hiddenObjects[i].transform.position) > scannerRadius)
                 {
                     Hide(hiddenObjects[i]);
                 }
@@ -90,25 +106,27 @@ public class Scanner : MonoBehaviour
                     Show(hiddenObjects[i]);
                 }
             }
-            
+
             for (int i = 0; i < hideableObjects.Length; i++)
             {
-                if (Vector3.Distance(sword.transform.position, hideableObjects[i].transform.position) < detectionRadius)
+                if (Vector3.Distance(sword.transform.position, hideableObjects[i].transform.position) < scannerRadius)
                 {
                     Hide(hideableObjects[i]);
                 }
                 else
-                {    
+                {
                     Show(hideableObjects[i]);
                 }
             }
         }
-        else if (activeScanner && sword.transform.parent == hand)
-        {
-            ScannerOff();
+    }
 
-            activeScanner = false;
-        }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        if(activeScanner)
+            Gizmos.DrawWireSphere(sword.transform.position, scannerRadius);
     }
 
     private GameObject[] FindObjectsInLayer(int layerIdx)
