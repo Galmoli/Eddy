@@ -33,10 +33,12 @@ public class PlayerMovementController : MonoBehaviour
     private bool _edgeAvailable;
     private bool _standing;
     private float _verticalSpeed;
+    private Transform _cameraTransform;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => _jump = true;
@@ -69,6 +71,12 @@ public class PlayerMovementController : MonoBehaviour
                 _onEdge = true;
                 _verticalSpeed = 0;
             }
+        }
+
+        if (!_onGround && _edgeAvailable)
+        {
+            _onEdge = true;
+            _verticalSpeed = 0;
         }
 
         if (!_onEdge)
@@ -121,11 +129,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         if(input.magnitude <= joystickDeadZone) return Vector3.zero;
         
-        Vector3 outputVector;
+        Vector3 outputVector = Vector3.zero;
 
-        outputVector.x = -input.y;
-        outputVector.y = 0;
-        outputVector.z = input.x;
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * input.y, Vector3.up);
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * input.x, Vector3.up);
 
         return outputVector;
     }
@@ -148,7 +155,13 @@ public class PlayerMovementController : MonoBehaviour
     private bool StandEdge()
     {
         Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
-        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), -Mathf.RoundToInt(movementVector.x));
+        Vector3 outputVector = Vector3.zero;
+
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
+        
+        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z)) * -1;
+
         if (edgeForward == input) return true;
         return false;
     }
@@ -156,7 +169,12 @@ public class PlayerMovementController : MonoBehaviour
     private bool FallEdge()
     {
         Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
-        Vector2 input = new Vector2(Mathf.RoundToInt(movementVector.y), -Mathf.RoundToInt(movementVector.x));
+        Vector3 outputVector = Vector3.zero;
+
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
+        
+        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z)) * -1;
         if (edgeForward == -input) return true;
         return false;
     }
