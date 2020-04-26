@@ -41,7 +41,7 @@ public class PlayerMovementController : MonoBehaviour
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
-        _input.PlayerControls.Jump.started += callbackContext => _jump = true;
+        _input.PlayerControls.Jump.started += callbackContext => JumpInput();
     }
 
     private void OnEnable()
@@ -73,11 +73,12 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
-        if (!_onGround && _edgeAvailable)
+        if (_verticalSpeed < -0.2f && _edgeAvailable)
         {
             _onEdge = true;
             _verticalSpeed = 0;
         }
+        
 
         if (!_onEdge)
         {
@@ -119,7 +120,11 @@ public class PlayerMovementController : MonoBehaviour
         if (_onEdge)
         {
             if (StandEdge() && !_standing) StartCoroutine(Co_StandEdge(edgePosition + edgeCompletedOffset));
-            if (FallEdge() && !_standing) _onEdge = false;
+            if (FallEdge() && !_standing)
+            {
+                _onEdge = false;
+                _edgeAvailable = false;
+            }
         }
         
         #endregion
@@ -205,5 +210,10 @@ public class PlayerMovementController : MonoBehaviour
         _standing = false;
         _onEdge = false;
         _characterController.enabled = true;
+    }
+
+    private void JumpInput()
+    {
+        if(!_onEdge) _jump = true;
     }
 }
