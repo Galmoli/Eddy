@@ -8,9 +8,11 @@ using UnityEngine;
 public class PushPullObject : MonoBehaviour
 {
     public float speedWhenMove;
+    [SerializeField] private float distanceToCollide;
     [SerializeField] private float angleToAllowMovement;
     [SerializeField] private Transform playerTransform;
     [HideInInspector] public bool canMove;
+    [HideInInspector] public bool canPush;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
 
     private void OnTriggerStay(Collider other)
@@ -21,6 +23,9 @@ public class PushPullObject : MonoBehaviour
             {
                 canMove = true;
                 moveVector = GetDirectionVector();
+                
+                if (Collision()) canPush = false;
+                else canPush = true;
             }
             else canMove = false;
         }
@@ -67,5 +72,11 @@ public class PushPullObject : MonoBehaviour
         }
 
         return l_directionVector;
+    }
+
+    private bool Collision()
+    {
+        RaycastHit hitInfo;
+        return Physics.Raycast(transform.position, -GetDirectionVector(), out hitInfo, distanceToCollide);
     }
 }

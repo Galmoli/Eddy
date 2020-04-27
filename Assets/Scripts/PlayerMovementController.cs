@@ -76,7 +76,7 @@ public class PlayerMovementController : MonoBehaviour
                 _moveObject.Pull();
             }
 
-            if (InputEqualVector(-_moveObject.moveVector))
+            if (InputEqualVector(-_moveObject.moveVector) && _moveObject.canPush)
             {
                 _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Push();
