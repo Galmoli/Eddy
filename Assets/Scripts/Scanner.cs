@@ -37,41 +37,16 @@ public class Scanner : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(gameObject.transform.position, transform.forward, out hit, hitObjectDistance))
                 {
-                    sword.transform.parent = hit.collider.gameObject.transform;
-                    swordHolder = hit.collider.gameObject;
+                    Stab(hit.collider.gameObject, false);
                 }
                 else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f))
                 {
-                    swordHolder = hit.collider.gameObject;
-                    sword.transform.parent = null;
-
-                    //hardcoding
-                    sword.transform.eulerAngles = new Vector3(0, 90, 0);
-                    sword.transform.position -= new Vector3(0, 0.25f, 0);
-                    //
-
-                    sword.transform.parent = swordHolder.transform;
+                    Stab(hit.collider.gameObject, true);
                 }
             }
             else
             {
-                sword.transform.parent = null;
-
-                //hardcoding
-                sword.transform.rotation = hand.rotation;
-                sword.transform.position = hand.position;
-                //
-
-                sword.transform.parent = hand;;
-
-                if(swordHolder.layer == hiddenObjectsLayer)
-                {
-                    Hide(swordHolder);
-                }
-                else if (swordHolder.layer == hideableObjectsLayer)
-                {
-                    Show(swordHolder);
-                }
+                SwordBack();
             }       
         }
 
@@ -179,5 +154,54 @@ public class Scanner : MonoBehaviour
             go.GetComponent<MeshRenderer>().enabled = false;
             go.GetComponent<Collider>().enabled = false;
         }    
+    }
+
+    private void Stab(GameObject obj, bool vertical)
+    {
+        swordHolder = obj;
+        sword.transform.parent = null;
+
+        if (vertical)
+        {
+            //hardcoding
+            sword.transform.eulerAngles = new Vector3(0, 90, 0);
+            sword.transform.position -= new Vector3(0, 0.25f, 0);
+            //
+        }
+
+        sword.transform.parent = swordHolder.transform;
+
+        if (swordHolder.tag == "Switch")
+        {
+            swordHolder.GetComponent<Switchable>().SwitchOn();
+        }
+
+       
+    }
+
+    private void SwordBack()
+    {
+        if (swordHolder.tag == "Switch")
+        {
+            swordHolder.GetComponent<Switchable>().SwitchOff();
+        }
+
+        sword.transform.parent = null;
+
+        //hardcoding
+        sword.transform.rotation = hand.rotation;
+        sword.transform.position = hand.position;
+        //
+
+        sword.transform.parent = hand; ;
+
+        if (swordHolder.layer == hiddenObjectsLayer)
+        {
+            Hide(swordHolder);
+        }
+        else if (swordHolder.layer == hideableObjectsLayer)
+        {
+            Show(swordHolder);
+        }
     }
 }
