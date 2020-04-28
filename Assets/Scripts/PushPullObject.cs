@@ -11,8 +11,10 @@ public class PushPullObject : MonoBehaviour
     [SerializeField] private float distanceToCollide;
     [SerializeField] private float angleToAllowMovement;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private LayerMask _layersToDetectCollision;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
+    [HideInInspector] public bool canPull;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
 
     private void OnTriggerStay(Collider other)
@@ -24,8 +26,8 @@ public class PushPullObject : MonoBehaviour
                 canMove = true;
                 moveVector = GetDirectionVector();
                 
-                if (Collision()) canPush = false;
-                else canPush = true;
+                canPush = !PushCollision();
+                canPull = !PullCollision();
             }
             else canMove = false;
         }
@@ -74,9 +76,13 @@ public class PushPullObject : MonoBehaviour
         return l_directionVector;
     }
 
-    private bool Collision()
+    private bool PushCollision()
     {
-        RaycastHit hitInfo;
-        return Physics.Raycast(transform.position, -GetDirectionVector(), out hitInfo, distanceToCollide);
+        return Physics.Raycast(transform.position, -GetDirectionVector(), distanceToCollide, _layersToDetectCollision);
+    }
+
+    private bool PullCollision()
+    {
+        return Physics.Raycast(playerTransform.position, GetDirectionVector(), 1, _layersToDetectCollision);
     }
 }

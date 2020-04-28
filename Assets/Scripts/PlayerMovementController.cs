@@ -43,6 +43,7 @@ public class PlayerMovementController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
+        
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
         _input.PlayerControls.MoveObject.started += callbackContext => _inputMoveObject = true;
@@ -70,7 +71,7 @@ public class PlayerMovementController : MonoBehaviour
         
         if (_moveObject && _moveObject.canMove && _inputMoveObject)
         {
-            if (InputEqualVector(_moveObject.moveVector))
+            if (InputEqualVector(_moveObject.moveVector) && _moveObject.canPull)
             {
                 _characterController.Move(_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Pull();
