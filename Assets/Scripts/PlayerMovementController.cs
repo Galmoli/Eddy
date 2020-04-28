@@ -10,6 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private float speedMultiplierWhenJump;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float joystickDeadZone;
 
@@ -90,13 +91,14 @@ public class PlayerMovementController : MonoBehaviour
 
         if (_onGround && _jump)
         {
-            _verticalSpeed = jumpSpeed;
             _jump = false;
+            
             if (_edgeAvailable)
             {
                 _onEdge = true;
                 _verticalSpeed = 0;
             }
+            else _verticalSpeed = jumpSpeed;
         }
 
         if (_verticalSpeed < -0.2f && _edgeAvailable)
@@ -110,6 +112,13 @@ public class PlayerMovementController : MonoBehaviour
         {
             _verticalSpeed += Physics.gravity.y * Time.deltaTime * gravityMultiplier;
             vector3D.y = _verticalSpeed;
+            
+            if (!_onGround) //Reduce Speed when jump
+            {
+                vector3D.x = vector3D.x * speedMultiplierWhenJump;
+                vector3D.z = vector3D.z * speedMultiplierWhenJump;
+            }
+            
             var collisionFlags = _characterController.Move(vector3D * Time.deltaTime);
 
             if ((collisionFlags & CollisionFlags.Below) != 0)
@@ -117,10 +126,7 @@ public class PlayerMovementController : MonoBehaviour
                 _onGround = true;
                 _verticalSpeed = 0;
             }
-            else
-            {
-                _onGround = false;
-            }
+            else _onGround = false;
 
             if ((collisionFlags & CollisionFlags.Above) != 0 && _verticalSpeed > 0) _verticalSpeed = 0;
         }
@@ -135,7 +141,7 @@ public class PlayerMovementController : MonoBehaviour
             
             RotateTowardsForward(-edgeGameObject.transform.forward);
             
-            _characterController.Move(moveVector);
+            if(_characterController.enabled) _characterController.Move(moveVector);
         }
         
 
@@ -224,7 +230,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void JumpInput()
     {
-        if(!_onEdge) _jump = true;
+        if(!_onEdge && _onGround) _jump = true;
     }
 
     private void OnTriggerEnter(Collider other)
