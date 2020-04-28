@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -32,16 +33,21 @@ public class PlayerMovementController : MonoBehaviour
     private bool _onEdge;
     private bool _edgeAvailable;
     private bool _standing;
+    private bool _inputMoveObject;
     private float _verticalSpeed;
     private Transform _cameraTransform;
+    private PushPullObject _moveObject;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
+        
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
+        _input.PlayerControls.MoveObject.started += callbackContext => _inputMoveObject = true;
+        _input.PlayerControls.MoveObject.canceled += callbackContext => _inputMoveObject = false;
     }
 
     private void OnEnable()
@@ -60,6 +66,26 @@ public class PlayerMovementController : MonoBehaviour
         if(!_onEdge) RotateTowardsForward(vector3D);
 
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
+
+        #region Push & Pull
+        
+        if (_moveObject && _moveObject.canMove && _inputMoveObject)
+        {
+            if (InputEqualVector(_moveObject.moveVector) && _moveObject.canPull)
+            {
+                _characterController.Move(_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
+                _moveObject.Pull();
+            }
+
+            if (InputEqualVector(-_moveObject.moveVector) && _moveObject.canPush)
+            {
+                _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
+                _moveObject.Push();
+            }
+            return;
+        }
+        
+        #endregion
         #region Jump
 
         if (_onGround && _jump)
@@ -114,13 +140,12 @@ public class PlayerMovementController : MonoBehaviour
         
 
         #endregion
-
         #region Edge
 
         if (_onEdge)
         {
-            if (StandEdge() && !_standing) StartCoroutine(Co_StandEdge(edgePosition + edgeCompletedOffset));
-            if (FallEdge() && !_standing)
+            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing) StartCoroutine(Co_StandEdge(edgePosition + edgeCompletedOffset));
+            if (InputEqualVector(edgeGameObject.transform.forward) && !_standing)
             {
                 _onEdge = false;
                 _edgeAvailable = false;
@@ -157,31 +182,16 @@ public class PlayerMovementController : MonoBehaviour
         _edgeAvailable = false;
     }
 
-    private bool StandEdge()
+    private bool InputEqualVector(Vector3 _vector)
     {
-        Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
+        Vector2 l_directorVector = new Vector2(Mathf.RoundToInt(_vector.x), Mathf.RoundToInt(_vector.z));
         Vector3 outputVector = Vector3.zero;
 
         outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
         outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
         
-        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z)) * -1;
-
-        if (edgeForward == input) return true;
-        return false;
-    }
-
-    private bool FallEdge()
-    {
-        Vector2 edgeForward = new Vector2(Mathf.RoundToInt(edgeGameObject.transform.forward.x), Mathf.RoundToInt(edgeGameObject.transform.forward.z));
-        Vector3 outputVector = Vector3.zero;
-
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
-        
-        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z)) * -1;
-        if (edgeForward == -input) return true;
-        return false;
+        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z));
+        return l_directorVector == input;
     }
 
     private IEnumerator Co_StandEdge(Vector3 finalPos)
@@ -215,5 +225,13 @@ public class PlayerMovementController : MonoBehaviour
     private void JumpInput()
     {
         if(!_onEdge) _jump = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MoveObject"))
+        {
+            _moveObject = other.GetComponent<PushPullObject>();
+        }
     }
 }
