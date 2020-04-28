@@ -4,66 +4,71 @@ using UnityEngine;
 
 public class CameraRail : MonoBehaviour
 {
+    private Transform[] roadPoints;
     private Transform[] nodes;
 
     void Start()
     {
+        roadPoints = new Transform[transform.childCount];
         nodes = new Transform[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            nodes[i] = transform.GetChild(i);
+            roadPoints[i] = transform.GetChild(i);
+            nodes[i] = transform.GetChild(i).transform.GetChild(0);
         }
     }
 
     public Vector3 ProjectPosition(Vector3 pos)
     {
-        int closestNodeNum = GetClosestNode(pos);
+        int closestRoadPointNum = GetClosestRoadPoint(pos);
 
-        if(closestNodeNum == 0)
+        if(closestRoadPointNum == 0)
         {
-            return ProjectPositionOnSegment(nodes[0].position, nodes[1].position, pos);
+            Vector3 posOnSegment = ProjectPositionOnRoadSegment(roadPoints[0].position, roadPoints[1].position, pos);
+            return ProjectPositionOnRailSegment(0, 1, posOnSegment);
         }
-        else if (closestNodeNum == nodes.Length - 1)
+        else if (closestRoadPointNum == roadPoints.Length - 1)
         {
-            return ProjectPositionOnSegment(nodes[nodes.Length - 1].position, nodes[nodes.Length - 2].position, pos);
+            Vector3 posOnSegment = ProjectPositionOnRoadSegment(roadPoints[roadPoints.Length - 1].position, roadPoints[roadPoints.Length - 2].position, pos);
+            return ProjectPositionOnRailSegment(roadPoints.Length - 1, roadPoints.Length - 2, posOnSegment);
         }
         else
         {
-            Vector3 leftSegment = ProjectPositionOnSegment(nodes[closestNodeNum - 1].position, nodes[closestNodeNum].position, pos);
-            Vector3 rightSegment = ProjectPositionOnSegment(nodes[closestNodeNum + 1].position, nodes[closestNodeNum].position, pos);
+            Vector3 leftSegment = ProjectPositionOnRoadSegment(roadPoints[closestRoadPointNum - 1].position, roadPoints[closestRoadPointNum].position, pos);
+            Vector3 rightSegment = ProjectPositionOnRoadSegment(roadPoints[closestRoadPointNum + 1].position, roadPoints[closestRoadPointNum].position, pos);
 
             if((pos - leftSegment).sqrMagnitude <= (pos - rightSegment).sqrMagnitude)
             {
-                return leftSegment;
+                return ProjectPositionOnRailSegment(closestRoadPointNum - 1, closestRoadPointNum, leftSegment);
             }
             else
             {
-                return rightSegment;
+                return ProjectPositionOnRailSegment(closestRoadPointNum + 1, closestRoadPointNum, rightSegment);
             }
         }
     }
     
-    private int GetClosestNode(Vector3 pos)
+    private int GetClosestRoadPoint(Vector3 pos)
     {
-        int closestNodeNum = -1;
+        int closestRoadPointNum = -1;
         float minDistance = 0f;
 
-        for(int i = 0; i < nodes.Length; i++)
+        for(int i = 0; i < roadPoints.Length; i++)
         {
-            float distance = (nodes[i].position - pos).sqrMagnitude;
+            float distance = (roadPoints[i].position - pos).sqrMagnitude;
 
             if(minDistance == 0f || distance < minDistance)
             {
                 minDistance = distance;
-                closestNodeNum = i;
+                closestRoadPointNum = i;
             }
         }
 
-        return closestNodeNum;
+        return closestRoadPointNum;
     }
 
-    private Vector3 ProjectPositionOnSegment(Vector3 vector1, Vector3 vector2, Vector3 pos)
+    private Vector3 ProjectPositionOnRoadSegment(Vector3 vector1, Vector3 vector2, Vector3 pos)
     {
         Vector3 vector1ToPos = pos - vector1;
         Vector3 direction = (vector2 - vector1).normalized;
@@ -84,41 +89,47 @@ public class CameraRail : MonoBehaviour
         }
     }
 
+    private Vector3 ProjectPositionOnRailSegment(int idx1, int idx2, Vector3 pos)
+    {
+        float posPercent = Vector3.Distance(roadPoints[idx1].position, pos) / Vector3.Distance(roadPoints[idx1].position, roadPoints[idx2].position);
+
+        Vector3 posDif = nodes[idx2].position - nodes[idx1].position;
+
+        return nodes[idx1].position + posDif * posPercent;
+
+    }
+
     public Vector3 ProjectRotation(Vector3 pos, Vector3 camPos)
     {
-        int closestNodeNum = GetClosestNode(pos);
+        int closestRoadPointNum = GetClosestRoadPoint(pos);
 
-        if (closestNodeNum == 0)
+        if (closestRoadPointNum == 0)
         {
             return ProjectRotationOnSegment(nodes[0], nodes[1], camPos);
         }
-        else if (closestNodeNum == nodes.Length - 1)
+        else if (closestRoadPointNum == roadPoints.Length - 1)
         {
             return ProjectRotationOnSegment(nodes[nodes.Length - 1], nodes[nodes.Length - 2], camPos);
         }
         else
         {
-            Vector3 leftSegment = ProjectPositionOnSegment(nodes[closestNodeNum - 1].position, nodes[closestNodeNum].position, pos);
-            Vector3 rightSegment = ProjectPositionOnSegment(nodes[closestNodeNum + 1].position, nodes[closestNodeNum].position, pos);
+            Vector3 leftSegment = ProjectPositionOnRoadSegment(roadPoints[closestRoadPointNum - 1].position, roadPoints[closestRoadPointNum].position, pos);
+            Vector3 rightSegment = ProjectPositionOnRoadSegment(roadPoints[closestRoadPointNum + 1].position, roadPoints[closestRoadPointNum].position, pos);
 
             if ((pos - leftSegment).sqrMagnitude <= (pos - rightSegment).sqrMagnitude)
             {
-                return ProjectRotationOnSegment(nodes[closestNodeNum - 1], nodes[closestNodeNum], camPos); ;
+                return ProjectRotationOnSegment(nodes[closestRoadPointNum - 1], nodes[closestRoadPointNum], camPos); ;
             }
             else
             {
-                return ProjectRotationOnSegment(nodes[closestNodeNum + 1], nodes[closestNodeNum], camPos); ;
+                return ProjectRotationOnSegment(nodes[closestRoadPointNum + 1], nodes[closestRoadPointNum], camPos); ;
             }
         }
     }
 
     private Vector3 ProjectRotationOnSegment(Transform node1, Transform node2, Vector3 pos)
     {
-        float posDif = Vector3.Distance(node1.position, pos) / Vector3.Distance(node1.position, node2.position);
-
-        float px = node1.eulerAngles.x;
-        float py = node1.eulerAngles.y;
-        float pz = node1.eulerAngles.z;
+        float posPercent = Vector3.Distance(node1.position, pos) / Vector3.Distance(node1.position, node2.position);
 
         Vector3 pNode1 = node1.eulerAngles;
         Vector3 pNode2 = node2.eulerAngles;
@@ -161,6 +172,6 @@ public class CameraRail : MonoBehaviour
 
         Vector3 rotDif = pNode2 - pNode1;
 
-        return node1.eulerAngles + rotDif * posDif;
+        return node1.eulerAngles + rotDif * posPercent;
     }
 }
