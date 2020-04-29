@@ -72,13 +72,13 @@ public class PlayerMovementController : MonoBehaviour
         
         if (_moveObject && _moveObject.canMove && _inputMoveObject)
         {
-            if (InputEqualVector(_moveObject.moveVector) && _moveObject.canPull)
+            if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {
                 _characterController.Move(_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Pull();
             }
 
-            if (InputEqualVector(-_moveObject.moveVector) && _moveObject.canPush)
+            if (InputDirectionTolerance(-_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPush)
             {
                 _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Push();
@@ -201,6 +201,20 @@ public class PlayerMovementController : MonoBehaviour
         
         Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z));
         return l_directorVector == input;
+    }
+
+    private bool InputDirectionTolerance(Vector3 _vector, float angleTolerance)
+    {
+        Vector2 l_directorVector = new Vector2(Mathf.RoundToInt(_vector.x), Mathf.RoundToInt(_vector.z));
+        Vector3 outputVector = Vector3.zero;
+
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
+        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
+        
+        Vector2 input = new Vector2(outputVector.x, outputVector.z);
+        float angle = Mathf.Abs(Vector2.Angle(l_directorVector, input));
+        
+        return angle <= angleTolerance;
     }
 
     private IEnumerator Co_StandEdge(Vector3 finalPos)
