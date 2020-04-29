@@ -6,6 +6,9 @@ public class Additive_EnterTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(transform.parent.gameObject.GetComponent<AdditiveSceneManager>().LoadNextScene());
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(transform.parent.gameObject.GetComponent<AdditiveSceneManager>().LoadNextScene());
+        }
     }
 }

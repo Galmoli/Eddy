@@ -10,7 +10,6 @@ public class AdditiveSceneManager : MonoBehaviour
     void Start()
     {
         _currentSceneIdx = SceneManager.GetActiveScene().buildIndex;
-        print("Scene " + _currentSceneIdx + " Generated");
         if (firstScene)
         {
             StartCoroutine(LoadNextScene());
@@ -19,16 +18,19 @@ public class AdditiveSceneManager : MonoBehaviour
 
     public IEnumerator LoadNextScene()
     {
-        var loading = SceneManager.LoadSceneAsync(_currentSceneIdx + 1, LoadSceneMode.Additive);
+        var loading = SceneManager.LoadSceneAsync(SceneToLoad(), LoadSceneMode.Additive);
         yield return loading;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx + 1));
+        if (!firstScene)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx + 1));
+            MoveObjectsToActiveScene();
+        }
     }
 
     public void DestroyPreviousScene()
     {
         if (_currentSceneIdx >= 2)
         {
-            MoveObjectsToActiveScene();
             SceneManager.UnloadSceneAsync(_currentSceneIdx - 1);
         }
     }
@@ -36,5 +38,11 @@ public class AdditiveSceneManager : MonoBehaviour
     private void MoveObjectsToActiveScene()
     {
         SceneManager.MoveGameObjectToScene(GameObject.Find("Maintain"), SceneManager.GetActiveScene());
+    }
+
+    private int SceneToLoad()
+    {
+        if (firstScene) return _currentSceneIdx + 1;
+        return _currentSceneIdx + 2;
     }
 }

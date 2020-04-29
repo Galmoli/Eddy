@@ -7,6 +7,9 @@ public class Additive_ExitTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        transform.parent.gameObject.GetComponent<AdditiveSceneManager>().DestroyPreviousScene();
+        if (other.CompareTag("Player"))
+        {
+            transform.parent.gameObject.GetComponent<AdditiveSceneManager>().DestroyPreviousScene();
+        }
     }
 }
