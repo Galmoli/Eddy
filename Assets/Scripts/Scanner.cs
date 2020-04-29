@@ -13,11 +13,6 @@ public class Scanner : MonoBehaviour
 
     private GameObject swordHolder;
     
-
-    [Header("Layers")] 
-    public int hiddenObjectsLayer;
-    public int hideableObjectsLayer;
-    
     private bool activeScanner;
 
     private GameObject[] hiddenObjects;
@@ -32,8 +27,6 @@ public class Scanner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) Debug.Log(sword.transform.lossyScale);
-
         //Sword
         if (Input.GetMouseButtonDown(0))
         {
@@ -60,8 +53,8 @@ public class Scanner : MonoBehaviour
         {
             if (!activeScanner)
             {
-                hiddenObjects = FindObjectsInLayer(hiddenObjectsLayer);
-                hideableObjects = FindObjectsInLayer(hideableObjectsLayer);
+                hiddenObjects = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjects"));
+                hideableObjects = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjects"));
 
                 activeScanner = true;
 
@@ -111,7 +104,7 @@ public class Scanner : MonoBehaviour
 
         for(int i = 0; i < objects.Length; i++)
         {
-            if(objects[i].layer == layerIdx)
+            if(objects[i].layer.Equals(layerIdx))
             {
                 objectsInLayer.Add(objects[i]);
             }
