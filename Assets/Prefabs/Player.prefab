@@ -345,12 +345,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeed: 2
-  maxSpeed: 5
-  jumpSpeed: 7
-  gravityMultiplier: 1.4
+  maxSpeed: 6
+  jumpSpeed: 11
+  speedMultiplierWhenJump: 1
+  gravityMultiplier: 3
   joystickDeadZone: 0.15
   edgeOffset: {x: 0.5, y: -1, z: 0}
-  edgeCompletedOffset: {x: 0, y: 0, z: 0}
+  edgeCompletedOffset: {x: -0.5, y: 3, z: 0}
   lerpVelocity: 0.1
   edgePosition: {x: 0, y: 0, z: 0}
   edgeGameObject: {fileID: 0}
