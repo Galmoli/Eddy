@@ -32,6 +32,8 @@ public class Scanner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L)) Debug.Log(sword.transform.lossyScale);
+
         //Sword
         if (Input.GetMouseButtonDown(0))
         {
@@ -158,17 +160,18 @@ public class Scanner : MonoBehaviour
     private void Stab(GameObject obj, bool vertical)
     {
         swordHolder = obj;
+
         sword.transform.parent = null;
 
         if (vertical)
         {
-            //hardcoding
+            //hardcoding        
             sword.transform.eulerAngles = new Vector3(0, 90, 0);
             sword.transform.position -= new Vector3(0, 0.25f, 0);
             //
         }
 
-        sword.transform.parent = swordHolder.transform;
+        //if(swordHolder == objecteArrossegable) sword.transform.parent = swordHolder.transform;
 
         if (swordHolder.GetComponent<Switchable>() != null)
         {
@@ -194,13 +197,13 @@ public class Scanner : MonoBehaviour
 
         sword.transform.parent = hand;
 
-        if (swordHolder.layer == hiddenObjectsLayer)
-        {
-            Hide(swordHolder);
-        }
-        else if (swordHolder.layer == hideableObjectsLayer)
-        {
-            Show(swordHolder);
-        }
+        //if (swordHolder.layer == hiddenObjectsLayer)
+        //{
+            //Hide(swordHolder);
+        //}
+        //else if (swordHolder.layer == hideableObjectsLayer)
+        //{
+            //Show(swordHolder);
+        //}
     }
 }
