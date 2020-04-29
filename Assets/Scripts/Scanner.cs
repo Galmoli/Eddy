@@ -10,6 +10,7 @@ public class Scanner : MonoBehaviour
     public Transform hand;
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
+
     private GameObject swordHolder;
     
 
@@ -25,6 +26,8 @@ public class Scanner : MonoBehaviour
     void Start()
     {
         activeScanner = false;
+
+        sword.transform.GetChild(0).localScale *= scannerRadius * 2f;
     }
 
     void Update()
@@ -58,7 +61,9 @@ public class Scanner : MonoBehaviour
                 hiddenObjects = FindObjectsInLayer(hiddenObjectsLayer);
                 hideableObjects = FindObjectsInLayer(hideableObjectsLayer);
 
-                activeScanner = true;            
+                activeScanner = true;
+
+                sword.transform.GetChild(0).gameObject.SetActive(true);
             }          
         }
         else if (activeScanner && sword.transform.parent == hand)
@@ -96,14 +101,6 @@ public class Scanner : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        if(activeScanner)
-            Gizmos.DrawWireSphere(sword.transform.position, scannerRadius);
-    }
-
     private GameObject[] FindObjectsInLayer(int layerIdx)
     {
         GameObject[] objects = FindObjectsOfType<GameObject>();
@@ -123,6 +120,8 @@ public class Scanner : MonoBehaviour
 
     private void ScannerOff()
     {
+        sword.transform.GetChild(0).gameObject.SetActive(false);
+
         for (int i = 0; i < hiddenObjects.Length; i++)
         {
             if (hiddenObjects[i].transform != sword.transform.parent)
@@ -171,7 +170,7 @@ public class Scanner : MonoBehaviour
 
         sword.transform.parent = swordHolder.transform;
 
-        if (swordHolder.tag == "Switch")
+        if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
         }
@@ -181,7 +180,7 @@ public class Scanner : MonoBehaviour
 
     private void SwordBack()
     {
-        if (swordHolder.tag == "Switch")
+        if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
@@ -193,7 +192,7 @@ public class Scanner : MonoBehaviour
         sword.transform.position = hand.position;
         //
 
-        sword.transform.parent = hand; ;
+        sword.transform.parent = hand;
 
         if (swordHolder.layer == hiddenObjectsLayer)
         {
