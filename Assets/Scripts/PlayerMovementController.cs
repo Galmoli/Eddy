@@ -254,7 +254,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (other.CompareTag("MoveObject"))
         {
-            _moveObject = other.GetComponent<PushPullObject>();
+            _moveObject = other.transform.parent.GetComponent<PushPullObject>();
         }
     }
 }
