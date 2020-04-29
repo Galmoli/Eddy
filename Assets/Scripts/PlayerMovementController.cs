@@ -150,7 +150,10 @@ public class PlayerMovementController : MonoBehaviour
 
         if (_onEdge)
         {
-            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing) StartCoroutine(Co_StandEdge(edgePosition + edgeCompletedOffset));
+            var projectedVector = Vector3.ProjectOnPlane(transform.position - edgePosition, edgeGameObject.transform.forward);
+            projectedVector = Vector3.ProjectOnPlane(projectedVector, transform.up);
+            
+            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing) StartCoroutine(Co_StandEdge(projectedVector + edgePosition  + edgeCompletedOffset));
             if (InputEqualVector(edgeGameObject.transform.forward) && !_standing)
             {
                 _onEdge = false;
