@@ -18,8 +18,17 @@ public class AdditiveSceneManager : MonoBehaviour
 
     public IEnumerator LoadNextScene()
     {
+        if (_currentSceneIdx >= SceneManager.sceneCountInBuildSettings - 2)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx + 1));
+            MoveObjectsToActiveScene();
+            DestroyPreviousScene();
+            yield break;
+        } 
+        
         var loading = SceneManager.LoadSceneAsync(SceneToLoad(), LoadSceneMode.Additive);
         yield return loading;
+        
         if (!firstScene)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx + 1));
@@ -36,6 +45,7 @@ public class AdditiveSceneManager : MonoBehaviour
         yield return loading;
         if (!firstScene)
         {
+            _currentSceneIdx = SceneManager.GetActiveScene().buildIndex;
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx - 1));
             MoveObjectsToActiveScene();
             DestroyNextScene();
@@ -52,7 +62,7 @@ public class AdditiveSceneManager : MonoBehaviour
 
     private void DestroyNextScene()
     {
-        if (_currentSceneIdx + 1 < SceneManager.sceneCountInBuildSettings)
+        if (_currentSceneIdx + 2 < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.UnloadSceneAsync(_currentSceneIdx + 2);
         }

@@ -28,7 +28,6 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void WhereIsPlayer()
     {
-        print(GetDotProduct());
         if (playerExitsOnRight)
         {
             if (GetDotProduct() < 0) OnPlayerEnter();
