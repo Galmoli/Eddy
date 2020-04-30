@@ -7,6 +7,14 @@ public class ChangeSceneTrigger : MonoBehaviour
 {
     [SerializeField] private bool playerExitsOnRight;
     private Transform _player;
+    private AdditiveSceneManager _sceneManager;
+    private bool triggerActivated = false;
+
+    private void Awake()
+    {
+        _sceneManager = transform.parent.gameObject.GetComponent<AdditiveSceneManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,12 +26,12 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void OnPlayerEnter()
     {
-        StartCoroutine(transform.parent.gameObject.GetComponent<AdditiveSceneManager>().LoadNextScene());
+        StartCoroutine(_sceneManager.LoadNextScene());
     }
 
     private void OnPlayerExit()
     {
-        StartCoroutine(transform.parent.gameObject.GetComponent<AdditiveSceneManager>().LoadPreviousScene());
+        StartCoroutine(_sceneManager.LoadPreviousScene());
     }
 
     private void WhereIsPlayer()
