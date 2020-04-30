@@ -25,7 +25,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Start()
     {
-        tempSword.SetActive(false);
+        //tempSword.SetActive(false);
     }
     
     private void OnEnable()
@@ -40,7 +40,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext context)
     {
-        tempSword.SetActive(true);
+        tempSword.SetActive(false);
         if(_basicAttack.Attack()) print("Dummy Hit");
         
         
@@ -50,6 +50,6 @@ public class PlayerCombatController : MonoBehaviour
     private IEnumerator Co_Attack()
     {
         yield return new WaitForSeconds(0.2f);
-        tempSword.SetActive(false);
+        tempSword.SetActive(true);
     }
 }

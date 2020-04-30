@@ -49,6 +49,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sword"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b9a7a68-6fc4-4324-981b-6644980b2837"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Scanner"",
+                    ""type"": ""Button"",
+                    ""id"": ""17cb860e-5249-4812-b38c-9493d1c2e72f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +111,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""MoveObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0636181-0a1f-4bb8-9315-07e27536ab22"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b916a3be-9e00-41a7-8fe0-ce49eec8a499"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scanner"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -107,6 +145,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Jump = m_PlayerControls.FindAction("Jump", throwIfNotFound: true);
         m_PlayerControls_Attack = m_PlayerControls.FindAction("Attack", throwIfNotFound: true);
         m_PlayerControls_MoveObject = m_PlayerControls.FindAction("MoveObject", throwIfNotFound: true);
+        m_PlayerControls_Sword = m_PlayerControls.FindAction("Sword", throwIfNotFound: true);
+        m_PlayerControls_Scanner = m_PlayerControls.FindAction("Scanner", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,6 +200,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Jump;
     private readonly InputAction m_PlayerControls_Attack;
     private readonly InputAction m_PlayerControls_MoveObject;
+    private readonly InputAction m_PlayerControls_Sword;
+    private readonly InputAction m_PlayerControls_Scanner;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -168,6 +210,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerControls_Jump;
         public InputAction @Attack => m_Wrapper.m_PlayerControls_Attack;
         public InputAction @MoveObject => m_Wrapper.m_PlayerControls_MoveObject;
+        public InputAction @Sword => m_Wrapper.m_PlayerControls_Sword;
+        public InputAction @Scanner => m_Wrapper.m_PlayerControls_Scanner;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +233,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MoveObject.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMoveObject;
                 @MoveObject.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMoveObject;
                 @MoveObject.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMoveObject;
+                @Sword.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSword;
+                @Sword.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSword;
+                @Sword.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSword;
+                @Scanner.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
+                @Scanner.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
+                @Scanner.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +255,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MoveObject.started += instance.OnMoveObject;
                 @MoveObject.performed += instance.OnMoveObject;
                 @MoveObject.canceled += instance.OnMoveObject;
+                @Sword.started += instance.OnSword;
+                @Sword.performed += instance.OnSword;
+                @Sword.canceled += instance.OnSword;
+                @Scanner.started += instance.OnScanner;
+                @Scanner.performed += instance.OnScanner;
+                @Scanner.canceled += instance.OnScanner;
             }
         }
     }
@@ -215,5 +271,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnMoveObject(InputAction.CallbackContext context);
+        void OnSword(InputAction.CallbackContext context);
+        void OnScanner(InputAction.CallbackContext context);
     }
 }
