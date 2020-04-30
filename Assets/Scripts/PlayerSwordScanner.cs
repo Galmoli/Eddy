@@ -36,13 +36,18 @@ public class PlayerSwordScanner : MonoBehaviour
 
         input.PlayerControls.Scanner.started += ctx => scannerInput = true;
         input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
+
+        hiddenObjects = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjects"));
+        hideableObjects = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjects"));
+
+        for (int i = 0; i < hiddenObjects.Length; i++)
+        {
+            Hide(hiddenObjects[i]);
+        }
     }
 
     void Update()
     {
-        Debug.Log(transform.GetChild(0).lossyScale);
-        Debug.Log(GetComponent<SphereCollider>().radius);
-
         //Sword
         if (input.PlayerControls.Sword.triggered)
         {
@@ -122,20 +127,24 @@ public class PlayerSwordScanner : MonoBehaviour
     
     private void Show(GameObject go)
     {
-        if(go.GetComponent<MeshRenderer>().enabled == false)
-        {
-            go.GetComponent<MeshRenderer>().enabled = true;
-            go.GetComponent<Collider>().isTrigger = false;
-        }     
+        if (go.GetComponent<MeshRenderer>() != null)
+            if(go.GetComponent<MeshRenderer>().enabled == false)
+                go.GetComponent<MeshRenderer>().enabled = true;
+
+        if (go.GetComponent<Collider>() != null)
+            if (go.GetComponent<Collider>().isTrigger == true)
+                go.GetComponent<Collider>().isTrigger = false;  
     }
 
     private void Hide(GameObject go)
     {
-        if(go.GetComponent<MeshRenderer>().enabled == true)
-        {
-            go.GetComponent<MeshRenderer>().enabled = false;
-            go.GetComponent<Collider>().isTrigger = true;
-        }    
+        if(go.GetComponent<MeshRenderer>() != null)
+            if(go.GetComponent<MeshRenderer>().enabled == true)
+                go.GetComponent<MeshRenderer>().enabled = false;
+
+        if (go.GetComponent<Collider>() != null)
+            if (go.GetComponent<Collider>().isTrigger == false)
+                go.GetComponent<Collider>().isTrigger = true;
     }
 
     private void Stab(GameObject obj, bool vertical)
@@ -152,7 +161,10 @@ public class PlayerSwordScanner : MonoBehaviour
             //
         }
 
-        //if(swordHolder == objecteArrossegable) sword.transform.parent = swordHolder.transform;
+        if (swordHolder.tag == "MoveObject")
+        {
+            transform.parent = swordHolder.transform;
+        }
 
         if (swordHolder.GetComponent<Switchable>() != null)
         {
