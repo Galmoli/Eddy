@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Scanner : MonoBehaviour
+public class PlayerSwordScanner : MonoBehaviour
 {
+    private InputActions input;
+
     public float scannerRadius;
 
     public GameObject sword;
@@ -14,6 +17,7 @@ public class Scanner : MonoBehaviour
     private GameObject swordHolder;
     
     private bool activeScanner;
+    private bool scannerInput;
 
     private GameObject[] hiddenObjects;
     private GameObject[] hideableObjects;
@@ -21,19 +25,26 @@ public class Scanner : MonoBehaviour
     void Start()
     {
         activeScanner = false;
+        scannerInput = false;
 
         sword.transform.GetChild(0).localScale *= scannerRadius * 2f;
+
+        input = new InputActions();
+        input.Enable();
+
+        input.PlayerControls.Scanner.started += ctx => scannerInput = true;
+        input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
     }
 
     void Update()
     {
         //Sword
-        if (Input.GetMouseButtonDown(0))
+        if (input.PlayerControls.Sword.triggered)
         {
             if(sword.transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(gameObject.transform.position, transform.forward, out hit, hitObjectDistance))
+                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance))
                 {
                     Stab(hit.collider.gameObject, false);
                 }
@@ -49,7 +60,7 @@ public class Scanner : MonoBehaviour
         }
 
         //Scanner
-        if (Input.GetKey(KeyCode.LeftShift) && sword.transform.parent == hand)
+        if (scannerInput && sword.transform.parent == hand)
         {
             if (!activeScanner)
             {
@@ -159,8 +170,8 @@ public class Scanner : MonoBehaviour
         if (vertical)
         {
             //hardcoding        
-            sword.transform.eulerAngles = new Vector3(0, 90, 0);
-            sword.transform.position -= new Vector3(0, 0.25f, 0);
+            sword.transform.eulerAngles = new Vector3(90, 0, 0);
+            sword.transform.position -= new Vector3(0, 1f, 0);
             //
         }
 
