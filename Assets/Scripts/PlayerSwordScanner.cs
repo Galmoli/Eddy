@@ -8,12 +8,11 @@ public class PlayerSwordScanner : MonoBehaviour
     private InputActions input;
 
     public float scannerRadius;
-
-    public GameObject sword;
-    public Transform hand;
+    
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
 
+    private Transform hand;
     private GameObject swordHolder;
     
     private bool activeScanner;
@@ -24,10 +23,13 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Start()
     {
+        hand = transform.parent;
+        
         activeScanner = false;
         scannerInput = false;
 
-        sword.transform.GetChild(0).localScale *= scannerRadius * 2f;
+        transform.GetChild(0).localScale *= scannerRadius * 2f;
+        GetComponent<SphereCollider>().radius = scannerRadius;
 
         input = new InputActions();
         input.Enable();
@@ -38,10 +40,13 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(transform.GetChild(0).lossyScale);
+        Debug.Log(GetComponent<SphereCollider>().radius);
+
         //Sword
         if (input.PlayerControls.Sword.triggered)
         {
-            if(sword.transform.parent == hand)
+            if(transform.parent == hand)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance))
@@ -60,7 +65,7 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         //Scanner
-        if (scannerInput && sword.transform.parent == hand)
+        if (scannerInput && transform.parent == hand)
         {
             if (!activeScanner)
             {
@@ -69,41 +74,15 @@ public class PlayerSwordScanner : MonoBehaviour
 
                 activeScanner = true;
 
-                sword.transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).gameObject.SetActive(true);
+                GetComponent<SphereCollider>().enabled = true;
             }          
         }
-        else if (activeScanner && sword.transform.parent == hand)
+        else if (activeScanner && transform.parent == hand)
         {
             ScannerOff();
 
             activeScanner = false;
-        }
-
-        if (activeScanner)
-        {   
-            for (int i = 0; i < hiddenObjects.Length; i++)
-            {
-                if (Vector3.Distance(sword.transform.position, hiddenObjects[i].transform.position) > scannerRadius)
-                {
-                    Hide(hiddenObjects[i]);
-                }
-                else
-                {
-                    Show(hiddenObjects[i]);
-                }
-            }
-
-            for (int i = 0; i < hideableObjects.Length; i++)
-            {
-                if (Vector3.Distance(sword.transform.position, hideableObjects[i].transform.position) < scannerRadius)
-                {
-                    Hide(hideableObjects[i]);
-                }
-                else
-                {
-                    Show(hideableObjects[i]);
-                }
-            }
         }
     }
 
@@ -126,14 +105,12 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private void ScannerOff()
     {
-        sword.transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<SphereCollider>().enabled = false;
 
         for (int i = 0; i < hiddenObjects.Length; i++)
         {
-            if (hiddenObjects[i].transform != sword.transform.parent)
-            {
                 Hide(hiddenObjects[i]);
-            }
         }
 
         for (int i = 0; i < hideableObjects.Length; i++)
@@ -148,7 +125,7 @@ public class PlayerSwordScanner : MonoBehaviour
         if(go.GetComponent<MeshRenderer>().enabled == false)
         {
             go.GetComponent<MeshRenderer>().enabled = true;
-            go.GetComponent<Collider>().enabled = true;
+            go.GetComponent<Collider>().isTrigger = false;
         }     
     }
 
@@ -157,7 +134,7 @@ public class PlayerSwordScanner : MonoBehaviour
         if(go.GetComponent<MeshRenderer>().enabled == true)
         {
             go.GetComponent<MeshRenderer>().enabled = false;
-            go.GetComponent<Collider>().enabled = false;
+            go.GetComponent<Collider>().isTrigger = true;
         }    
     }
 
@@ -165,13 +142,13 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         swordHolder = obj;
 
-        sword.transform.parent = null;
+        transform.parent = null;
 
         if (vertical)
         {
             //hardcoding        
-            sword.transform.eulerAngles = new Vector3(90, 0, 0);
-            sword.transform.position -= new Vector3(0, 1f, 0);
+            transform.eulerAngles = new Vector3(90, 0, 0);
+            transform.position -= new Vector3(0, 1f, 0);
             //
         }
 
@@ -192,22 +169,44 @@ public class PlayerSwordScanner : MonoBehaviour
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
 
-        sword.transform.parent = null;
+        transform.parent = null;
 
         //hardcoding
-        sword.transform.rotation = hand.rotation;
-        sword.transform.position = hand.position;
+        transform.rotation = hand.rotation;
+        transform.position = hand.position;
         //
 
-        sword.transform.parent = hand;
+        transform.parent = hand;
+        transform.parent = hand;
+    }
 
-        //if (swordHolder.layer == hiddenObjectsLayer)
-        //{
-            //Hide(swordHolder);
-        //}
-        //else if (swordHolder.layer == hideableObjectsLayer)
-        //{
-            //Show(swordHolder);
-        //}
+    void OnTriggerEnter(Collider other)
+    {
+        if (scannerInput)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
+            {
+                Show(other.gameObject);
+            }
+            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects"))
+            {
+                Hide(other.gameObject);
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (scannerInput)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
+            {
+                Hide(other.gameObject);
+            }
+            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects"))
+            {
+                Show(other.gameObject);
+            }
+        }
     }
 }
