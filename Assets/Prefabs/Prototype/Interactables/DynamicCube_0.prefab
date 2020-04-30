@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 909639685687333080}
   - component: {fileID: 909639685687333081}
   - component: {fileID: 909639685687333084}
-  - component: {fileID: 909639685687333085}
   - component: {fileID: 909639685687333078}
+  - component: {fileID: 26892096791214799}
   m_Layer: 0
   m_Name: DynamicCube_0
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909639685687333079}
-  m_LocalRotation: {x: 0.114916526, y: 0.33841738, z: 0.3003013, w: 0.88435686}
+  m_LocalRotation: {x: 0.114917316, y: 0.3384191, z: 0.30030167, w: 0.88435596}
   m_LocalPosition: {x: 38.9, y: 15.69, z: -24.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -314,7 +314,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!59 &909639685687333085
+--- !u!65 &909639685687333078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909639685687333079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.075467, y: 0.20000397, z: 7.0600023}
+  m_Center: {x: 0.28773254, y: 0.00000052470364, z: -0.000002971657}
+--- !u!59 &26892096791214799
 HingeJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,10 +335,10 @@ HingeJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909639685687333079}
   m_ConnectedBody: {fileID: 0}
-  m_Anchor: {x: -0.63, y: -0.02, z: 0}
+  m_Anchor: {x: -0.74, y: -0.1, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 38.537, y: 15.290511, z: -23.904516}
+  m_ConnectedAnchor: {x: 38.50831, y: 15.16007, z: -23.878786}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -349,16 +362,3 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!65 &909639685687333078
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909639685687333079}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.075467, y: 0.20000397, z: 7.0600023}
-  m_Center: {x: 0.28772873, y: 0.000001478378, z: -0.0000010643085}
