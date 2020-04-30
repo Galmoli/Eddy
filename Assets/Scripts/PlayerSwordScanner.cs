@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerSwordScanner : MonoBehaviour
 {
     private InputActions input;
+    private PlayerMovementController playerMovement;
 
     public float scannerRadius;
     
@@ -15,7 +16,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private Transform hand;
     private GameObject swordHolder;
     
-    private bool activeScanner;
+    [HideInInspector] public bool activeScanner;
     private bool scannerInput;
 
     private GameObject[] hiddenObjects;
@@ -23,6 +24,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovementController>();
+        
         hand = transform.parent;
         
         activeScanner = false;
@@ -49,7 +52,7 @@ public class PlayerSwordScanner : MonoBehaviour
     void Update()
     {
         //Sword
-        if (input.PlayerControls.Sword.triggered)
+        if (input.PlayerControls.Sword.triggered && !playerMovement._inputMoveObject)
         {
             if(transform.parent == hand)
             {
@@ -70,7 +73,7 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         //Scanner
-        if (scannerInput && transform.parent == hand)
+        if (scannerInput && transform.parent == hand && !playerMovement._inputMoveObject)
         {
             if (!activeScanner)
             {
@@ -83,7 +86,7 @@ public class PlayerSwordScanner : MonoBehaviour
                 GetComponent<SphereCollider>().enabled = true;
             }          
         }
-        else if (activeScanner && transform.parent == hand)
+        else if (activeScanner && transform.parent == hand && !playerMovement._inputMoveObject)
         {
             ScannerOff();
 
