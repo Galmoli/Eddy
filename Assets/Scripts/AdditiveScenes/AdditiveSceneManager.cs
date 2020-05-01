@@ -8,7 +8,7 @@ public class AdditiveSceneManager : MonoBehaviour
 {
     [SerializeField] private bool firstScene;
     private int _currentSceneIdx;
-    private int _bootSceneIdx = 0;
+    [HideInInspector] public int _bootSceneIdx = 0;
 
     private void Start()
     {
@@ -19,7 +19,6 @@ public class AdditiveSceneManager : MonoBehaviour
     {
         if (_currentSceneIdx >= SceneManager.sceneCountInBuildSettings - 1) //Is Last scene
         {
-            print("LastScene: "+ _currentSceneIdx);
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx));
             MoveObjectsToActiveScene();
             DestroyPreviousScene();
@@ -43,7 +42,6 @@ public class AdditiveSceneManager : MonoBehaviour
         
         if (_currentSceneIdx <= _bootSceneIdx + 2) //Is First Scene
         {
-            print("First Scene " + _currentSceneIdx);
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx - 1));
             MoveObjectsToActiveScene();
             DestroyNextScene();
