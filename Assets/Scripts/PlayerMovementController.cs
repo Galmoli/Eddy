@@ -75,7 +75,7 @@ public class PlayerMovementController : MonoBehaviour
 
         #region Push & Pull
         
-        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.activeScanner)
+        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand())
         {
             if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {
@@ -257,7 +257,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MoveObject"))
+        if (other.CompareTag("MoveObject") && other.transform.parent != null)
         {
             _moveObject = other.transform.parent.GetComponent<PushPullObject>();
         }

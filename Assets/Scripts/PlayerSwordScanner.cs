@@ -57,7 +57,7 @@ public class PlayerSwordScanner : MonoBehaviour
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance))
+                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null)
                 {
                     Stab(hit.collider.gameObject, false);
                 }
@@ -131,22 +131,31 @@ public class PlayerSwordScanner : MonoBehaviour
     private void Show(GameObject go)
     {
         if (go.GetComponent<MeshRenderer>() != null)
-            if(go.GetComponent<MeshRenderer>().enabled == false)
+            if(!go.GetComponent<MeshRenderer>().enabled)
                 go.GetComponent<MeshRenderer>().enabled = true;
 
+        if (go.GetComponent<Rigidbody>() != null)
+            if (go.GetComponent<Rigidbody>().isKinematic)
+                go.GetComponent<Rigidbody>().isKinematic = false;
+
         if (go.GetComponent<Collider>() != null)
-            if (go.GetComponent<Collider>().isTrigger == true)
+            if (go.GetComponent<Collider>().isTrigger)
                 go.GetComponent<Collider>().isTrigger = false;  
     }
 
     private void Hide(GameObject go)
     {
         if(go.GetComponent<MeshRenderer>() != null)
-            if(go.GetComponent<MeshRenderer>().enabled == true)
+            if(go.GetComponent<MeshRenderer>().enabled)
                 go.GetComponent<MeshRenderer>().enabled = false;
 
+        if (go.GetComponent<Rigidbody>() != null)
+            if (!go.GetComponent<Rigidbody>().isKinematic)
+                go.GetComponent<Rigidbody>().isKinematic = true;
+
+
         if (go.GetComponent<Collider>() != null)
-            if (go.GetComponent<Collider>().isTrigger == false)
+            if (!go.GetComponent<Collider>().isTrigger)
                 go.GetComponent<Collider>().isTrigger = true;
     }
 
@@ -172,9 +181,7 @@ public class PlayerSwordScanner : MonoBehaviour
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
-        }
-
-       
+        }      
     }
 
     private void SwordBack()
@@ -197,7 +204,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (scannerInput)
+        if (activeScanner)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
             {
@@ -212,7 +219,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (scannerInput)
+        if (activeScanner)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
             {
@@ -223,5 +230,10 @@ public class PlayerSwordScanner : MonoBehaviour
                 Show(other.gameObject);
             }
         }
+    }
+
+    public bool UsingScannerInHand()
+    {
+        return activeScanner && transform.parent == hand;
     }
 }
