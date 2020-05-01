@@ -9,6 +9,7 @@ public class AdditiveSceneTool : EditorWindow
 {
     private bool _toolActive;
     private GameObject _dummy;
+    private Rect _headerSection;
     
     [MenuItem("Window/AdditiveSceneTool")]
     static void OpenWindow()
@@ -26,7 +27,9 @@ public class AdditiveSceneTool : EditorWindow
     private void OnGUI()
     {
         if (EditorApplication.isPlaying) return;
-        GUILayout.Label("TOOL ACTIVE = " + _toolActive);
+        
+        DrawLayouts();
+        
         if (GUILayout.Button("Auto-config", GetAutoConfigStyle()))
         {
             _toolActive = true;
@@ -81,7 +84,7 @@ public class AdditiveSceneTool : EditorWindow
     {
         AdditiveSceneManager sm = FindObjectOfType<AdditiveSceneManager>();
         int currentSceneIdx = sm.gameObject.scene.buildIndex;
-        if (currentSceneIdx <= sm._bootSceneIdx + 2) //Only load next Scene
+        if (currentSceneIdx <= sm._bootSceneIdx + 1) //Only load next Scene
         {
             SceneManager.LoadSceneAsync(currentSceneIdx + 1, LoadSceneMode.Additive);
         }
@@ -99,8 +102,8 @@ public class AdditiveSceneTool : EditorWindow
     private GUIStyle GetAutoConfigStyle()
     {
         var autoConfigStyle = new GUIStyle(GUI.skin.button);
-        autoConfigStyle.fixedWidth = 120;
-        autoConfigStyle.fixedHeight = 30;
+        autoConfigStyle.fixedWidth = Screen.width;
+        autoConfigStyle.fixedHeight = 35;
         
         GUI.backgroundColor = Color.green;
         return autoConfigStyle;
@@ -109,10 +112,22 @@ public class AdditiveSceneTool : EditorWindow
     private GUIStyle GetResetStyle()
     {
         var resetStyle = new GUIStyle(GUI.skin.button);
-        resetStyle.fixedWidth = 120;
-        resetStyle.fixedHeight = 30;
+        resetStyle.fixedWidth = Screen.width;
+        resetStyle.fixedHeight = 35;
         
         GUI.backgroundColor = Color.red;
         return resetStyle;
+    }
+
+    private void DrawLayouts()
+    {
+        var textStyle = new GUIStyle(GUI.skin.label);
+        textStyle.fontSize = 18;
+        textStyle.fontStyle = FontStyle.Bold;
+        GUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        GUILayout.Label("TOOL ACTIVE = " + _toolActive, textStyle);
+        GUILayout.FlexibleSpace();
+        GUILayout.EndHorizontal();
     }
 }
