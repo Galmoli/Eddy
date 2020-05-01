@@ -39,14 +39,6 @@ public class PlayerSwordScanner : MonoBehaviour
 
         input.PlayerControls.Scanner.started += ctx => scannerInput = true;
         input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
-
-        hiddenObjects = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjects"));
-        hideableObjects = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjects"));
-
-        for (int i = 0; i < hiddenObjects.Length; i++)
-        {
-            Hide(hiddenObjects[i]);
-        }
     }
 
     void Update()
@@ -140,7 +132,10 @@ public class PlayerSwordScanner : MonoBehaviour
 
         if (go.GetComponent<Collider>() != null)
             if (go.GetComponent<Collider>().isTrigger)
-                go.GetComponent<Collider>().isTrigger = false;  
+                go.GetComponent<Collider>().isTrigger = false;
+
+        if (go.tag == "MoveObject")
+            go.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void Hide(GameObject go)
@@ -157,6 +152,9 @@ public class PlayerSwordScanner : MonoBehaviour
         if (go.GetComponent<Collider>() != null)
             if (!go.GetComponent<Collider>().isTrigger)
                 go.GetComponent<Collider>().isTrigger = true;
+
+        if(go.tag == "MoveObject")
+            go.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     private void Stab(GameObject obj, bool vertical)

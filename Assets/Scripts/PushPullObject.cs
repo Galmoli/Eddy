@@ -26,7 +26,7 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement && GetComponent<MeshRenderer>().enabled)
+            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement && transform.GetChild(0).gameObject.activeSelf)
             {
                 canMove = true;
                 moveVector = GetClosestVector();
