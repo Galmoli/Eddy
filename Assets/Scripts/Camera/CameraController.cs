@@ -14,17 +14,20 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {      
-        transform.position = Vector3.Lerp(transform.position, rail.ProjectPosition(target.position), movementSpeed * Time.deltaTime); ;
-
-        if (lookAtPlayer)
+        if(rail != null)
         {
-            transform.LookAt(target.position);
-        }
-        else
-        {
-            Vector3 rot = rail.ProjectRotation(target.position, transform.position);
+            transform.position = Vector3.Lerp(transform.position, rail.ProjectPosition(target.position), movementSpeed * Time.deltaTime); ;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
+            if (lookAtPlayer)
+            {
+                transform.LookAt(target.position);
+            }
+            else
+            {
+                Vector3 rot = rail.ProjectRotation(target.position, transform.position);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
+            }
         }
     }
 }
