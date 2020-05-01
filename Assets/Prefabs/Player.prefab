@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1063757209}
   - component: {fileID: 1063757212}
   - component: {fileID: 1063757211}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Scanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 6985562578818656755}
   - component: {fileID: 6618103121845184927}
   - component: {fileID: 4031807802636552493}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: SwordMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 6411527135254647708}
   - component: {fileID: 1286977054}
   - component: {fileID: 1286977053}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,6 +383,7 @@ MonoBehaviour:
   scannerRadius: 4
   floorDetectionPoint: {fileID: 608974116}
   hitObjectDistance: 0.5
+  activeScanner: 0
 --- !u!1 &6411527136159828577
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +528,7 @@ MonoBehaviour:
   lerpVelocity: 0.1
   edgePosition: {x: 0, y: 0, z: 0}
   edgeGameObject: {fileID: 0}
+  _inputMoveObject: 0
 --- !u!114 &6411527136159828570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bddc150f0252c47b7bdeb462e35069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempSword: {fileID: 6411527135254647709}
+  sword: {fileID: 0}
 --- !u!114 &6411527136159828569
 MonoBehaviour:
   m_ObjectHideFlags: 0
