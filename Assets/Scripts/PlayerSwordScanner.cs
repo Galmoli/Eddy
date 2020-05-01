@@ -108,7 +108,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
         for (int i = 0; i < hiddenObjectsInScanner.Length; i++)
         {
-                Hide(hiddenObjectsInScanner[i]);
+            Hide(hiddenObjectsInScanner[i]);
         }
 
         for (int i = 0; i < hideableObjectsInScanner.Length; i++)
@@ -129,16 +129,10 @@ public class PlayerSwordScanner : MonoBehaviour
         else if (go.layer == LayerMask.NameToLayer("HideableObjectsInScanner"))
             go.layer = LayerMask.NameToLayer("HideableObjects");
 
-        /*if (go.GetComponent<Rigidbody>() != null)
-            if (go.GetComponent<Rigidbody>().isKinematic)
-                go.GetComponent<Rigidbody>().isKinematic = false;
-
-        if (go.GetComponent<Collider>() != null)
-            if (go.GetComponent<Collider>().isTrigger)
-                go.GetComponent<Collider>().isTrigger = false;*/
-
-        if (go.tag == "MoveObject")
-            go.transform.GetChild(0).gameObject.SetActive(true);
+        for(int i = 0; i < go.transform.childCount; i++)
+        {
+            go.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     private void Hide(GameObject go)
@@ -152,19 +146,13 @@ public class PlayerSwordScanner : MonoBehaviour
         else if(go.layer == LayerMask.NameToLayer("HideableObjects"))
             go.layer = LayerMask.NameToLayer("HideableObjectsInScanner");
 
-        /*if (go.GetComponent<Rigidbody>() != null)
-            if (!go.GetComponent<Rigidbody>().isKinematic)
-                go.GetComponent<Rigidbody>().isKinematic = true;
-
-        if (go.GetComponent<Collider>() != null)
-            if (!go.GetComponent<Collider>().isTrigger)
-                go.GetComponent<Collider>().isTrigger = true;*/
-
-        if (go.tag == "MoveObject")
+        for (int i = 0; i < go.transform.childCount; i++)
         {
-            go.transform.GetChild(0).gameObject.SetActive(false);
-            go.GetComponent<PushPullObject>().canMove = false;
-        }     
+            if(go.transform.GetChild(i).tag == "MoveObject")
+                go.GetComponent<PushPullObject>().canMove = false;
+
+            go.transform.GetChild(i).gameObject.SetActive(false);
+        } 
     }
 
     private void Stab(GameObject obj, bool vertical)
