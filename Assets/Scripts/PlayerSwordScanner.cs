@@ -17,10 +17,8 @@ public class PlayerSwordScanner : MonoBehaviour
     private GameObject swordHolder;
     
     [HideInInspector] public bool activeScanner;
-    private bool scannerInput;
 
-    private GameObject[] hiddenObjects;
-    private GameObject[] hideableObjects;
+    private bool scannerInput;
 
     void Start()
     {
@@ -49,11 +47,11 @@ public class PlayerSwordScanner : MonoBehaviour
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null)
-                {
+                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
+                {  
                     Stab(hit.collider.gameObject, false);
                 }
-                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f))
+                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
                 {
                     Stab(hit.collider.gameObject, true);
                 }
@@ -69,9 +67,6 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             if (!activeScanner)
             {
-                hiddenObjects = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjects"));
-                hideableObjects = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjects"));
-
                 activeScanner = true;
 
                 transform.GetChild(0).gameObject.SetActive(true);
@@ -108,14 +103,17 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<SphereCollider>().enabled = false;
 
-        for (int i = 0; i < hiddenObjects.Length; i++)
+        GameObject[] hiddenObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjectsInScanner"));
+        GameObject[] hideableObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjectsInScanner"));
+
+        for (int i = 0; i < hiddenObjectsInScanner.Length; i++)
         {
-                Hide(hiddenObjects[i]);
+            Hide(hiddenObjectsInScanner[i]);
         }
 
-        for (int i = 0; i < hideableObjects.Length; i++)
+        for (int i = 0; i < hideableObjectsInScanner.Length; i++)
         {
-            Show(hideableObjects[i]);
+            Show(hideableObjectsInScanner[i]);
         }
         
     }
@@ -126,16 +124,15 @@ public class PlayerSwordScanner : MonoBehaviour
             if(!go.GetComponent<MeshRenderer>().enabled)
                 go.GetComponent<MeshRenderer>().enabled = true;
 
-        if (go.GetComponent<Rigidbody>() != null)
-            if (go.GetComponent<Rigidbody>().isKinematic)
-                go.GetComponent<Rigidbody>().isKinematic = false;
+        if (go.layer == LayerMask.NameToLayer("HiddenObjects"))
+            go.layer = LayerMask.NameToLayer("HiddenObjectsInScanner");
+        else if (go.layer == LayerMask.NameToLayer("HideableObjectsInScanner"))
+            go.layer = LayerMask.NameToLayer("HideableObjects");
 
-        if (go.GetComponent<Collider>() != null)
-            if (go.GetComponent<Collider>().isTrigger)
-                go.GetComponent<Collider>().isTrigger = false;
-
-        if (go.tag == "MoveObject")
-            go.transform.GetChild(0).gameObject.SetActive(true);
+        for(int i = 0; i < go.transform.childCount; i++)
+        {
+            go.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     private void Hide(GameObject go)
@@ -144,17 +141,18 @@ public class PlayerSwordScanner : MonoBehaviour
             if(go.GetComponent<MeshRenderer>().enabled)
                 go.GetComponent<MeshRenderer>().enabled = false;
 
-        if (go.GetComponent<Rigidbody>() != null)
-            if (!go.GetComponent<Rigidbody>().isKinematic)
-                go.GetComponent<Rigidbody>().isKinematic = true;
+        if (go.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
+            go.layer = LayerMask.NameToLayer("HiddenObjects");
+        else if(go.layer == LayerMask.NameToLayer("HideableObjects"))
+            go.layer = LayerMask.NameToLayer("HideableObjectsInScanner");
 
+        for (int i = 0; i < go.transform.childCount; i++)
+        {
+            if(go.transform.GetChild(i).tag == "MoveObject")
+                go.GetComponent<PushPullObject>().canMove = false;
 
-        if (go.GetComponent<Collider>() != null)
-            if (!go.GetComponent<Collider>().isTrigger)
-                go.GetComponent<Collider>().isTrigger = true;
-
-        if(go.tag == "MoveObject")
-            go.transform.GetChild(0).gameObject.SetActive(false);
+            go.transform.GetChild(i).gameObject.SetActive(false);
+        } 
     }
 
     private void Stab(GameObject obj, bool vertical)
@@ -208,7 +206,7 @@ public class PlayerSwordScanner : MonoBehaviour
             {
                 Show(other.gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects"))
+            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects") || other.gameObject.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
             {
                 Hide(other.gameObject);
             }
@@ -219,11 +217,11 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (activeScanner)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
+            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
             {
                 Hide(other.gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects"))
+            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjectsInScanner"))
             {
                 Show(other.gameObject);
             }
