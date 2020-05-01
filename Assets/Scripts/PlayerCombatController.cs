@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] private GameObject tempSword;
+    [SerializeField] private PlayerSwordScanner sword;
     //Player Input
     private InputActions _input;
     
@@ -21,11 +21,13 @@ public class PlayerCombatController : MonoBehaviour
         _input = new InputActions();
         _input.PlayerControls.Attack.started += Attack;
         _basicAttack = GetComponent<BasicAttack>();
+
+        sword = FindObjectOfType<PlayerSwordScanner>();
     }
 
     private void Start()
     {
-        //tempSword.SetActive(false);
+        //tempSword.gameObject.SetActive(false);
     }
     
     private void OnEnable()
@@ -40,16 +42,19 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext context)
     {
-        tempSword.SetActive(false);
-        if(_basicAttack.Attack()) print("Dummy Hit");
-        
-        
-        StartCoroutine(Co_Attack());
+        if (!sword.activeScanner)
+        {
+            sword.gameObject.SetActive(false);
+            if (_basicAttack.Attack()) print("Dummy Hit");
+
+
+            StartCoroutine(Co_Attack());
+        }
     }
 
     private IEnumerator Co_Attack()
     {
         yield return new WaitForSeconds(0.2f);
-        tempSword.SetActive(true);
+        sword.gameObject.SetActive(true);
     }
 }

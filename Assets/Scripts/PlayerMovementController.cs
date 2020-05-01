@@ -24,17 +24,21 @@ public class PlayerMovementController : MonoBehaviour
     //Player Inputs
     private InputActions _input;
     private Vector2 movementVector;
-    
+
+    //Objects
+    private PlayerSwordScanner _scannerSword;
+
     //Components
     private CharacterController _characterController;
-    
+
     //Variables
+    [HideInInspector] public bool _inputMoveObject;
+
     private bool _jump;
     private bool _onGround;
     private bool _onEdge;
     private bool _edgeAvailable;
-    private bool _standing;
-    private bool _inputMoveObject;
+    private bool _standing;   
     private float _verticalSpeed;
     private Transform _cameraTransform;
     private PushPullObject _moveObject;
@@ -44,6 +48,7 @@ public class PlayerMovementController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
+        _scannerSword = FindObjectOfType<PlayerSwordScanner>();
         
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
@@ -70,7 +75,7 @@ public class PlayerMovementController : MonoBehaviour
 
         #region Push & Pull
         
-        if (_moveObject && _moveObject.canMove && _inputMoveObject)
+        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand())
         {
             if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {
@@ -252,7 +257,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MoveObject"))
+        if (other.CompareTag("MoveObject") && other.transform.parent != null)
         {
             _moveObject = other.transform.parent.GetComponent<PushPullObject>();
         }
