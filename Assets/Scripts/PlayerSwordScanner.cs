@@ -47,11 +47,11 @@ public class PlayerSwordScanner : MonoBehaviour
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null)
-                {
+                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
+                {  
                     Stab(hit.collider.gameObject, false);
                 }
-                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f))
+                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
                 {
                     Stab(hit.collider.gameObject, true);
                 }
