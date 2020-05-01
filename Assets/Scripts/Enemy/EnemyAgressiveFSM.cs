@@ -141,12 +141,13 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 break;
         }
         currentState = newState;
+        blackboard.statesText.text = currentState.ToString();
     }
 
     IEnumerator Attack()
     {
-        transform.GetChild(1).gameObject.SetActive(true);
+        blackboard.attack.SetActive(true);
         yield return new WaitForSeconds(0.15f);
-        transform.GetChild(1).gameObject.SetActive(false);
+        blackboard.attack.SetActive(false);
     }
 }

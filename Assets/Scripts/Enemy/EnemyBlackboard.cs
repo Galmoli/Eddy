@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyBlackboard : MonoBehaviour
 {
+    public GameObject attack;
+    public Text statesText;
+    
     [Header("General Stats")]
     public float healthPoints;
     public float attackPoints;
@@ -41,5 +45,10 @@ public class EnemyBlackboard : MonoBehaviour
 
         stunned = false;
         hit = false;
+    }
+
+    private void Update()
+    {
+        statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
     }
 }

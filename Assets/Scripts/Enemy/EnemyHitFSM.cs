@@ -90,5 +90,6 @@ public class EnemyHitFSM : MonoBehaviour
         }
 
         currentState = newState;
+        blackboard.statesText.text = currentState.ToString();
     }
 }

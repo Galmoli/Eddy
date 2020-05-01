@@ -88,6 +88,8 @@ public class EnemyPassiveFSM : MonoBehaviour
         }
 
         currentState = newState;
+
+        blackboard.statesText.text = currentState.ToString();
     }
 
     void SearchNewPatrolTarget()
