@@ -7,18 +7,27 @@ using UnityEngine.SceneManagement;
 
 public class SearchCameraRails : MonoBehaviour
 {
-    
+    private void Start()
+    {
+        if(gameObject.scene.name != "BootScene") SearchCameraRail();
+    }
+
     private void OnEnable()
     {
-        SceneManager.activeSceneChanged += SearchCameraRail;
+        SceneManager.activeSceneChanged += SearchCameraRailEvent;
     }
 
     private void OnDisable()
     {
-        SceneManager.activeSceneChanged -= SearchCameraRail;
+        SceneManager.activeSceneChanged -= SearchCameraRailEvent;
     }
 
-    private void SearchCameraRail(Scene current, Scene next)
+    private void SearchCameraRailEvent(Scene current, Scene next)
+    {
+        SearchCameraRail();
+    }
+
+    private void SearchCameraRail()
     {
         var gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 
