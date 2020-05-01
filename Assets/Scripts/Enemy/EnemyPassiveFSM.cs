@@ -17,14 +17,12 @@ public class EnemyPassiveFSM : MonoBehaviour
     private States currentState;
 
     private EnemyBlackboard blackboard;
-    private NavMeshAgent agent;
 
     private float timeInIdle;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
-        agent = GetComponent<NavMeshAgent>();
     }
 
     private void OnEnable()
@@ -45,7 +43,7 @@ public class EnemyPassiveFSM : MonoBehaviour
                 ChangeState(States.IDLE);
                 break;
             case States.IDLE:
-                if(timeInIdle < 0)
+                if(timeInIdle <= 0)
                 {
                     ChangeState(States.ARRIVE);
                 }
@@ -55,7 +53,7 @@ public class EnemyPassiveFSM : MonoBehaviour
                 }
                 break;
             case States.ARRIVE:
-                if (!agent.hasPath && agent.pathStatus == NavMeshPathStatus.PathComplete)
+                if (!blackboard.agent.hasPath && blackboard.agent.pathStatus == NavMeshPathStatus.PathComplete)
                 {
                     ChangeState(States.IDLE);
                 }
@@ -70,7 +68,6 @@ public class EnemyPassiveFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.IDLE:
-                
                 break;
             case States.ARRIVE:
                 break;
@@ -82,8 +79,10 @@ public class EnemyPassiveFSM : MonoBehaviour
                 break;
             case States.IDLE:
                 timeInIdle = blackboard.timeInIdle;
+                blackboard.agent.isStopped = true;
                 break;
             case States.ARRIVE:
+                blackboard.agent.isStopped = false;
                 SearchNewPatrolTarget();
                 break;
         }
@@ -100,6 +99,6 @@ public class EnemyPassiveFSM : MonoBehaviour
         NavMesh.SamplePosition(randomDirection, out hit, blackboard.wanderRadius, 1);
         Vector3 finalPosition = hit.position;
 
-        agent.SetDestination(finalPosition);
+        blackboard.agent.SetDestination(finalPosition);
     }
 }
