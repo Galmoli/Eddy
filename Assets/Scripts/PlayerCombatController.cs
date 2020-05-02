@@ -45,9 +45,11 @@ public class PlayerCombatController : MonoBehaviour
         if (!sword.activeScanner)
         {
             sword.gameObject.SetActive(false);
-            if (_basicAttack.Attack()) print("Dummy Hit");
-
-
+            if (_basicAttack.Attack().colliding)
+            {
+                _basicAttack.Attack().hitObject.GetComponent<EnemyBlackboard>().Hit(_basicAttack.damage);
+            }
+            
             StartCoroutine(Co_Attack());
         }
     }
