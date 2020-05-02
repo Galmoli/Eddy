@@ -71,6 +71,7 @@ public class EnemyHitFSM : MonoBehaviour
                 break;
             case States.STUNNED:
                 enemyStunFSM.enabled = false;
+                blackboard.hit = false;
                 break;
             case States.STAGGERED:
                 break;

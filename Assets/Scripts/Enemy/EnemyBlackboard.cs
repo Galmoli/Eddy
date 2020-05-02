@@ -52,4 +52,10 @@ public class EnemyBlackboard : MonoBehaviour
     {
         statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
     }
+
+    public void Hit(int damage)
+    {
+        hit = true;
+        healthPoints -= damage;
+    }
 }
