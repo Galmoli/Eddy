@@ -38,6 +38,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
         input.PlayerControls.Scanner.started += ctx => scannerInput = true;
         input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
+
+        input.PlayerControls.Scanner.started += EnableSword;
     }
 
     void Update()
@@ -103,6 +105,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<SphereCollider>().enabled = false;
+        GetComponent<TestSwordFeature>().DisableSword();
 
         GameObject[] hiddenObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjectsInScanner"));
         GameObject[] hideableObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjectsInScanner"));
@@ -159,7 +162,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private void Stab(GameObject obj, bool vertical)
     {
         swordHolder = obj;
-
+        GetComponent<TestSwordFeature>().EnableSword();
         transform.parent = null;
 
         if (vertical)
@@ -187,7 +190,8 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
-
+        
+        GetComponent<TestSwordFeature>().DisableSword();
         transform.parent = null;
 
         //hardcoding
@@ -232,5 +236,10 @@ public class PlayerSwordScanner : MonoBehaviour
     public bool UsingScannerInHand()
     {
         return activeScanner && transform.parent == hand;
+    }
+
+    private void EnableSword(InputAction.CallbackContext ctx)
+    {
+        GetComponent<TestSwordFeature>().EnableSword();
     }
 }
