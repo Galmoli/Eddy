@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -14,7 +11,7 @@ public class PushPullObject : MonoBehaviour
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
     [HideInInspector] public bool canPull;
-    [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
+    [HideInInspector] public Vector3 moveVector;
     private BoxCollider _boxCollider;
 
     private void Awake()
@@ -45,25 +42,30 @@ public class PushPullObject : MonoBehaviour
             canMove = false;
         }
     }
-
+    
+    //Moves this GameObject when the player pulls it.
     public void Pull()
     {
         transform.Translate(moveVector * (speedWhenMove * Time.deltaTime), Space.World);
     }
-
+    
+    //Moves this GameObject when the player pushes it.
     public void Push()
     {
         transform.Translate(-moveVector * (speedWhenMove * Time.deltaTime), Space.World);
     }
 
+    //Gets the angle between the closest vector and the director vector
+    //This is used to check if the player is in the safe face of the cube as the movement axis.
     private float GetAngleBetweenForwardAndPlayer()
     {
         Vector3 l_directionVector = GetClosestVector();
-        Vector3 playerForward = Vector3.ProjectOnPlane(playerTransform.position - transform.position, Vector3.up).normalized;
+        Vector3 playerForward = GetDirectionVector();
 
         return Mathf.Abs(Vector3.Angle(l_directionVector, playerForward));
     }
-
+    
+    //Gets the Projected vector between the player and this object.
     private Vector3 GetDirectionVector()
     {
         Vector3 playerVector = playerTransform.position - transform.position;
@@ -71,17 +73,21 @@ public class PushPullObject : MonoBehaviour
 
         return l_directionVector;
     }
-
+    
+    //Checks if the object is colliding when pushing
     private bool PushCollision()
     {
         return Physics.Raycast(transform.position, -GetDirectionVector(), GetColliderSize(), _layersToDetectCollision);
     }
-
+    
+    //Checks if the player is colliding when pulling
     private bool PullCollision()
     {
         return Physics.Raycast(playerTransform.position, GetDirectionVector(), 1, _layersToDetectCollision);
     }
-
+    
+    //Returns the closest vector to the player
+    //This is used to set the axis of movement
     private Vector3 GetClosestVector()
     {
         Vector3[] vectors = Generate3DVectors();
@@ -101,6 +107,8 @@ public class PushPullObject : MonoBehaviour
         return closestVector;
     }
 
+    //Generates the 4 vectors of movement of the cube. 
+    //Its used because the cube can be rotated in any angle.
     private Vector3[] Generate3DVectors()
     {
         Vector3[] vectors = new Vector3[4];
@@ -113,6 +121,7 @@ public class PushPullObject : MonoBehaviour
         return vectors;
     }
 
+    //Gets the collider size from the center. This is used by the Raycast to get the distance of detection
     private float GetColliderSize()
     {
         if (GetClosestVector() == transform.forward || GetClosestVector() == -transform.forward)
