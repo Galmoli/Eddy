@@ -47,7 +47,10 @@ public class PlayerCombatController : MonoBehaviour
             sword.gameObject.SetActive(false);
             if (_basicAttack.Attack().colliding)
             {
-                _basicAttack.Attack().hitObject.GetComponent<EnemyBlackboard>().Hit(_basicAttack.damage);
+                if (_basicAttack.Attack().hitObject)
+                {
+                    _basicAttack.Attack().hitObject.GetComponent<EnemyBlackboard>().Hit(_basicAttack.damage);
+                }
             }
             
             StartCoroutine(Co_Attack());
