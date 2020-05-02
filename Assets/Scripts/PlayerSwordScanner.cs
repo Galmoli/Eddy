@@ -12,6 +12,7 @@ public class PlayerSwordScanner : MonoBehaviour
     
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
+    public LayerMask stabSwordLayers;
 
     private Transform hand;
     private GameObject swordHolder;
@@ -47,11 +48,11 @@ public class PlayerSwordScanner : MonoBehaviour
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
+                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance, stabSwordLayers))
                 {  
                     Stab(hit.collider.gameObject, false);
                 }
-                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f) && hit.collider.gameObject.GetComponent<MeshRenderer>() != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("HideableObjectsInScanner") && hit.collider.gameObject.layer != LayerMask.NameToLayer("HiddenObjects"))
+                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f, stabSwordLayers))
                 {
                     Stab(hit.collider.gameObject, true);
                 }

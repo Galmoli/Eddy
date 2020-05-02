@@ -9,6 +9,7 @@ public class AdditiveSceneTool : EditorWindow
 {
     private bool _toolActive;
     private GameObject _dummy;
+    private Vector3 _dummyPos;
     private Rect _headerSection;
     
     [MenuItem("Window/AdditiveSceneTool")]
@@ -47,14 +48,15 @@ public class AdditiveSceneTool : EditorWindow
     {
         if (_state == PlayModeStateChange.EnteredPlayMode && _toolActive)
         {
+            
             SpawnMaintain();
             SpawnContiguousScenes();
-            DestroyDummy();
+            _dummy.SetActive(false);
         }
 
         if (_state == PlayModeStateChange.ExitingPlayMode && _toolActive)
         {
-            SpawnDummy();
+            if(_dummy) _dummy.SetActive(true);
         }
     }
 
@@ -78,6 +80,7 @@ public class AdditiveSceneTool : EditorWindow
     {
         var d = GameObject.Find("PlayerDummy");
         if(d) DestroyImmediate(d);
+        _dummy = null;
     }
 
     private void SpawnContiguousScenes()
