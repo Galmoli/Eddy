@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BasicAttack : MonoBehaviour
 {
+    
     [Header("Editable Variables")] 
-    [SerializeField] private int damage;
+    public int damage;
     [SerializeField] private float timeToCancellCombo;
     [SerializeField] private HitDetection hitDetection;
 
-    public bool Attack()
+    public HitDetection.HitStruct Attack()
     {
         return hitDetection.Check();
     }
