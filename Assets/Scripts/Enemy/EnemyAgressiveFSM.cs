@@ -51,7 +51,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
             case States.PASSIVE:
 
                 RaycastHit hit;
-                if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight))
+                if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
                 {
                     if (hit.collider.gameObject.tag == "Player")
                     {

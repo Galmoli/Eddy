@@ -18,6 +18,7 @@ public class EnemyBlackboard : MonoBehaviour
     [Header("Enemy Passive")]
     public float wanderRadius;
     public float timeInIdle;
+    public LayerMask sightObstaclesLayers;
 
     [Header("Enemy Agressive")]
     public float detectionDistanceOnSight;
