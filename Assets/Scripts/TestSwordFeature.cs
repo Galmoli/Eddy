@@ -7,10 +7,12 @@ using UnityEngine.InputSystem;
 
 public class TestSwordFeature : MonoBehaviour
 {
+    [HideInInspector] public bool swordActive;
     public LayerMask _layerNormal;
     private List<Collider> affectedList = new List<Collider>();
     public void EnableSword()
     {
+        swordActive = true;
         affectedList = Physics.OverlapSphere(transform.position, 4, _layerNormal).ToList();
         SetLayer(affectedList, 19);
         GameObject.Find("Player").layer = 19;
@@ -18,6 +20,7 @@ public class TestSwordFeature : MonoBehaviour
 
     public void DisableSword()
     {
+        swordActive = false;
         SetLayer(affectedList, 18);
         GameObject.Find("Player").layer = 11;
     }
