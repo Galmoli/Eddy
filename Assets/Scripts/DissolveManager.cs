@@ -3,7 +3,7 @@
 public class DissolveManager : MonoBehaviour
 {
     private TestSwordFeature _swordFeature;
-    public MeshRenderer mr;
+    public MeshRenderer[] mr;
 
     private void Awake()
     {
@@ -17,13 +17,18 @@ public class DissolveManager : MonoBehaviour
 
     private void SetSwordPos()
     {
-        print("Active");
-        mr.sharedMaterial.SetFloat("rSword",4);
-        mr.sharedMaterial.SetVector("swordPos",_swordFeature.transform.position);
+        foreach (var m in mr)
+        {
+            m.sharedMaterial.SetFloat("rSword",4);
+            m.sharedMaterial.SetVector("swordPos",_swordFeature.transform.position);
+        }
     }
 
     private void DisableSword()
     {
-        mr.sharedMaterial.SetFloat("rSword",0);
+        foreach (var m in mr)
+        {
+            m.sharedMaterial.SetFloat("rSword",0);
+        }
     }
 }

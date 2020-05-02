@@ -19,10 +19,10 @@ Material:
     MotionVector: User
   disabledShaderPasses:
   - DistortionVectors
-  - MOTIONVECTORS
+  - TransparentBackface
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  - TransparentBackface
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -116,7 +116,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_277A46B4: 0
-    - Vector1_7E528949: 0
+    - Vector1_7E528949: 0.01
     - Vector1_ACB2CD56: 30
     - Vector1_D39472A6: 0.01
     - _AORemapMax: 1
@@ -258,7 +258,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - swordPos: {r: 0.94681305, g: 1.3249997, b: 6.58528, a: 0}
+    - swordPos: {r: 0.32460776, g: 0.32499945, b: 3.0008497, a: 0}
 --- !u!114 &2752047405247717309
 MonoBehaviour:
   m_ObjectHideFlags: 11
