@@ -2,16 +2,16 @@
 
 public class DissolveManager : MonoBehaviour
 {
-    private TestSwordFeature _swordFeature;
+    private SwordProgressiveColliders _swordProgressiveColliders;
     public MeshRenderer[] mr;
 
     private void Awake()
     {
-        _swordFeature = FindObjectOfType<TestSwordFeature>();
+        _swordProgressiveColliders = FindObjectOfType<SwordProgressiveColliders>();
     }
     private void Update()
     {
-        if(_swordFeature.swordActive) SetSwordPos();
+        if(_swordProgressiveColliders.swordActive) SetSwordPos();
         else DisableSword();
     }
 
@@ -20,7 +20,7 @@ public class DissolveManager : MonoBehaviour
         foreach (var m in mr)
         {
             m.sharedMaterial.SetFloat("rSword",4);
-            m.sharedMaterial.SetVector("swordPos",_swordFeature.transform.position);
+            m.sharedMaterial.SetVector("swordPos",_swordProgressiveColliders.transform.position);
         }
     }
 

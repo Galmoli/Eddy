@@ -24,11 +24,6 @@ public class PlayerCombatController : MonoBehaviour
 
         sword = FindObjectOfType<PlayerSwordScanner>();
     }
-
-    private void Start()
-    {
-        //tempSword.gameObject.SetActive(false);
-    }
     
     private void OnEnable()
     {

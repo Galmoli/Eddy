@@ -70,12 +70,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         var vector3D = RetargetVector(movementVector);
         if(!_onEdge) RotateTowardsForward(vector3D);
-
+        
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
 
         #region Push & Pull
         
-        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand())
+        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand() && vector3D.magnitude >= joystickDeadZone)
         {
             if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {

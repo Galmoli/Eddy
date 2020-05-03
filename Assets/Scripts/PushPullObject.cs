@@ -16,7 +16,7 @@ public class PushPullObject : MonoBehaviour
     [HideInInspector] public bool canPull;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
     private BoxCollider _boxCollider;
-
+    
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
