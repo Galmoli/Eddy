@@ -8,15 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dissolve
-  m_Shader: {fileID: -6465566751694194690, guid: d433ea4a2a52d4890ad40c18b8067bc0,
+  m_Shader: {fileID: -6465566751694194690, guid: ca62beee0413ab940a8f9459e5f8565b,
     type: 3}
-  m_ShaderKeywords: _NORMALMAP_TANGENT_SPACE
+  m_ShaderKeywords: _ALPHATEST_ON _DOUBLESIDED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     MotionVector: User
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
@@ -116,8 +117,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_277A46B4: 0
+    - Vector1_2C415DD4: 30.46
     - Vector1_7E528949: 0
     - Vector1_ACB2CD56: 30
+    - Vector1_B964041D: 0.01
     - Vector1_D39472A6: 0.01
     - _AORemapMax: 1
     - _AORemapMin: 0
@@ -125,7 +128,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0.5
-    - _AlphaCutoffEnable: 0
+    - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
@@ -134,8 +137,8 @@ Material:
     - _Anisotropy: 0
     - _BlendMode: 0
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 1
@@ -160,7 +163,7 @@ Material:
     - _DistortionSrcBlend: 1
     - _DistortionVectorBias: -1
     - _DistortionVectorScale: 2
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _EmissiveColorMode: 1
@@ -196,6 +199,8 @@ Material:
     - _PPDPrimitiveWidth: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
     - _SSRefractionProjectionModel: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -234,12 +239,14 @@ Material:
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
-    - _ZTestGBuffer: 4
+    - _ZTestGBuffer: 3
     - _ZTestModeDistortion: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - rSword: 0
     m_Colors:
+    - Color_22A339: {r: 0, g: 0.7217425, b: 0.9811321, a: 0}
+    - Color_A33A2EAB: {r: 0.38679248, g: 0.06750623, b: 0.0705116, a: 0}
     - Color_A971FD0E: {r: 0.4716981, g: 0.27196804, b: 0.15797438, a: 0}
     - Vector3_87422021: {r: -0.75168896, g: 1.3249998, b: -7.026434, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -258,7 +265,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - swordPos: {r: 0.94681305, g: 1.3249997, b: 6.58528, a: 0}
+    - swordPos: {r: -4.7079453, g: 1.3249998, b: 0.43081045, a: 0}
 --- !u!114 &2752047405247717309
 MonoBehaviour:
   m_ObjectHideFlags: 11
