@@ -38,8 +38,6 @@ public class PlayerSwordScanner : MonoBehaviour
 
         input.PlayerControls.Scanner.started += ctx => scannerInput = true;
         input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
-
-        input.PlayerControls.Scanner.started += EnableSword;
     }
 
     void Update()
@@ -70,10 +68,7 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             if (!activeScanner)
             {
-                activeScanner = true;
-
-                transform.GetChild(0).gameObject.SetActive(true);
-                GetComponent<SphereCollider>().enabled = true;
+                ScannerOn();
             }          
         }
         else if (activeScanner && transform.parent == hand && !playerMovement._inputMoveObject)
@@ -84,85 +79,25 @@ public class PlayerSwordScanner : MonoBehaviour
         }
     }
 
-    private GameObject[] FindObjectsInLayer(int layerIdx)
+    private void ScannerOn()
     {
-        GameObject[] objects = FindObjectsOfType<GameObject>();
-
-        List<GameObject> objectsInLayer = new List<GameObject>();
-
-        for(int i = 0; i < objects.Length; i++)
-        {
-            if(objects[i].layer.Equals(layerIdx))
-            {
-                objectsInLayer.Add(objects[i]);
-            }
-        }
-
-        return objectsInLayer.ToArray();
+        activeScanner = true;
+        
+        transform.GetChild(0).gameObject.SetActive(true);
+        GetComponent<SphereCollider>().enabled = true;
+        GetComponent<SwordProgressiveColliders>().EnableSword();
     }
 
     private void ScannerOff()
     {
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<SphereCollider>().enabled = false;
-        GetComponent<TestSwordFeature>().DisableSword();
-
-        GameObject[] hiddenObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HiddenObjectsInScanner"));
-        GameObject[] hideableObjectsInScanner = FindObjectsInLayer(LayerMask.NameToLayer("HideableObjectsInScanner"));
-
-        for (int i = 0; i < hiddenObjectsInScanner.Length; i++)
-        {
-            Hide(hiddenObjectsInScanner[i]);
-        }
-
-        for (int i = 0; i < hideableObjectsInScanner.Length; i++)
-        {
-            Show(hideableObjectsInScanner[i]);
-        }
-        
-    }
-    
-    private void Show(GameObject go)
-    {
-        if (go.GetComponent<MeshRenderer>() != null)
-            if(!go.GetComponent<MeshRenderer>().enabled)
-                go.GetComponent<MeshRenderer>().enabled = true;
-
-        if (go.layer == LayerMask.NameToLayer("HiddenObjects"))
-            go.layer = LayerMask.NameToLayer("HiddenObjectsInScanner");
-        else if (go.layer == LayerMask.NameToLayer("HideableObjectsInScanner"))
-            go.layer = LayerMask.NameToLayer("HideableObjects");
-
-        for(int i = 0; i < go.transform.childCount; i++)
-        {
-            go.transform.GetChild(i).gameObject.SetActive(true);
-        }
-    }
-
-    private void Hide(GameObject go)
-    {
-        if(go.GetComponent<MeshRenderer>() != null)
-            if(go.GetComponent<MeshRenderer>().enabled)
-                go.GetComponent<MeshRenderer>().enabled = false;
-
-        if (go.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
-            go.layer = LayerMask.NameToLayer("HiddenObjects");
-        else if(go.layer == LayerMask.NameToLayer("HideableObjects"))
-            go.layer = LayerMask.NameToLayer("HideableObjectsInScanner");
-
-        for (int i = 0; i < go.transform.childCount; i++)
-        {
-            if(go.transform.GetChild(i).tag == "MoveObject")
-                go.GetComponent<PushPullObject>().canMove = false;
-
-            go.transform.GetChild(i).gameObject.SetActive(false);
-        } 
+        GetComponent<SwordProgressiveColliders>().DisableSword();
     }
 
     private void Stab(GameObject obj, bool vertical)
     {
         swordHolder = obj;
-        GetComponent<TestSwordFeature>().EnableSword();
         transform.parent = null;
 
         if (vertical)
@@ -170,10 +105,9 @@ public class PlayerSwordScanner : MonoBehaviour
             //hardcoding        
             transform.eulerAngles = new Vector3(90, 0, 0);
             transform.position -= new Vector3(0, 1f, 0);
-            //
         }
 
-        if (swordHolder.tag == "MoveObject")
+        if (swordHolder.CompareTag("MoveObject"))
         {
             transform.parent = swordHolder.transform;
         }
@@ -191,55 +125,18 @@ public class PlayerSwordScanner : MonoBehaviour
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
         
-        GetComponent<TestSwordFeature>().DisableSword();
         transform.parent = null;
 
         //hardcoding
         transform.rotation = hand.rotation;
         transform.position = hand.position;
-        //
 
         transform.parent = hand;
         transform.parent = hand;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (activeScanner)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjects"))
-            {
-                Show(other.gameObject);
-            }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjects") || other.gameObject.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
-            {
-                Hide(other.gameObject);
-            }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (activeScanner)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("HiddenObjectsInScanner"))
-            {
-                Hide(other.gameObject);
-            }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("HideableObjectsInScanner"))
-            {
-                Show(other.gameObject);
-            }
-        }
     }
 
     public bool UsingScannerInHand()
     {
         return activeScanner && transform.parent == hand;
-    }
-
-    private void EnableSword(InputAction.CallbackContext ctx)
-    {
-        GetComponent<TestSwordFeature>().EnableSword();
     }
 }

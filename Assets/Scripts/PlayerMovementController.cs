@@ -70,12 +70,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         var vector3D = RetargetVector(movementVector);
         if(!_onEdge) RotateTowardsForward(vector3D);
-
+        
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
 
         #region Push & Pull
         
-        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand())
+        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand() && vector3D.magnitude >= joystickDeadZone)
         {
             if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {
@@ -226,7 +226,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         _characterController.enabled = false;
         _standing = true;
-        
+        var rb =gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
         //Vertical Movement
         while (Math.Abs(finalPos.y - transform.position.y) > _characterController.height)
         {
@@ -247,6 +248,7 @@ public class PlayerMovementController : MonoBehaviour
 
         _standing = false;
         _onEdge = false;
+        Destroy(rb);
         _characterController.enabled = true;
     }
 

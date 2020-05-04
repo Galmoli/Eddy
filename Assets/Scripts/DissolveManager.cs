@@ -2,28 +2,33 @@
 
 public class DissolveManager : MonoBehaviour
 {
-    private TestSwordFeature _swordFeature;
-    public MeshRenderer mr;
+    private SwordProgressiveColliders _swordProgressiveColliders;
+    public MeshRenderer[] mr;
 
     private void Awake()
     {
-        _swordFeature = FindObjectOfType<TestSwordFeature>();
+        _swordProgressiveColliders = FindObjectOfType<SwordProgressiveColliders>();
     }
     private void Update()
     {
-        if(_swordFeature.swordActive) SetSwordPos();
+        if(_swordProgressiveColliders.swordActive) SetSwordPos();
         else DisableSword();
     }
 
     private void SetSwordPos()
     {
-        print("Active");
-        mr.sharedMaterial.SetFloat("rSword",4);
-        mr.sharedMaterial.SetVector("swordPos",_swordFeature.transform.position);
+        foreach (var m in mr)
+        {
+            m.sharedMaterial.SetFloat("rSword",4);
+            m.sharedMaterial.SetVector("swordPos",_swordProgressiveColliders.transform.position);
+        }
     }
 
     private void DisableSword()
     {
-        mr.sharedMaterial.SetFloat("rSword",0);
+        foreach (var m in mr)
+        {
+            m.sharedMaterial.SetFloat("rSword",0);
+        }
     }
 }
