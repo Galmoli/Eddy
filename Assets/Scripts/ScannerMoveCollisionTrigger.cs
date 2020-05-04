@@ -65,7 +65,6 @@ public class ScannerMoveCollisionTrigger : MonoBehaviour
         var direction = swordPos - _playerTransform.position;
 
         Physics.Raycast(_playerTransform.position, direction, out var hitInfo, 200f, LayerMask.GetMask("ScannerLayer"));
-        Debug.DrawRay(_playerTransform.position, direction, Color.yellow);
 
         _collider.transform.position = swordPos + GetEquatorialVector(hitInfo.point, swordPos, _swordSphereCollider.radius);
         _collider.transform.forward = -Vector3.ProjectOnPlane(_collider.transform.position - _swordSphereCollider.transform.position, Vector3.up);
@@ -75,7 +74,6 @@ public class ScannerMoveCollisionTrigger : MonoBehaviour
     {
         var angledVector = hitPoint - sphereCenter;
         var result = Vector3.ProjectOnPlane(angledVector, Vector3.up).normalized * sphereRadius;
-        Debug.DrawRay(_swordSphereCollider.transform.position, result, Color.red);
         return result;
     }
 }

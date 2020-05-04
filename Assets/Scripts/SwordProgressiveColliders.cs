@@ -45,10 +45,10 @@ public class SwordProgressiveColliders : MonoBehaviour
             affectedList.Add(other);
             other.gameObject.layer = LayerMask.NameToLayer("inScanner");
         }
-        else if(other.gameObject == _playerGameObjects[0])
+        /*else if(other.gameObject == _playerGameObjects[0])
         {
             SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)
@@ -56,11 +56,11 @@ public class SwordProgressiveColliders : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("inScanner"))
         {
             affectedList.Remove(other);
-            if (other.gameObject == _playerGameObjects[0])
+            /*if (other.gameObject == _playerGameObjects[0])
             {
                 SetPlayerObjectsToPlayerLayer();
-            }
-            else if(!_playerGameObjects.Contains(other.gameObject)) other.gameObject.layer = LayerMask.NameToLayer("Normal");
+            }*/
+            if(!_playerGameObjects.Contains(other.gameObject)) other.gameObject.layer = LayerMask.NameToLayer("Normal");
         }
     }
 
