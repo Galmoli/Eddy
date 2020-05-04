@@ -44,11 +44,16 @@ public class ScannerMoveCollisionTrigger : MonoBehaviour
     private void SetHideColliderPos()
     {
         if (!_boxCollider.bounds.Contains(_playerTransform.position + _playerTransform.forward.normalized * 0.5f)) return;
-        
+
         _collider.gameObject.SetActive(true);
-        Physics.Raycast(_playerTransform.position + _playerTransform.forward.normalized * 5, -_playerTransform.forward.normalized, out var hitInfo, 200f, LayerMask.GetMask("ScannerLayer"));
-        _collider.transform.position = hitInfo.point;
-        _collider.transform.forward = _collider.transform.position - _swordSphereCollider.transform.position;
+        var swordPos = _swordSphereCollider.transform.position;
+        var colliderOrigin = swordPos + (_playerTransform.position - swordPos).normalized * 5;
+        var direction = _playerTransform.position - colliderOrigin;
+        
+        Physics.Raycast(colliderOrigin, direction, out var hitInfo, 200f, LayerMask.GetMask("ScannerLayer"));
+        
+        _collider.transform.position = swordPos + GetEquatorialVector(hitInfo.point, swordPos, _swordSphereCollider.radius);
+        _collider.transform.forward = -Vector3.ProjectOnPlane(_collider.transform.position - swordPos, Vector3.up);
     }
 
     private void SetAppearColliderPos()
@@ -56,8 +61,21 @@ public class ScannerMoveCollisionTrigger : MonoBehaviour
         if (!_boxCollider.bounds.Contains(_playerTransform.position + (_boxCollider.transform.position - _playerTransform.position).normalized * 0.5f)) return;
         
         _collider.gameObject.SetActive(true);
-        Physics.Raycast(_playerTransform.position, _swordSphereCollider.transform.position - _playerTransform.position, out var hitInfo, 200f, LayerMask.GetMask("ScannerLayer"));
-        _collider.transform.position = hitInfo.point;
-        _collider.transform.forward = _collider.transform.position - _swordSphereCollider.transform.position;
+        var swordPos = _swordSphereCollider.transform.position;
+        var direction = swordPos - _playerTransform.position;
+
+        Physics.Raycast(_playerTransform.position, direction, out var hitInfo, 200f, LayerMask.GetMask("ScannerLayer"));
+        Debug.DrawRay(_playerTransform.position, direction, Color.yellow);
+
+        _collider.transform.position = swordPos + GetEquatorialVector(hitInfo.point, swordPos, _swordSphereCollider.radius);
+        _collider.transform.forward = -Vector3.ProjectOnPlane(_collider.transform.position - _swordSphereCollider.transform.position, Vector3.up);
+    }
+
+    private Vector3 GetEquatorialVector(Vector3 hitPoint, Vector3 sphereCenter, float sphereRadius)
+    {
+        var angledVector = hitPoint - sphereCenter;
+        var result = Vector3.ProjectOnPlane(angledVector, Vector3.up).normalized * sphereRadius;
+        Debug.DrawRay(_swordSphereCollider.transform.position, result, Color.red);
+        return result;
     }
 }
