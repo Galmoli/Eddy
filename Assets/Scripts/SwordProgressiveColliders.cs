@@ -35,7 +35,7 @@ public class SwordProgressiveColliders : MonoBehaviour
     {
         swordActive = false;
         SetLayer(affectedList, LayerMask.NameToLayer("Normal"));
-        SetPlayerObjectsToLayer(LayerMask.NameToLayer("Player"));
+        SetPlayerObjectsToPlayerLayer();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,7 +58,7 @@ public class SwordProgressiveColliders : MonoBehaviour
             affectedList.Remove(other);
             if (other.gameObject == _playerGameObjects[0])
             {
-                SetPlayerObjectsToLayer(LayerMask.NameToLayer("Player"));
+                SetPlayerObjectsToPlayerLayer();
             }
             else if(!_playerGameObjects.Contains(other.gameObject)) other.gameObject.layer = LayerMask.NameToLayer("Normal");
         }
@@ -78,5 +78,10 @@ public class SwordProgressiveColliders : MonoBehaviour
         {
             c.gameObject.layer = layer;
         }
+    }
+
+    private void SetPlayerObjectsToPlayerLayer()
+    {
+        SetPlayerObjectsToLayer(LayerMask.NameToLayer("Player"));
     }
 }

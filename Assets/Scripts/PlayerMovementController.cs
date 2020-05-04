@@ -226,7 +226,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         _characterController.enabled = false;
         _standing = true;
-        
+        var rb =gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
         //Vertical Movement
         while (Math.Abs(finalPos.y - transform.position.y) > _characterController.height)
         {
@@ -247,6 +248,7 @@ public class PlayerMovementController : MonoBehaviour
 
         _standing = false;
         _onEdge = false;
+        Destroy(rb);
         _characterController.enabled = true;
     }
 
