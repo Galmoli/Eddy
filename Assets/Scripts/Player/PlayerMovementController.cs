@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -49,8 +48,9 @@ public class PlayerMovementController : MonoBehaviour
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         _scannerSword = FindObjectOfType<PlayerSwordScanner>();
-        
-        _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
+
+        _input.PlayerControls.Move.performed +=
+            callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
         _input.PlayerControls.MoveObject.started += callbackContext => _inputMoveObject = true;
         _input.PlayerControls.MoveObject.canceled += callbackContext => _inputMoveObject = false;
@@ -70,12 +70,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         var vector3D = RetargetVector(movementVector);
         if(!_onEdge) RotateTowardsForward(vector3D);
-
+        
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
 
         #region Push & Pull
         
-        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand())
+        if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand() && vector3D.magnitude >= joystickDeadZone)
         {
             if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
             {
@@ -88,7 +88,20 @@ public class PlayerMovementController : MonoBehaviour
                 _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Push();
             }
+
+            if (!_moveObject.moving)
+            {
+                var scannerIntersect = FindObjectOfType<ScannerIntersectionManager>();
+                
+                if(_moveObject.swordStabbed) scannerIntersect.DeleteIntersections();
+                else scannerIntersect.CheckIntersections(_moveObject.GetComponent<BoxCollider>());
+                _moveObject.moving = true;
+            }
             return;
+        }
+        else if (_moveObject && vector3D.magnitude < joystickDeadZone)
+        {
+            _moveObject.moving = false;
         }
         
         #endregion
@@ -226,7 +239,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         _characterController.enabled = false;
         _standing = true;
-        
+        var rb =gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
         //Vertical Movement
         while (Math.Abs(finalPos.y - transform.position.y) > _characterController.height)
         {
@@ -247,6 +261,7 @@ public class PlayerMovementController : MonoBehaviour
 
         _standing = false;
         _onEdge = false;
+        Destroy(rb);
         _characterController.enabled = true;
     }
 
