@@ -30,6 +30,8 @@ Transform:
   m_Children:
   - {fileID: 2056600359}
   - {fileID: 1196140402}
+  - {fileID: 758147487}
+  - {fileID: 822026304}
   m_Father: {fileID: 6411527136159828581}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290d0847eab7907468e2847d813d5160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightCheck: {fileID: 2056600359}
-  leftCheck: {fileID: 1196140402}
+  topRightCheck: {fileID: 2056600359}
+  topLeftCheck: {fileID: 1196140402}
+  bottomRightCheck: {fileID: 758147487}
+  bottomLeftCheck: {fileID: 822026304}
   _swordSphereCollider: {fileID: 1286977054}
 --- !u!1 &608974115
 GameObject:
@@ -77,6 +81,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6411527136159828581}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &758147486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758147487}
+  m_Layer: 11
+  m_Name: BottomRightCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758147487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758147486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6, y: -0.75, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 377628565}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &822026303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822026304}
+  m_Layer: 11
+  m_Name: BottomLeftCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &822026304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822026303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6, y: -0.75, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 377628565}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1063757208
 GameObject:
@@ -167,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1196140402}
   m_Layer: 11
-  m_Name: LeftCheck
+  m_Name: TopLeftCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -197,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056600359}
   m_Layer: 11
-  m_Name: RightCheck
+  m_Name: TopRightCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
