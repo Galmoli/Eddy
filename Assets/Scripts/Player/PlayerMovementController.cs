@@ -37,7 +37,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool _onGround;
     private bool _onEdge;
     private bool _edgeAvailable;
-    private bool _standing;   
+    private bool _standing;
+    private bool _inputToStand;
     private float _verticalSpeed;
     private Transform _cameraTransform;
     private PushPullObject _moveObject;
@@ -171,7 +172,7 @@ public class PlayerMovementController : MonoBehaviour
             var projectedVector = Vector3.ProjectOnPlane(transform.position - edgePosition, edgeGameObject.transform.forward);
             projectedVector = Vector3.ProjectOnPlane(projectedVector, transform.up);
             
-            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing) StartCoroutine(Co_StandEdge(projectedVector + edgePosition  + edgeCompletedOffset));
+            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing || _inputToStand) StartCoroutine(Co_StandEdge(projectedVector + edgePosition  + edgeCompletedOffset));
             if (InputEqualVector(edgeGameObject.transform.forward) && !_standing)
             {
                 _onEdge = false;
@@ -239,6 +240,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         _characterController.enabled = false;
         _standing = true;
+        _inputToStand = false;
         var rb =gameObject.AddComponent<Rigidbody>();
         rb.isKinematic = true;
         //Vertical Movement
@@ -267,7 +269,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void JumpInput()
     {
-        if(!_onEdge && _onGround) _jump = true;
+        if (!_onEdge && _onGround) _jump = true;
+        if (!_standing && _onEdge) _inputToStand = true;
     }
 
     private void OnTriggerEnter(Collider other)
