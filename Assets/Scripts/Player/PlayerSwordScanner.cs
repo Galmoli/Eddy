@@ -52,7 +52,7 @@ public class PlayerSwordScanner : MonoBehaviour
     void Update()
     {
         //Sword
-        if (input.PlayerControls.Sword.triggered && !playerMovement._inputMoveObject)
+        if (input.PlayerControls.Sword.triggered && !playerMovement.inputMoveObject)
         {
             if(transform.parent == hand)
             {
@@ -73,14 +73,14 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         //Scanner
-        if (scannerInput && transform.parent == hand && !playerMovement._inputMoveObject)
+        if (scannerInput && transform.parent == hand && !playerMovement.inputMoveObject)
         {
             if (!activeScanner)
             {
                 ScannerOn();
             }          
         }
-        else if (activeScanner && transform.parent == hand && !playerMovement._inputMoveObject)
+        else if (activeScanner && transform.parent == hand && !playerMovement.inputMoveObject)
         {
             ScannerOff();
 
