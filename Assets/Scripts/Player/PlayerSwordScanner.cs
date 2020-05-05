@@ -20,6 +20,16 @@ public class PlayerSwordScanner : MonoBehaviour
     [HideInInspector] public bool activeScanner;
 
     private bool scannerInput;
+    private ScannerIntersectionManager _scannerIntersectionManager;
+    private SwordProgressiveColliders _swordProgressiveColliders;
+    private SphereCollider _sphereCollider;
+
+    private void Awake()
+    {
+        _sphereCollider = GetComponent<SphereCollider>();
+        _swordProgressiveColliders = GetComponent<SwordProgressiveColliders>();
+        _scannerIntersectionManager = GetComponent<ScannerIntersectionManager>();
+    }
 
     void Start()
     {
@@ -31,7 +41,7 @@ public class PlayerSwordScanner : MonoBehaviour
         scannerInput = false;
 
         transform.GetChild(0).localScale *= scannerRadius * 2f;
-        GetComponent<SphereCollider>().radius = scannerRadius;
+        _sphereCollider.radius = scannerRadius;
 
         input = new InputActions();
         input.Enable();
@@ -77,6 +87,12 @@ public class PlayerSwordScanner : MonoBehaviour
 
             activeScanner = false;
         }
+        
+        //When algorithm changed. Here check for moveObject intersections.
+        if (transform.parent == null && activeScanner)
+        {
+            _scannerIntersectionManager.CheckIntersections();
+        }
     }
 
     private void ScannerOn()
@@ -84,15 +100,16 @@ public class PlayerSwordScanner : MonoBehaviour
         activeScanner = true;
         
         transform.GetChild(0).gameObject.SetActive(true);
-        GetComponent<SphereCollider>().enabled = true;
-        GetComponent<SwordProgressiveColliders>().EnableSword();
+        _sphereCollider.enabled = true;
+        _swordProgressiveColliders.EnableSword();
     }
 
     private void ScannerOff()
     {
         transform.GetChild(0).gameObject.SetActive(false);
-        GetComponent<SphereCollider>().enabled = false;
-        GetComponent<SwordProgressiveColliders>().DisableSword();
+        _sphereCollider.enabled = false;
+        _swordProgressiveColliders.DisableSword();
+        _scannerIntersectionManager.DeleteIntersections();
     }
 
     private void Stab(GameObject obj, bool vertical)
@@ -116,8 +133,9 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
         }
-
-        GetComponent<ScannerIntersectionManager>().CheckIntersections();
+        
+        //When algorithm changed. Here check for initial intersections.
+        if(activeScanner) _scannerIntersectionManager.CheckIntersections();
     }
 
     private void SwordBack()
