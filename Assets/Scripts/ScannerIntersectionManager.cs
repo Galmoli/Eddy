@@ -29,6 +29,8 @@ public class ScannerIntersectionManager : MonoBehaviour
                         GameObject g = ObjectPooler.SharedInstance.GetPooledObject();
                         g.transform.position = centerPointToOverlap;
                         g.transform.forward = swordRadius.transform.position - g.transform.position;
+                        if (overlapCols[c].gameObject.layer == 13) g.layer = LayerMask.NameToLayer("inScanner");
+                        else  g.layer = LayerMask.NameToLayer("Normal");
                         g.SetActive(true);
                         break;
                     }
