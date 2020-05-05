@@ -12,9 +12,11 @@ public class PlayerRelativeToScanner : MonoBehaviour
     [SerializeField] private SphereCollider _swordSphereCollider;
     
     private List<GameObject> _playerGameObjects = new List<GameObject>();
+    private PlayerSwordScanner _playerSwordScanner;
     private void Awake()
     {
         var children = transform.root.GetComponentsInChildren<Transform>();
+        _playerSwordScanner = FindObjectOfType<PlayerSwordScanner>();
         
         foreach (var c in children)
         {
@@ -24,7 +26,7 @@ public class PlayerRelativeToScanner : MonoBehaviour
 
     private void Update()
     {
-        if (BottomIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner"))
+        if (BottomIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner") && _playerSwordScanner.activeScanner)
         {
             SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
             return;
@@ -32,11 +34,11 @@ public class PlayerRelativeToScanner : MonoBehaviour
 
         if (BottomIsInScanner() && !TopIsInScanner() && transform.root.gameObject.layer == LayerMask.NameToLayer("inScanner")) return;
         
-        if (TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner"))
+        if (TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner") && _playerSwordScanner.activeScanner)
         {
-            
+            SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
         }
-        else if (!TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("Player"))
+        else if (!TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("Player") || !_playerSwordScanner.activeScanner)
         {
             SetPlayerObjectsToPlayerLayer();
         }

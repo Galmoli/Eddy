@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -49,8 +48,9 @@ public class PlayerMovementController : MonoBehaviour
         _cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         _scannerSword = FindObjectOfType<PlayerSwordScanner>();
-        
-        _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
+
+        _input.PlayerControls.Move.performed +=
+            callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
         _input.PlayerControls.MoveObject.started += callbackContext => _inputMoveObject = true;
         _input.PlayerControls.MoveObject.canceled += callbackContext => _inputMoveObject = false;
@@ -88,7 +88,20 @@ public class PlayerMovementController : MonoBehaviour
                 _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Push();
             }
+
+            if (!_moveObject.moving)
+            {
+                var scannerIntersect = FindObjectOfType<ScannerIntersectionManager>();
+                
+                if(_moveObject.swordStabbed) scannerIntersect.DeleteIntersections();
+                else scannerIntersect.CheckIntersections(_moveObject.GetComponent<BoxCollider>());
+                _moveObject.moving = true;
+            }
             return;
+        }
+        else if (_moveObject && vector3D.magnitude < joystickDeadZone)
+        {
+            _moveObject.moving = false;
         }
         
         #endregion

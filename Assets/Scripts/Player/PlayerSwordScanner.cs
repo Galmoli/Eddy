@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerSwordScanner : MonoBehaviour
 {
@@ -87,12 +86,6 @@ public class PlayerSwordScanner : MonoBehaviour
 
             activeScanner = false;
         }
-        
-        //When algorithm changed. Here check for moveObject intersections.
-        if (transform.parent == null && activeScanner)
-        {
-            _scannerIntersectionManager.CheckIntersections();
-        }
     }
 
     private void ScannerOn()
@@ -126,15 +119,22 @@ public class PlayerSwordScanner : MonoBehaviour
 
         if (swordHolder.CompareTag("MoveObject"))
         {
-            transform.parent = swordHolder.transform;
+            var moveObject = swordHolder.GetComponent<PushPullObject>();
+            if(moveObject) moveObject.swordStabbed = true;
+            else
+            {
+                moveObject = swordHolder.transform.parent.gameObject.GetComponent<PushPullObject>();
+                moveObject.swordStabbed = true;
+            }
         }
+        
+        transform.parent = swordHolder.transform;
 
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
         }
         
-        //When algorithm changed. Here check for initial intersections.
         if(activeScanner) _scannerIntersectionManager.CheckIntersections();
     }
 

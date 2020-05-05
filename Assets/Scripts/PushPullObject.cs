@@ -14,12 +14,18 @@ public class PushPullObject : MonoBehaviour
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
     [HideInInspector] public bool canPull;
+    [HideInInspector] public bool swordStabbed;
+    [HideInInspector] public bool moving;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
     private BoxCollider _boxCollider;
+    private InputActions _input;
     
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
+        _input = new InputActions();
+        _input.Enable();
+        _input.PlayerControls.Sword.started += ctx => SwordInput();
     }
 
     private void OnTriggerStay(Collider other)
@@ -43,6 +49,11 @@ public class PushPullObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canMove = false;
+        }
+
+        if (other.CompareTag("Scanner"))
+        {
+            FindObjectOfType<ScannerIntersectionManager>().CheckIntersections();
         }
     }
 
@@ -120,5 +131,10 @@ public class PushPullObject : MonoBehaviour
             return _boxCollider.size.z / 2 + 0.01f;
         }
         return _boxCollider.size.x / 2 + 0.01f;
+    }
+
+    private void SwordInput()
+    {
+        if (swordStabbed) swordStabbed = false;
     }
 }
