@@ -51,19 +51,59 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(floorDetectionPoint.position, -transform.up, Color.red);
+
         //Sword
         if (input.PlayerControls.Sword.triggered && !playerMovement._inputMoveObject)
         {
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(hand.transform.position, transform.forward, out hit, hitObjectDistance, stabSwordLayers))
-                {  
-                    Stab(hit.collider.gameObject, false);
-                }
-                else if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 0.2f, stabSwordLayers))
+                if (Physics.Raycast(transform.root.position, transform.forward, out hit, hitObjectDistance, stabSwordLayers))
                 {
-                    Stab(hit.collider.gameObject, true);
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
+                    {
+                        if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        {
+                            Stab(hit.collider.gameObject, false);
+                            return;
+                        }
+                    }
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
+                    {
+                        if (GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        {
+                            Stab(hit.collider.gameObject, false);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Stab(hit.collider.gameObject, false);
+                        return;
+                    }                   
+                }
+
+                if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 1.5f, stabSwordLayers))
+                {
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
+                    {
+                        if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        {
+                            Stab(hit.collider.gameObject, true);
+                        }
+                    }
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
+                    {
+                        if (GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        {
+                            Stab(hit.collider.gameObject, true);
+                        }
+                    }
+                    else
+                    {
+                        Stab(hit.collider.gameObject, true);
+                    }
                 }
             }
             else
@@ -78,13 +118,11 @@ public class PlayerSwordScanner : MonoBehaviour
             if (!activeScanner)
             {
                 ScannerOn();
-            }          
+            }
         }
         else if (activeScanner && transform.parent == hand && !playerMovement._inputMoveObject)
         {
-            ScannerOff();
-
-            activeScanner = false;
+            ScannerOff();    
         }
     }
 
@@ -99,6 +137,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private void ScannerOff()
     {
+        activeScanner = false;
+
         transform.GetChild(0).gameObject.SetActive(false);
         _sphereCollider.enabled = false;
         _swordProgressiveColliders.DisableSword();
