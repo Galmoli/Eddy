@@ -47,10 +47,11 @@ public class PushState : PlayerState
         {
             _controller.moveObject.moving = false;
         }
+        ExitState();
     }
 
     public override void ExitState()
     {
-        
+        if(!_controller.inputMoveObject || !_controller.moveObject.canMove) _controller.SetState(new MoveState(_controller));
     }
 }
