@@ -115,7 +115,9 @@ public class PlayerSwordScanner : MonoBehaviour
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
-        }      
+        }
+
+        GetComponent<ScannerIntersectionManager>().CheckIntersections();
     }
 
     private void SwordBack()
