@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
@@ -50,8 +49,7 @@ public class PlayerMovementController : MonoBehaviour
         _input = new InputActions();
         _scannerSword = FindObjectOfType<PlayerSwordScanner>();
 
-        _input.PlayerControls.Move.performed +=
-            callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
+        _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
         _input.PlayerControls.Jump.started += callbackContext => JumpInput();
         _input.PlayerControls.MoveObject.started += callbackContext => _inputMoveObject = true;
         _input.PlayerControls.MoveObject.canceled += callbackContext => _inputMoveObject = false;
@@ -69,7 +67,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        var vector3D = RetargetVector(movementVector);
+        var vector3D = PlayerUtils.RetargetVector(movementVector, _cameraTransform, joystickDeadZone);
         if(!_onEdge) RotateTowardsForward(vector3D);
         
         vector3D *= Mathf.Lerp(minSpeed, maxSpeed, movementVector.magnitude);
@@ -78,13 +76,13 @@ public class PlayerMovementController : MonoBehaviour
         
         if (_moveObject && _moveObject.canMove && _inputMoveObject && !_scannerSword.UsingScannerInHand() && vector3D.magnitude >= joystickDeadZone)
         {
-            if (InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPull)
+            if (PlayerUtils.InputDirectionTolerance(_moveObject.moveVector, _moveObject.angleToAllowMovement, _cameraTransform, movementVector) && _moveObject.canPull)
             {
                 _characterController.Move(_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Pull();
             }
 
-            if (InputDirectionTolerance(-_moveObject.moveVector, _moveObject.angleToAllowMovement) && _moveObject.canPush)
+            if (PlayerUtils.InputDirectionTolerance(-_moveObject.moveVector, _moveObject.angleToAllowMovement, _cameraTransform, movementVector) && _moveObject.canPush)
             {
                 _characterController.Move(-_moveObject.moveVector * (_moveObject.speedWhenMove * Time.deltaTime));
                 _moveObject.Push();
@@ -171,9 +169,12 @@ public class PlayerMovementController : MonoBehaviour
         {
             var projectedVector = Vector3.ProjectOnPlane(transform.position - edgePosition, edgeGameObject.transform.forward);
             projectedVector = Vector3.ProjectOnPlane(projectedVector, transform.up);
-            
-            if (InputEqualVector(-edgeGameObject.transform.forward) && !_standing || _inputToStand) StartCoroutine(Co_StandEdge(projectedVector + edgePosition  + edgeCompletedOffset));
-            if (InputEqualVector(edgeGameObject.transform.forward) && !_standing)
+
+            if (PlayerUtils.InputEqualVector(-edgeGameObject.transform.forward, _cameraTransform, movementVector) && !_standing || _inputToStand)
+            {
+                StartCoroutine(Co_StandEdge(projectedVector + edgePosition  + edgeCompletedOffset));
+            }
+            if (PlayerUtils.InputEqualVector(edgeGameObject.transform.forward, _cameraTransform, movementVector) && !_standing)
             {
                 _onEdge = false;
                 _edgeAvailable = false;
@@ -181,18 +182,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         #endregion
-    }
-
-    private Vector3 RetargetVector(Vector2 input)
-    {
-        if(input.magnitude <= joystickDeadZone) return Vector3.zero;
-        
-        Vector3 outputVector = Vector3.zero;
-
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * input.y, Vector3.up);
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * input.x, Vector3.up);
-
-        return outputVector;
     }
 
     private void RotateTowardsForward(Vector3 forward)
@@ -210,32 +199,6 @@ public class PlayerMovementController : MonoBehaviour
         _edgeAvailable = false;
     }
 
-    private bool InputEqualVector(Vector3 _vector)
-    {
-        Vector2 l_directorVector = new Vector2(Mathf.RoundToInt(_vector.x), Mathf.RoundToInt(_vector.z));
-        Vector3 outputVector = Vector3.zero;
-
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
-        
-        Vector2 input = new Vector2(Mathf.RoundToInt(outputVector.x), Mathf.RoundToInt(outputVector.z));
-        return l_directorVector == input;
-    }
-
-    private bool InputDirectionTolerance(Vector3 _vector, float angleTolerance)
-    {
-        Vector2 l_directorVector = new Vector2(Mathf.RoundToInt(_vector.x), Mathf.RoundToInt(_vector.z));
-        Vector3 outputVector = Vector3.zero;
-
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.forward * movementVector.y, Vector3.up);
-        outputVector += Vector3.ProjectOnPlane(_cameraTransform.right * movementVector.x, Vector3.up);
-        
-        Vector2 input = new Vector2(outputVector.x, outputVector.z);
-        float angle = Mathf.Abs(Vector2.Angle(l_directorVector, input));
-        
-        return angle <= angleTolerance;
-    }
-
     private IEnumerator Co_StandEdge(Vector3 finalPos)
     {
         _characterController.enabled = false;
@@ -243,6 +206,7 @@ public class PlayerMovementController : MonoBehaviour
         _inputToStand = false;
         var rb =gameObject.AddComponent<Rigidbody>();
         rb.isKinematic = true;
+        
         //Vertical Movement
         while (Math.Abs(finalPos.y - transform.position.y) > _characterController.height)
         {
