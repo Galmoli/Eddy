@@ -12,6 +12,8 @@ public class PlayerMovementController : StateMachine
     public float gravityMultiplier; 
     public float joystickDeadZone;
     public Transform feetOverlap;
+    public LayerMask layersToCheckFloorOutsideScanner;
+    public LayerMask layersToCheckFloorInsideScanner;
 
     [Header("Edge Values")] 
     [HideInInspector] public Vector3 edgeOffset;
