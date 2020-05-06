@@ -21,6 +21,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private bool scannerInput;
     private ScannerIntersectionManager _scannerIntersectionManager;
     private SwordProgressiveColliders _swordProgressiveColliders;
+    private PlayerInsideVolume _playerInsideVolume;
     private SphereCollider _sphereCollider;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class PlayerSwordScanner : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
         _swordProgressiveColliders = GetComponent<SwordProgressiveColliders>();
         _scannerIntersectionManager = GetComponent<ScannerIntersectionManager>();
+        _playerInsideVolume = GameObject.Find("Player").GetComponent<PlayerInsideVolume>();
     }
 
     void Start()
@@ -54,7 +56,7 @@ public class PlayerSwordScanner : MonoBehaviour
         Debug.DrawRay(floorDetectionPoint.position, -transform.up, Color.red);
 
         //Sword
-        if (input.PlayerControls.Sword.triggered && !playerMovement._inputMoveObject)
+        if (input.PlayerControls.Sword.triggered && !playerMovement.inputMoveObject)
         {
             if(transform.parent == hand)
             {
@@ -113,14 +115,14 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         //Scanner
-        if (scannerInput && transform.parent == hand && !playerMovement._inputMoveObject)
+        if (scannerInput && transform.parent == hand && !playerMovement.inputMoveObject)
         {
             if (!activeScanner)
             {
                 ScannerOn();
             }
         }
-        else if (activeScanner && transform.parent == hand && !playerMovement._inputMoveObject)
+        else if (activeScanner && transform.parent == hand && !playerMovement.inputMoveObject)
         {
             ScannerOff();    
         }
@@ -128,6 +130,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private void ScannerOn()
     {
+        if (!_playerInsideVolume.CanActivateScanner()) return;
         activeScanner = true;
         
         transform.GetChild(0).gameObject.SetActive(true);
@@ -137,6 +140,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private void ScannerOff()
     {
+        if (!_playerInsideVolume.CanDisableScanner()) return;
         activeScanner = false;
 
         transform.GetChild(0).gameObject.SetActive(false);
@@ -180,6 +184,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private void SwordBack()
     {
+        if (!_playerInsideVolume.CanDisableScanner()) return;
+        
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
