@@ -47,14 +47,12 @@ public class PlayerSwordScanner : MonoBehaviour
         input = new InputActions();
         input.Enable();
 
-        input.PlayerControls.Scanner.started += ctx => scannerInput = true;
-        input.PlayerControls.Scanner.canceled += ctx => scannerInput = false;
+        input.PlayerControls.Scanner.started += ctx => ScannerOnInput();
+        input.PlayerControls.Scanner.canceled += ctx => ScannerOffInput();
     }
 
     void Update()
     {
-        Debug.DrawRay(floorDetectionPoint.position, -transform.up, Color.red);
-
         //Sword
         if (input.PlayerControls.Sword.triggered && !playerMovement.inputMoveObject)
         {
@@ -113,16 +111,24 @@ public class PlayerSwordScanner : MonoBehaviour
                 SwordBack();
             }       
         }
+    }
 
-        //Scanner
-        if (scannerInput && transform.parent == hand && !playerMovement.inputMoveObject)
+    private void ScannerOnInput()
+    {
+        scannerInput = true;
+        if (transform.parent == hand && !playerMovement.inputMoveObject)
         {
             if (!activeScanner)
             {
                 ScannerOn();
             }
         }
-        else if (activeScanner && transform.parent == hand && !playerMovement.inputMoveObject)
+    }
+
+    private void ScannerOffInput()
+    {
+        scannerInput = false;
+        if (activeScanner && transform.parent == hand && !playerMovement.inputMoveObject)
         {
             ScannerOff();    
         }
@@ -190,6 +196,8 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
+        
+        if(!scannerInput) ScannerOff();
         
         transform.parent = null;
 
