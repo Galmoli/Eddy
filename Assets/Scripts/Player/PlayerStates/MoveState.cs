@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : PlayerState
+public class MoveState : State
 {
     private PlayerMovementController _controller;
     private Vector3 vector3D;
