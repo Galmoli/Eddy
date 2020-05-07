@@ -26,10 +26,12 @@ public class PlayerInsideVolume : MonoBehaviour
                     print("Cant activate sword");
                     return false;
                 }
-                else
-                {
-                    //Move Player
-                }
+
+                //Move Player
+                var moveDir = _controller.transform.position - c.transform.position;
+                moveDir = Vector3.ProjectOnPlane(moveDir, Vector3.up).normalized;
+                _controller.characterController.Move(moveDir * 0.7f);
+                return true;
             }
         }
 
@@ -48,10 +50,12 @@ public class PlayerInsideVolume : MonoBehaviour
                     print("Cant disable sword sword");
                     return false;
                 }
-                else
-                {
-                    //Move Player
-                }
+
+                //Move Player
+                var moveDir = _controller.transform.position - c.transform.position;
+                moveDir = Vector3.ProjectOnPlane(moveDir, Vector3.up).normalized;
+                _controller.characterController.Move(moveDir * 0.7f);
+                return true;
             }
         }
         return true;
