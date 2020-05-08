@@ -26,7 +26,9 @@ public class MoveState : PlayerState
         SnapToFloor();
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
-        
+
+        _controller.animator.SetFloat("Speed", vector3D.magnitude);
+
         ExitState();
     }
 
