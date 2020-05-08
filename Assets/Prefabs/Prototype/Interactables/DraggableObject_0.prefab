@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4413060706102396980}
   - component: {fileID: 6495560728768915722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger
   m_TagString: MoveObject
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 7305780918505434158}
   - component: {fileID: 3641221505872903420}
   - component: {fileID: 5412844209820955953}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DraggableObject_0
   m_TagString: MoveObject
   m_Icon: {fileID: 0}
@@ -360,10 +360,12 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   _layersToDetectCollision:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 4919
   canMove: 0
   canPush: 0
   canPull: 0
+  swordStabbed: 0
+  moving: 0
   moveVector: {x: 0, y: 0, z: 0}
 --- !u!65 &3641221505872903420
 BoxCollider:
@@ -392,5 +394,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
