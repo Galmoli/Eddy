@@ -44,6 +44,10 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public PushPullObject moveObject;
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
 
+
+    [Header("Animation")]
+    public Animator animator;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
