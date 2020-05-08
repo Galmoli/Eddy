@@ -5,6 +5,5 @@ using UnityEngine;
 public class AttackSO : ScriptableObject
 {
     public float damage;
-    public float timeToResetCombo;
-    public float chargeTime;
+    public float attackTime;
 }

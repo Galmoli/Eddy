@@ -66,6 +66,7 @@ public class MoveState : State
                 _controller.SetState(new JumpState(_controller));
             }
         }
+        
         else if (_controller.gameObject.layer == LayerMask.NameToLayer("inScanner"))
         {
             if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorInsideScanner))
