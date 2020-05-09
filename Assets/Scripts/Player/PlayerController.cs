@@ -24,11 +24,6 @@ public class PlayerController : MonoBehaviour
         {
             Hit(100);
         }
-        //Provisional to Respawn while UI is not finished
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Spawn();
-        }
     }
 
     public void Hit(int damage)

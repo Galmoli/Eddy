@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathMenuLogic : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class DeathMenuLogic : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    private void MainMenu()
+    public void MainMenu() //Currently used by Button OnClick Event
     {
         //Change scene and goes to main menu
+        SceneManager.LoadScene("MainMenu");
     }
 }
