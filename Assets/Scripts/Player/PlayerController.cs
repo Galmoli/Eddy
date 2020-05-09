@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         _combatController.SetState(new CombatDeadState());
     }
 
-    private void Spawn()
+    public void Spawn()
     {
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));

@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+    private PlayerController _playerController;
 
     public static GameManager Instance
     {
@@ -20,6 +21,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        respawnPos = GameObject.Find("Player").transform.position;
+        var player = GameObject.Find("Player");
+        respawnPos = player.transform.position;
+        _playerController = player.GetComponent<PlayerController>();
+    }
+
+    public void Respawn()
+    {
+        _playerController.Spawn();
+        //Re-locate enemies.
     }
 }
