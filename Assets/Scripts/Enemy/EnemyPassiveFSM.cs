@@ -109,14 +109,5 @@ public class EnemyPassiveFSM : MonoBehaviour
         wanderingTarget.transform.position += vector.normalized * blackboard.wanderRadius;
 
         return wanderingTarget;
-
-        /*Vector3 randomDirection = Random.insideUnitSphere * blackboard.wanderRadius;
-
-        randomDirection += transform.position;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, blackboard.wanderRadius, 1);
-        Vector3 finalPosition = hit.position;
-
-        blackboard.agent.SetDestination(finalPosition);*/
     }
 }

@@ -56,7 +56,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 break;
             case States.WANDER:
 
-                /*RaycastHit hit;
+                RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
                 {
                     if (hit.collider.gameObject.tag == "Player")
@@ -64,7 +64,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                         ChangeState(States.NOTICE);
                         break;
                     }
-                }*/
+                }
                 
                 if(Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
                 {

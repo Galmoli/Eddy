@@ -13,13 +13,13 @@ namespace Steerings
 		public float avoidDistance = 10f;
 		public float secondaryWhiskerAngle = 30f;
 		public float secondaryWhiskerRatio = 0.7f;
+		public LayerMask avoidLayers;
 
 		private bool avoidActive = false;
 
-
 		public override SteeringOutput GetSteering ()
 		{
-			SteeringOutput result = WanderPlusAvoid.GetSteering (this.ownKS, wanderRate, wanderRate, wanderOffset, ref targetOrientation, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, ref avoidActive);
+			SteeringOutput result = WanderPlusAvoid.GetSteering (ownKS, wanderRate, wanderRate, wanderOffset, ref targetOrientation, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, ref avoidActive, avoidLayers);
 
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
@@ -31,16 +31,14 @@ namespace Steerings
 			return result;
 		}
 
-		public static SteeringOutput GetSteering (KinematicState ownKS, float WanderRate, float wanderRadius, float wanderOffset, ref float targetOrientation, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, ref bool avoidActive)
+		public static SteeringOutput GetSteering (KinematicState ownKS, float WanderRate, float wanderRadius, float wanderOffset, ref float targetOrientation, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, ref bool avoidActive, LayerMask avoidLayers)
 		{
-			SteeringOutput so = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio);
+			SteeringOutput so = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers);
 
 			if (so == NULL_STEERING)
 			{
 				if (avoidActive)
 				{
-					// if avoidance was active last frame, update target orientation (otherwise the object would tend to regain
-					// the orientation it had before avoiding a collision which would make it face the obstacle again)
 					targetOrientation = ownKS.orientation;
 				}
 				avoidActive = false;
@@ -51,7 +49,6 @@ namespace Steerings
 				avoidActive = true;
 				return so;
 			}
-
 		}
 	}
 }

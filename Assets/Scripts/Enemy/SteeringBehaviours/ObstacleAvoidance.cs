@@ -4,15 +4,15 @@ namespace Steerings
 {
 	public class ObstacleAvoidance : SteeringBehaviour
 	{
-		public bool showWhisker = true;
 		public float lookAheadLength = 10f;
 		public float avoidDistance = 10f;
 		public float secondaryWhiskerAngle = 30f;
 		public float secondaryWhiskerRatio = 0.7f;
+		public LayerMask avoidLayers;
 
 		public override SteeringOutput GetSteering ()
 		{
-			SteeringOutput result = ObstacleAvoidance.GetSteering (this.ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio);
+			SteeringOutput result = ObstacleAvoidance.GetSteering (ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers);
 
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
@@ -24,12 +24,10 @@ namespace Steerings
 			return result;
 		}
 
-		public static SteeringOutput GetSteering (KinematicState ownKS, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio)
+		public static SteeringOutput GetSteering (KinematicState ownKS, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers)
 		{
 			Vector3 mainDirection;
-			Vector3 whisker1Direction, whisker2Direction, whisker3Direction;
-			RaycastHit hit;
-
+			
 			if (ownKS.linearVelocity.magnitude < 0.0001f)
 			{
 				mainDirection = OrientationToVector(ownKS.orientation);
@@ -47,16 +45,18 @@ namespace Steerings
 				collider.enabled = false;
 			}
 
-			whisker1Direction = mainDirection;
-			whisker2Direction = OrientationToVector (VectorToOrientation (mainDirection) + secondaryWhiskerAngle);
-			whisker3Direction = OrientationToVector (VectorToOrientation (mainDirection) - secondaryWhiskerAngle);
+			Vector3 whisker1Direction = mainDirection;
+			Vector3 whisker2Direction = OrientationToVector (VectorToOrientation (mainDirection) + secondaryWhiskerAngle);
+			Vector3 whisker3Direction = OrientationToVector (VectorToOrientation (mainDirection) - secondaryWhiskerAngle);
 
 			Debug.DrawRay (ownKS.position, whisker1Direction * lookAheadLength);
 			Debug.DrawRay (ownKS.position, whisker2Direction * lookAheadLength * secondaryWhiskerRatio);
 			Debug.DrawRay (ownKS.position, whisker3Direction * lookAheadLength * secondaryWhiskerRatio);
 
-            #region Whisker 1
-            if (Physics.Raycast(ownKS.position, whisker1Direction, out hit, lookAheadLength)) 
+			RaycastHit hit;
+
+			#region Whisker 1
+			if (Physics.Raycast(ownKS.position, whisker1Direction, out hit, lookAheadLength, avoidLayers)) 
 			{
 				SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
 				
@@ -72,7 +72,7 @@ namespace Steerings
             #endregion
 
             #region Whisker 2
-            if (Physics.Raycast(ownKS.position, whisker2Direction, out hit, lookAheadLength * secondaryWhiskerRatio))
+            if (Physics.Raycast(ownKS.position, whisker2Direction, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers))
 			{
 				SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
 
@@ -88,7 +88,7 @@ namespace Steerings
             #endregion
 
             #region Whisker 3
-            if (Physics.Raycast(ownKS.position, whisker3Direction, out hit, lookAheadLength * secondaryWhiskerRatio)) {
+            if (Physics.Raycast(ownKS.position, whisker3Direction, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers)) {
 
 				SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
 
