@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(EnemyPassiveFSM))]
 [RequireComponent(typeof(ArrivePlusAvoid))]
+[RequireComponent(typeof(WanderPlusAvoid))]
 
 public class EnemyAgressiveFSM : MonoBehaviour
 {
     public enum States
     {
         INITIAL,
-        PASSIVE,
+        WANDER,
         NOTICE,
         CHASE,
         ATTACK
@@ -21,8 +21,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
     private States currentState;
 
     private EnemyBlackboard blackboard;
-    private EnemyPassiveFSM enemyPassiveFSM;
+    private WanderPlusAvoid wanderPlusAvoid;
     private ArrivePlusAvoid arrivePlusAvoid;
+    private KinematicState kinematicState;
 
     private float timeInNotice;
     private float minTimeBetweenAttacks;
@@ -30,8 +31,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
-        enemyPassiveFSM = GetComponent<EnemyPassiveFSM>();
+        wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
+        kinematicState = GetComponent<KinematicState>();
     }
 
     private void OnEnable()
@@ -41,7 +43,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
 
     private void OnDisable()
     {
-        enemyPassiveFSM.enabled = false;
+        wanderPlusAvoid.enabled = false;
         arrivePlusAvoid.enabled = false;
     }
 
@@ -50,9 +52,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
         switch (currentState)
         {
             case States.INITIAL:
-                ChangeState(States.PASSIVE);
+                ChangeState(States.WANDER);
                 break;
-            case States.PASSIVE:
+            case States.WANDER:
 
                 /*RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
@@ -91,7 +93,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.attackDistance)
                     {
-                        ChangeState(States.PASSIVE);
+                        ChangeState(States.WANDER);
                         break;
                     }
 
@@ -113,8 +115,8 @@ public class EnemyAgressiveFSM : MonoBehaviour
         {
             case States.INITIAL:
                 break;
-            case States.PASSIVE:
-                enemyPassiveFSM.enabled = false;
+            case States.WANDER:
+                wanderPlusAvoid.enabled = false;
                 break;
             case States.NOTICE:
                 break;
@@ -129,13 +131,15 @@ public class EnemyAgressiveFSM : MonoBehaviour
         {
             case States.INITIAL:
                 break;
-            case States.PASSIVE:
-                enemyPassiveFSM.enabled = true;
+            case States.WANDER:
+                kinematicState.maxSpeed = blackboard.wanderSpeed;
+                wanderPlusAvoid.enabled = true;
                 break;
             case States.NOTICE:
                 timeInNotice = blackboard.timeInNotice;
                 break;
             case States.CHASE:
+                kinematicState.maxSpeed = blackboard.chasingSpeed;
                 arrivePlusAvoid.enabled = true;
                 arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;

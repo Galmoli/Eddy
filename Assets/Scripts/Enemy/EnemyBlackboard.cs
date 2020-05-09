@@ -11,10 +11,10 @@ public class EnemyBlackboard : MonoBehaviour
     [Header("General Stats")]
     public float healthPoints;
     public float attackPoints;
-    public float movementSpeed;
     public float rotationSpeed;
 
     [Header("Enemy Passive")]
+    public float wanderSpeed;
     public float wanderRadius;
     public float timeInIdle;
     public LayerMask sightObstaclesLayers;
@@ -23,6 +23,7 @@ public class EnemyBlackboard : MonoBehaviour
     public float detectionDistanceOnSight;
     public float detectionDistanceOffSight;
     public float timeInNotice;
+    public float chasingSpeed;
     public float attackDistance;
     public float minTimeBetweenAttacks;
 
