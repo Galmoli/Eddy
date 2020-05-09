@@ -148,4 +148,9 @@ public class PlayerMovementController : StateMachine
         characterController.enabled = true;
         SetState(new MoveState(this));
     }
+
+    public void Spawn()
+    {
+        state.Interact();
+    }
 }

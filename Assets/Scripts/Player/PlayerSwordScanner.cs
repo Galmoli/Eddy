@@ -177,6 +177,12 @@ public class PlayerSwordScanner : MonoBehaviour
                 moveObject.swordStabbed = true;
             }
         }
+
+        if (swordHolder.CompareTag("CheckPoint"))
+        {
+            CheckPoint c = swordHolder.GetComponent<CheckPoint>();
+            c.Activate();
+        }
         
         transform.parent = swordHolder.transform;
 
