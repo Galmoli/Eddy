@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    protected PlayerState state;
+    protected State state;
 
-    public void SetState(PlayerState state)
+    public void SetState(State state)
     {
         this.state = state;
         this.state.Enter();
