@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private void SetDeadState()
     {
-        _movementController.SetState(new DeadState());
-        _combatController.SetState(new DeadState());
+        _movementController.SetState(new DeadState(_movementController));
+        _combatController.SetState(new CombatDeadState());
     }
 
     private void Spawn()
