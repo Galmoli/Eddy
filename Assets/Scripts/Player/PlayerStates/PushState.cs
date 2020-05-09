@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushState : PlayerState
+public class PushState : State
 {
     private PlayerMovementController _controller;
 

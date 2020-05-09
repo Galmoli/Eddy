@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : PlayerState
+public class JumpState : State
 {
     private PlayerMovementController _controller;
 

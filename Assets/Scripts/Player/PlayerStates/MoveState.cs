@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : PlayerState
+public class MoveState : State
 {
     private PlayerMovementController _controller;
     private Vector3 vector3D;
@@ -68,6 +68,7 @@ public class MoveState : PlayerState
                 _controller.SetState(new JumpState(_controller));
             }
         }
+        
         else if (_controller.gameObject.layer == LayerMask.NameToLayer("inScanner"))
         {
             if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorInsideScanner))
