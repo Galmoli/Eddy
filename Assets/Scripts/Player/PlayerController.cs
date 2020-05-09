@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         //Provisional to trigger death state
         if (Input.GetKeyDown(KeyCode.D))
         {
-            SetDeadState();
+            Hit(100);
         }
         //Provisional to Respawn while UI is not finished
         if (Input.GetKeyDown(KeyCode.S))
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
             //Trigger Death Animation
             //
             SetDeadState();
+            UIManager.Instance.ShowDeathMenu(); //This must be called in the death animation
         }
     }
 

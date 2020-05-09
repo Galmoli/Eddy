@@ -6,8 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    private PlayerController _playerController;
-
     public static GameManager Instance
     {
         get
@@ -18,6 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     [HideInInspector] public  Vector3 respawnPos;
+    private PlayerController _playerController;
 
     private void Start()
     {

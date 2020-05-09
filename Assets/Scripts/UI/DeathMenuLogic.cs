@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathMenuLogic : MonoBehaviour
 {
-    private void Respawn()
+    public void Respawn() //Currently used by Button OnClick Event
     {
         GameManager.Instance.Respawn();
         gameObject.SetActive(false);
