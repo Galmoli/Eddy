@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private PlayerMovementController _movementController;
     private PlayerCombatController _combatController;
 
+    public int health;
+
     private void Awake()
     {
         _movementController = GetComponent<PlayerMovementController>();
@@ -17,14 +19,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Provisional to trigger death state
         if (Input.GetKeyDown(KeyCode.D))
         {
             SetDeadState();
         }
-        
+        //Provisional to Respawn while UI is not finished
         if (Input.GetKeyDown(KeyCode.S))
         {
             Spawn();
+        }
+    }
+
+    public void Hit(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            //Trigger Death Animation
+            //
+            SetDeadState();
         }
     }
 
