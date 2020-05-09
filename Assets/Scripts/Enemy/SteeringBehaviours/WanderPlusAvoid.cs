@@ -4,16 +4,16 @@ namespace Steerings
 {
 	public class WanderPlusAvoid : SteeringBehaviour
 	{
-		public float wanderRate = 30f;
-		public float wanderRadius = 10f;
-		public float wanderOffset = 20f;
+		[HideInInspector] public float wanderRate = 30f;
+		[HideInInspector] public float wanderRadius = 10f;
+		[HideInInspector] public float wanderOffset = 20f;
 		private float targetOrientation = 0f;
 
-		public float lookAheadLength = 10f;
-		public float avoidDistance = 10f;
-		public float secondaryWhiskerAngle = 30f;
-		public float secondaryWhiskerRatio = 0.7f;
-		public LayerMask avoidLayers;
+		[HideInInspector] public float lookAheadLength = 10f;
+		[HideInInspector] public float avoidDistance = 10f;
+		[HideInInspector] public float secondaryWhiskerAngle = 30f;
+		[HideInInspector] public float secondaryWhiskerRatio = 0.7f;
+		[HideInInspector] public LayerMask avoidLayers;
 
 		private bool avoidActive = false;
 

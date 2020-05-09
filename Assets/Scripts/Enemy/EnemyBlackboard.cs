@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,6 @@ public class EnemyBlackboard : MonoBehaviour
 
     [Header("Enemy Passive")]
     public float wanderSpeed;
-    public float wanderRadius;
     public float timeInIdle;
     public LayerMask sightObstaclesLayers;
 
@@ -31,6 +31,23 @@ public class EnemyBlackboard : MonoBehaviour
     public float stunnedTime;
     public float staggeredTime;
 
+    [Header("Arrive Steering Variables")]
+    public float closeEnoughRadius;
+    public float slowDownRadius;
+    public float timeToDesiredSpeed;
+
+    [Header("Avoidance Steering Variables")]
+    public float lookAheadLength;
+    public float avoidDistance;
+    public float secondaryWhiskerAngle;
+    public float secondaryWhiskerRatio;
+    public LayerMask avoidLayers;
+
+    [Header("Wander Steering Variables")]
+    public float wanderRate;
+    public float wanderRadius;
+    public float wanderOffset;
+
     [HideInInspector] public bool hit;
     [HideInInspector] public bool stunned;
 
@@ -42,6 +59,16 @@ public class EnemyBlackboard : MonoBehaviour
 
         stunned = false;
         hit = false;
+
+        if(GetComponent<ArrivePlusAvoid>() != null)
+        {
+            SetArrivePlusAvoidVariables();
+        }
+
+        if (GetComponent<WanderPlusAvoid>() != null)
+        {
+            SetWanderPlusAvoidVariables();
+        }
     }
 
     private void Update()
@@ -53,5 +80,35 @@ public class EnemyBlackboard : MonoBehaviour
     {
         hit = true;
         healthPoints -= damage;
+    }
+
+    void SetArrivePlusAvoidVariables()
+    {
+        ArrivePlusAvoid arrivePlusVoid = GetComponent<ArrivePlusAvoid>();
+
+        arrivePlusVoid.closeEnoughRadius = closeEnoughRadius;
+        arrivePlusVoid.slowDownRadius = slowDownRadius;
+        arrivePlusVoid.timeToDesiredSpeed = timeToDesiredSpeed;
+
+        arrivePlusVoid.lookAheadLength = lookAheadLength;
+        arrivePlusVoid.avoidDistance = avoidDistance;
+        arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
+        arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
+        arrivePlusVoid.avoidLayers = avoidLayers;
+    }
+
+    void SetWanderPlusAvoidVariables()
+    {
+        WanderPlusAvoid wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
+
+        wanderPlusAvoid.wanderRate = wanderRate;
+        wanderPlusAvoid.wanderRadius = wanderRadius;
+        wanderPlusAvoid.wanderOffset = wanderOffset;
+
+        wanderPlusAvoid.lookAheadLength = lookAheadLength;
+        wanderPlusAvoid.avoidDistance = avoidDistance;
+        wanderPlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
+        wanderPlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
+        wanderPlusAvoid.avoidLayers = avoidLayers;
     }
 }

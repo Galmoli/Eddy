@@ -4,17 +4,17 @@ namespace Steerings
 {
 	public class ArrivePlusAvoid : SteeringBehaviour
 	{
-		public GameObject target;
+		[HideInInspector] public GameObject target;
 
-		public float closeEnoughRadius = 5f;
-		public float slowDownRadius = 20f;
-		public float timeToDesiredSpeed = 0.1f; 
+		[HideInInspector] public float closeEnoughRadius;
+		[HideInInspector] public float slowDownRadius;
+		[HideInInspector] public float timeToDesiredSpeed;
 
-		public float lookAheadLength = 10f;
-		public float avoidDistance = 10f;
-		public float secondaryWhiskerAngle = 30f;
-		public float secondaryWhiskerRatio = 0.7f;
-		public LayerMask avoidLayers;
+		[HideInInspector] public float lookAheadLength;
+		[HideInInspector] public float avoidDistance;
+		[HideInInspector] public float secondaryWhiskerAngle;
+		[HideInInspector] public float secondaryWhiskerRatio;
+		[HideInInspector] public LayerMask avoidLayers;
 
 		public override SteeringOutput GetSteering ()
 		{
