@@ -72,8 +72,10 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 }
                 break;
             case States.NOTICE:
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, blackboard.player.transform.position - transform.position, blackboard.rotationSpeed * Time.deltaTime, 0f));
-                if(timeInNotice <= 0)
+
+                LookAtPlayer();
+
+                if (timeInNotice <= 0)
                 {
                     ChangeState(States.CHASE);
                 }
@@ -102,7 +104,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 }
                 else
                 {
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, blackboard.player.transform.position - transform.position, blackboard.rotationSpeed * Time.deltaTime, 0f));
+                    LookAtPlayer();
                     minTimeBetweenAttacks -= Time.deltaTime;
                 }
                 break;
@@ -155,5 +157,16 @@ public class EnemyAgressiveFSM : MonoBehaviour
         blackboard.attack.SetActive(true);
         yield return new WaitForSeconds(0.15f);
         blackboard.attack.SetActive(false);
+    }
+
+    private void LookAtPlayer()
+    {
+        transform.LookAt(blackboard.player.transform);
+
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        eulerAngles.x = 0;
+        eulerAngles.z = 0;
+
+        transform.rotation = Quaternion.Euler(eulerAngles);
     }
 }
