@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemyBlackboard))]
+[RequireComponent(typeof(ArrivePlusAvoid))]
 
 public class EnemyPassiveFSM : MonoBehaviour
 {
@@ -17,12 +18,15 @@ public class EnemyPassiveFSM : MonoBehaviour
     private States currentState;
 
     private EnemyBlackboard blackboard;
+    private ArrivePlusAvoid arrivePlusAvoid;
 
+    private GameObject wanderingTarget;
     private float timeInIdle;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
+        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
     }
 
     private void OnEnable()
@@ -32,7 +36,7 @@ public class EnemyPassiveFSM : MonoBehaviour
 
     private void OnDisable()
     {
-
+        arrivePlusAvoid.enabled = false;
     }
 
     private void Update()
@@ -53,7 +57,7 @@ public class EnemyPassiveFSM : MonoBehaviour
                 }
                 break;
             case States.ARRIVE:
-                if (!blackboard.agent.hasPath && blackboard.agent.pathStatus == NavMeshPathStatus.PathComplete)
+                if (Vector3.Distance(transform.position, arrivePlusAvoid.target.transform.position) <= arrivePlusAvoid.closeEnoughRadius)
                 {
                     ChangeState(States.IDLE);
                 }
@@ -70,6 +74,7 @@ public class EnemyPassiveFSM : MonoBehaviour
             case States.IDLE:
                 break;
             case States.ARRIVE:
+                arrivePlusAvoid.enabled = false;
                 break;
         }
 
@@ -79,11 +84,10 @@ public class EnemyPassiveFSM : MonoBehaviour
                 break;
             case States.IDLE:
                 timeInIdle = blackboard.timeInIdle;
-                blackboard.agent.isStopped = true;
                 break;
             case States.ARRIVE:
-                blackboard.agent.isStopped = false;
-                SearchNewPatrolTarget();
+                arrivePlusAvoid.enabled = true;
+                arrivePlusAvoid.target = SearchNewPatrolTarget();
                 break;
         }
 
@@ -92,15 +96,27 @@ public class EnemyPassiveFSM : MonoBehaviour
         blackboard.statesText.text = currentState.ToString();
     }
 
-    void SearchNewPatrolTarget()
+    GameObject SearchNewPatrolTarget()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * blackboard.wanderRadius;
+        if (wanderingTarget == null)
+        {
+            wanderingTarget = new GameObject("Enemy Wandering Target");
+            wanderingTarget.transform.position = transform.position;
+        }
+        
+        Vector3 vector = Quaternion.Euler(0f, Random.Range(-45, 45), 0f) * transform.forward;
+
+        wanderingTarget.transform.position += vector.normalized * blackboard.wanderRadius;
+
+        return wanderingTarget;
+
+        /*Vector3 randomDirection = Random.insideUnitSphere * blackboard.wanderRadius;
 
         randomDirection += transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, blackboard.wanderRadius, 1);
         Vector3 finalPosition = hit.position;
 
-        blackboard.agent.SetDestination(finalPosition);
+        blackboard.agent.SetDestination(finalPosition);*/
     }
 }

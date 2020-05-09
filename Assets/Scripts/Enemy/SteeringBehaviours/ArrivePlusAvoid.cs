@@ -5,12 +5,11 @@ namespace Steerings
 	public class ArrivePlusAvoid : SteeringBehaviour
 	{
 		public GameObject target;
+
 		public float closeEnoughRadius = 5f;
 		public float slowDownRadius = 20f;
 		public float timeToDesiredSpeed = 0.1f; 
 
-
-		public bool showWhisker = true;
 		public float lookAheadLength = 10f;
 		public float avoidDistance = 10f;
 		public float secondaryWhiskerAngle = 30f;

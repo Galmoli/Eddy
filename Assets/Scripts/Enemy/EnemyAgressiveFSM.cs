@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemyBlackboard))]
 [RequireComponent(typeof(EnemyPassiveFSM))]
+[RequireComponent(typeof(ArrivePlusAvoid))]
 
 public class EnemyAgressiveFSM : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
 
     private EnemyBlackboard blackboard;
     private EnemyPassiveFSM enemyPassiveFSM;
+    private ArrivePlusAvoid arrivePlusAvoid;
 
     private float timeInNotice;
     private float minTimeBetweenAttacks;
@@ -29,6 +31,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
     {
         blackboard = GetComponent<EnemyBlackboard>();
         enemyPassiveFSM = GetComponent<EnemyPassiveFSM>();
+        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
     }
 
     private void OnEnable()
@@ -39,6 +42,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
     private void OnDisable()
     {
         enemyPassiveFSM.enabled = false;
+        arrivePlusAvoid.enabled = false;
     }
 
     private void Update()
@@ -50,7 +54,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 break;
             case States.PASSIVE:
 
-                RaycastHit hit;
+                /*RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
                 {
                     if (hit.collider.gameObject.tag == "Player")
@@ -58,7 +62,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                         ChangeState(States.NOTICE);
                         break;
                     }
-                }
+                }*/
                 
                 if(Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
                 {
@@ -77,8 +81,6 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 }
                 break;
             case States.CHASE:
-                blackboard.agent.SetDestination(blackboard.player.transform.position);
-
                 if(Vector3.Distance(transform.position, blackboard.player.transform.position) <= blackboard.attackDistance)
                 {
                     ChangeState(States.ATTACK);
@@ -117,6 +119,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
             case States.NOTICE:
                 break;
             case States.CHASE:
+                arrivePlusAvoid.enabled = false;
                 break;
             case States.ATTACK:
                 break;
@@ -130,14 +133,13 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 enemyPassiveFSM.enabled = true;
                 break;
             case States.NOTICE:
-                blackboard.agent.isStopped = true;
                 timeInNotice = blackboard.timeInNotice;
                 break;
             case States.CHASE:
-                blackboard.agent.isStopped = false;
+                arrivePlusAvoid.enabled = true;
+                arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
             case States.ATTACK:
-                blackboard.agent.isStopped = true;
                 break;
         }
         currentState = newState;

@@ -81,7 +81,6 @@ public class EnemyStunFSM : MonoBehaviour
                 enemyAgressiveFSM.enabled = true;
                 break;
             case States.STUNNED:
-                blackboard.agent.isStopped = true;
                 stunnedTime = blackboard.stunnedTime;
                 break;
         }

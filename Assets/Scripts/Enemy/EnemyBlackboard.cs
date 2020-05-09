@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyBlackboard : MonoBehaviour
@@ -35,13 +34,9 @@ public class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public bool stunned;
 
     [HideInInspector] public PlayerMovementController player;
-    [HideInInspector] public NavMeshAgent agent;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = movementSpeed;
-
         player = FindObjectOfType<PlayerMovementController>();
 
         stunned = false;
