@@ -43,6 +43,8 @@ public class SimpleAttackState : State
             _attackObject = _controller.comboAttack;
             _controller.simpleAttackCount = 0;
         }
+        
+        _controller.SetMovementControllerCombatState(_attackObject.attackTime);
     }
 
     public override void Update()
@@ -67,6 +69,5 @@ public class SimpleAttackState : State
     public override void ExitState()
     {
         _controller.swordTrigger.DisableTrigger();
-        _controller.SetState(new IdleState(_controller));
     }
 }
