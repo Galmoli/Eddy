@@ -16,8 +16,8 @@ public class PlayerMovementController : StateMachine
     public LayerMask layersToCheckFloorInsideScanner;
 
     [Header("Edge Values")] 
-    [HideInInspector] public Vector3 edgeOffset;
-    [HideInInspector] public Vector3 edgeCompletedOffset;
+    public Vector3 edgeOffset;
+    public Vector3 edgeCompletedOffset;
     public float lerpVelocity;
     [HideInInspector] public Vector3 edgePosition;
     [HideInInspector] public GameObject edgeGameObject;
