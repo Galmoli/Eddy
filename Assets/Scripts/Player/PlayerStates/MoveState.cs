@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : PlayerState
+public class MoveState : State
 {
     private PlayerMovementController _controller;
     private Vector3 vector3D;
@@ -26,7 +26,9 @@ public class MoveState : PlayerState
         SnapToFloor();
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
-        
+
+        _controller.animator.SetFloat("Speed", vector3D.magnitude);
+
         ExitState();
     }
 
@@ -66,6 +68,7 @@ public class MoveState : PlayerState
                 _controller.SetState(new JumpState(_controller));
             }
         }
+        
         else if (_controller.gameObject.layer == LayerMask.NameToLayer("inScanner"))
         {
             if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorInsideScanner))

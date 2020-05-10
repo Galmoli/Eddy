@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(EnemyAgressiveFSM))]
+[RequireComponent(typeof(EnemyAggressiveFSM))]
 
 public class EnemyStunFSM : MonoBehaviour
 {
@@ -17,14 +17,14 @@ public class EnemyStunFSM : MonoBehaviour
     private States currentState;
 
     private EnemyBlackboard blackboard;
-    private EnemyAgressiveFSM enemyAgressiveFSM;
+    private EnemyAggressiveFSM enemyAgressiveFSM;
 
     private float stunnedTime;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
-        enemyAgressiveFSM = GetComponent<EnemyAgressiveFSM>();
+        enemyAgressiveFSM = GetComponent<EnemyAggressiveFSM>();
     }
 
     private void OnEnable()
@@ -81,7 +81,6 @@ public class EnemyStunFSM : MonoBehaviour
                 enemyAgressiveFSM.enabled = true;
                 break;
             case States.STUNNED:
-                blackboard.agent.isStopped = true;
                 stunnedTime = blackboard.stunnedTime;
                 break;
         }

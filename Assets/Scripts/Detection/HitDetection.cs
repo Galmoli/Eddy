@@ -6,35 +6,33 @@ using UnityEngine;
 
 public class HitDetection : MonoBehaviour
 {
-    public struct HitStruct
+    [TagSelector] public string[] TagsToCollision = new string[] { };
+    [HideInInspector] public GameObject hitObject;
+
+    private BoxCollider _trigger;
+    public Action OnHit = delegate { };
+
+    private void Awake()
     {
-        public bool colliding;
-        public GameObject hitObject;
-    }
-    
-    [TagSelector]
-    public string[] TagsToCollision = new string[] { };
-    [HideInInspector] public HitStruct hit;
-    public HitStruct Check()
-    {
-        return hit;
+        _trigger = GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (TagsToCollision.Contains(other.tag))
         {
-            hit.colliding = true;
-            hit.hitObject = other.gameObject;
+            hitObject = other.gameObject;
+            OnHit();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void EnableTrigger()
     {
-        if (TagsToCollision.Contains(other.tag))
-        {
-            hit.colliding = false;
-            hit.hitObject = null;
-        }
+        _trigger.enabled = true;
+    }
+
+    public void DisableTrigger()
+    {
+        _trigger.enabled = false;
     }
 }

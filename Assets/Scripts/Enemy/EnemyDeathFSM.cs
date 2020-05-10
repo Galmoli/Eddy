@@ -72,7 +72,6 @@ public class EnemyDeathFSM : MonoBehaviour
                 enemyHitFSM.enabled = true;
                 break;
             case States.DEATH:
-                blackboard.agent.isStopped = true;
                 Destroy(gameObject);
                 break;
         }

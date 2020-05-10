@@ -44,6 +44,10 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public PushPullObject moveObject;
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
 
+
+    [Header("Animation")]
+    public Animator animator;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -143,5 +147,15 @@ public class PlayerMovementController : StateMachine
         Destroy(rb);
         characterController.enabled = true;
         SetState(new MoveState(this));
+    }
+
+    public void Spawn()
+    {
+        state.Interact();
+    }
+
+    public State GetState()
+    {
+        return state;
     }
 }
