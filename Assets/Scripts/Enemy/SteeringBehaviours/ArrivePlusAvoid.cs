@@ -8,7 +8,7 @@ namespace Steerings
 
 		[HideInInspector] public float closeEnoughRadius;
 		[HideInInspector] public float slowDownRadius;
-		[HideInInspector] public float timeToDesiredSpeed;
+		private float timeToDesiredSpeed = 0.1f;
 
 		[HideInInspector] public float lookAheadLength;
 		[HideInInspector] public float avoidDistance;

@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(ArrivePlusAvoid))]
 [RequireComponent(typeof(WanderPlusAvoid))]
 
-public class EnemyAgressiveFSM : MonoBehaviour
+public class EnemyAggressiveFSM : MonoBehaviour
 {
     public enum States
     {
@@ -65,8 +65,8 @@ public class EnemyAgressiveFSM : MonoBehaviour
                         break;
                     }
                 }
-                
-                if(Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
+
+                if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
                 {
                     ChangeState(States.NOTICE);
                 }

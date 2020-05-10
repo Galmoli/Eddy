@@ -16,7 +16,6 @@ public class EnemyBlackboard : MonoBehaviour
 
     [Header("Enemy Passive")]
     public float wanderSpeed;
-    public float timeInIdle;
     public LayerMask sightObstaclesLayers;
 
     [Header("Enemy Agressive")]
@@ -34,7 +33,6 @@ public class EnemyBlackboard : MonoBehaviour
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
     public float slowDownRadius;
-    public float timeToDesiredSpeed;
 
     [Header("Avoidance Steering Variables")]
     public float lookAheadLength;
@@ -88,7 +86,6 @@ public class EnemyBlackboard : MonoBehaviour
 
         arrivePlusVoid.closeEnoughRadius = closeEnoughRadius;
         arrivePlusVoid.slowDownRadius = slowDownRadius;
-        arrivePlusVoid.timeToDesiredSpeed = timeToDesiredSpeed;
 
         arrivePlusVoid.lookAheadLength = lookAheadLength;
         arrivePlusVoid.avoidDistance = avoidDistance;
