@@ -450,6 +450,7 @@ MonoBehaviour:
   TagsToCollision:
   - Dummy
   - Enemy
+  hitObject: {fileID: 0}
 --- !u!1 &6411527135065696163
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,9 +637,7 @@ GameObject:
   - component: {fileID: 6411527136159828571}
   - component: {fileID: 6411527136159828580}
   - component: {fileID: 6411527136159828570}
-  - component: {fileID: 6411527136159828569}
   - component: {fileID: 2682654681668094299}
-  - component: {fileID: 7546586866402276837}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -756,21 +755,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 1286977053}
---- !u!114 &6411527136159828569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411527136159828577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d462a947c2846c9499e3443c57680f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  timeToCancellCombo: 3
-  hitDetection: {fileID: 6411527135046142523}
+  basicAttack: {fileID: 11400000, guid: 8c99c17c5f1632f4181682c8b7c4eb75, type: 2}
+  areaAttack: {fileID: 11400000, guid: bfafa40af1c196545b432544b48da296, type: 2}
+  comboAttack: {fileID: 11400000, guid: 6e91a735cfa505044bb37ec413cb73be, type: 2}
+  swordTrigger: {fileID: 6411527135046142523}
+  attacksToCombo: 3
+  timeToCancelCombo: 2
+  chargeTime: 1
+  simpleAttackCount: 0
 --- !u!114 &2682654681668094299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,25 +778,6 @@ MonoBehaviour:
   radiusToCheck: 0.3
   maxAxisX: 0.5
   maxAxisZ: 0.5
---- !u!95 &7546586866402276837
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411527136159828577}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 53fcd6010c56a7149b8f574ddfd2dc79, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6593223450896131661
 GameObject:
   m_ObjectHideFlags: 0
