@@ -49,7 +49,7 @@ namespace Steerings
 
 				ownKS.position = ownKS.position + ownKS.linearVelocity * Time.deltaTime + 0.5f * steering.linearAcceleration * Time.deltaTime * Time.deltaTime;
 
-				transform.position = ownKS.position;
+				transform.position = new Vector3(ownKS.position.x, transform.position.y, ownKS.position.z);
 			}
 			else
 			{
