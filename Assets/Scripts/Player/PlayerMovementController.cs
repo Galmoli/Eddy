@@ -153,4 +153,9 @@ public class PlayerMovementController : StateMachine
     {
         state.Interact();
     }
+
+    public State GetState()
+    {
+        return state;
+    }
 }

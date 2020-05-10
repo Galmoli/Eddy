@@ -21,13 +21,15 @@ public class PlayerCombatController : StateMachine
     public int attacksToCombo; 
     
     [SerializeField] private float timeToCancelCombo;
-    [SerializeField] private float chargeTime;
+    [SerializeField] private float timeToStartCharging;
+    [SerializeField] private float maxChargeTime;
     [HideInInspector] public int simpleAttackCount;
     
     private float _timeSinceLastSimpleAttack;
     private float _timeCharging;
     private Coroutine _comboCoroutine;
     private Coroutine _chargeCoroutine;
+    private PlayerMovementController _movementController;
 
     [Header("Animation")]
     public Animator animator;
@@ -43,6 +45,7 @@ public class PlayerCombatController : StateMachine
         swordTrigger.OnHit += StateInteract;
         
         sword = FindObjectOfType<PlayerSwordScanner>();
+        _movementController = GetComponent<PlayerMovementController>();
     }
 
     private void Start()
@@ -58,6 +61,7 @@ public class PlayerCombatController : StateMachine
     private void SimpleAttack()
     {
         if (state.GetType() == typeof(SimpleAttackState)) return;
+        if (_movementController.GetState().GetType() != typeof(MoveState)) return;
         
         if(_comboCoroutine != null) StopCoroutine(_comboCoroutine);
         if(_chargeCoroutine != null) StopCoroutine(_chargeCoroutine);
@@ -72,6 +76,8 @@ public class PlayerCombatController : StateMachine
         if (state.GetType() == typeof(SimpleAttackState))
         {
             StopCoroutine(_chargeCoroutine);
+            SetState(new IdleState(this));
+            SetMovementControllerToMove();
             return;
         }
 
@@ -84,6 +90,16 @@ public class PlayerCombatController : StateMachine
     private void StateInteract()
     {
         state.Interact();
+    }
+
+    public void SetMovementControllerCombatState(float time)
+    {
+        _movementController.SetState(new CombatState(_movementController, this, time));
+    }
+
+    public void SetMovementControllerToMove()
+    {
+        _movementController.GetState().ExitState();
     }
 
     private IEnumerator ComboCounter()
@@ -103,7 +119,7 @@ public class PlayerCombatController : StateMachine
         while (state.GetType() == typeof(SimpleAttackState) || state.GetType() == typeof(IdleState))
         {
             _timeCharging += Time.deltaTime;
-            if (_timeCharging >= chargeTime)
+            if (_timeCharging >= timeToStartCharging && state.GetType() != typeof(IdleChargedState))
             {
                 SetState(new IdleChargedState(this));
             }
