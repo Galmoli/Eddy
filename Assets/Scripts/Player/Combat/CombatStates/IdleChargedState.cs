@@ -14,6 +14,8 @@ public class IdleChargedState : State
     public override void Enter()
     {
         Debug.Log("Idle Charged");
+
+        _controller.animator.SetTrigger("StartChargeAttack");
     }
 
     public override void Interact()
