@@ -29,6 +29,9 @@ public class PlayerCombatController : StateMachine
     private Coroutine _comboCoroutine;
     private Coroutine _chargeCoroutine;
 
+    [Header("Animation")]
+    public Animator animator;
+
     private void Awake()
     {
         _input = new InputActions();
