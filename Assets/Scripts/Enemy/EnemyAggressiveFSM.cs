@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(EnemyPassiveFSM))]
+[RequireComponent(typeof(ArrivePlusAvoid))]
+[RequireComponent(typeof(WanderPlusAvoid))]
 
-public class EnemyAgressiveFSM : MonoBehaviour
+public class EnemyAggressiveFSM : MonoBehaviour
 {
     public enum States
     {
         INITIAL,
-        PASSIVE,
+        WANDER,
         NOTICE,
         CHASE,
         ATTACK
@@ -20,7 +21,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
     private States currentState;
 
     private EnemyBlackboard blackboard;
-    private EnemyPassiveFSM enemyPassiveFSM;
+    private WanderPlusAvoid wanderPlusAvoid;
+    private ArrivePlusAvoid arrivePlusAvoid;
+    private KinematicState kinematicState;
 
     private float timeInNotice;
     private float minTimeBetweenAttacks;
@@ -28,7 +31,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
-        enemyPassiveFSM = GetComponent<EnemyPassiveFSM>();
+        wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
+        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
+        kinematicState = GetComponent<KinematicState>();
     }
 
     private void OnEnable()
@@ -38,7 +43,8 @@ public class EnemyAgressiveFSM : MonoBehaviour
 
     private void OnDisable()
     {
-        enemyPassiveFSM.enabled = false;
+        wanderPlusAvoid.enabled = false;
+        arrivePlusAvoid.enabled = false;
     }
 
     private void Update()
@@ -46,9 +52,9 @@ public class EnemyAgressiveFSM : MonoBehaviour
         switch (currentState)
         {
             case States.INITIAL:
-                ChangeState(States.PASSIVE);
+                ChangeState(States.WANDER);
                 break;
-            case States.PASSIVE:
+            case States.WANDER:
 
                 RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
@@ -59,15 +65,17 @@ public class EnemyAgressiveFSM : MonoBehaviour
                         break;
                     }
                 }
-                
-                if(Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
+
+                if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
                 {
                     ChangeState(States.NOTICE);
                 }
                 break;
             case States.NOTICE:
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, blackboard.player.transform.position - transform.position, blackboard.rotationSpeed * Time.deltaTime, 0f));
-                if(timeInNotice <= 0)
+
+                LookAtPlayer();
+
+                if (timeInNotice <= 0)
                 {
                     ChangeState(States.CHASE);
                 }
@@ -77,8 +85,6 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 }
                 break;
             case States.CHASE:
-                blackboard.agent.SetDestination(blackboard.player.transform.position);
-
                 if(Vector3.Distance(transform.position, blackboard.player.transform.position) <= blackboard.attackDistance)
                 {
                     ChangeState(States.ATTACK);
@@ -89,7 +95,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.attackDistance)
                     {
-                        ChangeState(States.PASSIVE);
+                        ChangeState(States.WANDER);
                         break;
                     }
 
@@ -98,7 +104,7 @@ public class EnemyAgressiveFSM : MonoBehaviour
                 }
                 else
                 {
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, blackboard.player.transform.position - transform.position, blackboard.rotationSpeed * Time.deltaTime, 0f));
+                    LookAtPlayer();
                     minTimeBetweenAttacks -= Time.deltaTime;
                 }
                 break;
@@ -111,12 +117,13 @@ public class EnemyAgressiveFSM : MonoBehaviour
         {
             case States.INITIAL:
                 break;
-            case States.PASSIVE:
-                enemyPassiveFSM.enabled = false;
+            case States.WANDER:
+                wanderPlusAvoid.enabled = false;
                 break;
             case States.NOTICE:
                 break;
             case States.CHASE:
+                arrivePlusAvoid.enabled = false;
                 break;
             case States.ATTACK:
                 break;
@@ -126,18 +133,19 @@ public class EnemyAgressiveFSM : MonoBehaviour
         {
             case States.INITIAL:
                 break;
-            case States.PASSIVE:
-                enemyPassiveFSM.enabled = true;
+            case States.WANDER:
+                kinematicState.maxSpeed = blackboard.wanderSpeed;
+                wanderPlusAvoid.enabled = true;
                 break;
             case States.NOTICE:
-                blackboard.agent.isStopped = true;
                 timeInNotice = blackboard.timeInNotice;
                 break;
             case States.CHASE:
-                blackboard.agent.isStopped = false;
+                kinematicState.maxSpeed = blackboard.chasingSpeed;
+                arrivePlusAvoid.enabled = true;
+                arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
             case States.ATTACK:
-                blackboard.agent.isStopped = true;
                 break;
         }
         currentState = newState;
@@ -149,5 +157,16 @@ public class EnemyAgressiveFSM : MonoBehaviour
         blackboard.attack.SetActive(true);
         yield return new WaitForSeconds(0.15f);
         blackboard.attack.SetActive(false);
+    }
+
+    private void LookAtPlayer()
+    {
+        transform.LookAt(blackboard.player.transform);
+
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        eulerAngles.x = 0;
+        eulerAngles.z = 0;
+
+        transform.rotation = Quaternion.Euler(eulerAngles);
     }
 }
