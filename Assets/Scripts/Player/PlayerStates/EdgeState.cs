@@ -52,6 +52,10 @@ public class EdgeState : PlayerState
 
     public override void ExitState()
     {
-        if(!_controller.onEdge) _controller.SetState(new JumpState(_controller));
+        if (!_controller.onEdge)
+        {
+            _controller.edgeAvailable = false;
+            _controller.SetState(new JumpState(_controller));
+        }
     }
 }
