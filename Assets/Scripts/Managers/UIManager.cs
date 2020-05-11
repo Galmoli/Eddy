@@ -14,10 +14,17 @@ public class UIManager : MonoBehaviour
             return instance;
         }
     }
+    [SerializeField] private float timeToShowMenu;
     [SerializeField] private GameObject deathMenu;
     
-    public void ShowDeathMenu()
+    public IEnumerator ShowDeathMenu()
     {
+        var currentTime = 0f;
+        while (currentTime < timeToShowMenu)
+        {
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
         deathMenu.SetActive(true);
     }
 }
