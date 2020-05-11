@@ -38,7 +38,7 @@ public class EdgeState : State
         var projectedVector = Vector3.ProjectOnPlane(_controller.transform.position - _controller.edgePosition, _controller.edgeGameObject.transform.forward);
         projectedVector = Vector3.ProjectOnPlane(projectedVector, _controller.transform.up);
 
-        if (PlayerUtils.InputEqualVector(-_controller.edgeGameObject.transform.forward, _controller.cameraTransform, _controller.movementVector) && !_controller.standing || _controller.inputToStand)
+        if (PlayerUtils.InputEqualVector(-_controller.edgeGameObject.transform.forward, _controller.cameraTransform, _controller.movementVector) && !_controller.standing || _controller.inputToStand && !_controller.standing)
         {
             _controller.StandEdge(projectedVector + _controller.edgePosition  + _controller.edgeCompletedOffset);
         }
