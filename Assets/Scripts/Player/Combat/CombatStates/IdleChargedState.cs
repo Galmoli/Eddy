@@ -25,6 +25,6 @@ public class IdleChargedState : State
 
     public override void ExitState()
     {
-        _controller.SetState(new AreaAttackState(_controller));
+        _controller.SetState(new AreaAttackState(_controller, 1));
     }
 }

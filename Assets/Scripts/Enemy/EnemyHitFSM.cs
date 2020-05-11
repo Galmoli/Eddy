@@ -85,7 +85,6 @@ public class EnemyHitFSM : MonoBehaviour
                 enemyStunFSM.enabled = true;
                 break;
             case States.STAGGERED:
-                blackboard.agent.isStopped = true;
                 straggeredTime = blackboard.staggeredTime;
                 break;
         }
