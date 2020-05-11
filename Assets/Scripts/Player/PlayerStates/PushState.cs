@@ -14,6 +14,7 @@ public class PushState : State
     public override void Enter()
     {
         Debug.Log("Push State");
+        _controller.animator.SetBool("isGrabbing", true);
     }
 
     public override void Update()
@@ -28,12 +29,16 @@ public class PushState : State
             {
                 _controller.characterController.Move(_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Pull();
+                _controller.animator.SetBool("isDragging", true);
+                _controller.animator.SetBool("isPushing", false);
             }
 
             if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.angleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
             {
                 _controller.characterController.Move(-_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Push();
+                _controller.animator.SetBool("isPushing", true);
+                _controller.animator.SetBool("isDragging", false);
             }
 
             if (!_controller.moveObject.moving)
@@ -46,12 +51,18 @@ public class PushState : State
         else if (_controller.moveObject && vector3D.magnitude < _controller.joystickDeadZone)
         {
             _controller.moveObject.moving = false;
+            _controller.animator.SetBool("isPushing", false);
+            _controller.animator.SetBool("isDragging", false);
         }
         ExitState();
     }
 
     public override void ExitState()
     {
-        if(!_controller.inputMoveObject || !_controller.moveObject.canMove) _controller.SetState(new MoveState(_controller));
+        if (!_controller.inputMoveObject || !_controller.moveObject.canMove)
+        {
+            _controller.SetState(new MoveState(_controller));
+            _controller.animator.SetBool("isGrabbing", false);
+        }
     }
 }

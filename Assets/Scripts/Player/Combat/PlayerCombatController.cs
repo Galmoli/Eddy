@@ -75,6 +75,7 @@ public class PlayerCombatController : StateMachine
     {
         if (state.GetType() == typeof(SimpleAttackState))
         {
+            animator.SetBool("isChargingAttack", false);
             StopCoroutine(_chargeCoroutine);
             SetState(new IdleState(this));
             SetMovementControllerToMove();

@@ -166,6 +166,9 @@ public class PlayerSwordScanner : MonoBehaviour
         swordHolder = obj;
         transform.parent = null;
 
+        if (vertical) playerMovement.animator.SetTrigger("NailDown");
+        else playerMovement.animator.SetTrigger("NailForward");
+
         //Harcoding
         if (vertical)
         {       
