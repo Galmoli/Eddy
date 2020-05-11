@@ -24,6 +24,9 @@ public class PlayerSwordScanner : MonoBehaviour
     private PlayerInsideVolume _playerInsideVolume;
     private SphereCollider _sphereCollider;
 
+    private Vector3 swordInitPos;
+    private Quaternion swordInitRot;
+
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -44,6 +47,9 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.GetChild(0).localScale *= scannerRadius * 2f;
         _sphereCollider.radius = scannerRadius;
 
+        swordInitPos = transform.localPosition;
+        swordInitRot = transform.localRotation;
+
         input = new InputActions();
         input.Enable();
 
@@ -59,8 +65,8 @@ public class PlayerSwordScanner : MonoBehaviour
             if(transform.parent == hand)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.root.position, transform.forward, out hit, hitObjectDistance, stabSwordLayers))
-                {
+                if (Physics.Raycast(transform.root.position, transform.root.forward, out hit, hitObjectDistance, stabSwordLayers))
+                {   
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
                         if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
@@ -84,7 +90,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }                   
                 }
 
-                if(Physics.Raycast(floorDetectionPoint.position, -transform.up, out hit, 1.5f, stabSwordLayers))
+                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out hit, 1.5f, stabSwordLayers))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
@@ -160,11 +166,10 @@ public class PlayerSwordScanner : MonoBehaviour
         swordHolder = obj;
         transform.parent = null;
 
+        //Harcoding
         if (vertical)
-        {
-            //hardcoding        
-            transform.eulerAngles = new Vector3(90, 0, 0);
-            transform.position -= new Vector3(0, 1f, 0);
+        {       
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
         if (swordHolder.CompareTag("MoveObject"))
@@ -207,12 +212,11 @@ public class PlayerSwordScanner : MonoBehaviour
         
         transform.parent = null;
 
-        //hardcoding
-        transform.rotation = hand.rotation;
-        transform.position = hand.position;
+        transform.parent = hand;
+        transform.parent = hand;
 
-        transform.parent = hand;
-        transform.parent = hand;
+        transform.localPosition = swordInitPos;
+        transform.localRotation = swordInitRot;
     }
 
     public bool UsingScannerInHand()
