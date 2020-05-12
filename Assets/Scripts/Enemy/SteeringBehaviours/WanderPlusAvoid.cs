@@ -37,11 +37,13 @@ namespace Steerings
 
 			if (so == NULL_STEERING)
 			{
-				if (avoidActive)
+				/*if (avoidActive)
 				{
 					targetOrientation = ownKS.orientation;
-				}
+				}*/
+
 				avoidActive = false;
+
 				return Wander.GetSteering (ownKS, ref targetOrientation, WanderRate, wanderRadius, wanderOffset);
 			}
 			else
