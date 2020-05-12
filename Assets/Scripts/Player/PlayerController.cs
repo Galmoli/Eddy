@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
             //Trigger Death Animation
             //
             SetDeadState();
-            UIManager.Instance.ShowDeathMenu(); //This must be called in the death animation
+            StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
     }
 
