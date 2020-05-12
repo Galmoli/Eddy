@@ -41,6 +41,8 @@ public class EnemyBlackboard : MonoBehaviour
     public float secondaryWhiskerRatio;
     public LayerMask avoidLayers;
 
+    private SphereCollider scanner;
+
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
@@ -50,10 +52,14 @@ public class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public bool stunned;
 
     [HideInInspector] public PlayerMovementController player;
+    
+    
 
     void Start()
     {
         player = FindObjectOfType<PlayerMovementController>();
+
+        scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
 
         stunned = false;
         hit = false;
@@ -92,6 +98,7 @@ public class EnemyBlackboard : MonoBehaviour
         arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         arrivePlusVoid.avoidLayers = avoidLayers;
+        arrivePlusVoid.scanner = scanner;
     }
 
     void SetWanderPlusAvoidVariables()
@@ -107,5 +114,6 @@ public class EnemyBlackboard : MonoBehaviour
         wanderPlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         wanderPlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         wanderPlusAvoid.avoidLayers = avoidLayers;
+        wanderPlusAvoid.scanner = scanner;
     }
 }
