@@ -10,9 +10,11 @@ public class EnemyBlackboard : MonoBehaviour
     public Text statesText;
     
     [Header("General Stats")]
-    public float healthPoints;
+    public float initialHealthPoints;
     public float attackPoints;
     public float rotationSpeed;
+
+    [HideInInspector] public float healthPoints;
 
     [Header("Enemy Passive")]
     public float wanderSpeed;
@@ -53,13 +55,15 @@ public class EnemyBlackboard : MonoBehaviour
 
     [HideInInspector] public PlayerMovementController player;
     
-    
-
     void Start()
     {
         player = FindObjectOfType<PlayerMovementController>();
 
         scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
+
+        GameManager.Instance.enemySpawnManager.Add(this);
+
+        healthPoints = initialHealthPoints;
 
         stunned = false;
         hit = false;
@@ -84,6 +88,11 @@ public class EnemyBlackboard : MonoBehaviour
     {
         hit = true;
         healthPoints -= damage;
+    }
+
+    public void ResetHealth()
+    {
+        healthPoints = initialHealthPoints;
     }
 
     void SetArrivePlusAvoidVariables()
