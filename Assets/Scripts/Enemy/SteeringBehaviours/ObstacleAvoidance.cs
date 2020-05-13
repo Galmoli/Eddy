@@ -18,7 +18,7 @@ namespace Steerings
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
-				ownKS.orientation = transform.rotation.eulerAngles.z;
+				ownKS.orientation = transform.rotation.eulerAngles.y;
 			}
 			result.angularActive = false;
 
@@ -27,84 +27,68 @@ namespace Steerings
 
 		public static SteeringOutput GetSteering (KinematicState ownKS, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers, SphereCollider scanner)
 		{
-			Vector3 mainDirection;
+			Vector3 centralDirection;
 			
 			if (ownKS.linearVelocity.magnitude < 0.0001f)
 			{
-				mainDirection = OrientationToVector(ownKS.orientation);
+				centralDirection = OrientationToVector(ownKS.orientation);
 			}
 			else
 			{
-				mainDirection = ownKS.linearVelocity.normalized;
+				centralDirection = ownKS.linearVelocity.normalized;
 			}
-
-			Collider collider = ownKS.gameObject.GetComponent<Collider>();
-			bool before = false;
-			if (collider != null)
-			{
-				before = collider.enabled;
-				collider.enabled = false;
-			}
-
-			Vector3 centralWhiskerDirection = mainDirection;
-			Vector3 rightWhiskerDirection = OrientationToVector (VectorToOrientation (mainDirection) + secondaryWhiskerAngle);
-			Vector3 leftWhiskerDirection = OrientationToVector (VectorToOrientation (mainDirection) - secondaryWhiskerAngle);
-
-			Debug.DrawRay (ownKS.position, centralWhiskerDirection * lookAheadLength);
-			Debug.DrawRay (ownKS.position, rightWhiskerDirection * lookAheadLength * secondaryWhiskerRatio);
-			Debug.DrawRay (ownKS.position, leftWhiskerDirection * lookAheadLength * secondaryWhiskerRatio);
 
 			RaycastHit hit;
 
 			#region Central Whisker
+
+			Vector3 centralWhiskerDirection = centralDirection;
+
+			Debug.DrawRay(ownKS.position, centralWhiskerDirection * lookAheadLength);
+
 			if (Physics.Raycast(ownKS.position, centralWhiskerDirection, out hit, lookAheadLength, avoidLayers)) 
 			{
 				if(ValidObstacle(hit, scanner))
 				{
 					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
 
-					if (collider != null)
-					{
-						collider.enabled = before;
-					}
-
 					Debug.DrawRay(ownKS.position, centralWhiskerDirection * lookAheadLength, Color.red);
 
 					return Seek.GetSteering(ownKS, SURROGATE_TARGET);
 				}	
 			}
-            #endregion
+			#endregion
 
-            #region Right Whisker
-            if (Physics.Raycast(ownKS.position, rightWhiskerDirection, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers))
+			#region Right Whisker
+
+			Vector3 rightWhiskerDirection = OrientationToVector(VectorToOrientation(centralDirection) + secondaryWhiskerAngle);
+
+			Debug.DrawRay(ownKS.position, rightWhiskerDirection * lookAheadLength * secondaryWhiskerRatio);
+
+			if (Physics.Raycast(ownKS.position, rightWhiskerDirection, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers))
 			{
 				if (ValidObstacle(hit, scanner))
 				{
 					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
-
-					if (collider != null)
-					{
-						collider.enabled = before;
-					}
 
 					Debug.DrawRay(ownKS.position, rightWhiskerDirection * lookAheadLength * secondaryWhiskerRatio, Color.red);
 
 					return Seek.GetSteering(ownKS, SURROGATE_TARGET);
 				}	
 			}
-            #endregion
+			#endregion
 
-            #region Left Whisker
-            if (Physics.Raycast(ownKS.position, leftWhiskerDirection, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers))
+			#region Left Whisker
+
+			Vector3 leftWhiskerDirection = OrientationToVector(VectorToOrientation(centralDirection) - secondaryWhiskerAngle);
+
+			Debug.DrawRay(ownKS.position, leftWhiskerDirection * lookAheadLength * secondaryWhiskerRatio);
+
+			if (Physics.Raycast(ownKS.position, leftWhiskerDirection, out hit, lookAheadLength * secondaryWhiskerRatio, avoidLayers))
 			{
 				if (ValidObstacle(hit, scanner))
 				{
 					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
-
-					if (collider != null)
-					{
-						collider.enabled = before;
-					}
 
 					Debug.DrawRay(ownKS.position, leftWhiskerDirection * lookAheadLength * secondaryWhiskerRatio, Color.red);
 
@@ -112,11 +96,6 @@ namespace Steerings
 				}	
 			}
             #endregion
-
-            if (collider != null)
-			{
-				collider.enabled = before;
-			}
 			
 			return NULL_STEERING;
 		}
