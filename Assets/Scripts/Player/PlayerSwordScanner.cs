@@ -226,8 +226,13 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.localRotation = swordInitRot;
     }
 
+    public bool HoldingSword()
+    {
+        return transform.parent == hand;
+    }
+
     public bool UsingScannerInHand()
     {
-        return activeScanner && transform.parent == hand;
-    }
+        return activeScanner && HoldingSword();
+    } 
 }
