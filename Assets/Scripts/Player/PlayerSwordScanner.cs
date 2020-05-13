@@ -62,7 +62,7 @@ public class PlayerSwordScanner : MonoBehaviour
         //Sword
         if (input.PlayerControls.Sword.triggered && !playerMovement.inputMoveObject)
         {
-            if(transform.parent == hand)
+            if (transform.parent == hand && CanStab())
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.root.position, transform.root.forward, out hit, hitObjectDistance, stabSwordLayers))
@@ -112,7 +112,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (CanStab())
             {
                 SwordBack();
             }       
@@ -138,13 +138,6 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             ScannerOff();    
         }
-    }
-
-    private bool CanUseScanner()
-    {
-        return playerMovement.GetState().GetType() != typeof(EdgeState)
-            && playerMovement.GetState().GetType() != typeof(CombatState)
-            && playerMovement.GetState().GetType() != typeof(PushState);
     }
 
     public void ScannerOn()
@@ -182,11 +175,6 @@ public class PlayerSwordScanner : MonoBehaviour
     public void FinishStab()
     {
         transform.parent = null;
-        //Hardcoding
-        //if (vertical)
-        //{
-            //transform.eulerAngles = new Vector3(0, 0, 0);
-        //}
 
         if (swordHolder.CompareTag("MoveObject"))
         {
@@ -233,6 +221,20 @@ public class PlayerSwordScanner : MonoBehaviour
 
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
+    }
+
+    private bool CanUseScanner()
+    {
+        return playerMovement.GetState().GetType() != typeof(EdgeState)
+            && playerMovement.GetState().GetType() != typeof(CombatState)
+            && playerMovement.GetState().GetType() != typeof(PushState);
+    }
+    //Si no hi ha cap condició diferent, aquestes dues funcions podran serla mateixa
+    private bool CanStab()
+    {
+        return playerMovement.GetState().GetType() != typeof(EdgeState)
+            && playerMovement.GetState().GetType() != typeof(CombatState)
+            && playerMovement.GetState().GetType() != typeof(PushState);
     }
 
     public bool HoldingSword()
