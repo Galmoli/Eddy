@@ -30,10 +30,10 @@ public class ScannerIntersectionManager : MonoBehaviour
         {
             for (int r = 0; r < circumferencesToCheck; r++)
             {
-                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * swordRadius.transform.forward * swordRadius.radius;
+                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * Vector3.forward * swordRadius.radius;
 
                 Collider[] overlapCols = Physics.OverlapSphere(centerPointToOverlap, checker.size.x / 8);
-
+      
                 for (int c = 0; c < overlapCols.Length; c++)
                 {
                     if ((overlapCols[c].gameObject.layer == 13 || overlapCols[c].gameObject.layer == 14) && overlapCols[c].isTrigger == false)
@@ -65,7 +65,7 @@ public class ScannerIntersectionManager : MonoBehaviour
         {
             for (int r = 0; r < circumferencesToCheck; r++)
             {
-                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * swordRadius.transform.forward * swordRadius.radius;
+                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * Vector3.forward * swordRadius.radius;
 
                 Collider[] overlapCols = Physics.OverlapSphere(centerPointToOverlap, checker.size.x / 8);
 
