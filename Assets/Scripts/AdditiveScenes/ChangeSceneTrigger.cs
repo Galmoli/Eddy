@@ -5,17 +5,10 @@ using UnityEngine;
 
 public class ChangeSceneTrigger : MonoBehaviour
 {
-    private enum TriggerPos
-    {
-        Right,
-        Left
-    }
-    
-    [SerializeField] private bool playerChangesSceneOnRight;
+    [SerializeField] private bool playerExitsOnRight;
     private Transform _player;
     private AdditiveSceneManager _sceneManager;
     private bool triggerActivated = false;
-    private TriggerPos playerEnteredPos;
 
     private void Awake()
     {
@@ -27,14 +20,6 @@ public class ChangeSceneTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _player = other.transform;
-            SetPlayerEnterPos();
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
             WhereIsPlayer();
         }
     }
@@ -51,33 +36,20 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void WhereIsPlayer()
     {
-        var playerExitPos = GetDotProduct();
-        if (playerExitPos == playerEnteredPos) return;
-        
-        if (playerChangesSceneOnRight)
+        if (playerExitsOnRight)
         {
-            if (playerExitPos == TriggerPos.Left) OnPlayerEnter();
+            if (GetDotProduct() < 0) OnPlayerEnter();
             else OnPlayerExit();
         }
         else
         {
-            if (playerExitPos == TriggerPos.Left) OnPlayerExit();
+            if (GetDotProduct() < 0) OnPlayerExit();
             else OnPlayerEnter();
         }
     }
 
-    private void SetPlayerEnterPos()
+    private float GetDotProduct()
     {
-        var dot = Vector3.Dot(transform.right, (_player.position - transform.position).normalized);
-        if (dot < 0) playerEnteredPos = TriggerPos.Left;
-        else playerEnteredPos = TriggerPos.Right;
-    }
-
-    private TriggerPos GetDotProduct()
-    {
-        var dot = Vector3.Dot(transform.right, (_player.position - transform.position).normalized);
-        
-        if (dot < 0) return TriggerPos.Left;
-        return TriggerPos.Right;
+        return Vector3.Dot(transform.right, (_player.position - transform.position).normalized);
     }
 }
