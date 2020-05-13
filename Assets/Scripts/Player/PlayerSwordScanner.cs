@@ -155,6 +155,8 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         _sphereCollider.enabled = true;
         _swordProgressiveColliders.EnableSword();
+
+        playerMovement.animator.SetBool("isUsingScanner", true);
     }
 
     public void ScannerOff()
@@ -166,23 +168,30 @@ public class PlayerSwordScanner : MonoBehaviour
         _sphereCollider.enabled = false;
         _swordProgressiveColliders.DisableSword();
         _scannerIntersectionManager.DeleteIntersections();
+
+        playerMovement.animator.SetBool("isUsingScanner", false);
     }
 
     private void Stab(GameObject obj, bool vertical)
     {
+        if (vertical) playerMovement.animator.SetTrigger("NailDown");
+        else playerMovement.animator.SetTrigger("NailForward");
         swordHolder = obj;
-        transform.parent = null;
+    }
 
-        //Harcoding
-        if (vertical)
-        {       
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+    public void FinishStab()
+    {
+        transform.parent = null;
+        //Hardcoding
+        //if (vertical)
+        //{
+            //transform.eulerAngles = new Vector3(0, 0, 0);
+        //}
 
         if (swordHolder.CompareTag("MoveObject"))
         {
             var moveObject = swordHolder.GetComponent<PushPullObject>();
-            if(moveObject) moveObject.swordStabbed = true;
+            if (moveObject) moveObject.swordStabbed = true;
             else
             {
                 moveObject = swordHolder.transform.parent.gameObject.GetComponent<PushPullObject>();
@@ -195,15 +204,15 @@ public class PlayerSwordScanner : MonoBehaviour
             CheckPoint c = swordHolder.GetComponent<CheckPoint>();
             c.Activate();
         }
-        
-        transform.parent = swordHolder.transform;
+
+        //transform.parent = swordHolder.transform;
 
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOn();
         }
-        
-        if(activeScanner) _scannerIntersectionManager.CheckIntersections();
+
+        if (activeScanner) _scannerIntersectionManager.CheckIntersections();
     }
 
     private void SwordBack()
