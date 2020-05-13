@@ -72,7 +72,7 @@ public class EnemyDeathFSM : MonoBehaviour
                 enemyHitFSM.enabled = true;
                 break;
             case States.DEATH:
-                Destroy(gameObject);
+                gameObject.SetActive(false);
                 break;
         }
 
