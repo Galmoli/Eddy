@@ -205,7 +205,7 @@ public class PlayerSwordScanner : MonoBehaviour
             c.Activate();
         }
 
-        //transform.parent = swordHolder.transform;
+        transform.parent = swordHolder.transform;
 
         if (swordHolder.GetComponent<Switchable>() != null)
         {
