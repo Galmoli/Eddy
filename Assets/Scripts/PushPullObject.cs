@@ -48,11 +48,6 @@ public class PushPullObject : MonoBehaviour
         {
             canMove = false;
         }
-
-        if (other.CompareTag("Scanner"))
-        {
-            FindObjectOfType<ScannerIntersectionManager>().CheckIntersections();
-        }
     }
     
     //Moves this GameObject when the player pulls it.

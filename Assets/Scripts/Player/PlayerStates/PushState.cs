@@ -67,6 +67,7 @@ public class PushState : State
     {
         if (!_controller.inputMoveObject || !_controller.moveObject.canMove)
         {
+            _controller.CheckCollisions();
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
         }
