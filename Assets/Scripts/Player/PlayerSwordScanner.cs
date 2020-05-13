@@ -180,6 +180,7 @@ public class PlayerSwordScanner : MonoBehaviour
         if (vertical) playerMovement.animator.SetTrigger("NailDown");
         else playerMovement.animator.SetTrigger("NailForward");
         swordHolder = obj;
+        playerMovement.SetState(new StabSwordState(playerMovement));
     }
 
     public void FinishStab()
