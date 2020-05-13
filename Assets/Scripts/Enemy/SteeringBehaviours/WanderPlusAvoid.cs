@@ -14,12 +14,13 @@ namespace Steerings
 		[HideInInspector] public float secondaryWhiskerAngle = 30f;
 		[HideInInspector] public float secondaryWhiskerRatio = 0.7f;
 		[HideInInspector] public LayerMask avoidLayers;
+		[HideInInspector] public SphereCollider scanner;
 
 		private bool avoidActive = false;
 
 		public override SteeringOutput GetSteering ()
 		{
-			SteeringOutput result = WanderPlusAvoid.GetSteering (ownKS, wanderRate, wanderRate, wanderOffset, ref targetOrientation, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, ref avoidActive, avoidLayers);
+			SteeringOutput result = WanderPlusAvoid.GetSteering (ownKS, wanderRate, wanderRate, wanderOffset, ref targetOrientation, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, ref avoidActive, avoidLayers, scanner);
 
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
@@ -31,17 +32,19 @@ namespace Steerings
 			return result;
 		}
 
-		public static SteeringOutput GetSteering (KinematicState ownKS, float WanderRate, float wanderRadius, float wanderOffset, ref float targetOrientation, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, ref bool avoidActive, LayerMask avoidLayers)
+		public static SteeringOutput GetSteering (KinematicState ownKS, float WanderRate, float wanderRadius, float wanderOffset, ref float targetOrientation, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, ref bool avoidActive, LayerMask avoidLayers, SphereCollider scanner)
 		{
-			SteeringOutput so = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers);
+			SteeringOutput so = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
 
 			if (so == NULL_STEERING)
 			{
-				if (avoidActive)
+				/*if (avoidActive)
 				{
 					targetOrientation = ownKS.orientation;
-				}
+				}*/
+
 				avoidActive = false;
+
 				return Wander.GetSteering (ownKS, ref targetOrientation, WanderRate, wanderRadius, wanderOffset);
 			}
 			else

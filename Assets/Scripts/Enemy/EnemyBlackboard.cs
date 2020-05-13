@@ -10,9 +10,11 @@ public class EnemyBlackboard : MonoBehaviour
     public Text statesText;
     
     [Header("General Stats")]
-    public float healthPoints;
+    public float initialHealthPoints;
     public float attackPoints;
     public float rotationSpeed;
+
+    [HideInInspector] public float healthPoints;
 
     [Header("Enemy Passive")]
     public float wanderSpeed;
@@ -41,6 +43,8 @@ public class EnemyBlackboard : MonoBehaviour
     public float secondaryWhiskerRatio;
     public LayerMask avoidLayers;
 
+    private SphereCollider scanner;
+
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
@@ -50,10 +54,16 @@ public class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public bool stunned;
 
     [HideInInspector] public PlayerMovementController player;
-
+    
     void Start()
     {
         player = FindObjectOfType<PlayerMovementController>();
+
+        scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
+
+        GameManager.Instance.enemySpawnManager.Add(this);
+
+        healthPoints = initialHealthPoints;
 
         stunned = false;
         hit = false;
@@ -80,6 +90,11 @@ public class EnemyBlackboard : MonoBehaviour
         healthPoints -= damage;
     }
 
+    public void ResetHealth()
+    {
+        healthPoints = initialHealthPoints;
+    }
+
     void SetArrivePlusAvoidVariables()
     {
         ArrivePlusAvoid arrivePlusVoid = GetComponent<ArrivePlusAvoid>();
@@ -92,6 +107,7 @@ public class EnemyBlackboard : MonoBehaviour
         arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         arrivePlusVoid.avoidLayers = avoidLayers;
+        arrivePlusVoid.scanner = scanner;
     }
 
     void SetWanderPlusAvoidVariables()
@@ -107,5 +123,6 @@ public class EnemyBlackboard : MonoBehaviour
         wanderPlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         wanderPlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         wanderPlusAvoid.avoidLayers = avoidLayers;
+        wanderPlusAvoid.scanner = scanner;
     }
 }

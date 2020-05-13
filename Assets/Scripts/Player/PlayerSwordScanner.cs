@@ -122,7 +122,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private void ScannerOnInput()
     {
         scannerInput = true;
-        if (transform.parent == hand && !playerMovement.inputMoveObject)
+        if (transform.parent == hand && CanUseScanner())
         {
             if (!activeScanner)
             {
@@ -140,7 +140,14 @@ public class PlayerSwordScanner : MonoBehaviour
         }
     }
 
-    private void ScannerOn()
+    private bool CanUseScanner()
+    {
+        return playerMovement.GetState().GetType() != typeof(EdgeState)
+            && playerMovement.GetState().GetType() != typeof(CombatState)
+            && playerMovement.GetState().GetType() != typeof(PushState);
+    }
+
+    public void ScannerOn()
     {
         if (!_playerInsideVolume.CanActivateScanner()) return;
         activeScanner = true;
@@ -150,7 +157,7 @@ public class PlayerSwordScanner : MonoBehaviour
         _swordProgressiveColliders.EnableSword();
     }
 
-    private void ScannerOff()
+    public void ScannerOff()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
         activeScanner = false;
@@ -219,8 +226,13 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.localRotation = swordInitRot;
     }
 
+    public bool HoldingSword()
+    {
+        return transform.parent == hand;
+    }
+
     public bool UsingScannerInHand()
     {
-        return activeScanner && transform.parent == hand;
-    }
+        return activeScanner && HoldingSword();
+    } 
 }
