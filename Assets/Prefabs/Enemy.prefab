@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5168323584233096801}
   - component: {fileID: 5168323584233096800}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,13 +294,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: {fileID: 5168323583742474702}
   statesText: {fileID: 5168323584939731900}
-  healthPoints: 3
+  initialHealthPoints: 10
   attackPoints: 10
   rotationSpeed: 50
+  healthPoints: 3
   wanderSpeed: 2
   sightObstaclesLayers:
     serializedVersion: 2
-    m_Bits: 19969
+    m_Bits: 85505
   detectionDistanceOnSight: 10
   detectionDistanceOffSight: 5
   timeInNotice: 2
@@ -311,16 +312,16 @@ MonoBehaviour:
   staggeredTime: 1
   closeEnoughRadius: 1
   slowDownRadius: 10
-  lookAheadLength: 5
-  avoidDistance: 10
-  secondaryWhiskerAngle: 30
+  lookAheadLength: 2
+  avoidDistance: 5
+  secondaryWhiskerAngle: 35
   secondaryWhiskerRatio: 0.7
   avoidLayers:
     serializedVersion: 2
-    m_Bits: 1
-  wanderRate: 30
+    m_Bits: 90113
+  wanderRate: 20
   wanderRadius: 10
-  wanderOffset: 20
+  wanderOffset: 10
   hit: 0
   stunned: 0
   player: {fileID: 0}
@@ -336,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8e6796c32305f48b04b701aaca2677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 10
+  maxAcceleration: 2
   maxSpeed: 10
   maxAngularAcceleration: 45
   maxAngularSpeed: 45
@@ -366,6 +367,7 @@ MonoBehaviour:
   avoidLayers:
     serializedVersion: 2
     m_Bits: 1
+  scanner: {fileID: 0}
 --- !u!114 &5168323584233096812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +390,7 @@ MonoBehaviour:
   avoidLayers:
     serializedVersion: 2
     m_Bits: 1
+  scanner: {fileID: 0}
 --- !u!114 &5168323584233096815
 MonoBehaviour:
   m_ObjectHideFlags: 0
