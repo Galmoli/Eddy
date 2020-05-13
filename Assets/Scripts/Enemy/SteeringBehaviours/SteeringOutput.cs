@@ -1,6 +1,4 @@
-﻿/* **************** VERSION 2 ****************** */
-
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 namespace Steerings 
@@ -8,11 +6,10 @@ namespace Steerings
 	public class SteeringOutput
 	{
 		public Vector3 linearAcceleration = Vector3.zero;
-		public float angularAcceleration = 0f; // in degs per second squared
+		public float angularAcceleration = 0f;
 
-		// used in order to know which(s) acceleration(s) apply
 		public bool linearActive = true;
-		public bool angularActive = false; // !!!
+		public bool angularActive = false;
 	}
 }
 
