@@ -158,6 +158,11 @@ public class PlayerMovementController : StateMachine
         state.Interact();
     }
 
+    public void CheckCollisions()
+    {
+        scannerIntersect.CheckIntersections();
+    }
+
     public State GetState()
     {
         return state;

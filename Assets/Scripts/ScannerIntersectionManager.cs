@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ScannerIntersectionManager : MonoBehaviour
 {
@@ -10,14 +9,6 @@ public class ScannerIntersectionManager : MonoBehaviour
     [SerializeField] private SphereCollider swordRadius;
     private float checkerRadius;
     private int circumferencesToCheck;
-    private InputActions _input;
-
-    private void Awake()
-    {
-        _input = new InputActions();
-        _input.Enable();
-        _input.PlayerControls.MoveObject.canceled += ctx => CheckIntersections();
-    }
 
     public void CheckIntersections()
     {
