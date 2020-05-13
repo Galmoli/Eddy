@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             if(!e.enemyO.activeSelf) e.enemyO.SetActive(true);
             e.enemyO.transform.position = e.spawnPos;
-            //Reset EnemyStats [e.enemyB.Reset();]
+            e.enemyB.ResetHealth();
         }
     }
 }
