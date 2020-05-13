@@ -148,7 +148,7 @@ public class PushPullObject : MonoBehaviour
         if (swordStabbed) swordStabbed = false;
     }
 
-    private float GetAngleToAllowMovement()
+    public float GetAngleToAllowMovement()
     {
         var z = _boxCollider.size.z;
         var x = _boxCollider.size.x;

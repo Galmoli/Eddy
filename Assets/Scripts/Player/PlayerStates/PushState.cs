@@ -31,7 +31,7 @@ public class PushState : State
         
         if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject && !_controller.scannerSword.UsingScannerInHand() && vector3D.magnitude >= _controller.joystickDeadZone)
         {
-            if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.narrowAngleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
+            if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
             {
                 _controller.characterController.Move(_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Pull();
@@ -39,7 +39,7 @@ public class PushState : State
                 _controller.animator.SetBool("isPushing", false);
             }
 
-            if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.narrowAngleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
+            if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
             {
                 _controller.characterController.Move(-_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Push();
