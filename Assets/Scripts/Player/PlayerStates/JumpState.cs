@@ -15,6 +15,7 @@ public class JumpState : State
         Debug.Log("Jump State");
         _controller.jump = false;
         if(_controller.edgeAvailable) ExitState();
+        _controller.animator.SetBool("isOnAir", true);
     }
 
     public override void Update()
@@ -46,6 +47,7 @@ public class JumpState : State
 
     public override void ExitState()
     {
+        _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
         if(_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));

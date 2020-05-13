@@ -18,7 +18,6 @@ public class SimpleAttackState : State
     {
         Debug.Log("Simple Attack");
         
-        //_controller.swordTrigger.EnableTrigger();
         _controller.simpleAttackCount++;
 
         switch (_controller.simpleAttackCount)
@@ -33,6 +32,7 @@ public class SimpleAttackState : State
                 _controller.animator.SetTrigger("Attack3");
                 break;
         }
+        _controller.animator.SetBool("isChargingAttack", true);
 
         if (_controller.simpleAttackCount < _controller.attacksToCombo)
         {
