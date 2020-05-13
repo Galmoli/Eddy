@@ -1,7 +1,4 @@
-﻿/* **************** VERSION 2 ****************** */
-
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace Steerings
 {
@@ -11,23 +8,23 @@ namespace Steerings
 	{
 		protected KinematicState ownKS;
 
-		protected static GameObject SURROGATE_TARGET = null; // all behaviours requiring a surrogate target will use this one
-		protected static SteeringOutput NULL_STEERING;
+		protected static GameObject surrogateTarget = null;
+		protected static SteeringOutput nullSteering;
 
-		// BEWARE: made vitual in order to allow redefinitions
 		protected virtual void Start ()
 		{
-			// get a reference to the kinematic state and hold it
 			ownKS = GetComponent<KinematicState>();
 
-			if (SURROGATE_TARGET == null) {
-				SURROGATE_TARGET = new GameObject ("surrogate target");
-				SURROGATE_TARGET.AddComponent<KinematicState> ();
+			if (surrogateTarget == null)
+			{
+				surrogateTarget = new GameObject ("Enemy Surrogate Target");
+				surrogateTarget.AddComponent<KinematicState> ();
 			}
 
-			if (NULL_STEERING == null) {
-				NULL_STEERING = new SteeringOutput ();
-				NULL_STEERING.linearActive = false;
+			if (nullSteering == null)
+			{
+				nullSteering = new SteeringOutput ();
+				nullSteering.linearActive = false;
 			}
 		}
 	
@@ -107,7 +104,9 @@ namespace Steerings
 			float orientation = Mathf.Atan(tan) * Mathf.Rad2Deg;
 
 			if (cos < 0)
+			{
 				orientation = orientation + 180;
+			}
 
 			return orientation;
 		}
