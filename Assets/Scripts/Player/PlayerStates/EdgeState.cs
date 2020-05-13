@@ -6,15 +6,22 @@ using UnityEngine;
 public class EdgeState : State
 {
     private PlayerMovementController _controller;
+    private PlayerSwordScanner _scannerSword;
 
     public EdgeState(PlayerMovementController controller)
     {
         _controller = controller;
+        _scannerSword = controller.scannerSword;
     }
     public override void Enter()
     {
         Debug.Log("Edge State");
         _controller.onEdge = true;
+
+        if (_scannerSword.UsingScannerInHand())
+        {
+            _scannerSword.ScannerOff();
+        }
     }
 
     public override void Update()

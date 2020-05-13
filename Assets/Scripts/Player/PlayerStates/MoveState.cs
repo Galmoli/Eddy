@@ -78,7 +78,7 @@ public class MoveState : State
             }
         }
 
-        if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject && !_controller.scannerSword.UsingScannerInHand())
+        if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject)
         {
             _controller.SetState(new PushState(_controller));
         }
