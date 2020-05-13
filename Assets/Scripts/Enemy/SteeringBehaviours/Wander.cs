@@ -17,7 +17,7 @@ namespace Steerings
             if (ownKS.linearVelocity.magnitude > 0.001f)
             {
                 transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
-                ownKS.orientation = transform.rotation.eulerAngles.z;
+                ownKS.orientation = transform.rotation.eulerAngles.y;
             }
             result.angularActive = false;
 
@@ -28,11 +28,11 @@ namespace Steerings
         {
             targetOrientation += wanderRate * (Random.value - Random.value);
 
-            SURROGATE_TARGET.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
+            surrogateTarget.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
 
-            SURROGATE_TARGET.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
+            surrogateTarget.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
 
-            return Seek.GetSteering(ownKS, SURROGATE_TARGET);
+            return Seek.GetSteering(ownKS, surrogateTarget);
         }
     }
 }

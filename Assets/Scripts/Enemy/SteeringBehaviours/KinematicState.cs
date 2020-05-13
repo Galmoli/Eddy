@@ -17,7 +17,7 @@ namespace Steerings
 		void Start ()
 		{
 			position = transform.position;
-			orientation = transform.eulerAngles.z;
+			orientation = transform.eulerAngles.y;
 			linearVelocity = Vector3.zero;
 			angularSpeed = 0f;
 		}

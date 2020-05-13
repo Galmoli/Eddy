@@ -50,11 +50,11 @@ namespace Steerings
 			{
 				if(ValidObstacle(hit, scanner))
 				{
-					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
+					surrogateTarget.transform.position = hit.point + hit.normal * avoidDistance;
 
 					Debug.DrawRay(ownKS.position, centralWhiskerDirection * lookAheadLength, Color.red);
 
-					return Seek.GetSteering(ownKS, SURROGATE_TARGET);
+					return Seek.GetSteering(ownKS, surrogateTarget);
 				}	
 			}
 			#endregion
@@ -69,11 +69,11 @@ namespace Steerings
 			{
 				if (ValidObstacle(hit, scanner))
 				{
-					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
+					surrogateTarget.transform.position = hit.point + hit.normal * avoidDistance;
 
 					Debug.DrawRay(ownKS.position, rightWhiskerDirection * lookAheadLength * secondaryWhiskerRatio, Color.red);
 
-					return Seek.GetSteering(ownKS, SURROGATE_TARGET);
+					return Seek.GetSteering(ownKS, surrogateTarget);
 				}	
 			}
 			#endregion
@@ -88,16 +88,16 @@ namespace Steerings
 			{
 				if (ValidObstacle(hit, scanner))
 				{
-					SURROGATE_TARGET.transform.position = hit.point + hit.normal * avoidDistance;
+					surrogateTarget.transform.position = hit.point + hit.normal * avoidDistance;
 
 					Debug.DrawRay(ownKS.position, leftWhiskerDirection * lookAheadLength * secondaryWhiskerRatio, Color.red);
 
-					return Seek.GetSteering(ownKS, SURROGATE_TARGET);
+					return Seek.GetSteering(ownKS, surrogateTarget);
 				}	
 			}
             #endregion
 			
-			return NULL_STEERING;
+			return nullSteering;
 		}
 
 		private static bool ValidObstacle(RaycastHit hit, SphereCollider scanner)

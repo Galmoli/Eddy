@@ -35,7 +35,7 @@ namespace Steerings
 		{
 			SteeringOutput steeringOutput = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
 
-			if (steeringOutput == NULL_STEERING)
+			if (steeringOutput == nullSteering)
 			{
 				return Arrive.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed);
 			}

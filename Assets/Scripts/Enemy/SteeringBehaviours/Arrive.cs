@@ -1,6 +1,4 @@
-﻿/* **************** VERSION 2 ****************** */
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 namespace Steerings
@@ -20,7 +18,7 @@ namespace Steerings
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
-				ownKS.orientation = transform.rotation.eulerAngles.z;
+				ownKS.orientation = transform.rotation.eulerAngles.y;
 			}
 			result.angularActive = false;
 
@@ -41,7 +39,7 @@ namespace Steerings
 
 			if (distanceToTarget < targetRadius)
 			{
-				return NULL_STEERING;
+				return nullSteering;
 			}
 
 			if (distanceToTarget > slowDownRadius)
