@@ -122,7 +122,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private void ScannerOnInput()
     {
         scannerInput = true;
-        if (transform.parent == hand && !playerMovement.inputMoveObject && CanUseScanner())
+        if (transform.parent == hand && CanUseScanner())
         {
             if (!activeScanner)
             {
@@ -142,7 +142,9 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private bool CanUseScanner()
     {
-        return playerMovement.GetState().GetType() != typeof(EdgeState) && playerMovement.GetState().GetType() != typeof(CombatState);
+        return playerMovement.GetState().GetType() != typeof(EdgeState)
+            && playerMovement.GetState().GetType() != typeof(CombatState)
+            && playerMovement.GetState().GetType() != typeof(PushState);
     }
 
     public void ScannerOn()

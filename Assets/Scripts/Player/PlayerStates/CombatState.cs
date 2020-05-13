@@ -6,7 +6,7 @@ public class CombatState : State
 {
     private PlayerMovementController _controller;
     private PlayerCombatController _combatController;
-    private PlayerSwordScanner _swordScanner;
+    private PlayerSwordScanner _scannerSword;
     private float _timeToExitState;
     private float _currentTime;
     private bool _exitWhenFinished;
@@ -15,7 +15,7 @@ public class CombatState : State
     {
         _controller = controller;
         _combatController = combatController;
-        _swordScanner = controller.scannerSword;
+        _scannerSword = controller.scannerSword;
         _timeToExitState = time;
     }
 
@@ -23,9 +23,9 @@ public class CombatState : State
     {
         Debug.Log("Combat State");
 
-        if (_swordScanner.activeScanner)
+        if (_scannerSword.UsingScannerInHand())
         {
-            _swordScanner.ScannerOff();
+            _scannerSword.ScannerOff();
         }
     }
 
