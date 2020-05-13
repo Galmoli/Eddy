@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerSwordScanner : MonoBehaviour
 {
@@ -8,17 +9,19 @@ public class PlayerSwordScanner : MonoBehaviour
     private PlayerMovementController playerMovement;
 
     public float scannerRadius;
-    
+
+  
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
     public LayerMask stabSwordLayers;
 
-    private Transform hand;
+    private Transform playerHand;
     private GameObject swordHolder;
-    
+
     [HideInInspector] public bool activeScanner;
 
     private bool scannerInput;
+    private bool swordUnlocked;
     private ScannerIntersectionManager _scannerIntersectionManager;
     private SwordProgressiveColliders _swordProgressiveColliders;
     private PlayerInsideVolume _playerInsideVolume;
@@ -38,17 +41,17 @@ public class PlayerSwordScanner : MonoBehaviour
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovementController>();
-        
-        hand = transform.parent;
-        
+
+        playerHand = transform.parent;
+        swordInitPos = transform.localPosition;
+        swordInitRot = transform.localRotation;
+
+        swordUnlocked = false;
         activeScanner = false;
         scannerInput = false;
 
         transform.GetChild(0).localScale *= scannerRadius * 2f;
         _sphereCollider.radius = scannerRadius;
-
-        swordInitPos = transform.localPosition;
-        swordInitRot = transform.localRotation;
 
         input = new InputActions();
         input.Enable();
@@ -59,10 +62,17 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Update()
     {
-        //Sword
-        if (input.PlayerControls.Sword.triggered && !playerMovement.inputMoveObject)
+        //Shortcut
+        if (Input.GetKeyDown(KeyCode.Return) && !swordUnlocked)
         {
-            if (transform.parent == hand && CanStab())
+            UnlockSword();
+        }
+        //
+
+        //Sword
+        if (input.PlayerControls.Sword.triggered && CanStab() && swordUnlocked)
+        {
+            if (HoldingSword())
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.root.position, transform.root.forward, out hit, hitObjectDistance, stabSwordLayers))
@@ -112,7 +122,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }
                 }
             }
-            else if (CanStab())
+            else
             {
                 SwordBack();
             }       
@@ -122,7 +132,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private void ScannerOnInput()
     {
         scannerInput = true;
-        if (transform.parent == hand && CanUseScanner())
+        if (HoldingSword() && CanUseScanner())
         {
             if (!activeScanner)
             {
@@ -134,7 +144,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private void ScannerOffInput()
     {
         scannerInput = false;
-        if (activeScanner && transform.parent == hand && !playerMovement.inputMoveObject)
+        if (activeScanner && HoldingSword() && !playerMovement.inputMoveObject)
         {
             ScannerOff();    
         }
@@ -216,11 +226,18 @@ public class PlayerSwordScanner : MonoBehaviour
         
         transform.parent = null;
 
-        transform.parent = hand;
-        transform.parent = hand;
+        transform.parent = playerHand;
+        transform.parent = playerHand;
 
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
+    }
+
+    public void UnlockSword()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        swordUnlocked = true;
+        Debug.Log("Sword Unlocked");
     }
 
     private bool CanUseScanner()
@@ -229,7 +246,7 @@ public class PlayerSwordScanner : MonoBehaviour
             && playerMovement.GetState().GetType() != typeof(CombatState)
             && playerMovement.GetState().GetType() != typeof(PushState);
     }
-    //Si no hi ha cap condició diferent, aquestes dues funcions podran serla mateixa
+    //Si finalment no hi ha cap condició diferent, aquestes dues funcions podran serla mateixa
     private bool CanStab()
     {
         return playerMovement.GetState().GetType() != typeof(EdgeState)
@@ -239,7 +256,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     public bool HoldingSword()
     {
-        return transform.parent == hand;
+        return transform.parent == playerHand && swordUnlocked;
     }
 
     public bool UsingScannerInHand()
