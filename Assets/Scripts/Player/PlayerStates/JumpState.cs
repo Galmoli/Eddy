@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class JumpState : State
@@ -39,10 +40,7 @@ public class JumpState : State
             
         var collisionFlags = _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        if (Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorOutsideScanner) && currentTime >= 0.2f)
-        {
-            ExitState();
-        }
+        CheckFloor(GetFloorColliders());
 
         if ((collisionFlags & CollisionFlags.Above) != 0 && _controller.verticalSpeed > 0) _controller.verticalSpeed = 0;
     }
@@ -53,5 +51,24 @@ public class JumpState : State
         _controller.verticalSpeed = 0;
         if(_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
+    }
+
+    private Collider[] GetFloorColliders()
+    {
+        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+        }
+        return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+    }
+
+    private void CheckFloor(Collider[] colliders)
+    {
+        var list = colliders.ToList();
+        if (colliders.Length > 0 && currentTime >= 0.2f)
+        {
+            if(list.All(c => c.name != "Trigger")) ExitState();
+            else if(list.Any(c => c.CompareTag("MoveObject"))) ExitState();
+        }
     }
 }
