@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpState : State
 {
     private PlayerMovementController _controller;
+    private float currentTime = 0;
 
     public JumpState(PlayerMovementController controller)
     {
@@ -20,11 +21,12 @@ public class JumpState : State
 
     public override void Update()
     {
+        currentTime += Time.deltaTime;
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
 
-        if (_controller.verticalSpeed < -0.2f && _controller.edgeAvailable)
+        if (_controller.edgeAvailable)
         {
             ExitState();
         }
@@ -37,7 +39,7 @@ public class JumpState : State
             
         var collisionFlags = _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        if ((collisionFlags & CollisionFlags.Below) != 0)
+        if (Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorOutsideScanner) && currentTime >= 0.2f)
         {
             ExitState();
         }
