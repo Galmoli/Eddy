@@ -21,17 +21,17 @@ public class PushState : State
         {
             _scannerSword.ScannerOff();
         }
+        _controller.RotateTowardsForward(GetLookCenterVector());
     }
 
     public override void Update()
     {
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
-        _controller.RotateTowardsForward(vector3D);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
         
         if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject && !_controller.scannerSword.UsingScannerInHand() && vector3D.magnitude >= _controller.joystickDeadZone)
         {
-            if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.angleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
+            if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
             {
                 _controller.characterController.Move(_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Pull();
@@ -39,7 +39,7 @@ public class PushState : State
                 _controller.animator.SetBool("isPushing", false);
             }
 
-            if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.angleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
+            if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
             {
                 _controller.characterController.Move(-_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
                 _controller.moveObject.Push();
@@ -67,8 +67,14 @@ public class PushState : State
     {
         if (!_controller.inputMoveObject || !_controller.moveObject.canMove)
         {
+            _controller.CheckCollisions();
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
         }
+    }
+
+    private Vector3 GetLookCenterVector()
+    {
+        return -_controller.moveObject.GetClosestVector();
     }
 }

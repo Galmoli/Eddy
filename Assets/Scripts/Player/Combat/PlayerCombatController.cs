@@ -30,6 +30,7 @@ public class PlayerCombatController : StateMachine
     private Coroutine _comboCoroutine;
     private Coroutine _chargeCoroutine;
     private PlayerMovementController _movementController;
+    private PlayerSwordScanner _swordScanner;
 
     [Header("Animation")]
     public Animator animator;
@@ -60,6 +61,7 @@ public class PlayerCombatController : StateMachine
 
     private void SimpleAttack()
     {
+        if (!sword.HoldingSword()) return;
         if (state.GetType() == typeof(SimpleAttackState)) return;
         if (_movementController.GetState().GetType() != typeof(MoveState)) return;
         

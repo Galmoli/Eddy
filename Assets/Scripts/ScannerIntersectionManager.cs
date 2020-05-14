@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ScannerIntersectionManager : MonoBehaviour
 {
@@ -10,14 +9,6 @@ public class ScannerIntersectionManager : MonoBehaviour
     [SerializeField] private SphereCollider swordRadius;
     private float checkerRadius;
     private int circumferencesToCheck;
-    private InputActions _input;
-
-    private void Awake()
-    {
-        _input = new InputActions();
-        _input.Enable();
-        _input.PlayerControls.MoveObject.canceled += ctx => CheckIntersections();
-    }
 
     public void CheckIntersections()
     {
@@ -30,10 +21,10 @@ public class ScannerIntersectionManager : MonoBehaviour
         {
             for (int r = 0; r < circumferencesToCheck; r++)
             {
-                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * swordRadius.transform.forward * swordRadius.radius;
+                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * Vector3.forward * swordRadius.radius;
 
                 Collider[] overlapCols = Physics.OverlapSphere(centerPointToOverlap, checker.size.x / 8);
-
+      
                 for (int c = 0; c < overlapCols.Length; c++)
                 {
                     if ((overlapCols[c].gameObject.layer == 13 || overlapCols[c].gameObject.layer == 14) && overlapCols[c].isTrigger == false)
@@ -65,7 +56,7 @@ public class ScannerIntersectionManager : MonoBehaviour
         {
             for (int r = 0; r < circumferencesToCheck; r++)
             {
-                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * swordRadius.transform.forward * swordRadius.radius;
+                Vector3 centerPointToOverlap = swordRadius.transform.position + Quaternion.Euler(angleX, angleY, 0) * Vector3.forward * swordRadius.radius;
 
                 Collider[] overlapCols = Physics.OverlapSphere(centerPointToOverlap, checker.size.x / 8);
 

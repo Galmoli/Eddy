@@ -25,7 +25,7 @@ namespace Steerings
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
-				ownKS.orientation = transform.rotation.eulerAngles.z;
+				ownKS.orientation = transform.rotation.eulerAngles.y;
 			}
 			result.angularActive = false;
 
@@ -36,12 +36,12 @@ namespace Steerings
 		{
 			SteeringOutput so = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
 
-			if (so == NULL_STEERING)
+			if (so == nullSteering)
 			{
-				/*if (avoidActive)
+				if (avoidActive)
 				{
 					targetOrientation = ownKS.orientation;
-				}*/
+				}
 
 				avoidActive = false;
 
