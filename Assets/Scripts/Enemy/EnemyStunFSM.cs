@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +19,19 @@ public class EnemyStunFSM : MonoBehaviour
 
     private EnemyBlackboard blackboard;
     private EnemyAggressiveFSM enemyAgressiveFSM;
+    private Rigidbody rigidBody;
+    private KinematicState kinematicState;
 
-    private float stunnedTime;
+    float timer;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
         enemyAgressiveFSM = GetComponent<EnemyAggressiveFSM>();
+        rigidBody = GetComponent<Rigidbody>();
+        kinematicState = GetComponent<KinematicState>();
+
+        timer = 0;
     }
 
     private void OnEnable()
@@ -35,6 +42,7 @@ public class EnemyStunFSM : MonoBehaviour
     private void OnDisable()
     {
         enemyAgressiveFSM.enabled = false;
+        timer = 0;
     }
 
     private void Update()
@@ -46,16 +54,22 @@ public class EnemyStunFSM : MonoBehaviour
                 break;
             case States.AGRESSIVE:
                 
+                if (blackboard.stunned)
+                {
+                    ChangeState(States.STUNNED);
+                    break;
+                }
+
                 break;
             case States.STUNNED:
-                if(stunnedTime <= 0)
+                if(timer >= blackboard.stunnedTime)
                 {
                     ChangeState(States.AGRESSIVE);
+                    break;
                 }
-                else
-                {
-                    stunnedTime -= Time.deltaTime;
-                }
+
+                timer += Time.deltaTime;
+                
                 break;
         }
     }
@@ -70,6 +84,11 @@ public class EnemyStunFSM : MonoBehaviour
                 enemyAgressiveFSM.enabled = false;
                 break;
             case States.STUNNED:
+                timer = 0;
+                kinematicState.position = transform.position;
+                kinematicState.orientation = transform.eulerAngles.y;
+                kinematicState.linearVelocity = (blackboard.player.transform.position - transform.position).normalized;
+                blackboard.stunned = false;
                 break;
         }
 
@@ -81,7 +100,7 @@ public class EnemyStunFSM : MonoBehaviour
                 enemyAgressiveFSM.enabled = true;
                 break;
             case States.STUNNED:
-                stunnedTime = blackboard.stunnedTime;
+                rigidBody.AddForce(-transform.forward * blackboard.stunImpulse, ForceMode.Impulse);
                 break;
         }
 
