@@ -62,6 +62,7 @@ public class SimpleAttackState : State
     public override void Interact()
     {
         _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= _attackObject.damage;
+        _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().hit = true;
         Debug.Log("Enemy damaged: " + _attackObject.damage);
         if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
     }

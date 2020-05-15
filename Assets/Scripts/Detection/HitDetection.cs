@@ -19,6 +19,7 @@ public class HitDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag);
         if (TagsToCollision.Contains(other.tag))
         {
             hitObject = other.gameObject;
