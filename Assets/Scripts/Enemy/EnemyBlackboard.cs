@@ -8,6 +8,7 @@ public class EnemyBlackboard : MonoBehaviour
 {
     public GameObject attack;
     public Text statesText;
+    public bool respawnable = false;
     
     [Header("General Stats")]
     public float initialHealthPoints;
@@ -72,7 +73,10 @@ public class EnemyBlackboard : MonoBehaviour
 
         scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
 
-        GameManager.Instance.enemySpawnManager.Add(this);
+        if (respawnable)
+            GameManager.Instance.enemySpawnManager.Add(this);
+        else
+            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);
 
         healthPoints = initialHealthPoints;
 

@@ -318,7 +318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4921029483816215595}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f44987f3470fce439ee2fad01c420d2, type: 3}
   m_Name: 
@@ -430,6 +430,9 @@ MonoBehaviour:
   stabSwordLayers:
     serializedVersion: 2
     m_Bits: 30721
+  moveAwaySpeed: 3
+  moveAwayDistance: 1
+  moveAwayTime: 0.2
   activeScanner: 0
 --- !u!114 &7894457741677100396
 MonoBehaviour:
@@ -504,8 +507,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 1.1, z: 0.18}
-  m_Center: {x: 0, y: -0.69, z: 0}
+  m_Size: {x: 0.15, y: 1.44, z: 0.18}
+  m_Center: {x: 0, y: -0.66, z: 0}
 --- !u!114 &6411527135046142523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3584d872016c09d46ab00884262dabc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
 --- !u!95 &499130289
 Animator:
   serializedVersion: 3
