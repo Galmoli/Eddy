@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
+        else
+        {
+            float number = UnityEngine.Random.Range(1, 4);
+            _movementController.animator.SetTrigger("Hit" + number.ToString());
+        }
     }
 
     private void SetDeadState()
