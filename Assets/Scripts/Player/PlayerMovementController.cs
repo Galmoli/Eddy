@@ -46,6 +46,7 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public Transform cameraTransform;
     [HideInInspector] public PushPullObject moveObject;
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
+    [HideInInspector] public Rigidbody standRb;
 
 
     [Header("Animation")]
@@ -118,42 +119,64 @@ public class PlayerMovementController : StateMachine
         }
     }
 
-    public void StandEdge(Vector3 finalPos)
+    public void StandEdge()
     {
-        StartCoroutine(Co_StandEdge(finalPos));
+        StartCoroutine(Co_StandEdge());
     }
-    
-    private IEnumerator Co_StandEdge(Vector3 finalPos)
+
+    private IEnumerator Co_StandEdge()
     {
-        characterController.enabled = false;
-        standing = true;
-        inputToStand = false;
-        var rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
-        
-        //Vertical Movement
-        while (Math.Abs(finalPos.y - transform.position.y) > characterController.height)
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        transform.position = finalPos;
+        yield return new WaitForEndOfFrame();
+
+        standing = false;
+        onEdge = false;
+        Destroy(standRb);
+        characterController.enabled = true;
+        SetState(new MoveState(this));
+    }
+
+    public void StandDeactivatePlayer()
+    {
+        if (standRb == null)
         {
-            var lerpVector = Vector3.Lerp(transform.position, finalPos, lerpVelocity);
-            var moveVector = new Vector3(0, (lerpVector - transform.position).y, 0);
-           transform.Translate(moveVector);
-            
-            yield return null;
+            characterController.enabled = false;
+            standing = true;
+            inputToStand = false;
+            standRb = gameObject.AddComponent<Rigidbody>();
+            standRb.isKinematic = true;
         }
-        
-        //Horizontal Movement
-        while ((transform.position - finalPos).magnitude > characterController.height)
+    }
+
+    public void WaistStand()
+    {
+        StartCoroutine(Co_WaistStand());
+    }
+    private IEnumerator Co_WaistStand()
+    {
+        StandDeactivatePlayer();
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+
+        while (Vector3.Distance(transform.position, finalPos) > 0.2f)
         {
-            var moveVector = new Vector3(finalPos.x, transform.position.y, finalPos.z);
-            transform.position = Vector3.MoveTowards(transform.position, moveVector, lerpVelocity);
+            Debug.Log(Vector3.Distance(transform.position, finalPos));
+            Vector3 lerpVector = Vector3.Lerp(transform.position, finalPos, lerpVelocity*0.2f);
+            transform.position = lerpVector;
             yield return null;
         }
 
         standing = false;
         onEdge = false;
-        Destroy(rb);
+        Destroy(standRb);
         characterController.enabled = true;
         SetState(new MoveState(this));
+    }
+
+    public Vector3 GetProjectedVector()
+    {
+        var projectedVector = Vector3.ProjectOnPlane(transform.position - edgePosition, edgeGameObject.transform.forward);
+        return Vector3.ProjectOnPlane(projectedVector, transform.up);
     }
 
     public void Spawn()
