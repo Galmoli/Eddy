@@ -79,8 +79,6 @@ public class PlayerCombatController : StateMachine
         {
             animator.SetBool("isChargingAttack", false);
             StopCoroutine(_chargeCoroutine);
-            SetState(new IdleState(this));
-            SetMovementControllerToMove();
             return;
         }
 
@@ -124,9 +122,15 @@ public class PlayerCombatController : StateMachine
             _timeCharging += Time.deltaTime;
             if (_timeCharging >= timeToStartCharging && state.GetType() != typeof(IdleChargedState))
             {
+                swordTrigger.DisableTrigger();
                 SetState(new IdleChargedState(this));
             }
             yield return null;
         }
+    }
+
+    public State GetState()
+    {
+        return state;
     }
 }
