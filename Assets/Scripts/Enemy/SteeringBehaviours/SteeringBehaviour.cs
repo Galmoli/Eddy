@@ -71,7 +71,7 @@ namespace Steerings
 					
 				ownKS.orientation = ownKS.orientation + ownKS.angularSpeed * Time.deltaTime + 0.5f * steering.angularAcceleration * Time.deltaTime * Time.deltaTime;
 				
-				transform.rotation = Quaternion.Euler(0, 0, ownKS.orientation);
+				transform.rotation = Quaternion.Euler(0, ownKS.orientation, 0);
 			}
 			else
 			{
