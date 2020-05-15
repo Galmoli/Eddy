@@ -40,4 +40,17 @@ public class PlayerUtils
         
         return angle <= angleTolerance;
     }
+
+    public static bool CanInteractWithEdge(Vector3 pf, Vector3 ef, float a)
+    {
+        return Vector3.Angle(pf, -ef) <= a;
+    }
+
+    public static Vector3 GetEdgeOffsetOnLocalSapce(GameObject edge, Vector3 offset)
+    {
+        var result = edge.transform.right * offset.x;
+        result += edge.transform.up * offset.y;
+        result += edge.transform.forward * offset.z;
+        return result;
+    }
 }
