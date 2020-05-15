@@ -42,6 +42,7 @@ public class EnemyStunFSM : MonoBehaviour
     private void OnDisable()
     {
         enemyAgressiveFSM.enabled = false;
+        blackboard.stunned = false;
         timer = 0;
     }
 
