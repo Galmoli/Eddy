@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +19,17 @@ public class EnemyHitFSM : MonoBehaviour
 
     private EnemyBlackboard blackboard;
     private EnemyStunFSM enemyStunFSM;
+    private Rigidbody rigidBody;
+    private KinematicState kinematicState;
 
-    private float straggeredTime;
+    float timer = 0;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
         enemyStunFSM = GetComponent<EnemyStunFSM>();
+        rigidBody = GetComponent<Rigidbody>();
+        kinematicState = GetComponent<KinematicState>();
     }
 
     private void OnEnable()
@@ -51,14 +56,15 @@ public class EnemyHitFSM : MonoBehaviour
                 }
                 break;
             case States.STAGGERED:
-                if(straggeredTime <= 0)
+
+                if(timer >= blackboard.staggeredTime)
                 {
                     ChangeState(States.STUNNED);
+                    break;
                 }
-                else
-                {
-                    straggeredTime -= Time.deltaTime;
-                }
+
+                timer += Time.deltaTime;
+                
                 break;
         }
     }
@@ -74,6 +80,10 @@ public class EnemyHitFSM : MonoBehaviour
                 blackboard.hit = false;
                 break;
             case States.STAGGERED:
+                kinematicState.position = transform.position;
+                kinematicState.orientation = transform.eulerAngles.y;
+                kinematicState.linearVelocity = (blackboard.player.transform.position - transform.position).normalized;
+                timer = 0;
                 break;
         }
 
@@ -85,7 +95,7 @@ public class EnemyHitFSM : MonoBehaviour
                 enemyStunFSM.enabled = true;
                 break;
             case States.STAGGERED:
-                straggeredTime = blackboard.staggeredTime;
+                rigidBody.AddForce(-transform.forward * blackboard.staggerImpulse, ForceMode.Impulse);
                 break;
         }
 

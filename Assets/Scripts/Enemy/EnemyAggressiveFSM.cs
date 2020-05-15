@@ -6,33 +6,34 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyBlackboard))]
 [RequireComponent(typeof(ArrivePlusAvoid))]
 [RequireComponent(typeof(WanderPlusAvoid))]
+[RequireComponent(typeof(EnemyPassiveFSM))]
 
 public class EnemyAggressiveFSM : MonoBehaviour
 {
     public enum States
     {
         INITIAL,
-        WANDER,
+        ENEMY_PASSIVE,
         NOTICE,
-        CHASE,
-        ATTACK
+        CHASE
     }
 
     private States currentState;
 
     private EnemyBlackboard blackboard;
     private WanderPlusAvoid wanderPlusAvoid;
-    private ArrivePlusAvoid arrivePlusAvoid;
+    private Seek seek;
+    private EnemyPassiveFSM enemyPassiveFsm;
     private KinematicState kinematicState;
 
-    private float timeInNotice;
-    private float minTimeBetweenAttacks;
+    private float timer;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
-        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
+        seek = GetComponent<Seek>();
+        enemyPassiveFsm = GetComponent<EnemyPassiveFSM>();
         kinematicState = GetComponent<KinematicState>();
     }
 
@@ -44,7 +45,11 @@ public class EnemyAggressiveFSM : MonoBehaviour
     private void OnDisable()
     {
         wanderPlusAvoid.enabled = false;
-        arrivePlusAvoid.enabled = false;
+        seek.enabled = false;
+        enemyPassiveFsm.enabled = false;
+        blackboard.attackCollider.enabled = false;
+
+        timer = 0;
     }
 
     private void Update()
@@ -52,17 +57,21 @@ public class EnemyAggressiveFSM : MonoBehaviour
         switch (currentState)
         {
             case States.INITIAL:
-                ChangeState(States.WANDER);
+                ChangeState(States.ENEMY_PASSIVE);
                 break;
-            case States.WANDER:
+            case States.ENEMY_PASSIVE:
 
                 RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
                 {
+                    
                     if (hit.collider.gameObject.tag == "Player")
                     {
-                        ChangeState(States.NOTICE);
-                        break;
+                        if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
+                        {
+                            ChangeState(States.NOTICE);
+                            break;
+                        }
                     }
                 }
 
@@ -72,42 +81,28 @@ public class EnemyAggressiveFSM : MonoBehaviour
                 }
                 break;
             case States.NOTICE:
+               
 
-                LookAtPlayer();
-
-                if (timeInNotice <= 0)
+                if (timer >= blackboard.timeInNotice)
                 {
                     ChangeState(States.CHASE);
+                    break;
                 }
-                else
-                {
-                    timeInNotice -= Time.deltaTime;
-                }
+
+                LookAtPlayer();
+                timer += Time.deltaTime;
+                
                 break;
             case States.CHASE:
-                if(Vector3.Distance(transform.position, blackboard.player.transform.position) <= blackboard.attackDistance)
-                {
-                    ChangeState(States.ATTACK);
-                }
-                break;
-            case States.ATTACK:     
-                if (minTimeBetweenAttacks <= 0)
-                {
-                    if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.attackDistance)
-                    {
-                        ChangeState(States.WANDER);
-                        break;
-                    }
 
-                    StartCoroutine(Attack());
-                    minTimeBetweenAttacks = blackboard.minTimeBetweenAttacks;
-                }
-                else
+                if(Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance)
                 {
-                    LookAtPlayer();
-                    minTimeBetweenAttacks -= Time.deltaTime;
+                    ChangeState(States.ENEMY_PASSIVE);
+                    break;
                 }
+
                 break;
+
         }
     }
 
@@ -117,46 +112,48 @@ public class EnemyAggressiveFSM : MonoBehaviour
         {
             case States.INITIAL:
                 break;
-            case States.WANDER:
-                wanderPlusAvoid.enabled = false;
+            case States.ENEMY_PASSIVE:
+                enemyPassiveFsm.enabled = false;
                 break;
             case States.NOTICE:
                 break;
             case States.CHASE:
-                arrivePlusAvoid.enabled = false;
+                blackboard.attackCollider.enabled = false;
+                seek.enabled = false;
                 break;
-            case States.ATTACK:
-                break;
+
         }
 
         switch (newState)
         {
             case States.INITIAL:
                 break;
-            case States.WANDER:
-                kinematicState.maxSpeed = blackboard.wanderSpeed;
-                wanderPlusAvoid.enabled = true;
+            case States.ENEMY_PASSIVE:
+                enemyPassiveFsm.enabled = true;
                 break;
             case States.NOTICE:
-                timeInNotice = blackboard.timeInNotice;
+
                 break;
             case States.CHASE:
+                blackboard.attackCollider.enabled = true;
                 kinematicState.maxSpeed = blackboard.chasingSpeed;
-                arrivePlusAvoid.enabled = true;
-                arrivePlusAvoid.target = blackboard.player.gameObject;
+                seek.enabled = true;
+                seek.target = blackboard.player.gameObject;
                 break;
-            case States.ATTACK:
-                break;
+
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
     }
 
-    IEnumerator Attack()
+    public void HitHandler(GameObject objectHit)
     {
-        blackboard.attack.SetActive(true);
-        yield return new WaitForSeconds(0.15f);
-        blackboard.attack.SetActive(false);
+        if (objectHit.tag == "Player")
+        {
+            //DO DAMAGE
+        }
+
+        blackboard.stunned = true;
     }
 
     private void LookAtPlayer()

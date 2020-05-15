@@ -33,7 +33,7 @@ Transform:
   - {fileID: 758147487}
   - {fileID: 822026304}
   m_Father: {fileID: 6411527136159828581}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &377628566
 MonoBehaviour:
@@ -80,7 +80,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6411527136159828581}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758147486
 GameObject:
@@ -309,7 +309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6411527136159828581}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1421424391
 MonoBehaviour:
@@ -325,6 +325,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RootBone: {fileID: 8629853808942182894}
   StoppedFrameCount: 5
+--- !u!1 &5488150799658447341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4699290058463138554}
+  - component: {fileID: 410838302709967744}
+  - component: {fileID: 986985678423742192}
+  - component: {fileID: 5857143719034116716}
+  m_Layer: 9
+  m_Name: EdgeDetectorFeet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4699290058463138554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488150799658447341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6411527136159828581}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &410838302709967744
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488150799658447341}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &986985678423742192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488150799658447341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5857143719034116716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488150799658447341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423b87e849c03374da42b0b439a80403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &7712424024157621522
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -413,10 +487,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6411527135046142661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.032}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6411527136159828581}
+  m_Father: {fileID: 4485311470388128812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6411527135046142522
@@ -430,8 +504,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.15, y: 1.1, z: 0.18}
+  m_Center: {x: 0, y: -0.69, z: 0}
 --- !u!114 &6411527135046142523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +535,7 @@ GameObject:
   - component: {fileID: 6411527135065696160}
   - component: {fileID: 6411527135065696161}
   m_Layer: 9
-  m_Name: EdgeDetector
+  m_Name: EdgeDetectorHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479,7 +553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6411527136159828581}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6411527135065696167
 Rigidbody:
@@ -556,11 +630,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6138744951975840085}
-  - {fileID: 6411527135046142660}
   - {fileID: 6411527135065696162}
   - {fileID: 608974116}
   - {fileID: 377628565}
   - {fileID: 1613177385240587649}
+  - {fileID: 4699290058463138554}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -617,12 +691,15 @@ MonoBehaviour:
   feetOverlap: {fileID: 1613177385240587649}
   layersToCheckFloorOutsideScanner:
     serializedVersion: 2
-    m_Bits: 15671
+    m_Bits: 14647
   layersToCheckFloorInsideScanner:
     serializedVersion: 2
     m_Bits: 20279
   edgeOffset: {x: 0.5, y: -1, z: 0}
-  edgeCompletedOffset: {x: -0.5, y: 3, z: 0}
+  edgeCompletedOffset: {x: 0, y: 3, z: -1}
+  angleToAllowClimbEdge: 45
+  edgeOffsetToKnee: -0.5
+  edgeOffsetToWaist: 0.7
   lerpVelocity: 0.1
   edgePosition: {x: 0, y: 0, z: 0}
   edgeGameObject: {fileID: 0}
@@ -652,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bddc150f0252c47b7bdeb462e35069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 0}
+  sword: {fileID: 1178068022544641802}
   basicAttack: {fileID: 11400000, guid: 8c99c17c5f1632f4181682c8b7c4eb75, type: 2}
   areaAttack: {fileID: 11400000, guid: bfafa40af1c196545b432544b48da296, type: 2}
   comboAttack: {fileID: 11400000, guid: 6e91a735cfa505044bb37ec413cb73be, type: 2}

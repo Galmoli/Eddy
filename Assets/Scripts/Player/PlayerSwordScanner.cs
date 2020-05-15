@@ -15,6 +15,11 @@ public class PlayerSwordScanner : MonoBehaviour
     public float hitObjectDistance;
     public LayerMask stabSwordLayers;
 
+    [Header("MOVE AWAY TO STAB")]
+    public float moveAwaySpeed;
+    public float moveAwayDistance;
+    public float moveAwayTime;
+
     private Transform playerHand;
     private GameObject swordHolder;
 
@@ -29,6 +34,9 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private Vector3 swordInitPos;
     private Quaternion swordInitRot;
+
+    private bool movingAwayToStab;
+    private Vector3 moveAwayVector;
 
     private void Awake()
     {
@@ -49,6 +57,7 @@ public class PlayerSwordScanner : MonoBehaviour
         swordUnlocked = false;
         activeScanner = false;
         scannerInput = false;
+        movingAwayToStab = false;
 
         transform.GetChild(0).localScale *= scannerRadius * 2f;
         _sphereCollider.radius = scannerRadius;
@@ -81,6 +90,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     {
                         if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
                         {
+                            DistanceToStab(playerMovement.transform.position, hit.point);
                             Stab(hit.collider.gameObject, false);
                             return;
                         }
@@ -89,12 +99,14 @@ public class PlayerSwordScanner : MonoBehaviour
                     {
                         if (GetComponent<SphereCollider>().bounds.Contains(hit.point))
                         {
+                            DistanceToStab(playerMovement.transform.position, hit.point);
                             Stab(hit.collider.gameObject, false);
                             return;
                         }
                     }
                     else
                     {
+                        DistanceToStab(playerMovement.transform.position, hit.point);
                         Stab(hit.collider.gameObject, false);
                         return;
                     }                   
@@ -131,6 +143,30 @@ public class PlayerSwordScanner : MonoBehaviour
         //animation
         if (HoldingSword()) playerMovement.animator.SetBool("isHoldingSword", true);
         else playerMovement.animator.SetBool("isHoldingSword", false);
+    }
+
+    private void LateUpdate()
+    {
+        if (movingAwayToStab)
+        {
+            playerMovement.characterController.Move(moveAwayVector * Time.deltaTime * moveAwaySpeed);
+        }
+    }
+
+    private void DistanceToStab(Vector3 playerPos, Vector3 hitPointPos)
+    {
+        if(Vector3.Distance(playerPos, hitPointPos) < moveAwayDistance)
+        {
+            moveAwayVector = (playerPos - hitPointPos).normalized;
+            StartCoroutine(MoveAway());
+        }
+    }
+
+    private IEnumerator MoveAway()
+    {
+        movingAwayToStab = true;
+        yield return new WaitForSeconds(moveAwayTime);
+        movingAwayToStab = false;
     }
 
     private void ScannerOnInput()

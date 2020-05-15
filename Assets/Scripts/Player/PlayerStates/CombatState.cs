@@ -36,6 +36,13 @@ public class CombatState : State
         {
             ExitState();
         }
+
+        if (_combatController.GetState().GetType() == typeof(AreaAttackState))
+        {
+            var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
+            vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+            _controller.characterController.Move(vector3D * Time.deltaTime);
+        }
     }
 
     public override void ExitState()
