@@ -70,5 +70,7 @@ public class SimpleAttackState : State
     public override void ExitState()
     {
         _controller.swordTrigger.DisableTrigger();
+        _controller.SetState(new IdleState(_controller));
+        _controller.SetMovementControllerToMove();
     }
 }
