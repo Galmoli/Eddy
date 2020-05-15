@@ -1,5 +1,4 @@
-﻿using Steerings;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,17 +18,13 @@ public class EnemyHitFSM : MonoBehaviour
 
     private EnemyBlackboard blackboard;
     private EnemyStunFSM enemyStunFSM;
-    private Rigidbody rigidBody;
-    private KinematicState kinematicState;
 
-    float timer = 0;
+    private float straggeredTime;
 
     private void Start()
     {
         blackboard = GetComponent<EnemyBlackboard>();
         enemyStunFSM = GetComponent<EnemyStunFSM>();
-        rigidBody = GetComponent<Rigidbody>();
-        kinematicState = GetComponent<KinematicState>();
     }
 
     private void OnEnable()
@@ -56,15 +51,14 @@ public class EnemyHitFSM : MonoBehaviour
                 }
                 break;
             case States.STAGGERED:
-
-                if(timer >= blackboard.staggeredTime)
+                if(straggeredTime <= 0)
                 {
                     ChangeState(States.STUNNED);
-                    break;
                 }
-
-                timer += Time.deltaTime;
-                
+                else
+                {
+                    straggeredTime -= Time.deltaTime;
+                }
                 break;
         }
     }
@@ -80,10 +74,6 @@ public class EnemyHitFSM : MonoBehaviour
                 blackboard.hit = false;
                 break;
             case States.STAGGERED:
-                kinematicState.position = transform.position;
-                kinematicState.orientation = transform.eulerAngles.y;
-                kinematicState.linearVelocity = (blackboard.player.transform.position - transform.position).normalized;
-                timer = 0;
                 break;
         }
 
@@ -95,7 +85,7 @@ public class EnemyHitFSM : MonoBehaviour
                 enemyStunFSM.enabled = true;
                 break;
             case States.STAGGERED:
-                rigidBody.AddForce(-transform.forward * blackboard.staggerImpulse, ForceMode.Impulse);
+                straggeredTime = blackboard.staggeredTime;
                 break;
         }
 

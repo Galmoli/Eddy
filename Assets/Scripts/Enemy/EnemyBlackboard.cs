@@ -17,28 +17,19 @@ public class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public float healthPoints;
 
     [Header("Enemy Passive")]
-    public GameObject initialTransform;
-    public bool canWander;
-    public float wanderTime;
-    public float idleTime;
     public float wanderSpeed;
     public LayerMask sightObstaclesLayers;
 
     [Header("Enemy Agressive")]
     public float detectionDistanceOnSight;
     public float detectionDistanceOffSight;
-    public float playerOutOfRangeDistance;
-    public float visionAngle;
     public float timeInNotice;
     public float chasingSpeed;
-    public Collider attackCollider;
+    public float attackDistance;
+    public float minTimeBetweenAttacks;
 
-    [Header("Enemy Stun")]
+    [Header("Other Variables")]
     public float stunnedTime;
-    public float stunImpulse;
-
-    [Header("Enemy Stagger")]
-    public float staggerImpulse;
     public float staggeredTime;
 
     [Header("Arrive Steering Variables")]
@@ -86,14 +77,6 @@ public class EnemyBlackboard : MonoBehaviour
         {
             SetWanderPlusAvoidVariables();
         }
-
-        initialTransform.transform.parent = null;
-
-    }
-
-    private void OnDestroy()
-    {
-        Destroy(initialTransform);
     }
 
     private void Update()

@@ -3,20 +3,17 @@
 namespace Steerings
 {
 	[RequireComponent(typeof(KinematicState))]
-    [RequireComponent(typeof(Rigidbody))]
 
-    public class SteeringBehaviour : MonoBehaviour 
+	public class SteeringBehaviour : MonoBehaviour 
 	{
 		protected KinematicState ownKS;
-        protected Rigidbody ownRB;
 
-        protected static GameObject surrogateTarget = null;
+		protected static GameObject surrogateTarget = null;
 		protected static SteeringOutput nullSteering;
 
 		protected virtual void Start ()
 		{
 			ownKS = GetComponent<KinematicState>();
-            ownRB = GetComponent<Rigidbody>();
 
 			if (surrogateTarget == null)
 			{
@@ -47,9 +44,9 @@ namespace Steerings
 
 				ownKS.linearVelocity.y = 0f;
 
-                //ownRB.AddForce(steering.linearAcceleration, ForceMode.Acceleration);
-                ownKS.position = ownKS.position + ownKS.linearVelocity * Time.deltaTime + 0.5f * steering.linearAcceleration * Time.deltaTime * Time.deltaTime;
-                transform.position = new Vector3(ownKS.position.x, transform.position.y, ownKS.position.z);
+				ownKS.position = ownKS.position + ownKS.linearVelocity * Time.deltaTime + 0.5f * steering.linearAcceleration * Time.deltaTime * Time.deltaTime;
+
+				transform.position = new Vector3(ownKS.position.x, transform.position.y, ownKS.position.z);
 
 				ownKS.position.y = transform.position.y;
 			}
