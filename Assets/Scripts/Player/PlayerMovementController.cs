@@ -18,6 +18,9 @@ public class PlayerMovementController : StateMachine
     [Header("Edge Values")] 
     public Vector3 edgeOffset;
     public Vector3 edgeCompletedOffset;
+    public float angleToAllowClimbEdge;
+    public float edgeOffsetToKnee;
+    public float edgeOffsetToWaist;
     public float lerpVelocity;
     [HideInInspector] public Vector3 edgePosition;
     [HideInInspector] public GameObject edgeGameObject;
