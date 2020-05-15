@@ -139,6 +139,10 @@ public class PlayerSwordScanner : MonoBehaviour
                 SwordBack();
             }       
         }
+
+        //animation
+        if (HoldingSword()) playerMovement.animator.SetBool("isHoldingSword", true);
+        else playerMovement.animator.SetBool("isHoldingSword", false);
     }
 
     private void LateUpdate()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatorFunctionCaller : MonoBehaviour
 {
+    public PlayerMovementController movementController;
     public PlayerCombatController combatController;
     public PlayerSwordScanner swordScanner;
 
@@ -21,5 +22,10 @@ public class AnimatorFunctionCaller : MonoBehaviour
     public void FinishStab()
     {
         swordScanner.FinishStab();
+    }
+
+    public void StandEdge()
+    {
+        movementController.StandEdge();
     }
 }

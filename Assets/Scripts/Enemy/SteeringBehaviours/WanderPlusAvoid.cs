@@ -24,10 +24,15 @@ namespace Steerings
 
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
-				transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
-				ownKS.orientation = transform.rotation.eulerAngles.y;
+				surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
+				SteeringOutput st = Align.GetSteering(ownKS, surrogateTarget);
+				result.angularAcceleration = st.angularAcceleration;
+				result.angularActive = st.angularActive;
 			}
-			result.angularActive = false;
+			else
+			{
+				result.angularActive = false;
+			}
 
 			return result;
 		}
