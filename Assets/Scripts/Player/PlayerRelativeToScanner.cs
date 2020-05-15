@@ -26,17 +26,17 @@ public class PlayerRelativeToScanner : MonoBehaviour
 
     private void Update()
     {
-        if (BottomIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner") && _playerSwordScanner.activeScanner)
+        if (BottomIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("playerinScanner") && _playerSwordScanner.activeScanner)
         {
-            SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
+            SetPlayerObjectsToLayer(LayerMask.NameToLayer("playerinScanner"));
             return;
         }
 
-        if (BottomIsInScanner() && !TopIsInScanner() && transform.root.gameObject.layer == LayerMask.NameToLayer("inScanner")) return;
+        if (BottomIsInScanner() && !TopIsInScanner() && transform.root.gameObject.layer == LayerMask.NameToLayer("playerinScanner")) return;
         
-        if (TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("inScanner") && _playerSwordScanner.activeScanner)
+        if (TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("playerinScanner") && _playerSwordScanner.activeScanner)
         {
-            SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
+            SetPlayerObjectsToLayer(LayerMask.NameToLayer("playerinScanner"));
         }
         else if (!TopIsInScanner() && transform.root.gameObject.layer != LayerMask.NameToLayer("Player") || !_playerSwordScanner.activeScanner)
         {
