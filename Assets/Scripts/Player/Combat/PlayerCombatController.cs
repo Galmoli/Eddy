@@ -129,4 +129,9 @@ public class PlayerCombatController : StateMachine
             yield return null;
         }
     }
+
+    public State GetState()
+    {
+        return state;
+    }
 }
