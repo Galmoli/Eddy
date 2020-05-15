@@ -9,6 +9,7 @@ public class AttackColliderHits : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (enemyAggressiveFSM.enabled)
         {
             enemyAggressiveFSM.HitHandler(other.transform.gameObject);
