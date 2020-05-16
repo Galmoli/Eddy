@@ -7,8 +7,8 @@ namespace Steerings
 
     public class SteeringBehaviour : MonoBehaviour 
 	{
-		protected KinematicState ownKS;
-        protected Rigidbody ownRB;
+		[HideInInspector] public KinematicState ownKS;
+        [HideInInspector] public Rigidbody ownRB;
 
         protected static GameObject surrogateTarget = null;
 		protected static SteeringOutput nullSteering;
@@ -30,7 +30,7 @@ namespace Steerings
 				nullSteering.linearActive = false;
 			}
 		}
-	
+
 		void Update ()
 		{
 			SteeringOutput steering = GetSteering ();
@@ -112,6 +112,12 @@ namespace Steerings
 			}
 
 			return orientation;
+		}
+
+		private void OnDisable()
+		{
+			ownRB.velocity = ownKS.linearVelocity;
+			ownKS.position = transform.position;
 		}
 	}
 }

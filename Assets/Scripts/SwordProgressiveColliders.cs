@@ -28,7 +28,7 @@ public class SwordProgressiveColliders : MonoBehaviour
         swordActive = true;
         affectedList = Physics.OverlapSphere(transform.position, 4, _layerNormal).ToList();
         SetLayer(affectedList, LayerMask.NameToLayer("inScanner"));
-        SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
+        SetPlayerObjectsToLayer(LayerMask.NameToLayer("playerinScanner"));
     }
 
     public void DisableSword()

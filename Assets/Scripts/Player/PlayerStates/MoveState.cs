@@ -70,7 +70,7 @@ public class MoveState : State
             }
         }
         
-        else if (_controller.gameObject.layer == LayerMask.NameToLayer("inScanner"))
+        else if (_controller.gameObject.layer == LayerMask.NameToLayer("playerinScanner"))
         {
             if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorInsideScanner))
             {
