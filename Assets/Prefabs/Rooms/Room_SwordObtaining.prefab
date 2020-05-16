@@ -4288,6 +4288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339982b5947342444914525c621d9a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpoint: {fileID: 6173477942515499304}
 --- !u!1001 &443908665372074315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4802,6 +4803,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2980577293152421010}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6173477942515499304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9003181894529615290, guid: 36555fdd0ceff6941ba768448a354f5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2980577293152421010}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150e9ba26fa43ed469d8df49da3e7049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2980577293529217748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5231,10 +5244,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5168323584233096810, guid: 77454cee444c38545919cd075ba95c04,
+        type: 3}
+      propertyPath: maxAcceleration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5168323584233096811, guid: 77454cee444c38545919cd075ba95c04,
         type: 3}
       propertyPath: avoidLayers.m_Bits
       value: 65537
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168323584233096811, guid: 77454cee444c38545919cd075ba95c04,
+        type: 3}
+      propertyPath: respawnable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77454cee444c38545919cd075ba95c04, type: 3}
@@ -8116,6 +8139,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2980577294440884563}
     m_Modifications:
+    - target: {fileID: 5780563919777552580, guid: 218711af362263f41ba1bf78bc840466,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5780563919777552581, guid: 218711af362263f41ba1bf78bc840466,
         type: 3}
       propertyPath: m_Mesh
@@ -8205,6 +8233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836597577905732627, guid: 030b771db4cbde34cab437772fed98f6,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5836597577905732628, guid: 030b771db4cbde34cab437772fed98f6,
         type: 3}

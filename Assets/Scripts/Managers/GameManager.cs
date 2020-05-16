@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPos;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
+    [HideInInspector] public List<GameObject> nonRespawnableEnemies;
     private PlayerController _playerController;
 
     private void Start()
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
         respawnPos = player.transform.position;
         _playerController = player.GetComponent<PlayerController>();
         enemySpawnManager = new EnemySpawnManager();
+        nonRespawnableEnemies = new List<GameObject>();
     }
 
     public void Respawn()
@@ -36,5 +38,12 @@ public class GameManager : MonoBehaviour
             e.enemyO.transform.position = e.spawnPos;
             e.enemyB.ResetHealth();
         }
+
+        foreach (var e in nonRespawnableEnemies)
+        {
+            Destroy(e);
+        }
+
+        nonRespawnableEnemies.Clear();
     }
 }

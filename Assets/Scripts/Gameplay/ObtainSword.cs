@@ -6,6 +6,8 @@ public class ObtainSword : MonoBehaviour
 {
     bool playerInside;
 
+    public CheckPoint checkpoint;
+
     private InputActions inputActions;
 
     private void Awake()
@@ -28,6 +30,7 @@ public class ObtainSword : MonoBehaviour
     {
         if (playerInside)
         {
+            checkpoint.Activate();
             FindObjectOfType<PlayerSwordScanner>().UnlockSword();
             transform.parent.gameObject.SetActive(false);
         }

@@ -104,11 +104,12 @@ public class EnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.CHASE:
 
-                if(Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance || Math.Abs(blackboard.player.transform.position.y - transform.position.y) >= blackboard.maxVerticalDistance)
+                if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance || Math.Abs(blackboard.player.transform.position.y - transform.position.y) >= blackboard.maxVerticalDistance)
                 {
                     ChangeState(States.ENEMY_PASSIVE);
                     break;
                 }
+
 
                 break;
 
@@ -161,12 +162,19 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
     public void HitHandler(GameObject objectHit)
     {
-        if (objectHit.tag == "Player")
+        HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
+
+        if (enemyWall == null)
         {
-            //DO DAMAGE
+            if (objectHit.tag == "Player")
+            {
+                blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
+            }
+
+            blackboard.stunned = true;
         }
 
-        blackboard.stunned = true;
+      
     }
 
     private void LookAtPlayer()
