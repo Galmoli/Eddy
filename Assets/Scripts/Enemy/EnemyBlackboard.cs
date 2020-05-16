@@ -26,6 +26,7 @@ public class EnemyBlackboard : MonoBehaviour
 
     [Header("Enemy Agressive")]
     public float enemyColliderChaseHeight;
+    public float maxVerticalDistance;
     public float detectionDistanceOnSight;
     public float detectionDistanceOffSight;
     public float playerOutOfRangeDistance;
