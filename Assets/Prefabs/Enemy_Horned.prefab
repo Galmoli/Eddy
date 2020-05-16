@@ -129,8 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: {fileID: 0}
   statesText: {fileID: 5168323584939731900}
+  respawnable: 0
   initialHealthPoints: 10
-  attackPoints: 10
+  attackPoints: 3
   rotationSpeed: 50
   healthPoints: 3
   initialTransform: {fileID: 2576258279765738460}
@@ -157,9 +158,9 @@ MonoBehaviour:
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2
-  avoidDistance: 5
-  secondaryWhiskerAngle: 35
-  secondaryWhiskerRatio: 0.7
+  avoidDistance: 10
+  secondaryWhiskerAngle: 50
+  secondaryWhiskerRatio: 0.5
   avoidLayers:
     serializedVersion: 2
     m_Bits: 90113
@@ -181,10 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8e6796c32305f48b04b701aaca2677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 20
+  maxAcceleration: 5
   maxSpeed: 10
-  maxAngularAcceleration: 45
-  maxAngularSpeed: 45
+  maxAngularAcceleration: 400
+  maxAngularSpeed: 200
   position: {x: 0, y: 0, z: 0}
   orientation: 0
   linearVelocity: {x: 0, y: 0, z: 0}
@@ -510,7 +511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7154965917246633805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0.05, z: 0.68}
+  m_LocalPosition: {x: 0.1, y: 0.05, z: 0.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5168323584233096803}

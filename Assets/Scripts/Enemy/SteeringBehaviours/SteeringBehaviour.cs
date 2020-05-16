@@ -114,10 +114,9 @@ namespace Steerings
 			return orientation;
 		}
 
-		private void OnDisable()
+		private void OnEnable()
 		{
-			ownRB.velocity = ownKS.linearVelocity;
-			ownKS.position = transform.position;
+			if(ownKS != null) ownKS.position = transform.position;
 		}
 	}
 }

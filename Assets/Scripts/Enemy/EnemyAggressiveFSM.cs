@@ -1,4 +1,5 @@
 ﻿using Steerings;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,26 +68,30 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
                 RaycastHit hit;
                 if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
-                {
-                    
+                {                   
                     if (hit.collider.gameObject.tag == "Player")
                     {
                         if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
                         {
-                            ChangeState(States.NOTICE);
-                            break;
+                            if(Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                            {
+                                ChangeState(States.NOTICE);
+                                break;
+                            }
                         }
                     }
                 }
 
                 if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
                 {
-                    ChangeState(States.NOTICE);
+                    if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                    {
+                        ChangeState(States.NOTICE);
+                    }                     
                 }
                 break;
             case States.NOTICE:
-               
-
+                
                 if (timer >= blackboard.timeInNotice)
                 {
                     ChangeState(States.CHASE);
@@ -99,11 +104,12 @@ public class EnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.CHASE:
 
-                if(Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance)
+                if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance || Math.Abs(blackboard.player.transform.position.y - transform.position.y) >= blackboard.maxVerticalDistance)
                 {
                     ChangeState(States.ENEMY_PASSIVE);
                     break;
                 }
+
 
                 break;
 
@@ -156,12 +162,19 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
     public void HitHandler(GameObject objectHit)
     {
-        if (objectHit.tag == "Player")
+        HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
+
+        if (enemyWall == null)
         {
-            //DO DAMAGE
+            if (objectHit.tag == "Player")
+            {
+                blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
+            }
+
+            blackboard.stunned = true;
         }
 
-        blackboard.stunned = true;
+      
     }
 
     private void LookAtPlayer()
