@@ -38,10 +38,16 @@ public class JumpState : State
             
         vector3D.x = vector3D.x * _controller.speedMultiplierWhenJump;
         vector3D.z = vector3D.z * _controller.speedMultiplierWhenJump;
+
+        if (CheckFloor(PlayerUtils.GetTailColliders(_controller)))
+        {
+            vector3D.x = _controller.transform.forward.x * 4;
+            vector3D.z = _controller.transform.forward.z * 4;
+        }
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        CheckFloor(PlayerUtils.GetFloorColliders(_controller));
+        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller))) ExitState();
     }
 
     public override void ExitState()
@@ -53,7 +59,7 @@ public class JumpState : State
         else _controller.SetState(new MoveState(_controller));
     }
     
-    private void CheckFloor(Collider[] colliders)
+    private bool CheckFloor(Collider[] colliders)
     {
         var list = colliders.ToList();
         if (colliders.Length > 0 && currentTime >= 0.2f)
@@ -61,9 +67,11 @@ public class JumpState : State
             //At the moment only the moveObject it's checked because it detects the trigger as floor
             //I don't know if it's possible to make it work with layers.
             //As it's the only problem for now, it will be hardcoded.
-            
-            if(list.All(c => c.name != "Trigger")) ExitState();
-            else if(list.Any(c => c.CompareTag("MoveObject")) && colliders.Length != 1) ExitState();
+
+            if (list.All(c => c.name != "Trigger")) return true;
+            if (list.Any(c => c.CompareTag("MoveObject")) && colliders.Length != 1) return true;
         }
+
+        return false;
     }
 }

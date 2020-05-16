@@ -62,4 +62,13 @@ public class PlayerUtils
         }
         return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorInsideScanner);
     }
+    
+    public static Collider[] GetTailColliders(PlayerMovementController _controller) //Gets the colliders behind the player at feet height.
+    {
+        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return Physics.OverlapSphere(_controller.feetOverlap.position - _controller.feetOverlap.forward * 0.5f, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+        }
+        return Physics.OverlapSphere(_controller.feetOverlap.position - _controller.feetOverlap.forward * 0.5f, 0.1f, _controller.layersToCheckFloorInsideScanner);
+    }
 }
