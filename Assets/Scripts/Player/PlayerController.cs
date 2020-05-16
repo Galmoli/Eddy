@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Provisional to trigger death state
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Hit(100);
         }
