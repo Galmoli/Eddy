@@ -698,12 +698,12 @@ MonoBehaviour:
   layersToCheckFloorInsideScanner:
     serializedVersion: 2
     m_Bits: 20279
-  edgeOffset: {x: 0.5, y: -1, z: 0}
-  edgeCompletedOffset: {x: 0, y: 3, z: -1}
+  edgeOffset: {x: 0, y: -0.9, z: 0.4}
+  edgeCompletedOffset: {x: 0, y: 1.2, z: -0.5}
   angleToAllowClimbEdge: 45
   edgeOffsetToKnee: -0.5
   edgeOffsetToWaist: 0.7
-  lerpVelocity: 0.1
+  lerpVelocity: 0.9
   edgePosition: {x: 0, y: 0, z: 0}
   edgeGameObject: {fileID: 0}
   movementVector: {x: 0, y: 0}
@@ -719,6 +719,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   moveObject: {fileID: 0}
   scannerIntersect: {fileID: 0}
+  standRb: {fileID: 0}
   animator: {fileID: 499130289}
 --- !u!114 &6411527136159828570
 MonoBehaviour:
@@ -802,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6e2db538c97dc4f82f34210e868589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementController: {fileID: 6411527136159828580}
   combatController: {fileID: 6411527136159828570}
   swordScanner: {fileID: 1178068022544641802}
 --- !u!1001 &1174173745358021199
