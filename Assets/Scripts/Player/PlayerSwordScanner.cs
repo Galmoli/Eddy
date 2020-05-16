@@ -284,10 +284,10 @@ public class PlayerSwordScanner : MonoBehaviour
     private bool CanUseScanner()
     {
         return playerMovement.GetState().GetType() != typeof(EdgeState)
-            && playerMovement.GetState().GetType() != typeof(CombatState)
             && playerMovement.GetState().GetType() != typeof(PushState);
     }
-    //Si finalment no hi ha cap condició diferent, aquestes dues funcions podran serla mateixa
+
+
     private bool CanStab()
     {
         return playerMovement.GetState().GetType() != typeof(EdgeState)

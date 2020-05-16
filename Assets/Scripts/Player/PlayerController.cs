@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Hit(100);
-        }
+        }   
     }
 
     public void Hit(int damage)
@@ -54,5 +54,14 @@ public class PlayerController : MonoBehaviour
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));
         _combatController.SetState(new IdleState(_combatController));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DeadZone")
+        {
+            SetDeadState();
+            StartCoroutine(UIManager.Instance.ShowDeathMenu());
+        }
     }
 }
