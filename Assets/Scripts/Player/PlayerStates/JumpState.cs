@@ -41,7 +41,7 @@ public class JumpState : State
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        CheckFloor(GetFloorColliders());
+        CheckFloor(PlayerUtils.GetFloorColliders(_controller));
     }
 
     public override void ExitState()
@@ -52,15 +52,7 @@ public class JumpState : State
         if (_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
     }
-
-    private Collider[] GetFloorColliders()
-    {
-        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
-        }
-        return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorInsideScanner);
-    }
+    
     private void CheckFloor(Collider[] colliders)
     {
         var list = colliders.ToList();
@@ -71,7 +63,7 @@ public class JumpState : State
             //As it's the only problem for now, it will be hardcoded.
             
             if(list.All(c => c.name != "Trigger")) ExitState();
-            else if(list.Any(c => c.CompareTag("MoveObject"))) ExitState();
+            else if(list.Any(c => c.CompareTag("MoveObject")) && colliders.Length != 1) ExitState();
         }
     }
 }

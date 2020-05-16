@@ -53,4 +53,13 @@ public class PlayerUtils
         result += edge.transform.forward * offset.z;
         return result;
     }
+    
+    public static Collider[] GetFloorColliders(PlayerMovementController _controller)
+    {
+        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+        }
+        return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+    }
 }

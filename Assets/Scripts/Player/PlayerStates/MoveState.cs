@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MoveState : State
@@ -62,25 +63,25 @@ public class MoveState : State
             _controller.SetState(new JumpState(_controller));
         }
 
-        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorOutsideScanner))
-            {
-                _controller.SetState(new JumpState(_controller));
-            }
-        }
-        
-        else if (_controller.gameObject.layer == LayerMask.NameToLayer("playerinScanner"))
-        {
-            if (!Physics.CheckSphere(_controller.feetOverlap.position, 0.1f,_controller.layersToCheckFloorInsideScanner))
-            {
-                _controller.SetState(new JumpState(_controller));
-            }
-        }
+        CheckFloor(PlayerUtils.GetFloorColliders(_controller));
 
         if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject)
         {
             _controller.SetState(new PushState(_controller));
         }
+    }
+    
+    private void CheckFloor(Collider[] colliders)
+    {
+        var list = colliders.ToList();
+        if (colliders.Length > 0)
+        {
+            //At the moment only the moveObject it's checked because it detects the trigger as floor
+            //I don't know if it's possible to make it work with layers.
+            //As it's the only problem for now, it will be hardcoded.
+            
+            if(list.All(c => c.name == "Trigger")) _controller.SetState(new JumpState(_controller));
+        }
+        else _controller.SetState(new JumpState(_controller));
     }
 }
