@@ -117,8 +117,6 @@ public class EnemyPassiveFSM : MonoBehaviour
             case States.WANDER:
                 wanderPlusAvoid.enabled = false;
                 timer = 0;
-                wanderPlusAvoid.ownRB.velocity = wanderPlusAvoid.ownKS.linearVelocity;
-                wanderPlusAvoid.ownKS.position = transform.position;
                 break;
         }
 
