@@ -23,6 +23,8 @@ public class EdgeState : State
         {
             _scannerSword.ScannerOff();
         }
+
+        if (_controller.edgeGameObject.transform.position.y > _controller.transform.position.y) _controller.animator.SetTrigger("Hanging");
         
         TriggerDesiredAnimation(_controller.transform.position, _controller.edgePosition);
     }
@@ -38,10 +40,9 @@ public class EdgeState : State
             var position = _controller.transform.position;
             Vector3 moveVector = Vector3.zero;
             
-            Vector3 lVector = Vector3.Lerp(position, _controller.edgePosition + _controller.edgeOffset, _controller.lerpVelocity);
-            
-            moveVector = new Vector3(0, (lVector - position).y, 0);
-            
+            Vector3 lVector = Vector3.Lerp(position,_controller.GetProjectedVector() + _controller.edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
+
+            moveVector = lVector - position;
             _controller.RotateTowardsForward(-_controller.edgeGameObject.transform.forward);
             
             if(_controller.characterController.enabled) _controller.characterController.Move(moveVector);
@@ -49,7 +50,8 @@ public class EdgeState : State
 
         if (PlayerUtils.InputEqualVector(-_controller.edgeGameObject.transform.forward, _controller.cameraTransform, _controller.movementVector) && !_controller.standing || _controller.inputToStand && !_controller.standing)
         {
-            _controller.StandEdge(GetProjectedVector() + _controller.edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject ,_controller.edgeCompletedOffset));
+            _controller.animator.SetTrigger("Climb");
+            _controller.StandDeactivatePlayer();
         }
         if (PlayerUtils.InputEqualVector(_controller.edgeGameObject.transform.forward, _controller.cameraTransform, _controller.movementVector) && !_controller.standing)
         {
@@ -79,13 +81,17 @@ public class EdgeState : State
         {
             Debug.Log("Knee");
             autoStand = true;
-            _controller.StandEdge(GetProjectedVector() + _controller.edgePosition  + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject ,_controller.edgeCompletedOffset));
+            //_controller.StandDeactivatePlayer();
+            _controller.WaistStand();
+            _controller.animator.SetTrigger("MidClimb");
         }
         else //Trigger waist animation
         {
             Debug.Log("Waist");
             autoStand = true;
-            _controller.StandEdge(GetProjectedVector() + _controller.edgePosition  + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject ,_controller.edgeCompletedOffset));
+            //_controller.StandDeactivatePlayer();
+            _controller.WaistStand();
+            _controller.animator.SetTrigger("MidClimb");
         }
     }
 

@@ -7,8 +7,8 @@ namespace Steerings
 
     public class SteeringBehaviour : MonoBehaviour 
 	{
-		protected KinematicState ownKS;
-        protected Rigidbody ownRB;
+		[HideInInspector] public KinematicState ownKS;
+        [HideInInspector] public Rigidbody ownRB;
 
         protected static GameObject surrogateTarget = null;
 		protected static SteeringOutput nullSteering;
@@ -30,7 +30,7 @@ namespace Steerings
 				nullSteering.linearActive = false;
 			}
 		}
-	
+
 		void Update ()
 		{
 			SteeringOutput steering = GetSteering ();
@@ -71,7 +71,7 @@ namespace Steerings
 					
 				ownKS.orientation = ownKS.orientation + ownKS.angularSpeed * Time.deltaTime + 0.5f * steering.angularAcceleration * Time.deltaTime * Time.deltaTime;
 				
-				transform.rotation = Quaternion.Euler(0, 0, ownKS.orientation);
+				transform.rotation = Quaternion.Euler(0, ownKS.orientation, 0);
 			}
 			else
 			{
@@ -112,6 +112,12 @@ namespace Steerings
 			}
 
 			return orientation;
+		}
+
+		private void OnDisable()
+		{
+			ownRB.velocity = ownKS.linearVelocity;
+			ownKS.position = transform.position;
 		}
 	}
 }
