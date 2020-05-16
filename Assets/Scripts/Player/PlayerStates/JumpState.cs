@@ -75,8 +75,22 @@ public class JumpState : State
     {
         var vector3D = Vector3.zero;
         var t = _controller.transform;
+        var fForward = _controller.feetOverlap.forward;
+        var fRight = _controller.feetOverlap.right;
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - _controller.feetOverlap.forward * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
