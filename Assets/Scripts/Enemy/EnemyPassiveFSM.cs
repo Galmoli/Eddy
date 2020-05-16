@@ -107,9 +107,7 @@ public class EnemyPassiveFSM : MonoBehaviour
                 break;
 
             case States.BACK_TO_INITIAL:
-
                 arrivePlusAvoid.enabled = false;
-
                 break;
             case States.IDLE:
                 timer = 0;
@@ -117,6 +115,7 @@ public class EnemyPassiveFSM : MonoBehaviour
             case States.WANDER:
                 wanderPlusAvoid.enabled = false;
                 timer = 0;
+                blackboard.rb.velocity = blackboard.ownKS.linearVelocity;
                 break;
         }
 

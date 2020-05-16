@@ -38,10 +38,14 @@ public class EnemyBlackboard : MonoBehaviour
     public float stunnedTime;
     public float stunImpulse;
 
-    [Header("Enemy Stagger")]
-    [HideInInspector]public Vector3 hitDirection;
+    [HideInInspector] public bool stunned;
+
+    [Header("Enemy Stagger")]  
     public float staggerImpulse;
     public float staggeredTime;
+
+    [HideInInspector] public Vector3 hitDirection;
+    [HideInInspector] public bool hit;
 
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
@@ -61,18 +65,22 @@ public class EnemyBlackboard : MonoBehaviour
     public float wanderRadius;
     public float wanderOffset;
 
-    [HideInInspector] public bool hit;
-    [HideInInspector] public bool stunned;
-
+    
     [HideInInspector] public PlayerMovementController player;
+
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public KinematicState ownKS;
     
     void Start()
     {
+        GameManager.Instance.enemySpawnManager.Add(this);
+
         player = FindObjectOfType<PlayerMovementController>();
 
         scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
 
-        GameManager.Instance.enemySpawnManager.Add(this);
+        rb = GetComponent<Rigidbody>();
+        ownKS = GetComponent<KinematicState>();
 
         healthPoints = initialHealthPoints;
 
