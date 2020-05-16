@@ -22,11 +22,6 @@ public class CombatState : State
     public override void Enter()
     {
         Debug.Log("Combat State");
-
-        if (_scannerSword.UsingScannerInHand())
-        {
-            _scannerSword.ScannerOff();
-        }
     }
 
     public override void Update()
