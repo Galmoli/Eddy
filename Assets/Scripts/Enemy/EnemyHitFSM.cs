@@ -95,7 +95,7 @@ public class EnemyHitFSM : MonoBehaviour
                 enemyStunFSM.enabled = true;
                 break;
             case States.STAGGERED:
-                rigidBody.AddForce(-transform.forward * blackboard.staggerImpulse, ForceMode.Impulse);
+                rigidBody.AddForce(blackboard.hitDirection.normalized * blackboard.staggerImpulse, ForceMode.Impulse);
                 break;
         }
 

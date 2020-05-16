@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Provisional to trigger death state
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Hit(100);
         }
@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
             //
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
+        }
+        else
+        {
+            float number = UnityEngine.Random.Range(1, 4);
+            _movementController.animator.SetTrigger("Hit" + number.ToString());
         }
     }
 

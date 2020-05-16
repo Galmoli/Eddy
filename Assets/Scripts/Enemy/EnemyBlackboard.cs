@@ -25,6 +25,7 @@ public class EnemyBlackboard : MonoBehaviour
     public LayerMask sightObstaclesLayers;
 
     [Header("Enemy Agressive")]
+    public float enemyColliderChaseHeight;
     public float detectionDistanceOnSight;
     public float detectionDistanceOffSight;
     public float playerOutOfRangeDistance;
@@ -38,6 +39,7 @@ public class EnemyBlackboard : MonoBehaviour
     public float stunImpulse;
 
     [Header("Enemy Stagger")]
+    [HideInInspector]public Vector3 hitDirection;
     public float staggerImpulse;
     public float staggeredTime;
 
@@ -101,8 +103,9 @@ public class EnemyBlackboard : MonoBehaviour
         statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, Vector3 hitDirection)
     {
+        this.hitDirection = hitDirection;
         hit = true;
         healthPoints -= damage;
     }

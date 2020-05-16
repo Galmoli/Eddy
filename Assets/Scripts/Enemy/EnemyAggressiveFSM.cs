@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(ArrivePlusAvoid))]
 [RequireComponent(typeof(WanderPlusAvoid))]
 [RequireComponent(typeof(EnemyPassiveFSM))]
 
@@ -24,6 +23,7 @@ public class EnemyAggressiveFSM : MonoBehaviour
     private WanderPlusAvoid wanderPlusAvoid;
     private Seek seek;
     private EnemyPassiveFSM enemyPassiveFsm;
+    private CapsuleCollider enemyCol;
     private KinematicState kinematicState;
 
     private float timer;
@@ -35,6 +35,7 @@ public class EnemyAggressiveFSM : MonoBehaviour
         seek = GetComponent<Seek>();
         enemyPassiveFsm = GetComponent<EnemyPassiveFSM>();
         kinematicState = GetComponent<KinematicState>();
+        enemyCol = GetComponent<CapsuleCollider>();
     }
 
     private void OnEnable()
@@ -48,6 +49,9 @@ public class EnemyAggressiveFSM : MonoBehaviour
         seek.enabled = false;
         enemyPassiveFsm.enabled = false;
         blackboard.attackCollider.enabled = false;
+
+        enemyCol.height = 2.0f;
+        enemyCol.center = Vector3.zero;
 
         timer = 0;
     }
@@ -118,6 +122,8 @@ public class EnemyAggressiveFSM : MonoBehaviour
             case States.NOTICE:
                 break;
             case States.CHASE:
+                enemyCol.height = 2.0f;
+                enemyCol.center = Vector3.zero;
                 blackboard.attackCollider.enabled = false;
                 seek.enabled = false;
                 break;
@@ -135,6 +141,8 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
                 break;
             case States.CHASE:
+                enemyCol.height = blackboard.enemyColliderChaseHeight;
+                enemyCol.center = enemyCol.center - new Vector3(0, (2.0f - blackboard.enemyColliderChaseHeight) / 2, 0);
                 blackboard.attackCollider.enabled = true;
                 kinematicState.maxSpeed = blackboard.chasingSpeed;
                 seek.enabled = true;
