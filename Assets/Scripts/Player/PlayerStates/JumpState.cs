@@ -8,6 +8,7 @@ public class JumpState : State
     private PlayerMovementController _controller;
     private float currentTime = 0;
     private bool hitHead;
+    private float _residualCollisionAvoidanceSpeed = 5;
 
     public JumpState(PlayerMovementController controller)
     {
@@ -38,10 +39,11 @@ public class JumpState : State
             
         vector3D.x = vector3D.x * _controller.speedMultiplierWhenJump;
         vector3D.z = vector3D.z * _controller.speedMultiplierWhenJump;
+        vector3D += CheckResidualCollisions();
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        CheckFloor(GetFloorColliders());
+        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position))) ExitState();
     }
 
     public override void ExitState()
@@ -52,16 +54,8 @@ public class JumpState : State
         if (_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
     }
-
-    private Collider[] GetFloorColliders()
-    {
-        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
-        }
-        return Physics.OverlapSphere(_controller.feetOverlap.position, 0.1f, _controller.layersToCheckFloorInsideScanner);
-    }
-    private void CheckFloor(Collider[] colliders)
+    
+    private bool CheckFloor(Collider[] colliders)
     {
         var list = colliders.ToList();
         if (colliders.Length > 0 && currentTime >= 0.2f)
@@ -69,9 +63,42 @@ public class JumpState : State
             //At the moment only the moveObject it's checked because it detects the trigger as floor
             //I don't know if it's possible to make it work with layers.
             //As it's the only problem for now, it will be hardcoded.
-            
-            if(list.All(c => c.name != "Trigger")) ExitState();
-            else if(list.Any(c => c.CompareTag("MoveObject"))) ExitState();
+
+            if (list.All(c => c.name != "Trigger")) return true;
+            if (list.Any(c => c.CompareTag("MoveObject")) && colliders.Length != 1) return true;
         }
+
+        return false;
+    }
+
+    private Vector3 CheckResidualCollisions()
+    {
+        var vector3D = Vector3.zero;
+        var t = _controller.transform;
+        var fForward = _controller.feetOverlap.forward;
+        var fRight = _controller.feetOverlap.right;
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        //Other positions can be added here. But just checking the back solves the major problem.
+
+        if (vector3D != Vector3.zero) vector3D = vector3D.normalized * _residualCollisionAvoidanceSpeed;
+        return vector3D;
     }
 }
