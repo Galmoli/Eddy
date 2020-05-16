@@ -63,7 +63,7 @@ public class MoveState : State
             _controller.SetState(new JumpState(_controller));
         }
 
-        CheckFloor(PlayerUtils.GetFloorColliders(_controller));
+        CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position));
 
         if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject)
         {

@@ -8,6 +8,7 @@ public class JumpState : State
     private PlayerMovementController _controller;
     private float currentTime = 0;
     private bool hitHead;
+    private float _residualCollisionAvoidanceSpeed = 5;
 
     public JumpState(PlayerMovementController controller)
     {
@@ -38,16 +39,11 @@ public class JumpState : State
             
         vector3D.x = vector3D.x * _controller.speedMultiplierWhenJump;
         vector3D.z = vector3D.z * _controller.speedMultiplierWhenJump;
-
-        if (CheckFloor(PlayerUtils.GetTailColliders(_controller)))
-        {
-            vector3D.x = _controller.transform.forward.x * 4;
-            vector3D.z = _controller.transform.forward.z * 4;
-        }
+        vector3D += CheckResidualCollisions();
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller))) ExitState();
+        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position))) ExitState();
     }
 
     public override void ExitState()
@@ -73,5 +69,22 @@ public class JumpState : State
         }
 
         return false;
+    }
+
+    private Vector3 CheckResidualCollisions()
+    {
+        var vector3D = Vector3.zero;
+        var t = _controller.transform;
+        
+        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - _controller.feetOverlap.forward * 0.5f)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        //Other positions can be added here. But just checking the back solves the major problem.
+
+        if (vector3D != Vector3.zero) vector3D = vector3D.normalized * _residualCollisionAvoidanceSpeed;
+        return vector3D;
     }
 }
