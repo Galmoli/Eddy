@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(ArrivePlusAvoid))]
 [RequireComponent(typeof(WanderPlusAvoid))]
 [RequireComponent(typeof(EnemyPassiveFSM))]
 
