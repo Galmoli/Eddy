@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float timeToShowMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject configMenu;
     [HideInInspector] public bool paused;
 
     private InputActions _input;
@@ -28,12 +30,11 @@ public class UIManager : MonoBehaviour
         _input.Enable();
 
         _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
-        _input.PlayerControls.UnPause.started += ctx => HidePauseMenu();
     }
 
     private void ShowPauseMenu()
     {
-        if (!pauseMenu.activeSelf)
+        if (!pauseMenu.activeSelf && !configMenu.activeSelf)
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
@@ -41,7 +42,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void HidePauseMenu()
+    public void HidePauseMenu()
     {
         if (pauseMenu.activeSelf)
         {
@@ -49,6 +50,21 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             paused = false;
         }
+    }
+
+    public void ShowConfigMenu()
+    {
+        if(pauseMenu.activeSelf) pauseMenu.SetActive(false);
+        if (!configMenu.activeSelf)
+        {
+            configMenu.SetActive(true);
+        }
+    }
+
+    public void HideConfigMenu()
+    {
+        if(configMenu.activeSelf) configMenu.SetActive(false);
+        if(paused) pauseMenu.SetActive(true);
     }
     
     public IEnumerator ShowDeathMenu()
@@ -60,5 +76,10 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         deathMenu.SetActive(true);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

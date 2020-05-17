@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2035111234}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 131.13168, g: 162.57239, b: 215.29922, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: a123fc0ac58cb774e8592c925f167e7c, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 1548734447}
+  m_SkySettings: {fileID: 1638036877}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: a123fc0ac58cb774e8592c925f167e7c,
     type: 2}
 --- !u!4 &313761475
@@ -1302,10 +1302,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1108083698, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5219180785004601457, guid: d7fafde62bc29a44eac73ea36f1eef96,
         type: 3}
       propertyPath: m_Name
@@ -1626,6 +1622,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022476134}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1023518174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5219180785015956500, guid: d7fafde62bc29a44eac73ea36f1eef96,
+    type: 3}
+  m_PrefabInstance: {fileID: 761481705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1045231599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2349,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 761481705}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1548734447
+--- !u!114 &1638036877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3011,6 +3013,11 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 192457627}
+    - target: {fileID: 6080853485404442985, guid: 46798ac04ce183f47ad78d5eb3fe59b4,
+        type: 3}
+      propertyPath: configMenu
+      value: 
+      objectReference: {fileID: 1023518174}
     - target: {fileID: 6080853485404442988, guid: 46798ac04ce183f47ad78d5eb3fe59b4,
         type: 3}
       propertyPath: m_Name

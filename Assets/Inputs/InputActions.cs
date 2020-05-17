@@ -75,9 +75,33 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""UnPause"",
+                    ""name"": ""MenuBack"",
                     ""type"": ""Button"",
                     ""id"": ""39ea6646-5b04-489b-8e09-e3ade1f81603"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuAccept"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9cf74a5-595b-491e-8f18-88fc71c5651a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuNavigationUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""69cdf099-047c-4a3c-b457-cad3e95db4a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuNavigationDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""03936ebb-91ab-4368-94cf-e33cf97e5b29"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -289,7 +313,40 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UnPause"",
+                    ""action"": ""MenuBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""939c7df3-7af2-4b70-a27f-2e7c41158ea5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuAccept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b074655a-ab43-41d0-b043-893a81ba1810"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuNavigationUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6572df07-5b57-4257-948f-805f3dd0dc75"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuNavigationDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -307,7 +364,10 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Sword = m_PlayerControls.FindAction("Sword", throwIfNotFound: true);
         m_PlayerControls_Scanner = m_PlayerControls.FindAction("Scanner", throwIfNotFound: true);
         m_PlayerControls_Pause = m_PlayerControls.FindAction("Pause", throwIfNotFound: true);
-        m_PlayerControls_UnPause = m_PlayerControls.FindAction("UnPause", throwIfNotFound: true);
+        m_PlayerControls_MenuBack = m_PlayerControls.FindAction("MenuBack", throwIfNotFound: true);
+        m_PlayerControls_MenuAccept = m_PlayerControls.FindAction("MenuAccept", throwIfNotFound: true);
+        m_PlayerControls_MenuNavigationUp = m_PlayerControls.FindAction("MenuNavigationUp", throwIfNotFound: true);
+        m_PlayerControls_MenuNavigationDown = m_PlayerControls.FindAction("MenuNavigationDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -364,7 +424,10 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Sword;
     private readonly InputAction m_PlayerControls_Scanner;
     private readonly InputAction m_PlayerControls_Pause;
-    private readonly InputAction m_PlayerControls_UnPause;
+    private readonly InputAction m_PlayerControls_MenuBack;
+    private readonly InputAction m_PlayerControls_MenuAccept;
+    private readonly InputAction m_PlayerControls_MenuNavigationUp;
+    private readonly InputAction m_PlayerControls_MenuNavigationDown;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -376,7 +439,10 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Sword => m_Wrapper.m_PlayerControls_Sword;
         public InputAction @Scanner => m_Wrapper.m_PlayerControls_Scanner;
         public InputAction @Pause => m_Wrapper.m_PlayerControls_Pause;
-        public InputAction @UnPause => m_Wrapper.m_PlayerControls_UnPause;
+        public InputAction @MenuBack => m_Wrapper.m_PlayerControls_MenuBack;
+        public InputAction @MenuAccept => m_Wrapper.m_PlayerControls_MenuAccept;
+        public InputAction @MenuNavigationUp => m_Wrapper.m_PlayerControls_MenuNavigationUp;
+        public InputAction @MenuNavigationDown => m_Wrapper.m_PlayerControls_MenuNavigationDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,9 +473,18 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
-                @UnPause.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
-                @UnPause.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
-                @UnPause.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
+                @MenuBack.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuBack;
+                @MenuBack.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuBack;
+                @MenuBack.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuBack;
+                @MenuAccept.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuAccept;
+                @MenuAccept.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuAccept;
+                @MenuAccept.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuAccept;
+                @MenuNavigationUp.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationUp;
+                @MenuNavigationUp.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationUp;
+                @MenuNavigationUp.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationUp;
+                @MenuNavigationDown.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
+                @MenuNavigationDown.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
+                @MenuNavigationDown.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -435,9 +510,18 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @UnPause.started += instance.OnUnPause;
-                @UnPause.performed += instance.OnUnPause;
-                @UnPause.canceled += instance.OnUnPause;
+                @MenuBack.started += instance.OnMenuBack;
+                @MenuBack.performed += instance.OnMenuBack;
+                @MenuBack.canceled += instance.OnMenuBack;
+                @MenuAccept.started += instance.OnMenuAccept;
+                @MenuAccept.performed += instance.OnMenuAccept;
+                @MenuAccept.canceled += instance.OnMenuAccept;
+                @MenuNavigationUp.started += instance.OnMenuNavigationUp;
+                @MenuNavigationUp.performed += instance.OnMenuNavigationUp;
+                @MenuNavigationUp.canceled += instance.OnMenuNavigationUp;
+                @MenuNavigationDown.started += instance.OnMenuNavigationDown;
+                @MenuNavigationDown.performed += instance.OnMenuNavigationDown;
+                @MenuNavigationDown.canceled += instance.OnMenuNavigationDown;
             }
         }
     }
@@ -451,6 +535,9 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnSword(InputAction.CallbackContext context);
         void OnScanner(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnUnPause(InputAction.CallbackContext context);
+        void OnMenuBack(InputAction.CallbackContext context);
+        void OnMenuAccept(InputAction.CallbackContext context);
+        void OnMenuNavigationUp(InputAction.CallbackContext context);
+        void OnMenuNavigationDown(InputAction.CallbackContext context);
     }
 }
