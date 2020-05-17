@@ -98,7 +98,7 @@ public class PlayerMovementController : StateMachine
 
     private void JumpInput()
     {
-        if (!onEdge && state.GetType() == typeof(MoveState))
+        if (!onEdge && state.GetType() == typeof(MoveState) && !UIManager.Instance.paused)
         {
             jump = true;
             animator.SetTrigger("Jump");
@@ -108,6 +108,7 @@ public class PlayerMovementController : StateMachine
     
     public void RotateTowardsForward(Vector3 forward)
     {
+        if (UIManager.Instance.paused) return;
         transform.LookAt(transform.position + forward);
     }
 
