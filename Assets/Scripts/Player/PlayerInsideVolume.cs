@@ -23,7 +23,8 @@ public class PlayerInsideVolume : MonoBehaviour
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    print("Cant activate sword");
+                    print("Cant activate scanner");
+                    UIManager.Instance.ShowScannerWarning();
                     return false;
                 }
 
@@ -47,7 +48,8 @@ public class PlayerInsideVolume : MonoBehaviour
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    print("Cant disable sword sword");
+                    print("Cant disable scanner");
+                    UIManager.Instance.ShowScannerWarning();
                     return false;
                 }
 
