@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject configMenu;
+    [SerializeField] private GameObject mainMenu;
     [HideInInspector] public bool paused;
 
     private InputActions _input;
@@ -32,9 +33,19 @@ public class UIManager : MonoBehaviour
         _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
     }
 
+    public void Play()
+    {
+        SceneManager.LoadScene("Prototype_Level");
+    }
+
+    public void ExitGame()
+    {
+        print("ExitGame");
+    }
+
     private void ShowPauseMenu()
     {
-        if (!pauseMenu.activeSelf && !configMenu.activeSelf)
+        if (!pauseMenu.activeSelf && !configMenu.activeSelf && SceneManager.GetActiveScene().name != "MainMenu")
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
@@ -55,6 +66,7 @@ public class UIManager : MonoBehaviour
     public void ShowConfigMenu()
     {
         if(pauseMenu.activeSelf) pauseMenu.SetActive(false);
+        if(SceneManager.GetActiveScene().name == "MainMenu") mainMenu.SetActive(false);
         if (!configMenu.activeSelf)
         {
             configMenu.SetActive(true);
@@ -65,6 +77,7 @@ public class UIManager : MonoBehaviour
     {
         if(configMenu.activeSelf) configMenu.SetActive(false);
         if(paused) pauseMenu.SetActive(true);
+        if(SceneManager.GetActiveScene().name == "MainMenu") mainMenu.SetActive(true);
     }
     
     public IEnumerator ShowDeathMenu()
