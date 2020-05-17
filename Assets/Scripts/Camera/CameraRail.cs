@@ -7,7 +7,7 @@ public class CameraRail : MonoBehaviour
     private Transform[] roadPoints;
     private Transform[] nodes;
 
-    void Start()
+    private void Start()
     {
         roadPoints = new Transform[transform.childCount];
         nodes = new Transform[transform.childCount];
@@ -16,6 +16,17 @@ public class CameraRail : MonoBehaviour
         {
             roadPoints[i] = transform.GetChild(i);
             nodes[i] = transform.GetChild(i).transform.GetChild(0);
+        }
+    }
+
+    private void Update()
+    {
+        if(nodes.Length > 1)
+        {
+            for (int i = 0; i < nodes.Length - 1; i++)
+            {
+                Debug.DrawLine(nodes[i].position, nodes[i + 1].position, Color.red);
+            }
         }
     }
 
