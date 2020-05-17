@@ -65,6 +65,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""fac264e1-e0ab-49c7-8e9f-f3b55699eeec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""UnPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""39ea6646-5b04-489b-8e09-e3ade1f81603"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -243,6 +259,39 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Scanner"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92ccfcf0-89ac-4355-a05d-58b1c5cd3d74"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acc463a1-1d5b-4152-af9b-226322874ec9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c40da79-4f47-4c76-b3a2-e7b09bb6081d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -257,6 +306,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_MoveObject = m_PlayerControls.FindAction("MoveObject", throwIfNotFound: true);
         m_PlayerControls_Sword = m_PlayerControls.FindAction("Sword", throwIfNotFound: true);
         m_PlayerControls_Scanner = m_PlayerControls.FindAction("Scanner", throwIfNotFound: true);
+        m_PlayerControls_Pause = m_PlayerControls.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerControls_UnPause = m_PlayerControls.FindAction("UnPause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -312,6 +363,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_MoveObject;
     private readonly InputAction m_PlayerControls_Sword;
     private readonly InputAction m_PlayerControls_Scanner;
+    private readonly InputAction m_PlayerControls_Pause;
+    private readonly InputAction m_PlayerControls_UnPause;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -322,6 +375,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MoveObject => m_Wrapper.m_PlayerControls_MoveObject;
         public InputAction @Sword => m_Wrapper.m_PlayerControls_Sword;
         public InputAction @Scanner => m_Wrapper.m_PlayerControls_Scanner;
+        public InputAction @Pause => m_Wrapper.m_PlayerControls_Pause;
+        public InputAction @UnPause => m_Wrapper.m_PlayerControls_UnPause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -349,6 +404,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Scanner.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
                 @Scanner.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
                 @Scanner.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScanner;
+                @Pause.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPause;
+                @UnPause.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
+                @UnPause.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
+                @UnPause.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnPause;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -371,6 +432,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Scanner.started += instance.OnScanner;
                 @Scanner.performed += instance.OnScanner;
                 @Scanner.canceled += instance.OnScanner;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @UnPause.started += instance.OnUnPause;
+                @UnPause.performed += instance.OnUnPause;
+                @UnPause.canceled += instance.OnUnPause;
             }
         }
     }
@@ -383,5 +450,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMoveObject(InputAction.CallbackContext context);
         void OnSword(InputAction.CallbackContext context);
         void OnScanner(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnUnPause(InputAction.CallbackContext context);
     }
 }

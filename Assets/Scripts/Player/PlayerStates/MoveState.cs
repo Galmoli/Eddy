@@ -29,7 +29,7 @@ public class MoveState : State
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
 
-        _controller.animator.SetFloat("Speed", vector3D.magnitude);
+        if(!UIManager.Instance.paused) _controller.animator.SetFloat("Speed", vector3D.magnitude);
 
         ExitState();
     }
