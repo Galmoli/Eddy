@@ -9,8 +9,9 @@ public class EnemyBlackboard : MonoBehaviour
     public GameObject attack;
     public Text statesText;
     public bool respawnable = false;
-    
+
     [Header("General Stats")]
+    public bool armored;
     public float initialHealthPoints;
     public float attackPoints;
     public float rotationSpeed;
@@ -42,7 +43,7 @@ public class EnemyBlackboard : MonoBehaviour
 
     [HideInInspector] public bool stunned;
 
-    [Header("Enemy Stagger")]  
+    [Header("Enemy Stagger")]
     public float staggerImpulse;
     public float staggeredTime;
 
@@ -60,26 +61,28 @@ public class EnemyBlackboard : MonoBehaviour
     public float secondaryWhiskerRatio;
     public LayerMask avoidLayers;
 
-    private SphereCollider scanner;
+    private SphereCollider scannerSphereCollider;
 
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
     public float wanderOffset;
 
-    
+
     [HideInInspector] public PlayerMovementController player;
+    [HideInInspector] public PlayerSwordScanner swordScanner;
 
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public KinematicState ownKS;
-    
+
     void Start()
     {
         GameManager.Instance.enemySpawnManager.Add(this);
 
         player = FindObjectOfType<PlayerMovementController>();
+        swordScanner = FindObjectOfType<PlayerSwordScanner>();
 
-        scanner = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
+        scannerSphereCollider = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
 
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
@@ -94,7 +97,7 @@ public class EnemyBlackboard : MonoBehaviour
         stunned = false;
         hit = false;
 
-        if(GetComponent<ArrivePlusAvoid>() != null)
+        if (GetComponent<ArrivePlusAvoid>() != null)
         {
             SetArrivePlusAvoidVariables();
         }
@@ -142,7 +145,7 @@ public class EnemyBlackboard : MonoBehaviour
         arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         arrivePlusVoid.avoidLayers = avoidLayers;
-        arrivePlusVoid.scanner = scanner;
+        arrivePlusVoid.scanner = scannerSphereCollider;
     }
 
     void SetWanderPlusAvoidVariables()
@@ -158,6 +161,16 @@ public class EnemyBlackboard : MonoBehaviour
         wanderPlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
         wanderPlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
         wanderPlusAvoid.avoidLayers = avoidLayers;
-        wanderPlusAvoid.scanner = scanner;
+        wanderPlusAvoid.scanner = scannerSphereCollider;
+    }
+
+    public bool CanBeDamaged()
+    {
+        return !armored || InScanner();
+    }
+
+    private bool InScanner()
+    {
+        return swordScanner.activeScanner && scannerSphereCollider.bounds.Contains(transform.position);
     }
 }
