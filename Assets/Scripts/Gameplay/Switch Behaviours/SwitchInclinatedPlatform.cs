@@ -34,7 +34,7 @@ public class SwitchInclinatedPlatform : Switchable
             if (perc <= 1.0f)
             {
                 perc += Time.deltaTime * 3;
-                platform.transform.eulerAngles = Vector3.Lerp(startRotation, startRotation + new Vector3(0, 0, angleZ), perc);
+                platform.transform.eulerAngles = Vector3.Lerp(startRotation, new Vector3(startRotation.x, startRotation.y, angleZ), perc);
             }
 
         }
