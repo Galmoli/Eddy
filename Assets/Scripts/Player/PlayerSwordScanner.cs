@@ -16,8 +16,8 @@ public class PlayerSwordScanner : MonoBehaviour
     public LayerMask stabSwordLayers;
 
     [Header("MOVE AWAY TO STAB")]
-    public float moveAwaySpeed;
     public float moveAwayDistance;
+    public float moveAwaySpeed;
     public float moveAwayTime;
 
     private Transform playerHand;
@@ -112,7 +112,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }                   
                 }
 
-                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out hit, 1.5f, stabSwordLayers))
+                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out hit, playerMovement.characterController.height / 2 + 0.5f, stabSwordLayers))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
