@@ -22,6 +22,8 @@ public class MoveState : State
 
     public override void Update()
     {
+        if(UIManager.Instance.paused) return;
+        
         vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
@@ -29,7 +31,7 @@ public class MoveState : State
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
 
-        if(!UIManager.Instance.paused) _controller.animator.SetFloat("Speed", vector3D.magnitude);
+        _controller.animator.SetFloat("Speed", vector3D.magnitude);
 
         ExitState();
     }

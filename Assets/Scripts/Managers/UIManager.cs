@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject configMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject scannerWarning;
     [HideInInspector] public bool paused;
 
     private InputActions _input;
@@ -94,5 +95,28 @@ public class UIManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ShowScannerWarning()
+    {
+        if (!scannerWarning.activeSelf)
+        {
+            scannerWarning.SetActive(true);
+            StartCoroutine(Co_HideScannerWarning());
+        }
+    }
+
+    private void HideScannerWarning()
+    {
+        if (scannerWarning.activeSelf)
+        {
+            scannerWarning.SetActive(false);
+        }
+    }
+    
+    private IEnumerator Co_HideScannerWarning()
+    {
+        yield return new WaitForSeconds(1.5f);
+        HideScannerWarning();
     }
 }
