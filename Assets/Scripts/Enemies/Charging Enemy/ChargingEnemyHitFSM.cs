@@ -19,7 +19,6 @@ public class ChargingEnemyHitFSM : MonoBehaviour
     private ChargingEnemyBlackboard blackboard;
     private ChargingEnemyStunFSM enemyStunFSM;
     private Rigidbody rigidBody;
-    private KinematicState kinematicState;
 
     float timer = 0;
 
@@ -28,7 +27,6 @@ public class ChargingEnemyHitFSM : MonoBehaviour
         blackboard = GetComponent<ChargingEnemyBlackboard>();
         enemyStunFSM = GetComponent<ChargingEnemyStunFSM>();
         rigidBody = GetComponent<Rigidbody>();
-        kinematicState = GetComponent<KinematicState>();
     }
 
     private void OnEnable()
@@ -79,9 +77,9 @@ public class ChargingEnemyHitFSM : MonoBehaviour
                 blackboard.hit = false;
                 break;
             case States.STAGGERED:
-                kinematicState.position = transform.position;
-                kinematicState.orientation = transform.eulerAngles.y;
-                kinematicState.linearVelocity = (blackboard.player.transform.position - transform.position).normalized;
+                blackboard.ownKS.position = transform.position;
+                blackboard.ownKS.orientation = transform.eulerAngles.y;
+                blackboard.ownKS.linearVelocity = (blackboard.player.transform.position - transform.position).normalized;
                 timer = 0;
                 break;
         }

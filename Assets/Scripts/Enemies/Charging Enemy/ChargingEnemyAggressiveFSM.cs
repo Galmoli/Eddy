@@ -25,7 +25,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
     private Seek seek;
     private ChargingEnemyPassiveFSM enemyPassiveFsm;
     private CapsuleCollider enemyCol;
-    private KinematicState kinematicState;
 
     private float timer;
 
@@ -35,7 +34,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         seek = GetComponent<Seek>();
         enemyPassiveFsm = GetComponent<ChargingEnemyPassiveFSM>();
-        kinematicState = GetComponent<KinematicState>();
         enemyCol = GetComponent<CapsuleCollider>();
     }
 
@@ -150,7 +148,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 enemyCol.height = blackboard.enemyColliderChaseHeight;
                 enemyCol.center = enemyCol.center - new Vector3(0, (2.0f - blackboard.enemyColliderChaseHeight) / 2, 0);
                 blackboard.attackCollider.enabled = true;
-                kinematicState.maxSpeed = blackboard.chasingSpeed;
+                blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
                 seek.enabled = true;
                 seek.target = blackboard.player.gameObject;
                 break;

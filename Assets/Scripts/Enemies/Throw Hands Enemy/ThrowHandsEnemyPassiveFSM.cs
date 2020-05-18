@@ -8,7 +8,6 @@ using Steerings;
 
 public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
 {
-
     public enum States
     {
         INITIAL,
@@ -23,8 +22,6 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
     private WanderPlusAvoid wanderPlusAvoid;
     private ArrivePlusAvoid arrivePlusAvoid;
 
-    private KinematicState kinematicState;
-
     private float timer;
 
     private void Start()
@@ -32,7 +29,6 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
         blackboard = GetComponent<ThrowHandsEnemyBlackboard>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
-        kinematicState = GetComponent<KinematicState>();
 
         timer = 0;
     }
@@ -130,7 +126,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
                 
                 break;
             case States.WANDER:
-                kinematicState.maxSpeed = blackboard.wanderSpeed;
+                blackboard.ownKS.maxSpeed = blackboard.wanderSpeed;
                 wanderPlusAvoid.enabled = true;
                 break;
         }

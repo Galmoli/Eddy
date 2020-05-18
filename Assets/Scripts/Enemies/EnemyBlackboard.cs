@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Steerings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public abstract class EnemyBlackboard : MonoBehaviour
 {
     public abstract void Start();
     public abstract void Update();
+    public abstract void OnDestroy();
 
     //Functions
     public abstract void ResetHealth();
@@ -13,6 +15,13 @@ public abstract class EnemyBlackboard : MonoBehaviour
     public abstract bool CanBeDamaged();
 
     //Variables
-    [HideInInspector] public bool stunned;
+    [HideInInspector] public PlayerMovementController player;
+    [HideInInspector] public PlayerSwordScanner swordScanner;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public KinematicState ownKS;
+
     [HideInInspector] public float healthPoints;
+    [HideInInspector] public bool stunned;
+    [HideInInspector] public bool hit;
+    [HideInInspector] public Vector3 hitDirection;
 }

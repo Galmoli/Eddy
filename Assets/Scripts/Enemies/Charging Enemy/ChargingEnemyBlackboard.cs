@@ -45,9 +45,6 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     public float staggerImpulse;
     public float staggeredTime;
 
-    [HideInInspector] public Vector3 hitDirection;
-    [HideInInspector] public bool hit;
-
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
     public float slowDownRadius;
@@ -64,14 +61,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
-    public float wanderOffset;
-
-
-    [HideInInspector] public PlayerMovementController player;
-    [HideInInspector] public PlayerSwordScanner swordScanner;
-
-    [HideInInspector] public Rigidbody rb;
-    [HideInInspector] public KinematicState ownKS;
+    public float wanderOffset;   
 
     public override void Start()
     {
@@ -109,14 +99,14 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     }
 
-    private void OnDestroy()
-    {
-        Destroy(initialTransform);
-    }
-
     public override void Update()
     {
         statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
+    }
+
+    public override void OnDestroy()
+    {
+        Destroy(initialTransform);
     }
 
     public override void Hit(int damage, Vector3 hitDirection)
