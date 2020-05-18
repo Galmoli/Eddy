@@ -10,8 +10,9 @@ using UnityEngine.UI;
 public class GeneralDialogue : MonoBehaviour
 {
     [SerializeField] private Image dialogueImage;
-    [SerializeField] private DialoguePopUp[] dialogues;
-    private TextMeshProUGUI text;
+    [SerializeField] private GeneralDialoguePopUp[] dialogues;
+    [SerializeField] private TextMeshProUGUI gdText;
+    [SerializeField] private TextMeshProUGUI gdSpeaker;
     private InputActions _input;
     private bool skipDialogue;
 
@@ -19,7 +20,6 @@ public class GeneralDialogue : MonoBehaviour
     {
         _input = new InputActions();
         _input.PlayerControls.SkipDialogue.started += ctx => skipDialogue = true;
-        text = dialogueImage.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void EnableDialogue(string id)
@@ -28,6 +28,7 @@ public class GeneralDialogue : MonoBehaviour
         UIManager.Instance.paused = true;
         dialogueImage.gameObject.SetActive(true);
         var dialogue = dialogues.First(d => d.id == id);
+        gdSpeaker.text = dialogue.speaker;
         StartCoroutine(AnimatedText(dialogue));
     }
 
@@ -43,7 +44,7 @@ public class GeneralDialogue : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G)) EnableDialogue("generalDialogueTest");
     }
 
-    private IEnumerator AnimatedText(DialoguePopUp d)
+    private IEnumerator AnimatedText(GeneralDialoguePopUp d)
     {
         var line = new StringBuilder();
         foreach (var l in d.lines)
@@ -76,7 +77,7 @@ public class GeneralDialogue : MonoBehaviour
                     }
 
                     line.Append(c[i]);
-                    text.text = line.ToString();
+                    gdText.text = line.ToString();
                     yield return new WaitForSeconds(0.03f);
                 
                     if ((c[i] == '.' || c[i] == '?' || c[i] == '!') && i < c.Length - 1) //Wait for dots.
@@ -86,7 +87,7 @@ public class GeneralDialogue : MonoBehaviour
                 }
                 else
                 {
-                    text.text = l.line;
+                    gdText.text = l.line;
                     i = c.Length - 1;
                     skipDialogue = false;
                 }
