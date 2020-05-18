@@ -144,6 +144,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.CHASE:
                 arrivePlusAvoid.enabled = false;
+                blackboard.rb.velocity = blackboard.ownKS.linearVelocity;
                 break;
             case States.ATTACK:
                 break;
@@ -162,15 +163,14 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.CHASE:
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
-                blackboard.ownKS.maxAcceleration = blackboard.chasingAcceleration;
                 arrivePlusAvoid.enabled = true;
                 arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
             case States.ATTACK:
-                Attack();
+                // Play attack animation      
+                Attack(); // Called by animation event
                 timeAfterAttacks = blackboard.timeAfterAttacks;
                 break;
-
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
