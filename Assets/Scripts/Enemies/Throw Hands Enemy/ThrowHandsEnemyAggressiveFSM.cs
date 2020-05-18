@@ -176,21 +176,21 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         blackboard.statesText.text = currentState.ToString();
     }
 
-    public void HitHandler(GameObject objectHit)
+    private void Attack()
     {
-        HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
+        Debug.Log("Enemy_2_Attack_Failed");
 
-        if (enemyWall == null)
+        Collider[] colliders = Physics.OverlapSphere(blackboard.attackPoint.position, 0.5f);
+        
+        for (int i = 0; i < colliders.Length; i++)
         {
-            if (objectHit.tag == "Player")
+            if (colliders[i].tag.Equals("Player"))
             {
                 blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
+                break;
             }
-
-            blackboard.stunned = true;
         }
-
-      
+   
     }
 
     private void LookAtPlayer()
@@ -203,10 +203,5 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(playerEulerAngles);
         blackboard.ownKS.orientation = playerEulerAngles.y;
-    }
-
-    private void Attack()
-    {
-        Debug.Log("Enemy2Attack");
     }
 }

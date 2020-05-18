@@ -38,6 +38,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float chasingAcceleration;
     public float attackRange;
     public float timeAfterAttacks;
+    public Transform attackPoint;
 
     [Header("Enemy Stun")]
     public float stunnedTime;
