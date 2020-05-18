@@ -116,7 +116,7 @@ namespace Steerings
 
 		private void OnEnable()
 		{
-			if(ownKS != null) ownKS.position = transform.position;
+			if (ownKS != null) ownKS.position = transform.position;
 		}
 	}
 }

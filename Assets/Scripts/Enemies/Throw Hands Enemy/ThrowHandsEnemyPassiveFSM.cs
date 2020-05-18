@@ -103,6 +103,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
 
             case States.BACK_TO_INITIAL:
                 arrivePlusAvoid.enabled = false;
+                blackboard.rb.velocity = blackboard.ownKS.linearVelocity;
                 break;
             case States.IDLE:
                 timer = 0;
