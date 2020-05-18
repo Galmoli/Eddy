@@ -10,16 +10,26 @@ using UnityEngine.UI;
 public class InGameDialogue : MonoBehaviour
 {
     [Serializable]
-    public struct Dialogue
+    public struct DialoguePopUp
     {
         public string name;
-        public DialoguePopUp  dialoguePopUp;
+        public global::DialoguePopUp  dialoguePopUp;
         public Transform target;
+    }
+
+    private static InGameDialogue instance;
+    public static InGameDialogue Intsance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<InGameDialogue>();
+            return instance;
+        }
     }
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Image dialogueImage;
-    [SerializeField] private Dialogue[] inGameDialogues;
+    [SerializeField] private DialoguePopUp[] inGameDialogues;
     private int i;
     private TextMeshProUGUI text;
 
@@ -73,7 +83,7 @@ public class InGameDialogue : MonoBehaviour
         dialogueImage.gameObject.SetActive(false);
     }
 
-    private IEnumerator AnimatedText(Dialogue d)
+    private IEnumerator AnimatedText(DialoguePopUp d)
     {
         var line = new StringBuilder();
         foreach (var l in d.dialoguePopUp.lines)
