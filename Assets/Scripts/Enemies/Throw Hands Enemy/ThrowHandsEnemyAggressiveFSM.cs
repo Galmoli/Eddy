@@ -26,6 +26,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     private ArrivePlusAvoid arrivePlusAvoid;
 
     private float timer;
+    private float minTimeBetweenAttacks;
 
     private void Start()
     {
@@ -103,9 +104,27 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                     break;
                 }
 
+                if(Vector3.Distance(transform.position, blackboard.player.transform.position) <= blackboard.attackRange)
+                {
+                    ChangeState(States.ATTACK);
+                }
 
                 break;
+            case States.ATTACK:
+                minTimeBetweenAttacks -= Time.deltaTime;
 
+                if(minTimeBetweenAttacks <= 0)
+                {
+                    ChangeState(States.ATTACK);
+                    break;
+                }
+
+                if (Vector3.Distance(transform.position, blackboard.player.transform.position) > blackboard.attackRange)
+                {
+                    ChangeState(States.CHASE);
+                }
+
+                break;
         }
     }
 
@@ -122,6 +141,10 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.CHASE:
                 arrivePlusAvoid.enabled = false;
+                break;
+            case States.ATTACK:
+                Attack();
+                minTimeBetweenAttacks = blackboard.minTimeBetweenAttacks;
                 break;
 
         }
@@ -141,6 +164,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 blackboard.ownKS.maxAcceleration = blackboard.chasingAcceleration;
                 arrivePlusAvoid.enabled = true;
                 arrivePlusAvoid.target = blackboard.player.gameObject;
+                break;
+            case States.ATTACK:
                 break;
 
         }
@@ -174,5 +199,10 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         eulerAngles.z = 0;
 
         transform.rotation = Quaternion.Euler(eulerAngles);
+    }
+
+    private void Attack()
+    {
+        Debug.Log("Enemy2Attack");
     }
 }
