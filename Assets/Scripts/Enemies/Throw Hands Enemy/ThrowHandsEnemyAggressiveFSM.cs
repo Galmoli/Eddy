@@ -178,9 +178,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Enemy_2_Attack_Failed");
-
-        Collider[] colliders = Physics.OverlapSphere(blackboard.attackPoint.position, 0.5f);
+        Collider[] colliders = Physics.OverlapSphere(blackboard.attackPoint.position, blackboard.damageZoneRadius);
         
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -190,7 +188,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             }
         }
-   
     }
 
     private void LookAtPlayer()
