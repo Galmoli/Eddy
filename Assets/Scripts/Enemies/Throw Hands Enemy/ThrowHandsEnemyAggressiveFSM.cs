@@ -26,7 +26,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     private ArrivePlusAvoid arrivePlusAvoid;
 
     private float timer;
-    private float minTimeBetweenAttacks;
+    private float timeAfterAttacks;
 
     private void Start()
     {
@@ -111,18 +111,21 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 
                 break;
             case States.ATTACK:
-                minTimeBetweenAttacks -= Time.deltaTime;
+                timeAfterAttacks -= Time.deltaTime;
 
-                if(minTimeBetweenAttacks <= 0)
+                if(timeAfterAttacks <= 0)
                 {
+                    if (Vector3.Distance(transform.position, blackboard.player.transform.position) > blackboard.attackRange)
+                    {
+                        ChangeState(States.CHASE);
+                        break;
+                    }
+
                     ChangeState(States.ATTACK);
                     break;
-                }
+                }       
 
-                if (Vector3.Distance(transform.position, blackboard.player.transform.position) > blackboard.attackRange)
-                {
-                    ChangeState(States.CHASE);
-                }
+                LookAtPlayer();
 
                 break;
         }
@@ -143,8 +146,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 arrivePlusAvoid.enabled = false;
                 break;
             case States.ATTACK:
-                Attack();
-                minTimeBetweenAttacks = blackboard.minTimeBetweenAttacks;
                 break;
 
         }
@@ -166,6 +167,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
             case States.ATTACK:
+                Attack();
+                timeAfterAttacks = blackboard.timeAfterAttacks;
                 break;
 
         }
@@ -194,11 +197,12 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     {
         transform.LookAt(blackboard.player.transform);
 
-        Vector3 eulerAngles = transform.rotation.eulerAngles;
-        eulerAngles.x = 0;
-        eulerAngles.z = 0;
+        Vector3 playerEulerAngles = transform.rotation.eulerAngles;
+        playerEulerAngles.x = 0;
+        playerEulerAngles.z = 0;
 
-        transform.rotation = Quaternion.Euler(eulerAngles);
+        transform.rotation = Quaternion.Euler(playerEulerAngles);
+        blackboard.ownKS.orientation = playerEulerAngles.y;
     }
 
     private void Attack()
