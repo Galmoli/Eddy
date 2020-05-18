@@ -127,6 +127,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
                 break;
             case States.WANDER:
                 blackboard.ownKS.maxSpeed = blackboard.wanderSpeed;
+                blackboard.ownKS.maxAcceleration = blackboard.wanderAcceleration;
                 wanderPlusAvoid.enabled = true;
                 break;
         }

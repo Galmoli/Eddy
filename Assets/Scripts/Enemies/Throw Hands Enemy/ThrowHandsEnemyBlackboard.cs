@@ -23,6 +23,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float wanderTime;
     public float idleTime;
     public float wanderSpeed;
+    public float wanderAcceleration;
     public LayerMask sightObstaclesLayers;
 
     [Header("Enemy Agressive")]
@@ -34,6 +35,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float visionAngle;
     public float timeInNotice;
     public float chasingSpeed;
+    public float chasingAcceleration;
 
     [Header("Enemy Stun")]
     public float stunnedTime;

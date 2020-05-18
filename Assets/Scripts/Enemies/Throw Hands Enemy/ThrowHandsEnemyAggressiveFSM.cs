@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Seek))]
-[RequireComponent(typeof(WanderPlusAvoid))]
 [RequireComponent(typeof(ThrowHandsEnemyPassiveFSM))]
+[RequireComponent(typeof(ArrivePlusAvoid))]
 
 public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 {
@@ -15,24 +14,27 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         INITIAL,
         ENEMY_PASSIVE,
         NOTICE,
-        CHASE
+        CHASE,
+        ATTACK
     }
 
     private States currentState;
 
     private ThrowHandsEnemyBlackboard blackboard;
+    private ThrowHandsEnemyPassiveFSM enemyPassiveFSM;
     private WanderPlusAvoid wanderPlusAvoid;
-    private Seek seek;
-    private ThrowHandsEnemyPassiveFSM enemyPassiveFsm;
+    private ArrivePlusAvoid arrivePlusAvoid;
 
     private float timer;
 
     private void Start()
     {
         blackboard = GetComponent<ThrowHandsEnemyBlackboard>();
+        enemyPassiveFSM = GetComponent<ThrowHandsEnemyPassiveFSM>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
-        seek = GetComponent<Seek>();
-        enemyPassiveFsm = GetComponent<ThrowHandsEnemyPassiveFSM>();
+        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
+
+
     }
 
     private void OnEnable()
@@ -43,8 +45,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     private void OnDisable()
     {
         wanderPlusAvoid.enabled = false;
-        seek.enabled = false;
-        enemyPassiveFsm.enabled = false;
+        enemyPassiveFSM.enabled = false;
 
         timer = 0;
     }
@@ -115,12 +116,12 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.ENEMY_PASSIVE:
-                enemyPassiveFsm.enabled = false;
+                enemyPassiveFSM.enabled = false;
                 break;
             case States.NOTICE:
                 break;
             case States.CHASE:
-                seek.enabled = false;
+                arrivePlusAvoid.enabled = false;
                 break;
 
         }
@@ -130,15 +131,16 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.ENEMY_PASSIVE:
-                enemyPassiveFsm.enabled = true;
+                enemyPassiveFSM.enabled = true;
                 break;
             case States.NOTICE:
 
                 break;
             case States.CHASE:
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
-                seek.enabled = true;
-                seek.target = blackboard.player.gameObject;
+                blackboard.ownKS.maxAcceleration = blackboard.chasingAcceleration;
+                arrivePlusAvoid.enabled = true;
+                arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
 
         }
