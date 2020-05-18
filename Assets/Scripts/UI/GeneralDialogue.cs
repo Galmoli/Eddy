@@ -9,6 +9,17 @@ using UnityEngine.UI;
 
 public class GeneralDialogue : MonoBehaviour
 {
+    private static GeneralDialogue instance;
+
+    public static GeneralDialogue Instance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<GeneralDialogue>();
+            return instance;
+        }
+    }
+    
     [SerializeField] private Image dialogueImage;
     [SerializeField] private GeneralDialoguePopUp[] dialogues;
     [SerializeField] private TextMeshProUGUI gdText;
@@ -22,7 +33,7 @@ public class GeneralDialogue : MonoBehaviour
         _input.PlayerControls.SkipDialogue.started += ctx => skipDialogue = true;
     }
 
-    private void EnableDialogue(string id)
+    public void EnableDialogue(string id)
     {
         _input.Enable();
         UIManager.Instance.paused = true;
@@ -32,7 +43,7 @@ public class GeneralDialogue : MonoBehaviour
         StartCoroutine(AnimatedText(dialogue));
     }
 
-    private void DisableDialogue()
+    public void DisableDialogue()
     {
         _input.Disable();
         UIManager.Instance.paused = false;

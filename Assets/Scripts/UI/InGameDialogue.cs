@@ -30,7 +30,7 @@ public class InGameDialogue : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Image dialogueImage;
     [SerializeField] private DialoguePopUp[] inGameDialogues;
-    private int i;
+    private DialoguePopUp _currentDialogue;
     private TextMeshProUGUI text;
 
     private void Awake()
@@ -51,9 +51,9 @@ public class InGameDialogue : MonoBehaviour
         float minY = dialogueImage.GetPixelAdjustedRect().height / 2;
         float maxY = Screen.height - minY;
         
-        Vector2 pos = mainCamera.WorldToScreenPoint(inGameDialogues[i].target.position);
+        Vector2 pos = mainCamera.WorldToScreenPoint(_currentDialogue.target.position);
 
-        if (Vector3.Dot(inGameDialogues[i].target.position - mainCamera.transform.position, mainCamera.transform.forward) < 0)
+        if (Vector3.Dot(_currentDialogue.target.position - mainCamera.transform.position, mainCamera.transform.forward) < 0)
         {
             if (pos.x < Screen.width / 2)
             {
@@ -73,9 +73,9 @@ public class InGameDialogue : MonoBehaviour
 
     public void EnableDialogue(string id)
     {
-        var dPopUp = inGameDialogues.First(d => d.dialoguePopUp.id == id);
+        _currentDialogue = inGameDialogues.First(d => d.dialoguePopUp.id == id);
         dialogueImage.gameObject.SetActive(true);
-        StartCoroutine(AnimatedText(dPopUp));
+        StartCoroutine(AnimatedText(_currentDialogue));
     }
 
     public void DisableDialogue()

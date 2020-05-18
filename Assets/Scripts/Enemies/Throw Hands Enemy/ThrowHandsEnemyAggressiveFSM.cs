@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Seek))]
-[RequireComponent(typeof(WanderPlusAvoid))]
 [RequireComponent(typeof(ThrowHandsEnemyPassiveFSM))]
+[RequireComponent(typeof(ArrivePlusAvoid))]
 
 public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 {
@@ -15,26 +14,28 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         INITIAL,
         ENEMY_PASSIVE,
         NOTICE,
-        CHASE
+        CHASE,
+        ATTACK
     }
 
     private States currentState;
 
     private ThrowHandsEnemyBlackboard blackboard;
+    private ThrowHandsEnemyPassiveFSM enemyPassiveFSM;
     private WanderPlusAvoid wanderPlusAvoid;
-    private Seek seek;
-    private ThrowHandsEnemyPassiveFSM enemyPassiveFsm;
-    private CapsuleCollider enemyCol;
+    private ArrivePlusAvoid arrivePlusAvoid;
 
     private float timer;
+    private float timeAfterAttacks;
 
     private void Start()
     {
         blackboard = GetComponent<ThrowHandsEnemyBlackboard>();
+        enemyPassiveFSM = GetComponent<ThrowHandsEnemyPassiveFSM>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
-        seek = GetComponent<Seek>();
-        enemyPassiveFsm = GetComponent<ThrowHandsEnemyPassiveFSM>();
-        enemyCol = GetComponent<CapsuleCollider>();
+        arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
+
+
     }
 
     private void OnEnable()
@@ -45,12 +46,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     private void OnDisable()
     {
         wanderPlusAvoid.enabled = false;
-        seek.enabled = false;
-        enemyPassiveFsm.enabled = false;
-        blackboard.attackCollider.enabled = false;
-
-        enemyCol.height = 2.0f;
-        enemyCol.center = Vector3.zero;
+        enemyPassiveFSM.enabled = false;
 
         timer = 0;
     }
@@ -108,9 +104,30 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                     break;
                 }
 
+                if(Vector3.Distance(transform.position, blackboard.player.transform.position) <= blackboard.attackRange)
+                {
+                    ChangeState(States.ATTACK);
+                }
 
                 break;
+            case States.ATTACK:
+                timeAfterAttacks -= Time.deltaTime;
 
+                if(timeAfterAttacks <= 0)
+                {
+                    if (Vector3.Distance(transform.position, blackboard.player.transform.position) > blackboard.attackRange)
+                    {
+                        ChangeState(States.CHASE);
+                        break;
+                    }
+
+                    ChangeState(States.ATTACK);
+                    break;
+                }       
+
+                LookAtPlayer();
+
+                break;
         }
     }
 
@@ -121,15 +138,15 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.ENEMY_PASSIVE:
-                enemyPassiveFsm.enabled = false;
+                enemyPassiveFSM.enabled = false;
                 break;
             case States.NOTICE:
                 break;
             case States.CHASE:
-                enemyCol.height = 2.0f;
-                enemyCol.center = Vector3.zero;
-                blackboard.attackCollider.enabled = false;
-                seek.enabled = false;
+                arrivePlusAvoid.enabled = false;
+                blackboard.rb.velocity = blackboard.ownKS.linearVelocity;
+                break;
+            case States.ATTACK:
                 break;
 
         }
@@ -139,50 +156,49 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.ENEMY_PASSIVE:
-                enemyPassiveFsm.enabled = true;
+                enemyPassiveFSM.enabled = true;
                 break;
             case States.NOTICE:
 
                 break;
             case States.CHASE:
-                enemyCol.height = blackboard.enemyColliderChaseHeight;
-                enemyCol.center = enemyCol.center - new Vector3(0, (2.0f - blackboard.enemyColliderChaseHeight) / 2, 0);
-                blackboard.attackCollider.enabled = true;
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
-                seek.enabled = true;
-                seek.target = blackboard.player.gameObject;
+                arrivePlusAvoid.enabled = true;
+                arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
-
+            case States.ATTACK:
+                // Play attack animation      
+                Attack(); // Called by animation event
+                timeAfterAttacks = blackboard.timeAfterAttacks;
+                break;
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
     }
 
-    public void HitHandler(GameObject objectHit)
+    private void Attack()
     {
-        HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
-
-        if (enemyWall == null)
+        Collider[] colliders = Physics.OverlapSphere(blackboard.attackPoint.position, blackboard.damageZoneRadius);
+        
+        for (int i = 0; i < colliders.Length; i++)
         {
-            if (objectHit.tag == "Player")
+            if (colliders[i].tag.Equals("Player"))
             {
                 blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
+                break;
             }
-
-            blackboard.stunned = true;
         }
-
-      
     }
 
     private void LookAtPlayer()
     {
         transform.LookAt(blackboard.player.transform);
 
-        Vector3 eulerAngles = transform.rotation.eulerAngles;
-        eulerAngles.x = 0;
-        eulerAngles.z = 0;
+        Vector3 playerEulerAngles = transform.rotation.eulerAngles;
+        playerEulerAngles.x = 0;
+        playerEulerAngles.z = 0;
 
-        transform.rotation = Quaternion.Euler(eulerAngles);
+        transform.rotation = Quaternion.Euler(playerEulerAngles);
+        blackboard.ownKS.orientation = playerEulerAngles.y;
     }
 }

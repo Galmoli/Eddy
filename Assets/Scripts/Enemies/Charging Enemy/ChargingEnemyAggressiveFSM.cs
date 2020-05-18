@@ -108,9 +108,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                     break;
                 }
 
-
                 break;
-
         }
     }
 
@@ -131,7 +129,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 blackboard.attackCollider.enabled = false;
                 seek.enabled = false;
                 break;
-
         }
 
         switch (newState)
@@ -152,7 +149,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 seek.enabled = true;
                 seek.target = blackboard.player.gameObject;
                 break;
-
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
