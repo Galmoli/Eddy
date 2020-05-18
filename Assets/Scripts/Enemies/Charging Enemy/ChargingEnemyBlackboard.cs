@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ChargingEnemyBlackboard : EnemyBlackboard
 {
-    public GameObject attack;
     public Text statesText;
     public bool respawnable = false;
 

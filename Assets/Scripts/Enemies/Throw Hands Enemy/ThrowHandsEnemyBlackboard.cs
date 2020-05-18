@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 {
-    public GameObject attack;
     public Text statesText;
     public bool respawnable = false;
 
@@ -35,7 +34,6 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float visionAngle;
     public float timeInNotice;
     public float chasingSpeed;
-    public Collider attackCollider;
 
     [Header("Enemy Stun")]
     public float stunnedTime;

@@ -4,10 +4,10 @@ namespace Steerings
 {
 	public class KinematicState : MonoBehaviour
 	{
-		public float maxAcceleration = 2f;
-		public float maxSpeed = 10f;
-		public float maxAngularAcceleration = 45f;
-		public float maxAngularSpeed = 45f;
+		public float maxAcceleration;
+		public float maxSpeed;
+		public float maxAngularAcceleration;
+		public float maxAngularSpeed;
 
 		[HideInInspector] public Vector3 position;
 		[HideInInspector] public float orientation;

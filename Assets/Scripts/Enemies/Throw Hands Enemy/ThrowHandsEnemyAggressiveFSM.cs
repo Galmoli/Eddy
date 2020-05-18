@@ -24,7 +24,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     private WanderPlusAvoid wanderPlusAvoid;
     private Seek seek;
     private ThrowHandsEnemyPassiveFSM enemyPassiveFsm;
-    private CapsuleCollider enemyCol;
 
     private float timer;
 
@@ -34,7 +33,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         seek = GetComponent<Seek>();
         enemyPassiveFsm = GetComponent<ThrowHandsEnemyPassiveFSM>();
-        enemyCol = GetComponent<CapsuleCollider>();
     }
 
     private void OnEnable()
@@ -47,10 +45,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         wanderPlusAvoid.enabled = false;
         seek.enabled = false;
         enemyPassiveFsm.enabled = false;
-        blackboard.attackCollider.enabled = false;
-
-        enemyCol.height = 2.0f;
-        enemyCol.center = Vector3.zero;
 
         timer = 0;
     }
@@ -126,9 +120,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.NOTICE:
                 break;
             case States.CHASE:
-                enemyCol.height = 2.0f;
-                enemyCol.center = Vector3.zero;
-                blackboard.attackCollider.enabled = false;
                 seek.enabled = false;
                 break;
 
@@ -145,9 +136,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 
                 break;
             case States.CHASE:
-                enemyCol.height = blackboard.enemyColliderChaseHeight;
-                enemyCol.center = enemyCol.center - new Vector3(0, (2.0f - blackboard.enemyColliderChaseHeight) / 2, 0);
-                blackboard.attackCollider.enabled = true;
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
                 seek.enabled = true;
                 seek.target = blackboard.player.gameObject;
