@@ -143,6 +143,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 85505
   enemyColliderChaseHeight: 1.2
+  maxVerticalDistance: 3
   detectionDistanceOnSight: 10
   detectionDistanceOffSight: 5
   playerOutOfRangeDistance: 10
@@ -152,9 +153,11 @@ MonoBehaviour:
   attackCollider: {fileID: 8595811993753947532}
   stunnedTime: 3
   stunImpulse: 4
-  hitDirection: {x: 0, y: 0, z: 0}
+  stunned: 0
   staggerImpulse: 2
   staggeredTime: 0.5
+  hitDirection: {x: 0, y: 0, z: 0}
+  hit: 0
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2
@@ -167,9 +170,9 @@ MonoBehaviour:
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
-  hit: 0
-  stunned: 0
   player: {fileID: 0}
+  rb: {fileID: 0}
+  ownKS: {fileID: 0}
 --- !u!114 &5168323584233096810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d61d57c37f393418a5a3d86dfe2aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownKS: {fileID: 0}
+  ownRB: {fileID: 0}
   target: {fileID: 0}
   closeEnoughRadius: 1
   slowDownRadius: 20
@@ -225,6 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82879d2dd794ed43b60d64f3c75c383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownKS: {fileID: 0}
+  ownRB: {fileID: 0}
   wanderRate: 30
   wanderRadius: 10
   wanderOffset: 20
@@ -308,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0332da65f79d98548a1a969fea32eaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownKS: {fileID: 0}
+  ownRB: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &5168323584939731903
 GameObject:
@@ -423,7 +432,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1243, y: 634}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5168323585163391153
 Canvas:
