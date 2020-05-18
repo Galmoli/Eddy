@@ -127,13 +127,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d432db5be0f112408b5a59be71a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  swordScanner: {fileID: 0}
+  rb: {fileID: 0}
+  ownKS: {fileID: 0}
+  healthPoints: 3
+  stunned: 0
+  hit: 0
+  hitDirection: {x: 0, y: 0, z: 0}
   attack: {fileID: 0}
   statesText: {fileID: 5168323584939731900}
   respawnable: 0
-  initialHealthPoints: 10
+  armored: 0
+  initialHealthPoints: 5
   attackPoints: 3
   rotationSpeed: 50
-  healthPoints: 3
   initialTransform: {fileID: 2576258279765738460}
   canWander: 1
   wanderTime: 3
@@ -153,11 +161,8 @@ MonoBehaviour:
   attackCollider: {fileID: 8595811993753947532}
   stunnedTime: 3
   stunImpulse: 4
-  stunned: 0
   staggerImpulse: 2
   staggeredTime: 0.5
-  hitDirection: {x: 0, y: 0, z: 0}
-  hit: 0
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2
@@ -170,9 +175,6 @@ MonoBehaviour:
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
-  player: {fileID: 0}
-  rb: {fileID: 0}
-  ownKS: {fileID: 0}
 --- !u!114 &5168323584233096810
 MonoBehaviour:
   m_ObjectHideFlags: 0

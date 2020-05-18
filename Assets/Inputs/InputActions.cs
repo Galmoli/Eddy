@@ -105,6 +105,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SkipDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e2daec0-b2a2-4b7e-b0f4-24c82a964e68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -349,6 +357,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""MenuNavigationDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9aed35bf-367f-4c1d-8b46-92f57da62da7"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +387,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_MenuAccept = m_PlayerControls.FindAction("MenuAccept", throwIfNotFound: true);
         m_PlayerControls_MenuNavigationUp = m_PlayerControls.FindAction("MenuNavigationUp", throwIfNotFound: true);
         m_PlayerControls_MenuNavigationDown = m_PlayerControls.FindAction("MenuNavigationDown", throwIfNotFound: true);
+        m_PlayerControls_SkipDialogue = m_PlayerControls.FindAction("SkipDialogue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -428,6 +448,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_MenuAccept;
     private readonly InputAction m_PlayerControls_MenuNavigationUp;
     private readonly InputAction m_PlayerControls_MenuNavigationDown;
+    private readonly InputAction m_PlayerControls_SkipDialogue;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -443,6 +464,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MenuAccept => m_Wrapper.m_PlayerControls_MenuAccept;
         public InputAction @MenuNavigationUp => m_Wrapper.m_PlayerControls_MenuNavigationUp;
         public InputAction @MenuNavigationDown => m_Wrapper.m_PlayerControls_MenuNavigationDown;
+        public InputAction @SkipDialogue => m_Wrapper.m_PlayerControls_SkipDialogue;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,6 +507,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MenuNavigationDown.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
                 @MenuNavigationDown.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
                 @MenuNavigationDown.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuNavigationDown;
+                @SkipDialogue.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
+                @SkipDialogue.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
+                @SkipDialogue.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -522,6 +547,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MenuNavigationDown.started += instance.OnMenuNavigationDown;
                 @MenuNavigationDown.performed += instance.OnMenuNavigationDown;
                 @MenuNavigationDown.canceled += instance.OnMenuNavigationDown;
+                @SkipDialogue.started += instance.OnSkipDialogue;
+                @SkipDialogue.performed += instance.OnSkipDialogue;
+                @SkipDialogue.canceled += instance.OnSkipDialogue;
             }
         }
     }
@@ -539,5 +567,6 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMenuAccept(InputAction.CallbackContext context);
         void OnMenuNavigationUp(InputAction.CallbackContext context);
         void OnMenuNavigationDown(InputAction.CallbackContext context);
+        void OnSkipDialogue(InputAction.CallbackContext context);
     }
 }

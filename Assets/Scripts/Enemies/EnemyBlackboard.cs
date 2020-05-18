@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(KinematicState))]
+
 public abstract class EnemyBlackboard : MonoBehaviour
 {
     public abstract void Start();
