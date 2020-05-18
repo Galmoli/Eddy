@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(EnemyHitFSM))]
+[RequireComponent(typeof(ChargingEnemyHitFSM))]
 
-public class EnemyDeathFSM : MonoBehaviour
+public class ChargingEnemyDeathFSM : MonoBehaviour
 {
     public enum States
     {
@@ -16,13 +15,13 @@ public class EnemyDeathFSM : MonoBehaviour
 
     private States currentState;
 
-    private EnemyBlackboard blackboard;
-    private EnemyHitFSM enemyHitFSM;
+    private ChargingEnemyBlackboard blackboard;
+    private ChargingEnemyHitFSM enemyHitFSM;
 
     private void Start()
     {
-        blackboard = GetComponent<EnemyBlackboard>();
-        enemyHitFSM = GetComponent<EnemyHitFSM>();
+        blackboard = GetComponent<ChargingEnemyBlackboard>();
+        enemyHitFSM = GetComponent<ChargingEnemyHitFSM>();
     }
 
     private void OnEnable()

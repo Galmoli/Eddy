@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackColliderHits : MonoBehaviour
 {
-    public EnemyAggressiveFSM enemyAggressiveFSM;
+    public ChargingEnemyAggressiveFSM enemyAggressiveFSM;
 
 
     private void OnTriggerEnter(Collider other)

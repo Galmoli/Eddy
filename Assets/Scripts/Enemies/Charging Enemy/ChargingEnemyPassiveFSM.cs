@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Steerings;
 
-[RequireComponent(typeof(EnemyBlackboard))]
 [RequireComponent(typeof(WanderPlusAvoid))]
 [RequireComponent(typeof(ArrivePlusAvoid))]
 
-public class EnemyPassiveFSM : MonoBehaviour
+public class ChargingEnemyPassiveFSM : MonoBehaviour
 {
 
     public enum States
@@ -20,7 +19,7 @@ public class EnemyPassiveFSM : MonoBehaviour
 
     private States currentState;
 
-    private EnemyBlackboard blackboard;
+    private ChargingEnemyBlackboard blackboard;
     private WanderPlusAvoid wanderPlusAvoid;
     private ArrivePlusAvoid arrivePlusAvoid;
 
@@ -30,7 +29,7 @@ public class EnemyPassiveFSM : MonoBehaviour
 
     private void Start()
     {
-        blackboard = GetComponent<EnemyBlackboard>();
+        blackboard = GetComponent<ChargingEnemyBlackboard>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
         kinematicState = GetComponent<KinematicState>();

@@ -4,11 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyBlackboard))]
+[RequireComponent(typeof(Seek))]
 [RequireComponent(typeof(WanderPlusAvoid))]
-[RequireComponent(typeof(EnemyPassiveFSM))]
+[RequireComponent(typeof(ChargingEnemyPassiveFSM))]
 
-public class EnemyAggressiveFSM : MonoBehaviour
+public class ChargingEnemyAggressiveFSM : MonoBehaviour
 {
     public enum States
     {
@@ -20,10 +20,10 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
     private States currentState;
 
-    private EnemyBlackboard blackboard;
+    private ChargingEnemyBlackboard blackboard;
     private WanderPlusAvoid wanderPlusAvoid;
     private Seek seek;
-    private EnemyPassiveFSM enemyPassiveFsm;
+    private ChargingEnemyPassiveFSM enemyPassiveFsm;
     private CapsuleCollider enemyCol;
     private KinematicState kinematicState;
 
@@ -31,10 +31,10 @@ public class EnemyAggressiveFSM : MonoBehaviour
 
     private void Start()
     {
-        blackboard = GetComponent<EnemyBlackboard>();
+        blackboard = GetComponent<ChargingEnemyBlackboard>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         seek = GetComponent<Seek>();
-        enemyPassiveFsm = GetComponent<EnemyPassiveFSM>();
+        enemyPassiveFsm = GetComponent<ChargingEnemyPassiveFSM>();
         kinematicState = GetComponent<KinematicState>();
         enemyCol = GetComponent<CapsuleCollider>();
     }

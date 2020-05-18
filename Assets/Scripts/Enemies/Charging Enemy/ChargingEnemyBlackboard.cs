@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyBlackboard : MonoBehaviour
+[RequireComponent(typeof(ChargingEnemyDeathFSM))]
+
+public class ChargingEnemyBlackboard : EnemyBlackboard
 {
     public GameObject attack;
     public Text statesText;
@@ -15,8 +17,6 @@ public class EnemyBlackboard : MonoBehaviour
     public float initialHealthPoints;
     public float attackPoints;
     public float rotationSpeed;
-
-    [HideInInspector] public float healthPoints;
 
     [Header("Enemy Passive")]
     public GameObject initialTransform;
@@ -40,8 +40,6 @@ public class EnemyBlackboard : MonoBehaviour
     [Header("Enemy Stun")]
     public float stunnedTime;
     public float stunImpulse;
-
-    [HideInInspector] public bool stunned;
 
     [Header("Enemy Stagger")]
     public float staggerImpulse;
@@ -75,7 +73,7 @@ public class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public KinematicState ownKS;
 
-    void Start()
+    public override void Start()
     {
         GameManager.Instance.enemySpawnManager.Add(this);
 
@@ -116,19 +114,19 @@ public class EnemyBlackboard : MonoBehaviour
         Destroy(initialTransform);
     }
 
-    private void Update()
+    public override void Update()
     {
         statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
     }
 
-    public void Hit(int damage, Vector3 hitDirection)
+    public override void Hit(int damage, Vector3 hitDirection)
     {
         this.hitDirection = hitDirection;
         hit = true;
         healthPoints -= damage;
     }
 
-    public void ResetHealth()
+    public override void ResetHealth()
     {
         healthPoints = initialHealthPoints;
     }
@@ -164,7 +162,7 @@ public class EnemyBlackboard : MonoBehaviour
         wanderPlusAvoid.scanner = scannerSphereCollider;
     }
 
-    public bool CanBeDamaged()
+    public override bool CanBeDamaged()
     {
         return !armored || InScanner();
     }

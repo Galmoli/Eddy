@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyBlackboard))]
-[RequireComponent(typeof(EnemyStunFSM))]
+[RequireComponent(typeof(ChargingEnemyStunFSM))]
 
-public class EnemyHitFSM : MonoBehaviour
+public class ChargingEnemyHitFSM : MonoBehaviour
 {
     public enum States
     {
@@ -17,8 +16,8 @@ public class EnemyHitFSM : MonoBehaviour
 
     private States currentState;
 
-    private EnemyBlackboard blackboard;
-    private EnemyStunFSM enemyStunFSM;
+    private ChargingEnemyBlackboard blackboard;
+    private ChargingEnemyStunFSM enemyStunFSM;
     private Rigidbody rigidBody;
     private KinematicState kinematicState;
 
@@ -26,8 +25,8 @@ public class EnemyHitFSM : MonoBehaviour
 
     private void Start()
     {
-        blackboard = GetComponent<EnemyBlackboard>();
-        enemyStunFSM = GetComponent<EnemyStunFSM>();
+        blackboard = GetComponent<ChargingEnemyBlackboard>();
+        enemyStunFSM = GetComponent<ChargingEnemyStunFSM>();
         rigidBody = GetComponent<Rigidbody>();
         kinematicState = GetComponent<KinematicState>();
     }
