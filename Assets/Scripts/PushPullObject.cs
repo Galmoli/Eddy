@@ -16,11 +16,13 @@ public class PushPullObject : MonoBehaviour
     [HideInInspector] public bool moving;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
     private BoxCollider _boxCollider;
+    private Rigidbody _rb;
     private InputActions _input;
     
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
+        _rb = GetComponent<Rigidbody>();
         _input = new InputActions();
         _input.Enable();
         _input.PlayerControls.Sword.started += ctx => SwordInput();
@@ -53,13 +55,13 @@ public class PushPullObject : MonoBehaviour
     //Moves this GameObject when the player pulls it.
     public void Pull()
     {
-        transform.Translate(moveVector * (speedWhenMove * Time.deltaTime), Space.World);
+        _rb.velocity = moveVector.normalized * 1.15f * speedWhenMove;
     }
     
     //Moves this GameObject when the player pushes it.
     public void Push()
     {
-        transform.Translate(-moveVector * (speedWhenMove * Time.deltaTime), Space.World);
+        _rb.velocity = -moveVector.normalized * speedWhenMove;
     }
 
     //Gets the angle between the closest vector and the director vector
@@ -170,5 +172,21 @@ public class PushPullObject : MonoBehaviour
         }
         //The player is in the X axis
         return narrowAngleToAllowMovement;
+    }
+
+    public void LockAllConstraints()
+    {
+        if (_rb.constraints == RigidbodyConstraints.None)
+        {
+            _rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    public void UnlockAllConstraints()
+    {
+        if (_rb.constraints == RigidbodyConstraints.FreezeAll)
+        {
+            _rb.constraints = RigidbodyConstraints.None;
+        }
     }
 }
