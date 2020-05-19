@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -8,6 +10,7 @@ public class PushPullObject : MonoBehaviour
     public float narrowAngleToAllowMovement;
     public float wideAngleToAllowMovement;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform _triggerTransform;
     [SerializeField] private LayerMask _layersToDetectCollision;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
@@ -18,6 +21,7 @@ public class PushPullObject : MonoBehaviour
     private BoxCollider _boxCollider;
     private Rigidbody _rb;
     private InputActions _input;
+    
     
     private void Awake()
     {
@@ -51,7 +55,12 @@ public class PushPullObject : MonoBehaviour
             canMove = false;
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        _triggerTransform.up = Vector3.up;
+    }
+
     //Moves this GameObject when the player pulls it.
     public void Pull()
     {
@@ -120,12 +129,15 @@ public class PushPullObject : MonoBehaviour
     //Its used because the cube can be rotated in any angle.
     private Vector3[] Generate3DVectors()
     {
-        Vector3[] vectors = new Vector3[4];
+        Vector3[] vectors = new Vector3[6];
         
         vectors[0] = transform.forward;
         vectors[1] = -transform.forward;
         vectors[2] = transform.right;
         vectors[3] = -transform.right;
+        vectors[4] = transform.up;
+        vectors[5] = -transform.up;
+        
 
         return vectors;
     }
@@ -176,17 +188,29 @@ public class PushPullObject : MonoBehaviour
 
     public void LockAllConstraints()
     {
-        if (_rb.constraints == RigidbodyConstraints.None)
+        if (_rb.constraints == RigidbodyConstraints.FreezeRotation || _rb.constraints == RigidbodyConstraints.None)
         {
             _rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
-    public void UnlockAllConstraints()
+    public void UnlockPosConstraints()
     {
-        if (_rb.constraints == RigidbodyConstraints.FreezeAll)
+        if (_rb.constraints == RigidbodyConstraints.FreezeAll || _rb.constraints == RigidbodyConstraints.None)
         {
-            _rb.constraints = RigidbodyConstraints.None;
+            _rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
+    }
+
+    public void UnlockAllConstrains()
+    {
+        _rb.constraints = RigidbodyConstraints.None;
+    }
+
+    public bool HasFloor()
+    {
+        var pos = new Vector3(transform.position.x, transform.position.y - _boxCollider.size.y / 2, transform.position.z);
+        var colliders = Physics.OverlapSphere(pos, 0.1f);
+        return colliders.Any(c => !c.CompareTag("MoveObject"));
     }
 }

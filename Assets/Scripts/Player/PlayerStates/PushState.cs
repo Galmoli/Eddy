@@ -34,7 +34,7 @@ public class PushState : State
             if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
             {
                 _controller.characterController.Move(_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
-                _controller.moveObject.UnlockAllConstraints();
+                _controller.moveObject.UnlockPosConstraints();
                 _controller.moveObject.Pull();
                 _controller.animator.SetBool("isDragging", true);
                 _controller.animator.SetBool("isPushing", false);
@@ -43,7 +43,7 @@ public class PushState : State
             if (PlayerUtils.InputDirectionTolerance(-_controller.moveObject.moveVector, _controller.moveObject.GetAngleToAllowMovement(), _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPush)
             {
                 _controller.characterController.Move(-_controller.moveObject.moveVector * (_controller.moveObject.speedWhenMove * Time.deltaTime));
-                _controller.moveObject.UnlockAllConstraints();
+                _controller.moveObject.UnlockPosConstraints();
                 _controller.moveObject.Push();
                 _controller.animator.SetBool("isPushing", true);
                 _controller.animator.SetBool("isDragging", false);
@@ -67,10 +67,18 @@ public class PushState : State
 
     public override void ExitState()
     {
-        if (!_controller.inputMoveObject || !_controller.moveObject.canMove)
+        if (!_controller.inputMoveObject || !_controller.moveObject.canMove || !_controller.moveObject.HasFloor())
         {
+            if (_controller.moveObject.HasFloor())
+            {
+                _controller.moveObject.LockAllConstraints();
+            }
+            else
+            {
+                _controller.moveObject.UnlockAllConstrains();
+            }
+            
             _controller.CheckCollisions();
-            _controller.moveObject.LockAllConstraints();
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
         }

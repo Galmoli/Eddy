@@ -67,7 +67,7 @@ public class MoveState : State
 
         CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position));
 
-        if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject)
+        if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject && _controller.moveObject.HasFloor())
         {
             _controller.SetState(new PushState(_controller));
         }
