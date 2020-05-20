@@ -16,12 +16,16 @@ public class UIManager : MonoBehaviour
             return instance;
         }
     }
+    
+    public static Action OnHeal = delegate {};
+    
     [SerializeField] private float timeToShowMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject configMenu;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject scannerWarning;
+    [SerializeField] private LifeUILogic lifeUILogic;
     [HideInInspector] public bool paused;
 
     private InputActions _input;
@@ -79,6 +83,11 @@ public class UIManager : MonoBehaviour
         if(configMenu.activeSelf) configMenu.SetActive(false);
         if(paused) pauseMenu.SetActive(true);
         if(SceneManager.GetActiveScene().name == "MainMenu") mainMenu.SetActive(true);
+    }
+
+    public void Hit()
+    {
+        lifeUILogic.Hit();
     }
     
     public IEnumerator ShowDeathMenu()
