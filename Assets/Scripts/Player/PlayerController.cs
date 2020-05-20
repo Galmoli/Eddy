@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     {
         _movementController = GetComponent<PlayerMovementController>();
         _combatController = GetComponent<PlayerCombatController>();
+        UIManager.OnHeal += Heal;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
         //Provisional to trigger death state
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Hit(100);
+            Hit(1);
         }   
     }
 
@@ -40,7 +41,13 @@ public class PlayerController : MonoBehaviour
         {
             float number = UnityEngine.Random.Range(1, 4);
             _movementController.animator.SetTrigger("Hit" + number.ToString());
+            UIManager.Instance.Hit();
         }
+    }
+
+    public void Heal()
+    {
+        health++;
     }
 
     private void SetDeadState()
