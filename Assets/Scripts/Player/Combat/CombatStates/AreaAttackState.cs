@@ -38,9 +38,14 @@ public class AreaAttackState : State
 
     public override void Interact()
     {
-        _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
-        if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
-        Debug.Log("Enemy damaged: " + _attackObject.damage);
+        if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+        {
+            _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
+            if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
+            Debug.Log("Enemy damaged: " + _attackObject.damage);
+            return;
+        }
+        Debug.Log("Armor hit");
     }
 
     public override void ExitState()
