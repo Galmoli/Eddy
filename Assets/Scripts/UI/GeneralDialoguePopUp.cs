@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New General Dialogue", menuName = "General Dialogue")]
 public class GeneralDialoguePopUp : ScriptableObject
 {
-    public string id;
     public string speaker;
     public DialoguePopUpLine[] lines;
 }
