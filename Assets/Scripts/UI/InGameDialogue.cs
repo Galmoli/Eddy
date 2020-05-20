@@ -18,7 +18,7 @@ public class InGameDialogue : MonoBehaviour
     }
 
     private static InGameDialogue instance;
-    public static InGameDialogue Intsance
+    public static InGameDialogue Instance
     {
         get
         {
@@ -108,5 +108,7 @@ public class InGameDialogue : MonoBehaviour
             }
             yield return new WaitForSeconds(0.9f);
         }
+        yield return new WaitForSeconds(1.0f);
+        DisableDialogue();
     }
 }
