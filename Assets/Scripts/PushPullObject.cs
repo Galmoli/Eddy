@@ -1,13 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public class PushPullObject : MonoBehaviour
 {
     public float speedWhenMove;
-    public float narrowAngleToAllowMovement;
-    public float wideAngleToAllowMovement;
+    public float angleToAllowMovement;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform _triggerTransform;
     [SerializeField] private LayerMask _layersToDetectCollision;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
@@ -16,11 +18,14 @@ public class PushPullObject : MonoBehaviour
     [HideInInspector] public bool moving;
     [HideInInspector] public Vector3 moveVector; //This vector can be negative, it depends if it's pushing or pulling
     private BoxCollider _boxCollider;
+    private Rigidbody _rb;
     private InputActions _input;
+    
     
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
+        _rb = GetComponent<Rigidbody>();
         _input = new InputActions();
         _input.Enable();
         _input.PlayerControls.Sword.started += ctx => SwordInput();
@@ -30,7 +35,7 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (GetAngleBetweenForwardAndPlayer() <= GetAngleToAllowMovement())
+            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
             {
                 canMove = true;
                 moveVector = GetClosestVector();
@@ -49,17 +54,22 @@ public class PushPullObject : MonoBehaviour
             canMove = false;
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        _triggerTransform.up = Vector3.up;
+    }
+
     //Moves this GameObject when the player pulls it.
     public void Pull()
     {
-        transform.Translate(moveVector * (speedWhenMove * Time.deltaTime), Space.World);
+        _rb.velocity = moveVector.normalized * 1.15f * speedWhenMove;
     }
     
     //Moves this GameObject when the player pushes it.
     public void Push()
     {
-        transform.Translate(-moveVector * (speedWhenMove * Time.deltaTime), Space.World);
+        _rb.velocity = -moveVector.normalized * speedWhenMove;
     }
 
     //Gets the angle between the closest vector and the director vector
@@ -118,12 +128,15 @@ public class PushPullObject : MonoBehaviour
     //Its used because the cube can be rotated in any angle.
     private Vector3[] Generate3DVectors()
     {
-        Vector3[] vectors = new Vector3[4];
+        Vector3[] vectors = new Vector3[6];
         
         vectors[0] = transform.forward;
         vectors[1] = -transform.forward;
         vectors[2] = transform.right;
         vectors[3] = -transform.right;
+        vectors[4] = transform.up;
+        vectors[5] = -transform.up;
+        
 
         return vectors;
     }
@@ -143,32 +156,31 @@ public class PushPullObject : MonoBehaviour
         if (swordStabbed) swordStabbed = false;
     }
 
-    public float GetAngleToAllowMovement()
+    public void LockAllConstraints()
     {
-        var z = _boxCollider.size.z;
-        var x = _boxCollider.size.x;
-        var actualPlayerVector = GetClosestVector();
-
-
-        if (z >= x)
+        if (_rb.constraints == RigidbodyConstraints.FreezeRotation || _rb.constraints == RigidbodyConstraints.None)
         {
-            //Its more wide in the Z axis
-            if (actualPlayerVector == transform.right || actualPlayerVector == -transform.right)
-            {
-                //The player is in the X axis
-                return wideAngleToAllowMovement;
-            }
-            //The player is in the Z axis
-            return narrowAngleToAllowMovement;
+            _rb.constraints = RigidbodyConstraints.FreezeAll;
         }
-        
-        //It's more wide in the X axis
-        if (actualPlayerVector == transform.forward || actualPlayerVector == -transform.forward)
+    }
+
+    public void UnlockPosConstraints()
+    {
+        if (_rb.constraints == RigidbodyConstraints.FreezeAll || _rb.constraints == RigidbodyConstraints.None)
         {
-            //The player is in the Z axis
-            return wideAngleToAllowMovement;
+            _rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-        //The player is in the X axis
-        return narrowAngleToAllowMovement;
+    }
+
+    public void UnlockAllConstrains()
+    {
+        _rb.constraints = RigidbodyConstraints.None;
+    }
+
+    public bool HasFloor()
+    {
+        var pos = new Vector3(transform.position.x, transform.position.y - _boxCollider.size.y / 2, transform.position.z);
+        var colliders = Physics.OverlapSphere(pos, 0.1f);
+        return colliders.Any(c => !c.CompareTag("MoveObject"));
     }
 }
