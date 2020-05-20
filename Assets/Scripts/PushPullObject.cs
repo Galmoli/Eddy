@@ -7,8 +7,7 @@ using UnityEngine;
 public class PushPullObject : MonoBehaviour
 {
     public float speedWhenMove;
-    public float narrowAngleToAllowMovement;
-    public float wideAngleToAllowMovement;
+    public float angleToAllowMovement;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform _triggerTransform;
     [SerializeField] private LayerMask _layersToDetectCollision;
@@ -36,7 +35,7 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (GetAngleBetweenForwardAndPlayer() <= GetAngleToAllowMovement())
+            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
             {
                 canMove = true;
                 moveVector = GetClosestVector();
@@ -155,35 +154,6 @@ public class PushPullObject : MonoBehaviour
     private void SwordInput()
     {
         if (swordStabbed) swordStabbed = false;
-    }
-
-    public float GetAngleToAllowMovement()
-    {
-        var z = _boxCollider.size.z;
-        var x = _boxCollider.size.x;
-        var actualPlayerVector = GetClosestVector();
-
-
-        if (z >= x)
-        {
-            //Its more wide in the Z axis
-            if (actualPlayerVector == transform.right || actualPlayerVector == -transform.right)
-            {
-                //The player is in the X axis
-                return wideAngleToAllowMovement;
-            }
-            //The player is in the Z axis
-            return narrowAngleToAllowMovement;
-        }
-        
-        //It's more wide in the X axis
-        if (actualPlayerVector == transform.forward || actualPlayerVector == -transform.forward)
-        {
-            //The player is in the Z axis
-            return wideAngleToAllowMovement;
-        }
-        //The player is in the X axis
-        return narrowAngleToAllowMovement;
     }
 
     public void LockAllConstraints()
