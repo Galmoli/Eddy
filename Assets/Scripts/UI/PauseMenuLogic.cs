@@ -14,6 +14,10 @@ public class PauseMenuLogic : MonoBehaviour
 
     private InputActions _input;
 
+    [SerializeField] private GameObject resumeImage;
+    [SerializeField] private GameObject optionsImage;
+    [SerializeField] private GameObject exitImage;
+
     private void Awake()
     {
         _input = new InputActions();
@@ -30,6 +34,7 @@ public class PauseMenuLogic : MonoBehaviour
     {
         _input.Enable();
         _option = PauseMenuOption.Resume;
+        resumeImage.transform.localScale = new Vector3(1.1f,1.1f,1);
     }
 
     private void OnDisable()
@@ -44,9 +49,13 @@ public class PauseMenuLogic : MonoBehaviour
             case PauseMenuOption.Resume:
                 break;
             case PauseMenuOption.Options:
+                optionsImage.transform.localScale = new Vector3(1, 1, 1);
+                resumeImage.transform.localScale = new Vector3(1.1f,1.1f,1);
                 _option = PauseMenuOption.Resume;
                 break;
             case PauseMenuOption.Exit:
+                exitImage.transform.localScale = new Vector3(1,1,1);
+                optionsImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
                 _option = PauseMenuOption.Options;
                 break;
         }
@@ -57,9 +66,13 @@ public class PauseMenuLogic : MonoBehaviour
         switch (_option)
         {
             case PauseMenuOption.Resume:
+                resumeImage.transform.localScale = new Vector3(1,1,1);
+                optionsImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
                 _option = PauseMenuOption.Options;
                 break;
             case PauseMenuOption.Options:
+                optionsImage.transform.localScale = new Vector3(1,1,1);
+                exitImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
                 _option = PauseMenuOption.Exit;
                 break;
             case PauseMenuOption.Exit:

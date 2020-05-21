@@ -13,6 +13,9 @@ public class ConfigMenuLogic : MonoBehaviour
     
     private InputActions _input;
     private ConfigMenuOptions _option;
+
+    [SerializeField] private GameObject volume;
+    [SerializeField] private GameObject backImage;
     
     private void Awake()
     {
@@ -28,6 +31,7 @@ public class ConfigMenuLogic : MonoBehaviour
     {
         _input.Enable();
         _option = ConfigMenuOptions.Volume;
+        volume.transform.localScale = new Vector3(1.1f,1.1f, 1);
     }
 
     private void OnDisable()
@@ -43,6 +47,8 @@ public class ConfigMenuLogic : MonoBehaviour
                 break;
             case ConfigMenuOptions.Back:
                 _option = ConfigMenuOptions.Volume;
+                backImage.transform.localScale = new Vector3(1,1,1);
+                volume.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 break;
         }
     }
@@ -52,6 +58,8 @@ public class ConfigMenuLogic : MonoBehaviour
         switch (_option)
         {
             case ConfigMenuOptions.Volume:
+                volume.transform.localScale = new Vector3(1, 1, 1);
+                backImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 _option = ConfigMenuOptions.Back;
                 break;
             case ConfigMenuOptions.Back:

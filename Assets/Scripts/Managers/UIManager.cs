@@ -89,6 +89,16 @@ public class UIManager : MonoBehaviour
     {
         lifeUILogic.Hit();
     }
+
+    public void Heal()
+    {
+        lifeUILogic.Heal();
+    }
+
+    public void RestoreHealth()
+    {
+        lifeUILogic.RestoreHealth();
+    }
     
     public IEnumerator ShowDeathMenu()
     {
