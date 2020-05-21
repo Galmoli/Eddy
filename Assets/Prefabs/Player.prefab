@@ -51,7 +51,7 @@ MonoBehaviour:
   topLeftCheck: {fileID: 1196140402}
   bottomRightCheck: {fileID: 758147487}
   bottomLeftCheck: {fileID: 822026304}
-  _swordSphereCollider: {fileID: 0}
+  _swordSphereCollider: {fileID: 7440743234358789418}
 --- !u!1 &608974115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,11 +1657,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bddc150f0252c47b7bdeb462e35069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 0}
+  sword: {fileID: 7440743234358789419}
   basicAttack: {fileID: 11400000, guid: 8c99c17c5f1632f4181682c8b7c4eb75, type: 2}
   areaAttack: {fileID: 11400000, guid: bfafa40af1c196545b432544b48da296, type: 2}
   comboAttack: {fileID: 11400000, guid: 6e91a735cfa505044bb37ec413cb73be, type: 2}
-  swordTrigger: {fileID: 0}
+  swordTrigger: {fileID: 2028364641}
   attacksToCombo: 3
   timeToCancelCombo: 1
   timeToStartCharging: 0.7
@@ -1695,6 +1695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3584d872016c09d46ab00884262dabc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToRegenerate: 3
+  initialHealth: 16
   health: 16
 --- !u!1 &6613940198532215024
 GameObject:
@@ -1836,9 +1838,9 @@ GameObject:
   - component: {fileID: 7440743234358789418}
   - component: {fileID: 7440743234358789417}
   - component: {fileID: 7440743234358789416}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Espada
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
