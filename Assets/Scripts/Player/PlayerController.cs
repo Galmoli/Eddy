@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         //Provisional to trigger death state
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Hit(1);
+            Hit(3);
         }   
     }
 
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             _movementController.animator.SetTrigger("Hit" + number.ToString());
             StopAllCoroutines();
             StartCoroutine(Co_Heal());
-            UIManager.Instance.Hit();
+            UIManager.Instance.Hit(damage);
         }
     }
 
