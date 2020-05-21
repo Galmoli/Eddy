@@ -8,9 +8,12 @@ public class LifeUILogic : MonoBehaviour
     [SerializeField] private Image[] healDots;
     
 
-    public void Hit()
+    public void Hit(int damage)
     {
-        GetHealthDot(true).fillAmount -= 0.25f;
+        for (int i = 0; i < damage; i++)
+        {
+            GetHealthDot(true).fillAmount -= 0.25f;
+        }
         StopAllCoroutines();
     }
 

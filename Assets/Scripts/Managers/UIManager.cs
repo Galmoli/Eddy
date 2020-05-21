@@ -85,9 +85,9 @@ public class UIManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "MainMenu") mainMenu.SetActive(true);
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
-        lifeUILogic.Hit();
+        lifeUILogic.Hit(damage);
     }
 
     public void Heal()
