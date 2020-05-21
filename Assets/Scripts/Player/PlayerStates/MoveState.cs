@@ -22,7 +22,11 @@ public class MoveState : State
 
     public override void Update()
     {
-        if(UIManager.Instance.paused) return;
+        if (UIManager.Instance.paused)
+        {
+            _controller.animator.SetFloat("Speed", 0);
+            return;
+        }
         
         vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
