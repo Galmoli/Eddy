@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5063632179997909394}
   - component: {fileID: 1941103821154380865}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Trigger
   m_TagString: MoveObject
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 7416977337615977374}
   - component: {fileID: 5134197247296770187}
   - component: {fileID: 5520692167220668752}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: DraggableObject_1
   m_TagString: MoveObject
   m_Icon: {fileID: 0}
@@ -356,7 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedWhenMove: 2
-  angleToAllowMovement: 40
+  narrowAngleToAllowMovement: 30
+  wideAngleToAllowMovement: 40
   playerTransform: {fileID: 0}
   _layersToDetectCollision:
     serializedVersion: 2
@@ -364,6 +365,8 @@ MonoBehaviour:
   canMove: 0
   canPush: 0
   canPull: 0
+  swordStabbed: 0
+  moving: 0
   moveVector: {x: 0, y: 0, z: 0}
 --- !u!54 &5134197247296770187
 Rigidbody:

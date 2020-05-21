@@ -9,8 +9,9 @@ public class DynamicOnImpact : MonoBehaviour
         if (collision.gameObject.tag != "Player")
         {
 
-            GetComponent<Rigidbody>().isKinematic = false;
+                GetComponent<Rigidbody>().isKinematic = false;
             
         }
     }
+
 }
