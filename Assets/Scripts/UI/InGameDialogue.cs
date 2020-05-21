@@ -41,17 +41,17 @@ public class InGameDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) EnableDialogue("tumbaDani");
+        //if (Input.GetKeyDown(KeyCode.T)) EnableDialogue("tumbaDani");
         
         if (!dialogueImage.gameObject.activeSelf) return;
             
-        float minX = dialogueImage.GetPixelAdjustedRect().width / 2;
+        float minX = dialogueImage.GetPixelAdjustedRect().width;
         float maxX = Screen.width - minX;
         
         float minY = dialogueImage.GetPixelAdjustedRect().height / 2;
         float maxY = Screen.height - minY;
         
-        Vector2 pos = mainCamera.WorldToScreenPoint(_currentDialogue.target.position);
+        Vector2 pos = mainCamera.WorldToScreenPoint(_currentDialogue.target.position - _currentDialogue.target.forward * 2);
 
         if (Vector3.Dot(_currentDialogue.target.position - mainCamera.transform.position, mainCamera.transform.forward) < 0)
         {
@@ -68,7 +68,7 @@ public class InGameDialogue : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
-        dialogueImage.transform.position = pos;
+        dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 3*Time.deltaTime);
     }
 
     public void EnableDialogue(string id)

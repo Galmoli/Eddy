@@ -84,13 +84,14 @@ GameObject:
   - component: {fileID: 32497364}
   - component: {fileID: 32497366}
   - component: {fileID: 32497365}
+  - component: {fileID: 218269772}
   m_Layer: 5
   m_Name: LifeHUD_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &32497364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -150,6 +151,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &218269772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32497363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546237a9eb2448a4c8da9abc3e2c753c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healDots:
+  - {fileID: 6165948167699814751}
+  - {fileID: 1571435455}
+  - {fileID: 1875899392}
+  - {fileID: 14612483}
+  timeToRegenerate: 3
 --- !u!1 &581774325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,52 +1797,49 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   dialogueImage: {fileID: 581774327}
   inGameDialogues:
-  - name: CheckPoint 1
+  - name: SwordCongratulation1
     dialoguePopUp: {fileID: 11400000, guid: e6f6b665e8ee2b942a15d3caec1184f4, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordCongratulation2
     dialoguePopUp: {fileID: 11400000, guid: be89e58e4a86d9a4b8b4c3adeb73fbc2, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordCongratulation3
     dialoguePopUp: {fileID: 11400000, guid: b54d82d0fc55dbf4c8a3e8549ace98b3, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordCongratulation4
     dialoguePopUp: {fileID: 11400000, guid: 4cb4e55036da28a4caa389c864b06402, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordExplanation1
     dialoguePopUp: {fileID: 11400000, guid: 1101d6c9b2bed284189150326f763973, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordExplanation2
     dialoguePopUp: {fileID: 11400000, guid: 02bb10c0f3304a04ca9c422784c48774, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordExplanation3
     dialoguePopUp: {fileID: 11400000, guid: 8053984d0ddb35a40b89e3e3fb6d34ea, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SadAntagonist
     dialoguePopUp: {fileID: 11400000, guid: 05423ec28ee6db0419d368936c636ebe, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry1
     dialoguePopUp: {fileID: 11400000, guid: 22c14c4247ad2704ab323cc8a8c78ae8, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: SwordExplanation4
     dialoguePopUp: {fileID: 11400000, guid: c71b433bfee8d314081721014c947d20, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry2
     dialoguePopUp: {fileID: 11400000, guid: 56f2afa6f95760d4da9bd0686ad4b128, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
-    dialoguePopUp: {fileID: 0}
-    target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry3
     dialoguePopUp: {fileID: 11400000, guid: 98d08d88ff6f39e44856c278e715f65b, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry4
     dialoguePopUp: {fileID: 11400000, guid: 02b005952c97da04ab00febcd06e0cf6, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry5
     dialoguePopUp: {fileID: 11400000, guid: 0b2c08fea427ee344b9ed5d22b3d4128, type: 2}
     target: {fileID: 0}
-  - name: CheckPoint 1
+  - name: AntagonistAngry6
     dialoguePopUp: {fileID: 11400000, guid: fd26dbeb968bd5d47b59c4595ba2ae5f, type: 2}
     target: {fileID: 0}
 --- !u!114 &1663000875
@@ -4466,8 +4482,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
