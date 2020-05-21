@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2035111234}
-  m_IndirectSpecularColor: {r: 131.16855, g: 162.52502, b: 215.10977, a: 1}
+  m_IndirectSpecularColor: {r: 131.18076, g: 162.51416, b: 215.03311, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,12 +128,107 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 761481705}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &111340401 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8629853808942182894, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1910457097}
+--- !u!114 &132525539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 10
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  hdriSky:
+    m_OverrideState: 0
+    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
+  enableBackplate:
+    m_OverrideState: 0
+    m_Value: 0
+  backplateType:
+    m_OverrideState: 0
+    m_Value: 0
+  groundLevel:
+    m_OverrideState: 0
+    m_Value: 0
+  scale:
+    m_OverrideState: 0
+    m_Value: {x: 32, y: 32}
+  projectionDistance:
+    m_OverrideState: 0
+    m_Value: 16
+    min: 0.0000001
+  plateRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  blendAmount:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 100
+  shadowTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  pointLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  dirLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  rectLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!1 &177311044
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,18 +330,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &221423217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1875899392, guid: d7fafde62bc29a44eac73ea36f1eef96,
-    type: 3}
-  m_PrefabInstance: {fileID: 761481705}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &313761473
 GameObject:
   m_ObjectHideFlags: 1
@@ -278,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: a123fc0ac58cb774e8592c925f167e7c, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 383713941}
+  m_SkySettings: {fileID: 132525539}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: a123fc0ac58cb774e8592c925f167e7c,
     type: 2}
 --- !u!4 &313761475
@@ -313,107 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e692dcf31f69dfa4ab532d90e9ead69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &383713941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  rotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
-  exposure:
-    m_OverrideState: 0
-    m_Value: 10
-  multiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxValue:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxColor:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
-  updateMode:
-    m_OverrideState: 0
-    m_Value: 0
-  updatePeriod:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  includeSunInBaking:
-    m_OverrideState: 0
-    m_Value: 0
-  hdriSky:
-    m_OverrideState: 0
-    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
-  enableBackplate:
-    m_OverrideState: 0
-    m_Value: 0
-  backplateType:
-    m_OverrideState: 0
-    m_Value: 0
-  groundLevel:
-    m_OverrideState: 0
-    m_Value: 0
-  scale:
-    m_OverrideState: 0
-    m_Value: {x: 32, y: 32}
-  projectionDistance:
-    m_OverrideState: 0
-    m_Value: 16
-    min: 0.0000001
-  plateRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0}
-  blendAmount:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 100
-  shadowTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
-  pointLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  dirLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  rectLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!1 &448350738
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +746,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &495353634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2028364641, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1910457097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e110c2295f2e70a48b6e8f67c01d0f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &522657978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,18 +1245,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707560558}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &717875006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1571435455, guid: d7fafde62bc29a44eac73ea36f1eef96,
-    type: 3}
-  m_PrefabInstance: {fileID: 761481705}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &760354859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413060706102396980, guid: 67506054e8bdffc48badcb523427d951,
@@ -1765,30 +1747,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045231599}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1159563271 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 14612483, guid: d7fafde62bc29a44eac73ea36f1eef96,
-    type: 3}
-  m_PrefabInstance: {fileID: 761481705}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1218193737 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1178068022544641802, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1910457097}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a6e4dbd3653c54bba675ef7dbbb561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1283156660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2156,7 +2114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rail: {fileID: 204589257}
-  target: {fileID: 111340401}
+  target: {fileID: 327731676}
   movementSpeed: 1
   rotationSpeed: 1
   lookAtPlayer: 0
@@ -2403,36 +2361,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6343daee47100cd438d559125e4f2281, type: 3}
+--- !u!135 &1475396124 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 7440743234358789418, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1910457097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475396125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7440743234358789419, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1910457097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a6e4dbd3653c54bba675ef7dbbb561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1538129344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9003181894529615291, guid: 36555fdd0ceff6941ba768448a354f5d,
     type: 3}
   m_PrefabInstance: {fileID: 1283156660}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1689253644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 32497363, guid: d7fafde62bc29a44eac73ea36f1eef96,
+--- !u!114 &1689253646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 218269772, guid: d7fafde62bc29a44eac73ea36f1eef96,
     type: 3}
   m_PrefabInstance: {fileID: 761481705}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1689253646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689253644}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 546237a9eb2448a4c8da9abc3e2c753c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healDots:
-  - {fileID: 1790647621}
-  - {fileID: 717875006}
-  - {fileID: 221423217}
-  - {fileID: 1159563271}
-  timeToRegenerate: 10
 --- !u!1 &1786720184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,18 +2490,6 @@ Transform:
   m_Father: {fileID: 1297650284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1790647621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6165948167699814751, guid: d7fafde62bc29a44eac73ea36f1eef96,
-    type: 3}
-  m_PrefabInstance: {fileID: 761481705}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1910457097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2545,10 +2497,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377628566, guid: fd7d8ac96d433dc4f9cc6581d32ae99a, type: 3}
+      propertyPath: _swordSphereCollider
+      value: 
+      objectReference: {fileID: 1475396124}
     - target: {fileID: 1159083678, guid: fd7d8ac96d433dc4f9cc6581d32ae99a, type: 3}
       propertyPath: swordScanner
       value: 
-      objectReference: {fileID: 1218193737}
+      objectReference: {fileID: 0}
     - target: {fileID: 1159083678, guid: fd7d8ac96d433dc4f9cc6581d32ae99a, type: 3}
       propertyPath: movementController
       value: 
@@ -2562,6 +2518,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6411527136159828570, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+        type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1475396125}
+    - target: {fileID: 6411527136159828570, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+        type: 3}
+      propertyPath: swordTrigger
+      value: 
+      objectReference: {fileID: 495353634}
     - target: {fileID: 6411527136159828576, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
         type: 3}
       propertyPath: m_Material
@@ -2691,6 +2657,16 @@ PrefabInstance:
     - target: {fileID: 8071038148436316868, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
         type: 3}
       propertyPath: health
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071038148436316868, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+        type: 3}
+      propertyPath: timeToRegenerate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071038148436316868, guid: fd7d8ac96d433dc4f9cc6581d32ae99a,
+        type: 3}
+      propertyPath: initialHealth
       value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []

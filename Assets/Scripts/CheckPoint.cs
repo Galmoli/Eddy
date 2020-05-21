@@ -11,6 +11,7 @@ public class CheckPoint : MonoBehaviour
     public void Activate()
     {
         GameManager.Instance.respawnPos = respawnPos.position;
+        FindObjectOfType<PlayerController>().RestoreHealth();
         light.enabled = true;
     }
 }
