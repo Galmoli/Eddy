@@ -44,7 +44,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
 
     private void OnDisable()
     {
-        blackboard.animator.SetBool("isCharging", false);
         wanderPlusAvoid.enabled = false;
         seek.enabled = false;
         enemyPassiveFsm.enabled = false;
@@ -125,7 +124,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
             case States.NOTICE:
                 break;
             case States.CHASE:
-                blackboard.animator.SetBool("isCharging", false);
                 enemyCol.height = 2.0f;
                 enemyCol.center = Vector3.zero;
                 blackboard.attackCollider.enabled = false;
@@ -141,10 +139,9 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 enemyPassiveFsm.enabled = true;
                 break;
             case States.NOTICE:
-                blackboard.animator.SetTrigger("hasNoticed");
+
                 break;
             case States.CHASE:
-                blackboard.animator.SetBool("isCharging",true);
                 enemyCol.height = blackboard.enemyColliderChaseHeight;
                 enemyCol.center = enemyCol.center - new Vector3(0, (2.0f - blackboard.enemyColliderChaseHeight) / 2, 0);
                 blackboard.attackCollider.enabled = true;
