@@ -193,6 +193,14 @@ public class PlayerSwordScanner : MonoBehaviour
     public void ScannerOn()
     {
         if (!_playerInsideVolume.CanActivateScanner()) return;
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(true);
+        }
+
         activeScanner = true;
         
         transform.GetChild(0).gameObject.SetActive(true);
@@ -205,6 +213,14 @@ public class PlayerSwordScanner : MonoBehaviour
     public void ScannerOff()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(false);
+        }
+
         activeScanner = false;
 
         transform.GetChild(0).gameObject.SetActive(false);
@@ -257,7 +273,14 @@ public class PlayerSwordScanner : MonoBehaviour
     private void SwordBack()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
-        
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(false);
+        }
+
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();

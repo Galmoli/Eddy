@@ -60,7 +60,11 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
-    public float wanderOffset;   
+    public float wanderOffset;
+
+    //Other variables
+    private bool checkingInVolumeScannerOn;
+    private bool checkingInVolumeScannerOff;
 
     public override void Start()
     {
@@ -96,6 +100,8 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
         initialTransform.transform.parent = null;
 
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
     }
 
     public override void Update()
@@ -159,5 +165,38 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     private bool InScanner()
     {
         return swordScanner.activeScanner && scannerSphereCollider.bounds.Contains(transform.position);
+    }
+
+    public override void Death()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public override void EnemyInVolume(bool scannerOn)
+    {
+        if (scannerOn) checkingInVolumeScannerOn = true;
+        else checkingInVolumeScannerOff = true;
+
+        StartCoroutine(CheckingInVolumeCoroutine());
+    }
+
+    private IEnumerator CheckingInVolumeCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
+    }
+
+    public override void OnCollisionStay(Collision other)
+    {
+        if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
+        {
+            Death();
+        }
+
+        if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
+        {
+            Death();
+        }
     }
 }
