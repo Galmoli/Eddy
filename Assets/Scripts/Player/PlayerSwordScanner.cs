@@ -347,7 +347,8 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         return playerMovement.GetState().GetType() != typeof(EdgeState)
             && playerMovement.GetState().GetType() != typeof(CombatState)
-            && playerMovement.GetState().GetType() != typeof(PushState);
+            && playerMovement.GetState().GetType() != typeof(PushState)
+            && playerMovement.GetState().GetType() != typeof(StabSwordState);
     }
 
     public bool HoldingSword()
