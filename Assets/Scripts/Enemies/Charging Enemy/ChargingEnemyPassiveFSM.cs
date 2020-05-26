@@ -40,6 +40,7 @@ public class ChargingEnemyPassiveFSM : MonoBehaviour
 
     private void OnDisable()
     {
+        blackboard.animator.SetFloat("speed", 0);
         wanderPlusAvoid.enabled = false;
         arrivePlusAvoid.enabled = false;
 
@@ -57,6 +58,8 @@ public class ChargingEnemyPassiveFSM : MonoBehaviour
 
                 break;
             case States.BACK_TO_INITIAL:
+
+                blackboard.animator.SetFloat("speed", blackboard.ownKS.linearVelocity.magnitude);
 
                 if (Vector3.Distance(transform.position, blackboard.initialTransform.transform.position) <= blackboard.closeEnoughRadius)
                 {
@@ -81,6 +84,8 @@ public class ChargingEnemyPassiveFSM : MonoBehaviour
 
                 break;
             case States.WANDER:
+
+                blackboard.animator.SetFloat("speed", blackboard.ownKS.linearVelocity.magnitude);
 
                 if (timer >= blackboard.wanderTime)
                 {
@@ -123,7 +128,7 @@ public class ChargingEnemyPassiveFSM : MonoBehaviour
                 arrivePlusAvoid.enabled = true;
                 break;
             case States.IDLE:
-                
+                blackboard.animator.SetFloat("speed", 0);
                 break;
             case States.WANDER:
                 blackboard.ownKS.maxSpeed = blackboard.wanderSpeed;

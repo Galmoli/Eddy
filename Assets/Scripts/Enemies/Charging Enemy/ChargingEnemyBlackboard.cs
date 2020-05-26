@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ChargingEnemyBlackboard : EnemyBlackboard
 {
+    public GameObject ragdoll;
     public Text statesText;
     public bool respawnable = false;
 
@@ -43,6 +44,10 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [Header("Enemy Stagger")]
     public float staggerImpulse;
     public float staggeredTime;
+
+    [Header("Enemy Death")]
+    public float minDeathImpulse = 4000;
+    public float maxDeathImpulse = 6000;
 
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
@@ -169,6 +174,14 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     public override void Death()
     {
+        Vector3 dir = transform.position - player.transform.position;
+        dir = dir.normalized;
+
+        GameObject rd = Instantiate(ragdoll, transform.position, Quaternion.identity);
+        rd.transform.rotation = transform.rotation;
+
+        float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
+        rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
         gameObject.SetActive(false);
     }
 
