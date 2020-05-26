@@ -176,7 +176,7 @@ public class InGameDialogue : MonoBehaviour
                 yield return new WaitForSeconds(0.9f);
             }
         }
-        //yield return new WaitForSeconds(5f);
+        if (!d.dialoguePopUp.instantText) yield return new WaitForSeconds(5f);
         DisableDialogue();
     }
 }
