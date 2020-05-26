@@ -29,4 +29,6 @@ public abstract class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public bool stunned;
     [HideInInspector] public bool hit;
     [HideInInspector] public Vector3 hitDirection;
+
+    public Animator animator;
 }
