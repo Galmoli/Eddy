@@ -30,7 +30,10 @@ public class MoveState : State
         
         vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
-        vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        
+        if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        else vector3D *= _controller.minSpeed;
+        
         SnapToFloor();
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);

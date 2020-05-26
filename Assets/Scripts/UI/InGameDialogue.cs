@@ -97,19 +97,21 @@ public class InGameDialogue : MonoBehaviour
         pointerPos.x = Mathf.Clamp(pointerPos.x, pminX, pmaxX);
         pointerPos.y = Mathf.Clamp(pointerPos.y, pminY, pmaxY);
 
-        dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.2f);
-        pointer.transform.position = Vector3.Lerp(pointer.transform.position, pointerPos, 0.2f);
+        dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.1f);
+        pointer.transform.position = Vector3.Lerp(pointer.transform.position, pointerPos, 0.1f);
     }
 
     public void EnableDialogue(string id)
     {
         _currentDialogue = inGameDialogues.First(d => d.dialoguePopUp.id == id);
         dialogueImage.gameObject.SetActive(true);
+        if(_currentDialogue.dialoguePopUp.playerWalk) UIManager.Instance.popUpEnabled = true;
         StartCoroutine(AnimatedText(_currentDialogue));
     }
 
-    public void DisableDialogue()
+    private void DisableDialogue()
     {
+        UIManager.Instance.popUpEnabled = false;
         dialogueImage.gameObject.SetActive(false);
     }
 

@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject scannerWarning;
     [SerializeField] private LifeUILogic lifeUILogic;
     [HideInInspector] public bool paused;
+    [HideInInspector] public bool popUpEnabled;
 
     private InputActions _input;
 

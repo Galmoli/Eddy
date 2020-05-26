@@ -27,7 +27,9 @@ public class JumpState : State
         currentTime += Time.deltaTime;
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
-        vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        
+        if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        else vector3D *= _controller.minSpeed;
 
         if (_controller.edgeAvailable && PlayerUtils.CanInteractWithEdge(_controller.transform.forward, _controller.edgeGameObject.transform.forward, _controller.angleToAllowClimbEdge))
         {
