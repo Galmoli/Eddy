@@ -8,4 +8,5 @@ public class DialoguePopUp : ScriptableObject
     public string id;
     public DialoguePopUpLine[] lines;
     public bool playerWalk;
+    public bool instantText;
 }

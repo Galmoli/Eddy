@@ -30,6 +30,7 @@ public class InGameDialogue : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Image pointer;
+    [SerializeField] private float timeToAdd;
     [SerializeField] private DialoguePopUp[] inGameDialogues;
     private DialoguePopUp _currentDialogue;
     private TextMeshProUGUI text;
@@ -141,27 +142,41 @@ public class InGameDialogue : MonoBehaviour
         var line = new StringBuilder();
         foreach (var l in d.dialoguePopUp.lines)
         {
-            line = new StringBuilder();
-            var c = l.line.ToCharArray();
-            for (int i= 0; i < c.Length; i++)
+            if (d.dialoguePopUp.instantText)
             {
-                if (c[i] == '<')
+                float timeToWait = 0f;
+                text.text = l.line;
+                var cs = l.line.ToCharArray();
+                foreach (var c in cs)
                 {
-                    while (c[i] != '>')
-                    {
-                        line.Append(c[i]);
-                        i++;
-                        yield return null;
-                    }
+                    if (c == ' ') timeToWait += timeToAdd;
                 }
-                
-                line.Append(c[i]);
-                text.text = line.ToString();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(timeToWait);
             }
-            yield return new WaitForSeconds(0.9f);
+            else
+            {
+                line = new StringBuilder();
+                var c = l.line.ToCharArray();
+                for (int i= 0; i < c.Length; i++)
+                {
+                    if (c[i] == '<')
+                    {
+                        while (c[i] != '>')
+                        {
+                            line.Append(c[i]);
+                            i++;
+                            yield return null;
+                        }
+                    }
+                
+                    line.Append(c[i]);
+                    text.text = line.ToString();
+                    yield return new WaitForSeconds(0.05f);
+                }
+                yield return new WaitForSeconds(0.9f);
+            }
         }
-        yield return new WaitForSeconds(30.0f);
+        //yield return new WaitForSeconds(5f);
         DisableDialogue();
     }
 }
