@@ -31,6 +31,7 @@ public class PlayerMovementController : StateMachine
 
     //Objects
     [HideInInspector] public PlayerSwordScanner scannerSword;
+    [HideInInspector] public SphereCollider scannerCollider;
 
     //Components
     [HideInInspector] public CharacterController characterController;
@@ -58,6 +59,7 @@ public class PlayerMovementController : StateMachine
         cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         scannerSword = FindObjectOfType<PlayerSwordScanner>();
+        scannerCollider = scannerSword.GetComponent<SphereCollider>();
         scannerIntersect = FindObjectOfType<ScannerIntersectionManager>();
 
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();

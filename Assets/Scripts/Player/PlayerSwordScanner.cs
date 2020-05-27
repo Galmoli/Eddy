@@ -208,7 +208,7 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         activeScanner = true;
-        
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Scanner) UIHelperController.Instance.DisableHelper();
         transform.GetChild(0).gameObject.SetActive(true);
         _sphereCollider.enabled = true;
         _swordProgressiveColliders.EnableSword();
@@ -345,7 +345,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private bool CanStab()
     {
-        return playerMovement.GetState().GetType() == typeof(MoveState);
+        return playerMovement.GetState().GetType() == typeof(MoveState)
+            || (playerMovement.GetState().GetType() == typeof(JumpState) && transform.parent != playerHand);
     }
 
     public bool HoldingSword()

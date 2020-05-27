@@ -7,12 +7,16 @@ public class EdgeState : State
 {
     private PlayerMovementController _controller;
     private PlayerSwordScanner _scannerSword;
+    private SphereCollider _scannerCollider;
+    private EdgeDetection _edgeDetection;
     private bool autoStand;
 
     public EdgeState(PlayerMovementController controller)
     {
         _controller = controller;
         _scannerSword = controller.scannerSword;
+        _scannerCollider = controller.scannerCollider;
+        _edgeDetection = GameObject.FindObjectOfType<EdgeDetection>();
     }
     public override void Enter()
     {
@@ -22,6 +26,13 @@ public class EdgeState : State
         if (_scannerSword.UsingScannerInHand())
         {
             _scannerSword.ScannerOff();
+        }
+
+        if (!ValidEdge())
+        {
+            _controller.onEdge = false;
+            _controller.edgeAvailable = false;
+            ExitState();
         }
 
         if (_controller.edgeGameObject.transform.position.y > _controller.transform.position.y) _controller.animator.SetTrigger("Hanging");
@@ -99,5 +110,19 @@ public class EdgeState : State
     {
         var projectedVector = Vector3.ProjectOnPlane(_controller.transform.position - _controller.edgePosition, _controller.edgeGameObject.transform.forward);
         return Vector3.ProjectOnPlane(projectedVector, _controller.transform.up);
+    }
+
+    private bool ValidEdge()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_edgeDetection.transform.position, _controller.transform.forward, out hit, 1f, LayerMask.GetMask("Appear")))
+        {
+            if (_scannerCollider.bounds.Contains(hit.point))
+                return true;
+            else
+                return false;
+        }
+
+        return true;
     }
 }
