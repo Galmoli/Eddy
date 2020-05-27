@@ -194,7 +194,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanActivateScanner()) return;
         activeScanner = true;
-        
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Scanner) UIHelperController.Instance.DisableHelper();
         transform.GetChild(0).gameObject.SetActive(true);
         _sphereCollider.enabled = true;
         _swordProgressiveColliders.EnableSword();

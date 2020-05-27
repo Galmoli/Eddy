@@ -42,16 +42,16 @@ public class UIHelperController : MonoBehaviour
         actionToComplete = action;
         switch (action)
         {
-            case HelperAction.Jump: //
+            case HelperAction.Jump:
                 ButtonA.SetActive(true);
                 break;
-            case HelperAction.Drag: //
+            case HelperAction.Drag:
                 ButtonB.SetActive(true);
                 break;
             case HelperAction.NailSword:
                 ButtonY.SetActive(true);
                 break;
-            case HelperAction.Attack: //
+            case HelperAction.Attack:
                 ButtonX.SetActive(true);
                 break;
             case HelperAction.Scanner:

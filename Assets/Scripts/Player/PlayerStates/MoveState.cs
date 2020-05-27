@@ -30,6 +30,11 @@ public class MoveState : State
         
         vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
+
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Move && _controller.movementVector.magnitude >= 0.7f)
+        {
+            UIHelperController.Instance.DisableHelper();
+        } 
         
         if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
         else vector3D *= _controller.minSpeed;
