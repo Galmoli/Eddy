@@ -8,7 +8,7 @@ public class AttackColliderHits : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enemyAggressiveFSM.enabled && other.gameObject.layer != LayerMask.NameToLayer("ScannerLayer"))
+        if (enemyAggressiveFSM.enabled && other.gameObject.layer != LayerMask.NameToLayer("ScannerLayer") && other.gameObject.layer != LayerMask.NameToLayer("TriggerDetection"))
         { 
             enemyAggressiveFSM.HitHandler(other.transform.gameObject);            
         }
