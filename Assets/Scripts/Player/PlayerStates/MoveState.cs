@@ -47,7 +47,7 @@ public class MoveState : State
         if (_controller.gameObject.layer == LayerMask.NameToLayer("Player")) layer = _controller.layersToCheckFloorOutsideScanner;
         else layer = _controller.layersToCheckFloorInsideScanner;
         
-        if (!_controller.characterController.isGrounded)
+        if (!_controller.characterController.isGrounded || PlayerOnRamp())
         {
             RaycastHit hitInfo = new RaycastHit();
             if (Physics.Raycast(new Ray(_controller.feetOverlap.position, Vector3.down), out hitInfo, snapDistance, layer))
@@ -59,6 +59,21 @@ public class MoveState : State
         {
             verticalSnap = Vector3.zero;
         }
+    }
+
+    private bool PlayerOnRamp()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_controller.transform.position - Vector3.up * (_controller.characterController.height / 2), -_controller.transform.up, out hit, 0.5f))
+        {
+            float surfaceAngle = Vector3.Angle(hit.normal, _controller.transform.up);
+            if(surfaceAngle > 10f)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public override void ExitState()

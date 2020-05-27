@@ -345,7 +345,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private bool CanStab()
     {
-        return playerMovement.GetState().GetType() == typeof(MoveState);
+        return playerMovement.GetState().GetType() == typeof(MoveState)
+            || (playerMovement.GetState().GetType() == typeof(JumpState) && transform.parent != playerHand);
     }
 
     public bool HoldingSword()
