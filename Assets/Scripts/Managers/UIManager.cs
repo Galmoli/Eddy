@@ -18,7 +18,8 @@ public class UIManager : MonoBehaviour
     }
     
     public static Action OnHeal = delegate {};
-    
+
+    public Camera mainCamera;
     [SerializeField] private float timeToShowMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject pauseMenu;

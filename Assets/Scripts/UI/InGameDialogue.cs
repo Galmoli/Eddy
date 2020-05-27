@@ -26,8 +26,6 @@ public class InGameDialogue : MonoBehaviour
             return instance;
         }
     }
-
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Image pointer;
     [SerializeField] private float timeToAdd;
@@ -35,11 +33,17 @@ public class InGameDialogue : MonoBehaviour
     private DialoguePopUp _currentDialogue;
     private TextMeshProUGUI text;
     private Canvas _canvas;
+    private Camera _mainCamera;
 
     private void Awake()
     {
         text = dialogueImage.GetComponentInChildren<TextMeshProUGUI>();
         _canvas = GetComponent<Canvas>();
+    }
+
+    private void Start()
+    {
+        _mainCamera = UIManager.Instance.mainCamera;
     }
 
     // Update is called once per frame
@@ -59,21 +63,21 @@ public class InGameDialogue : MonoBehaviour
         float pminY = pointer.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
         float pmaxY = Screen.height - pminY;
 
-        Vector3 cameraProjectedForward = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
+        Vector3 cameraProjectedForward = Vector3.ProjectOnPlane(_mainCamera.transform.forward, Vector3.up);
         
-        Vector2 pos = mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12);
+        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12);
 
-        Vector2 pointerDir = ((Vector2)mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pos).normalized;
+        Vector2 pointerDir = ((Vector2)_mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pos).normalized;
         Vector2 pointerPos = GetPointerPos(pointerDir, minX, minY);
         pointerPos += pos;
         
-        Vector2 pointerAngleV2 = ((Vector2) mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pointerPos).normalized;
+        Vector2 pointerAngleV2 = ((Vector2) _mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pointerPos).normalized;
         
 
         var angle = Mathf.Atan2(pointerAngleV2.y, pointerAngleV2.x) * Mathf.Rad2Deg + 90;
         pointer.transform.rotation = Quaternion.AngleAxis(angle, pointer.transform.forward);
 
-        if (Vector3.Dot(_currentDialogue.target.position - mainCamera.transform.position, mainCamera.transform.forward) < 0)
+        if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
         {
             if (pos.x < Screen.width / 2)
             {
