@@ -12,6 +12,8 @@ public class AntagonistPersecutionFSM : MonoBehaviour
     private Rigidbody rigidbody;
     bool dialogueShowed;
 
+    int currentDestiny;
+
     float timer = 0;
 
     // Start is called before the first frame update
@@ -59,7 +61,7 @@ public class AntagonistPersecutionFSM : MonoBehaviour
                 break;
             case States.CHARGING:
                
-                navMeshAgent.SetDestination(blackboard.firstDestiny.transform.position);
+                navMeshAgent.SetDestination(blackboard.destinies[currentDestiny].transform.position);
 
                 break;
             case States.STUNNED:
@@ -75,22 +77,18 @@ public class AntagonistPersecutionFSM : MonoBehaviour
 
                 timer += Time.deltaTime;
 
-                if (timer >= blackboard.pipeTime/3 && !dialogueShowed)
+                /*if (timer >= blackboard.pipeTime/3 && !dialogueShowed)
                 {
-                    InGameDialogue.Instance.EnableDialogue("PopUp_14");
+                    //InGameDialogue.Instance.EnableDialogue("PopUp_14");
                     dialogueShowed = true;
-                }
+                }*/
 
                 if (timer >= blackboard.pipeTime)
                 {
                     ChangeState(States.PERSECUTION);
                 }
                 break;
-            case States.APPEARING_ROTATING:
-                break;
             case States.WAITINGFORPIPE:
-                break;
-            case States.WAITINGFORPLAYER:
                 break;
         }
     }
@@ -120,12 +118,7 @@ public class AntagonistPersecutionFSM : MonoBehaviour
                 timer = 0;
                 dialogueShowed = false;
                 break;
-            case States.APPEARING_ROTATING:
-                break;
             case States.WAITINGFORPIPE:
-                navMeshAgent.enabled = true;
-                break;
-            case States.WAITINGFORPLAYER:
                 navMeshAgent.enabled = true;
                 break;
         }
@@ -142,6 +135,7 @@ public class AntagonistPersecutionFSM : MonoBehaviour
             case States.WAITINGFORPIPE:
                 navMeshAgent.enabled = false;
                 transform.position = blackboard.pipe.transform.position + Vector3.up * 4;
+                currentDestiny++;
                 break;
             case States.PERSECUTION:
                 navMeshAgent.speed = blackboard.persecutionSpeed;
@@ -150,6 +144,7 @@ public class AntagonistPersecutionFSM : MonoBehaviour
                 blackboard.secondObstacle.SetActive(false);
                 break;
             case States.CHARGING:
+
                 navMeshAgent.speed = blackboard.persecutionSpeed;
                 blackboard.attackCollider.enabled = true;
                 blackboard.firstObstacle.SetActive(false);
@@ -167,13 +162,8 @@ public class AntagonistPersecutionFSM : MonoBehaviour
                 blackboard.attackCollider.enabled = false;
                 blackboard.thirdObstacle.SetActive(true);
                 blackboard.endCol.SetActive(true);
-                break;
-            case States.APPEARING_ROTATING:
-                break;
-            case States.WAITINGFORPLAYER:
-                navMeshAgent.enabled = false;
-                transform.position = blackboard.secondDestiny.transform.position;
-                blackboard.firstObstacle.SetActive(true);
+                //blackboard.zones[0].SetActive(false);
+                blackboard.zones[1].SetActive(true);               
                 break;
         }
 
@@ -182,7 +172,7 @@ public class AntagonistPersecutionFSM : MonoBehaviour
 
     public enum States
     {
-        INITIAL, GUARDING, FOLLOWING, PERSECUTION, CHARGING, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING, WAITINGFORPLAYER
+        INITIAL, GUARDING, FOLLOWING, PERSECUTION, CHARGING, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING
     }
 }
 

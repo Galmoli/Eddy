@@ -6,6 +6,8 @@ public class AntagonistAttackEvents : MonoBehaviour
 {
 
     public AntagonistPersecutionFSM antagonistPersecutionFSM;
+    public AntagonistBossFSM antagonistBossFSM;
+    public AntagonistEndingFSM antagonistEndingFSM;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +17,12 @@ public class AntagonistAttackEvents : MonoBehaviour
                 break;
             case "Obstacle":
 
-                antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.STUNNED);
+                if (antagonistPersecutionFSM.enabled)
+                    antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.STUNNED);
+                else if (antagonistBossFSM.enabled)
+                    antagonistBossFSM.ChangeState(AntagonistBossFSM.States.STUNNED);
+                else
+                    antagonistEndingFSM.ChangeState(AntagonistEndingFSM.States.STUNNED);
 
                 break;
            
@@ -35,8 +42,8 @@ public class AntagonistAttackEvents : MonoBehaviour
             case "End":
 
                 other.gameObject.SetActive(false);
-                antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.WAITINGFORPLAYER);
-
+                antagonistPersecutionFSM.enabled = false;
+                antagonistBossFSM.enabled = true;
                 break;
         }
     }

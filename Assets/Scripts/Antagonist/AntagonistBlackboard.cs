@@ -10,6 +10,7 @@ public class AntagonistBlackboard : MonoBehaviour
     public float stunnedTime;
     public float downPipeImpulse;
     public float pipeTime;
+    public float endingPipeTime;
 
     public GameObject player;
 
@@ -21,10 +22,15 @@ public class AntagonistBlackboard : MonoBehaviour
     public GameObject secondObstacle;
     public GameObject thirdObstacle;
 
-    public GameObject firstDestiny;
-    public GameObject secondDestiny;
+    public GameObject[] destinies;
 
     public GameObject pipe;
+
+    public GameObject[] zones;
+
+    public GameObject[] pipePositions;
+
+    public GameObject enemyCollider;
 
     private void Start()
     {
