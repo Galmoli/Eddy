@@ -9,21 +9,47 @@ public class PlayerInsideVolume : MonoBehaviour
     [SerializeField] private float maxAxisX = 0.5f;
     [SerializeField] private float maxAxisZ = 0.5f;
     private PlayerMovementController _controller;
+    private PlayerSwordScanner _sword;
+    private bool _disableLater;
     private void Awake()
     {
         _controller = GetComponent<PlayerMovementController>();
+        _sword = FindObjectOfType<PlayerSwordScanner>();
+    }
+
+    private void Update()
+    {
+        if (!_disableLater) return;
+
+        bool stillInCollider = false;
+        Collider[] colliders = Physics.OverlapSphere(_controller.transform.position, radiusToCheck);
+        foreach (var c in colliders)
+        {
+            if (c.gameObject.layer == LayerMask.NameToLayer("Hide"))
+            {
+                if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
+                {
+                    stillInCollider = true;
+                }
+            }
+        }
+
+        if (!stillInCollider)
+        {
+            _disableLater = false;
+            _sword.ScannerOff();
+        }
     }
 
     public bool CanActivateScanner()
     {
-        Collider[] colliders = Physics.OverlapSphere(_controller.feetOverlap.position, radiusToCheck);
+        Collider[] colliders = Physics.OverlapSphere(_controller.transform.position, radiusToCheck);
         foreach (var c in colliders)
         {
-            if (c.gameObject.layer == LayerMask.NameToLayer("Appear") && c.transform.root == c.transform)
+            if (c.gameObject.layer == LayerMask.NameToLayer("Appear"))
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    print("Cant activate scanner");
                     UIManager.Instance.ShowScannerWarning();
                     return false;
                 }
@@ -41,15 +67,15 @@ public class PlayerInsideVolume : MonoBehaviour
 
     public bool CanDisableScanner()
     {
-        Collider[] colliders = Physics.OverlapSphere(_controller.feetOverlap.position, radiusToCheck);
+        Collider[] colliders = Physics.OverlapSphere(_controller.transform.position, radiusToCheck);
         foreach (var c in colliders)
         {
-            if (c.gameObject.layer == LayerMask.NameToLayer("Hide") && c.transform.root == c.transform)
+            if (c.gameObject.layer == LayerMask.NameToLayer("Hide"))
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    print("Cant disable scanner");
                     UIManager.Instance.ShowScannerWarning();
+                    _disableLater = true;
                     return false;
                 }
 
