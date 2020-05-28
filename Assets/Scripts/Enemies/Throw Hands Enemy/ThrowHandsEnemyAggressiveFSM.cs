@@ -47,7 +47,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
     {
         wanderPlusAvoid.enabled = false;
         enemyPassiveFSM.enabled = false;
-
+        blackboard.animator.SetFloat("speed", 0);
         timer = 0;
     }
 
@@ -97,7 +97,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 
                 break;
             case States.CHASE:
-
+                blackboard.animator.SetFloat("speed", blackboard.ownKS.linearVelocity.magnitude);
                 if (Vector3.Distance(transform.position, blackboard.player.transform.position) >= blackboard.playerOutOfRangeDistance || Math.Abs(blackboard.player.transform.position.y - transform.position.y) >= blackboard.maxVerticalDistance)
                 {
                     ChangeState(States.ENEMY_PASSIVE);
@@ -112,8 +112,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ATTACK:
                 timeAfterAttacks -= Time.deltaTime;
-
-                if(timeAfterAttacks <= 0)
+                blackboard.animator.SetFloat("speed", 0);
+                if (timeAfterAttacks <= 0)
                 {
                     if (Vector3.Distance(transform.position, blackboard.player.transform.position) > blackboard.attackRange)
                     {
@@ -159,7 +159,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 enemyPassiveFSM.enabled = true;
                 break;
             case States.NOTICE:
-
+                blackboard.animator.SetTrigger("hasNoticed");
                 break;
             case States.CHASE:
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;

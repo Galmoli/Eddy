@@ -42,7 +42,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
     {
         wanderPlusAvoid.enabled = false;
         arrivePlusAvoid.enabled = false;
-
+        blackboard.animator.SetFloat("speed", 0);
         timer = 0;
     }
 
@@ -57,7 +57,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
 
                 break;
             case States.BACK_TO_INITIAL:
-
+                blackboard.animator.SetFloat("speed", blackboard.ownKS.linearVelocity.magnitude);
                 if (Vector3.Distance(transform.position, blackboard.initialTransform.transform.position) <= blackboard.closeEnoughRadius)
                 {
                     ChangeState(States.IDLE);
@@ -81,7 +81,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
 
                 break;
             case States.WANDER:
-
+                blackboard.animator.SetFloat("speed", blackboard.ownKS.linearVelocity.magnitude);
                 if (timer >= blackboard.wanderTime)
                 {
                     ChangeState(States.IDLE);
