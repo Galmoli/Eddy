@@ -89,11 +89,11 @@ public class ChargingEnemyHitFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.STUNNED:
-                blackboard.animator.SetTrigger("damaged");
                 enemyStunFSM.enabled = true;
                 break;
             case States.STAGGERED:
-                blackboard.animator.SetTrigger("damaged");
+                float rnd = Random.Range(1, 4);
+                blackboard.animator.SetTrigger("damaged"+rnd.ToString());
                 rigidBody.AddForce(blackboard.hitDirection.normalized * blackboard.staggerImpulse, ForceMode.Impulse);
                 break;
         }
