@@ -10,7 +10,6 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 {
     public GameObject ragdoll;
     public Text statesText;
-    public bool respawnable = false;
 
     [Header("General Stats")]
     public bool armored;
@@ -83,15 +82,16 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
 
-        if (respawnable)
+        /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
         else
-            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);
+            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);*/
 
         healthPoints = initialHealthPoints;
 
         stunned = false;
         hit = false;
+        dead = false;
 
         if (GetComponent<ArrivePlusAvoid>() != null)
         {
@@ -183,6 +183,8 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
         rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
         gameObject.SetActive(false);
+
+        dead = true;
     }
 
     public override void EnemyInVolume(bool scannerOn)
