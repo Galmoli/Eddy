@@ -22,6 +22,7 @@ public class PushState : State
             _scannerSword.ScannerOff();
         }
         _controller.RotateTowardsForward(GetLookCenterVector());
+        if(UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
     }
 
     public override void Update()

@@ -14,6 +14,10 @@ public class MainMenuLogic : MonoBehaviour
     private InputActions _input;
     private MainMenuOptions _option;
 
+    [SerializeField] private GameObject playImage;
+    [SerializeField] private GameObject optionsImage;
+    [SerializeField] private GameObject exitImage;
+
     private void Awake()
     {
         _input = new InputActions();
@@ -26,6 +30,7 @@ public class MainMenuLogic : MonoBehaviour
     {
         _input.Enable();
         _option = MainMenuOptions.Play;
+        playImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
     }
 
     private void OnDisable()
@@ -41,9 +46,13 @@ public class MainMenuLogic : MonoBehaviour
                 break;
             case MainMenuOptions.Options:
                 _option = MainMenuOptions.Play;
+                optionsImage.transform.localScale = new Vector3(1,1, 1);
+                playImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 break;
             case MainMenuOptions.Exit:
                 _option = MainMenuOptions.Options;
+                exitImage.transform.localScale = new Vector3(1,1, 1);
+                optionsImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 break;
         }
     }
@@ -54,9 +63,13 @@ public class MainMenuLogic : MonoBehaviour
         {
             case MainMenuOptions.Play:
                 _option = MainMenuOptions.Options;
+                playImage.transform.localScale = new Vector3(1,1,1);
+                optionsImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 break;
             case MainMenuOptions.Options:
                 _option = MainMenuOptions.Exit;
+                optionsImage.transform.localScale = new Vector3(1,1, 1);
+                exitImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 break;
             case MainMenuOptions.Exit:
                 break;

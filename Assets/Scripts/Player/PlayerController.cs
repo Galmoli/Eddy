@@ -7,13 +7,21 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMovementController _movementController;
     private PlayerCombatController _combatController;
+    [SerializeField] private float timeToRegenerate;
 
+    public int initialHealth;
     public int health;
 
     private void Awake()
     {
         _movementController = GetComponent<PlayerMovementController>();
         _combatController = GetComponent<PlayerCombatController>();
+        UIManager.OnHeal += Heal;
+    }
+
+    private void Start()
+    {
+        health = initialHealth;
     }
 
     // Update is called once per frame
@@ -22,7 +30,7 @@ public class PlayerController : MonoBehaviour
         //Provisional to trigger death state
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Hit(100);
+            Hit(3);
         }   
     }
 
@@ -40,7 +48,16 @@ public class PlayerController : MonoBehaviour
         {
             float number = UnityEngine.Random.Range(1, 4);
             _movementController.animator.SetTrigger("Hit" + number.ToString());
+            StopAllCoroutines();
+            StartCoroutine(Co_Heal());
+            UIManager.Instance.Hit(damage);
         }
+    }
+
+    private void Heal()
+    {
+        health++;
+        UIManager.Instance.Heal();
     }
 
     private void SetDeadState()
@@ -54,6 +71,13 @@ public class PlayerController : MonoBehaviour
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));
         _combatController.SetState(new IdleState(_combatController));
+        RestoreHealth();
+    }
+
+    public void RestoreHealth()
+    {
+        health = initialHealth;
+        UIManager.Instance.RestoreHealth();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +86,24 @@ public class PlayerController : MonoBehaviour
         {
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
+        }
+    }
+    
+    private IEnumerator Co_Heal()
+    {
+        var currentTime = 0f;
+        while (health < initialHealth)
+        {
+            if (currentTime < timeToRegenerate)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                currentTime = 0;
+                Heal();
+            }
+            yield return null;
         }
     }
 }

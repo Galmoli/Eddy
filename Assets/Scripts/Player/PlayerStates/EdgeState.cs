@@ -7,23 +7,32 @@ public class EdgeState : State
 {
     private PlayerMovementController _controller;
     private PlayerSwordScanner _scannerSword;
+    private SphereCollider _scannerCollider;
+    private EdgeDetection _edgeDetection;
     private bool autoStand;
+    private Vector3 _projectedVector;
 
     public EdgeState(PlayerMovementController controller)
     {
         _controller = controller;
         _scannerSword = controller.scannerSword;
+        _scannerCollider = controller.scannerCollider;
+        _edgeDetection = GameObject.FindObjectOfType<EdgeDetection>();
     }
     public override void Enter()
     {
         Debug.Log("Edge State");
         _controller.onEdge = true;
 
-        if (_scannerSword.UsingScannerInHand())
+        if (!ValidEdge())
         {
-            _scannerSword.ScannerOff();
+            _controller.onEdge = false;
+            _controller.edgeAvailable = false;
+            ExitState();
         }
-
+        
+        _projectedVector = _controller.GetProjectedVector();
+        
         if (_controller.edgeGameObject.transform.position.y > _controller.transform.position.y) _controller.animator.SetTrigger("Hanging");
         
         TriggerDesiredAnimation(_controller.transform.position, _controller.edgePosition);
@@ -40,7 +49,7 @@ public class EdgeState : State
             var position = _controller.transform.position;
             Vector3 moveVector = Vector3.zero;
             
-            Vector3 lVector = Vector3.Lerp(position,_controller.GetProjectedVector() + _controller.edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
+            Vector3 lVector = Vector3.Lerp(position,_controller.edgePosition + _projectedVector  + PlayerUtils.GetEdgeOffsetOnLocalSpace(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
 
             moveVector = lVector - position;
             _controller.RotateTowardsForward(-_controller.edgeGameObject.transform.forward);
@@ -75,6 +84,7 @@ public class EdgeState : State
         if (playerPos.y + _controller.edgeOffsetToWaist < edgePos.y) //Normal handing
         {
             Debug.Log("Normal");
+            if (_scannerSword.UsingScannerInHand()) _scannerSword.ScannerOff();
             return; 
         }
         if (playerPos.y + _controller.edgeOffsetToKnee > edgePos.y) //Trigger Knee animation
@@ -95,9 +105,17 @@ public class EdgeState : State
         }
     }
 
-    private Vector3 GetProjectedVector()
+    private bool ValidEdge()
     {
-        var projectedVector = Vector3.ProjectOnPlane(_controller.transform.position - _controller.edgePosition, _controller.edgeGameObject.transform.forward);
-        return Vector3.ProjectOnPlane(projectedVector, _controller.transform.up);
+        RaycastHit hit;
+        if (Physics.Raycast(_edgeDetection.transform.position, _controller.transform.forward, out hit, 1f, LayerMask.GetMask("Appear")))
+        {
+            if (_scannerCollider.bounds.Contains(hit.point))
+                return true;
+            else
+                return false;
+        }
+
+        return true;
     }
 }

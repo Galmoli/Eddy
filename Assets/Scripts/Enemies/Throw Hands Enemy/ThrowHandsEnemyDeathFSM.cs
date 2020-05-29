@@ -71,7 +71,7 @@ public class ThrowHandsEnemyDeathFSM : MonoBehaviour
                 enemyHitFSM.enabled = true;
                 break;
             case States.DEATH:
-                gameObject.SetActive(false);
+                blackboard.Death();
                 break;
         }
 

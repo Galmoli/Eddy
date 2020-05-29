@@ -31,6 +31,7 @@ public class PlayerMovementController : StateMachine
 
     //Objects
     [HideInInspector] public PlayerSwordScanner scannerSword;
+    [HideInInspector] public SphereCollider scannerCollider;
 
     //Components
     [HideInInspector] public CharacterController characterController;
@@ -58,6 +59,7 @@ public class PlayerMovementController : StateMachine
         cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         scannerSword = FindObjectOfType<PlayerSwordScanner>();
+        scannerCollider = scannerSword.GetComponent<SphereCollider>();
         scannerIntersect = FindObjectOfType<ScannerIntersectionManager>();
 
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
@@ -127,7 +129,7 @@ public class PlayerMovementController : StateMachine
 
     private IEnumerator Co_StandEdge()
     {
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
         transform.position = finalPos;
         yield return new WaitForEndOfFrame();
 
@@ -157,7 +159,7 @@ public class PlayerMovementController : StateMachine
     private IEnumerator Co_WaistStand()
     {
         StandDeactivatePlayer();
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
 
         while (Vector3.Distance(transform.position, finalPos) > 0.2f)
         {

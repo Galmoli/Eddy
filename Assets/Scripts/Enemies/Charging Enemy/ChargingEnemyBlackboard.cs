@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ChargingEnemyBlackboard : EnemyBlackboard
 {
+    public GameObject ragdoll;
     public Text statesText;
     public bool respawnable = false;
 
@@ -44,6 +45,10 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     public float staggerImpulse;
     public float staggeredTime;
 
+    [Header("Enemy Death")]
+    public float minDeathImpulse = 4000;
+    public float maxDeathImpulse = 6000;
+
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
     public float slowDownRadius;
@@ -60,7 +65,11 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
-    public float wanderOffset;   
+    public float wanderOffset;
+
+    //Other variables
+    private bool checkingInVolumeScannerOn;
+    private bool checkingInVolumeScannerOff;
 
     public override void Start()
     {
@@ -96,6 +105,8 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
         initialTransform.transform.parent = null;
 
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
     }
 
     public override void Update()
@@ -159,5 +170,46 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     private bool InScanner()
     {
         return swordScanner.activeScanner && scannerSphereCollider.bounds.Contains(transform.position);
+    }
+
+    public override void Death()
+    {
+        Vector3 dir = transform.position - player.transform.position;
+        dir = dir.normalized;
+
+        GameObject rd = Instantiate(ragdoll, transform.position, Quaternion.identity);
+        rd.transform.rotation = transform.rotation;
+
+        float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
+        rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
+        gameObject.SetActive(false);
+    }
+
+    public override void EnemyInVolume(bool scannerOn)
+    {
+        if (scannerOn) checkingInVolumeScannerOn = true;
+        else checkingInVolumeScannerOff = true;
+
+        StartCoroutine(CheckingInVolumeCoroutine());
+    }
+
+    private IEnumerator CheckingInVolumeCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
+    }
+
+    public override void OnCollisionStay(Collision other)
+    {
+        if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
+        {
+            Death();
+        }
+
+        if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
+        {
+            Death();
+        }
     }
 }
