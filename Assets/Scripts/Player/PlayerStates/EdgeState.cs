@@ -10,6 +10,7 @@ public class EdgeState : State
     private SphereCollider _scannerCollider;
     private EdgeDetection _edgeDetection;
     private bool autoStand;
+    private Vector3 _projectedVector;
 
     public EdgeState(PlayerMovementController controller)
     {
@@ -27,14 +28,16 @@ public class EdgeState : State
         {
             _scannerSword.ScannerOff();
         }
-
+        
         if (!ValidEdge())
         {
             _controller.onEdge = false;
             _controller.edgeAvailable = false;
             ExitState();
         }
-
+        
+        _projectedVector = _controller.GetProjectedVector();
+        
         if (_controller.edgeGameObject.transform.position.y > _controller.transform.position.y) _controller.animator.SetTrigger("Hanging");
         
         TriggerDesiredAnimation(_controller.transform.position, _controller.edgePosition);
@@ -51,7 +54,7 @@ public class EdgeState : State
             var position = _controller.transform.position;
             Vector3 moveVector = Vector3.zero;
             
-            Vector3 lVector = Vector3.Lerp(position,_controller.GetProjectedVector() + _controller.edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
+            Vector3 lVector = Vector3.Lerp(position,_controller.edgePosition + _projectedVector  + PlayerUtils.GetEdgeOffsetOnLocalSpace(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
 
             moveVector = lVector - position;
             _controller.RotateTowardsForward(-_controller.edgeGameObject.transform.forward);
@@ -104,12 +107,6 @@ public class EdgeState : State
             _controller.WaistStand();
             _controller.animator.SetTrigger("MidClimb");
         }
-    }
-
-    private Vector3 GetProjectedVector()
-    {
-        var projectedVector = Vector3.ProjectOnPlane(_controller.transform.position - _controller.edgePosition, _controller.edgeGameObject.transform.forward);
-        return Vector3.ProjectOnPlane(projectedVector, _controller.transform.up);
     }
 
     private bool ValidEdge()
