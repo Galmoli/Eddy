@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EddyPipe : MonoBehaviour
 {
+    public AntagonistPersecutionFSM antagonistPersecutionFSM;
+
     public Transform[] eddysInstancePos;
     public GameObject EddyRagdoll;
 
@@ -28,5 +30,9 @@ public class EddyPipe : MonoBehaviour
             Instantiate(EddyRagdoll, eddysInstancePos[randomPos].position, eddysInstancePos[randomPos].rotation);
             yield return new WaitForSeconds(secondsInterval);
         }
+
+        yield return new WaitForSeconds(1.5f);
+        antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.APPEARING_DOWN);
+
     }
 }
