@@ -68,6 +68,7 @@ public class ThrowHandsEnemyDeathFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.HIT:
+                blackboard.dead = false;
                 enemyHitFSM.enabled = true;
                 break;
             case States.DEATH:

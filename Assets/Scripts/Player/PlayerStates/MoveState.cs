@@ -72,7 +72,7 @@ public class MoveState : State
     private bool PlayerOnRamp()
     {
         RaycastHit hit;
-        if (Physics.Raycast(_controller.transform.position - Vector3.up * (_controller.characterController.height / 2), -_controller.transform.up, out hit, 0.5f))
+        if (Physics.Raycast(_controller.transform.position - Vector3.up * (_controller.characterController.height / 2), -_controller.transform.up, out hit, 0.5f, ~LayerMask.GetMask("Player")))
         {
             float surfaceAngle = Vector3.Angle(hit.normal, _controller.transform.up);
             if(surfaceAngle > 10f)
@@ -80,7 +80,7 @@ public class MoveState : State
                 return true;
             }
         }
-
+        
         return false;
     }
 

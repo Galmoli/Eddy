@@ -119,12 +119,6 @@ public class AntagonistEndingFSM : MonoBehaviour
                 break;
             case States.STUNNED:
 
-               
-                /*navMeshAgent.enabled = false;
-                rigidbody.isKinematic = false;
-                rigidbody.AddForce(-transform.forward * blackboard.obstacleImpactForce, ForceMode.Impulse);
-                blackboard.attackCollider.enabled = false;*/
-
                 break;
 
             case States.HEADTOCHOP:

@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 {
     public Text statesText;
-    public bool respawnable = false;
 
     [Header("General Stats")]
     public bool armored;
@@ -81,15 +80,16 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
 
-        if (respawnable)
+        /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
         else
-            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);
+            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);*/
 
         healthPoints = initialHealthPoints;
 
         stunned = false;
         hit = false;
+        dead = false;
 
         if (GetComponent<ArrivePlusAvoid>() != null)
         {

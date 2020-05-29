@@ -5,9 +5,18 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     public GameObject spawnedObject;
+    public ChargingEnemyBlackboard currentBlackboard;
+
+    private void Update()
+    {
+        if (currentBlackboard.healthPoints <= 0)
+        {
+            Spawn();
+        }
+    }
 
     public void Spawn()
     {
-        Instantiate(spawnedObject, transform.position, transform.rotation);
+        currentBlackboard = Instantiate(spawnedObject, transform.position, transform.rotation).GetComponent<ChargingEnemyBlackboard>();
     }
 }
