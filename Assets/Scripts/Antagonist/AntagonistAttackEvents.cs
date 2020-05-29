@@ -14,6 +14,7 @@ public class AntagonistAttackEvents : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Player":
+                collision.gameObject.GetComponent<PlayerController>().Hit(30);
                 break;
             case "Obstacle":
 
@@ -36,7 +37,9 @@ public class AntagonistAttackEvents : MonoBehaviour
             case "Pipe":
 
                 other.gameObject.SetActive(false);
-                antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.WAITINGFORPIPE);
+
+                if (antagonistPersecutionFSM.enabled)
+                    antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.WAITINGFORPIPE);
 
                 break;
             case "End":
