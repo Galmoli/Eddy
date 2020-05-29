@@ -24,11 +24,6 @@ public class EdgeState : State
         Debug.Log("Edge State");
         _controller.onEdge = true;
 
-        if (_scannerSword.UsingScannerInHand())
-        {
-            _scannerSword.ScannerOff();
-        }
-        
         if (!ValidEdge())
         {
             _controller.onEdge = false;
@@ -89,6 +84,7 @@ public class EdgeState : State
         if (playerPos.y + _controller.edgeOffsetToWaist < edgePos.y) //Normal handing
         {
             Debug.Log("Normal");
+            if (_scannerSword.UsingScannerInHand()) _scannerSword.ScannerOff();
             return; 
         }
         if (playerPos.y + _controller.edgeOffsetToKnee > edgePos.y) //Trigger Knee animation
