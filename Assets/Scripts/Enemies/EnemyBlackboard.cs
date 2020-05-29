@@ -28,7 +28,10 @@ public abstract class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public float healthPoints;
     [HideInInspector] public bool stunned;
     [HideInInspector] public bool hit;
+    [HideInInspector] public bool dead;
     [HideInInspector] public Vector3 hitDirection;
+
+    public bool respawnable = false;
 
     public Animator animator;
 }
