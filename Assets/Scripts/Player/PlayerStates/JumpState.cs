@@ -80,20 +80,39 @@ public class JumpState : State
         var t = _controller.transform;
         var fForward = _controller.feetOverlap.forward;
         var fRight = _controller.feetOverlap.right;
+        var sword = _controller.scannerSword;
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
         }
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.25f, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
         }
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.25f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;

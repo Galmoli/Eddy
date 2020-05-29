@@ -62,4 +62,13 @@ public class PlayerUtils
         }
         return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
     }
+
+    public static Collider[] GetResidualColliders(PlayerMovementController _controller, Vector3 position, PlayerSwordScanner sword)
+    {
+        if (Vector3.Dot(position, sword.transform.position) <= 4 && sword.activeScanner)
+        {
+            return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+        }
+        return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+    }
 }
