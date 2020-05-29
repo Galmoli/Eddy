@@ -46,7 +46,7 @@ public class PlayerUtils
         return Vector3.Angle(pf, -ef) <= a;
     }
 
-    public static Vector3 GetEdgeOffsetOnLocalSapce(GameObject edge, Vector3 offset)
+    public static Vector3 GetEdgeOffsetOnLocalSpace(GameObject edge, Vector3 offset)
     {
         var result = edge.transform.right * offset.x;
         result += edge.transform.up * offset.y;

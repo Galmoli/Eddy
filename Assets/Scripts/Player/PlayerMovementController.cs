@@ -129,7 +129,7 @@ public class PlayerMovementController : StateMachine
 
     private IEnumerator Co_StandEdge()
     {
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
         transform.position = finalPos;
         yield return new WaitForEndOfFrame();
 
@@ -159,7 +159,7 @@ public class PlayerMovementController : StateMachine
     private IEnumerator Co_WaistStand()
     {
         StandDeactivatePlayer();
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
 
         while (Vector3.Distance(transform.position, finalPos) > 0.2f)
         {
