@@ -142,6 +142,10 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.NOTICE:
                 blackboard.animator.SetTrigger("hasNoticed");
+                if (AudioManager.Instance.ValidEvent(blackboard.noticeSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(blackboard.noticeSoundPath, transform);
+                }
                 break;
             case States.CHASE:
                 blackboard.animator.SetBool("isCharging", true);
@@ -166,6 +170,11 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
             if (objectHit.tag == "Player")
             {
                 blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
+            }
+
+            if (AudioManager.Instance.ValidEvent(blackboard.attackSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(blackboard.attackSoundPath, transform);
             }
 
             blackboard.stunned = true;
