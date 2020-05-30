@@ -29,16 +29,16 @@ public class PlayerSounds : MonoBehaviour
 
     public void PlayerStep()
     {
-        //Check surface type
-
-        if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
-        }
-
-        /*if (AudioManager.Instance.ValidEvent(woodStepSoundPath))
+        if (AudioManager.Instance.ValidEvent(woodStepSoundPath))
         {
             AudioManager.Instance.PlayOneShotSound(woodStepSoundPath, transform);
+        }
+
+        //Step on stone? Check surface type
+
+        /*if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
         }*/
     }
 }

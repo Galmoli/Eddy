@@ -6,7 +6,6 @@ using UnityEngine;
 public class JumpState : State
 {
     private PlayerMovementController _controller;
-    private PlayerSounds _playerSounds;
     private float currentTime = 0;
     private bool hitHead;
     private float _residualCollisionAvoidanceSpeed = 5;
@@ -14,7 +13,6 @@ public class JumpState : State
     public JumpState(PlayerMovementController controller)
     {
         _controller = controller;
-        _playerSounds = controller.playerSounds;
     }
     public override void Enter()
     {
@@ -50,9 +48,9 @@ public class JumpState : State
 
         if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position)))
         {
-            if (AudioManager.Instance.ValidEvent(_playerSounds.landSoundPath))
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.landSoundPath))
             {
-                AudioManager.Instance.PlayOneShotSound(_playerSounds.landSoundPath, _controller.transform);
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.landSoundPath, _controller.transform);
             }
 
             ExitState();
