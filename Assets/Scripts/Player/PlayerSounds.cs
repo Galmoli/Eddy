@@ -50,4 +50,15 @@ public class PlayerSounds : MonoBehaviour
             AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
         }*/
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (AudioManager.Instance.ValidEvent(woodStepSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(woodStepSoundPath, transform);
+            }
+        }
+    }
 }

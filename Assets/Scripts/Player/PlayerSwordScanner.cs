@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMOD.Studio;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -7,9 +8,9 @@ public class PlayerSwordScanner : MonoBehaviour
 {
     private InputActions input;
     private PlayerMovementController playerMovement;
+    private PlayerSounds playerSounds;
 
     public float scannerRadius;
-
   
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
@@ -40,6 +41,8 @@ public class PlayerSwordScanner : MonoBehaviour
     private bool movingAwayToStab;
     private Vector3 moveAwayVector;
 
+    private EventInstance scannerSoundEvent;
+
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -51,6 +54,7 @@ public class PlayerSwordScanner : MonoBehaviour
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovementController>();
+        playerSounds = FindObjectOfType<PlayerSounds>();
 
         playerHand = transform.parent;
         swordInitPos = transform.localPosition;
@@ -146,6 +150,21 @@ public class PlayerSwordScanner : MonoBehaviour
             }       
         }
 
+        if (activeScanner)
+        {
+            if (!AudioManager.Instance.isPlaying(scannerSoundEvent))
+            {
+                if (AudioManager.Instance.ValidEvent(playerSounds.scannerActiveSoundPath))
+                {
+                    scannerSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.scannerActiveSoundPath, transform);
+                }
+            }
+        }
+        else
+        {
+            scannerSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
         //animation
         if (HoldingSword()) playerMovement.animator.SetBool("isHoldingSword", true);
         else playerMovement.animator.SetBool("isHoldingSword", false);
@@ -214,6 +233,11 @@ public class PlayerSwordScanner : MonoBehaviour
         _swordProgressiveColliders.EnableSword();
 
         playerMovement.animator.SetBool("isUsingScanner", true);
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOnSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOnSoundPath, transform);
+        }
     }
 
     public void ScannerOff()
@@ -235,6 +259,11 @@ public class PlayerSwordScanner : MonoBehaviour
         _scannerIntersectionManager.DeleteIntersections();
 
         playerMovement.animator.SetBool("isUsingScanner", false);
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOffSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOffSoundPath, transform);
+        }
     }
 
     private void Stab(GameObject obj)
@@ -266,6 +295,11 @@ public class PlayerSwordScanner : MonoBehaviour
             {
                 CheckPoint c = swordHolder.GetComponent<CheckPoint>();
                 c.Activate();
+
+                if (AudioManager.Instance.ValidEvent(playerSounds.checkpointSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(playerSounds.checkpointSoundPath, transform);
+                }
             }
 
             transform.parent = swordHolder.transform;
@@ -273,9 +307,19 @@ public class PlayerSwordScanner : MonoBehaviour
             if (swordHolder.GetComponent<Switchable>() != null)
             {
                 swordHolder.GetComponent<Switchable>().SwitchOn();
+
+                if (AudioManager.Instance.ValidEvent(playerSounds.switchSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(playerSounds.switchSoundPath, transform);
+                }
             }
 
             if (activeScanner) _scannerIntersectionManager.CheckIntersections();
+
+            if (AudioManager.Instance.ValidEvent(playerSounds.stabSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(playerSounds.stabSoundPath, transform);
+            }
         } 
     }
 
@@ -318,7 +362,7 @@ public class PlayerSwordScanner : MonoBehaviour
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
         
-        if(!scannerInput) ScannerOff();
+        if(!scannerInput && activeScanner) ScannerOff();
         
         transform.parent = null;
 
@@ -327,6 +371,11 @@ public class PlayerSwordScanner : MonoBehaviour
 
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.swordBackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
+        }
     }
 
     public void UnlockSword()

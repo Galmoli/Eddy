@@ -66,7 +66,7 @@ public class PushState : State
             {
                 if (AudioManager.Instance.ValidEvent(_playerSounds.draggableObjectSoundPath))
                 {
-                    dragSoundEvent = AudioManager.Instance.PlayEvent(_playerSounds.landSoundPath, _controller.transform);
+                    dragSoundEvent = AudioManager.Instance.PlayEvent(_playerSounds.draggableObjectSoundPath, _controller.transform);
                 }
             }
 
@@ -99,6 +99,8 @@ public class PushState : State
             _controller.CheckCollisions();
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
+
+            dragSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
 
