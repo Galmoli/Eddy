@@ -362,7 +362,7 @@ public class PlayerSwordScanner : MonoBehaviour
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
         
-        if(!scannerInput) ScannerOff();
+        if(!scannerInput && activeScanner) ScannerOff();
         
         transform.parent = null;
 
@@ -371,6 +371,11 @@ public class PlayerSwordScanner : MonoBehaviour
 
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.swordBackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
+        }
     }
 
     public void UnlockSword()
