@@ -23,6 +23,15 @@ public class PlayerSounds : MonoBehaviour
     public string woodObjectHitSoundPath;
     public string metalObjectHitSoundPath;
 
+    [Header("Sword / Scanner")]
+    public string scannerOnSoundPath;
+    public string scannerOffSoundPath;
+    public string scannerActiveSoundPath;
+    public string stabSoundPath;
+    public string swordBackSoundPath;
+    public string switchSoundPath;
+    public string checkpointSoundPath;
+
     [Header("Others")]
     public string draggableObjectSoundPath;
     public string elevatorSoundPath;
