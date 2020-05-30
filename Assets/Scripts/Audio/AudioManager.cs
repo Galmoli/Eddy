@@ -205,6 +205,20 @@ public class AudioManager : MonoBehaviour
             return;
         vca.setVolume(channelVolume);
     }
+
+    public bool ValidEvent(string eventPath)
+    {
+        EventDescription desc;
+        RuntimeManager.StudioSystem.getEvent(eventPath, out desc);
+
+        if (desc.isValid())
+        {
+            return true;
+        }
+
+        Debug.Log("SOUND NOT FOUND");
+        return false;
+    }
 }
 
 public class SoundManagerParameter
