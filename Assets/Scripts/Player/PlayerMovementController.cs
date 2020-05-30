@@ -35,6 +35,7 @@ public class PlayerMovementController : StateMachine
 
     //Components
     [HideInInspector] public CharacterController characterController;
+    [HideInInspector] public PlayerSounds playerSounds;
 
     //Variables
     [HideInInspector] public bool inputMoveObject;
@@ -56,6 +57,7 @@ public class PlayerMovementController : StateMachine
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerSounds = GetComponent<PlayerSounds>();
         cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         scannerSword = FindObjectOfType<PlayerSwordScanner>();
@@ -104,6 +106,11 @@ public class PlayerMovementController : StateMachine
         {
             jump = true;
             animator.SetTrigger("Jump");
+
+            if (AudioManager.Instance.ValidEvent(playerSounds.landSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(playerSounds.landSoundPath, transform);
+            }
         }
         if (!standing && onEdge) inputToStand = true;
     }

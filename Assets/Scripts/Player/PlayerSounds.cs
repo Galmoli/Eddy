@@ -26,4 +26,19 @@ public class PlayerSounds : MonoBehaviour
     [Header("Others")]
     public string draggableObjectSoundPath;
     public string elevatorSoundPath;
+
+    public void PlayerStep()
+    {
+        //Check surface type
+
+        if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
+        }
+
+        /*if (AudioManager.Instance.ValidEvent(woodStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(woodStepSoundPath, transform);
+        }*/
+    }
 }
