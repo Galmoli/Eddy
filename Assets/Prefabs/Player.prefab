@@ -467,8 +467,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 1.0550848, z: 0.34187454}
-  m_Center: {x: -0.000000031854203, y: -0.762194, z: 0.042767953}
+  m_Size: {x: 0.20754768, y: 1.1011096, z: 0.42760012}
+  m_Center: {x: -0.008321885, y: -0.74889904, z: 0.046414744}
 --- !u!114 &2028364641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +708,8 @@ GameObject:
   - component: {fileID: 6411527136159828570}
   - component: {fileID: 2682654681668094299}
   - component: {fileID: 8071038148436316868}
+  - component: {fileID: 1665188010}
+  - component: {fileID: 1665188009}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -779,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e692dcf31f69dfa4ab532d90e9ead69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 1.5
+  minSpeed: 1.75
   maxSpeed: 4
   jumpSpeed: 11
   speedMultiplierWhenJump: 1
@@ -802,7 +804,9 @@ MonoBehaviour:
   edgeGameObject: {fileID: 0}
   movementVector: {x: 0, y: 0}
   scannerSword: {fileID: 0}
+  scannerCollider: {fileID: 0}
   characterController: {fileID: 0}
+  playerSounds: {fileID: 0}
   inputMoveObject: 0
   jump: 0
   onEdge: 0
@@ -832,8 +836,9 @@ MonoBehaviour:
   areaAttack: {fileID: 11400000, guid: bfafa40af1c196545b432544b48da296, type: 2}
   comboAttack: {fileID: 11400000, guid: 6e91a735cfa505044bb37ec413cb73be, type: 2}
   swordTrigger: {fileID: 2028364641}
+  playerSounds: {fileID: 0}
   attacksToCombo: 3
-  timeToCancelCombo: 1
+  timeToCancelCombo: 1.25
   timeToStartCharging: 0.7
   maxChargeTime: 1
   simpleAttackCount: 0
@@ -850,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e887672ffce9bea4ba38d2a9992b54e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusToCheck: 0.3
+  radiusToCheck: 0.05
   maxAxisX: 0.5
   maxAxisZ: 0.5
 --- !u!114 &8071038148436316868
@@ -865,9 +870,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3584d872016c09d46ab00884262dabc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToRegenerate: 3
+  timeToRegenerate: 3600
   initialHealth: 16
   health: 16
+--- !u!114 &1665188010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411527136159828577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f71e5c8be8c3f45899395cd2c178b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoneStepSoundPath: event:/Main Character/Step On Stone Floor/MainCharacter_StepStone_Take1
+  woodStepSoundPath: event:/Main Character/Step On Wooden Floor/MainCharacter_StepWood_Take1
+  damageReceivedSoundPath: event:/Main Character/Receive Damage/MainCharacter_ReceiveDamage_Take1
+  deathSoundPath: event:/Main Character/Death/MainCharacter_Death_Take1
+  jumpSoundPath: event:/Main Character/Jump/MainCharacter_Jump_Take1
+  landSoundPath: event:/Main Character/Landing/MainCharacter_Land_Take1
+  attackSoundPath: event:/Sword/Attack/Sword_Attack_Take1
+  comboAttackSoundPath: event:/Sword/Combo Attack/Sword_Combo_Take1
+  areaAttackSoundPath: event:/Sword/Spiral Attack/Sword_Spiral_Take1
+  areaAttackChargingSoundPath: event:/Sword/SpiralCharge/Sword_SpiralCharge_Take1
+  areaAttackChargedSoundPath: event:/Sword/SpiralCharge/Sword_SpiralChargeMax_Take1
+  enemyHitSoundPath: event:/Sword/Enemy Hit/Sword_EnemyHit_Take1
+  enemyArmoredHitSoundPath: event:/Sword/Enemy Hit/Sword_EnemyHit_Take3
+  woodObjectHitSoundPath: event:/Sword/Object Hit/Sword_ObjectHit_Take1
+  metalObjectHitSoundPath: event:/Sword/Object Hit/Sword_ObjectHit_Take2
+  scannerOnSoundPath: event:/Sword/Scanner Activation/Sword_ScannerOn_Take1
+  scannerOffSoundPath: event:/Sword/Scanner Desactivated/Sword_ScannerOff_Take1
+  scannerActiveSoundPath: event:/Sword/Scanner Activated/Sword_ScannerActive_Take1
+  stabSoundPath: event:/Sword/Nailing The Sword/Sword_Nailing_Take1
+  swordBackSoundPath: event:/Sword/Recovering The Sword/Sword_Recovering_Take1
+  switchSoundPath: event:/Sword/Switch Activation/Sword_Switch_Take1
+  checkpointSoundPath: event:/Sword/Checkpoint Activation/Sword_Checkpoint_Take1
+  draggableObjectSoundPath: event:/Draggable Object/Dragging Across The Floor/DraggableObject_Take1
+  elevatorSoundPath: event:/Elevator/Travelling/Elevator_Traveling_Take1
+--- !u!114 &1665188009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411527136159828577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!95 &6778750466571765507
 Animator:
   serializedVersion: 3
@@ -933,8 +987,8 @@ MonoBehaviour:
   stabSwordLayers:
     serializedVersion: 2
     m_Bits: 30721
-  moveAwayDistance: 1
-  moveAwaySpeed: 3
+  moveAwayDistance: 0.5
+  moveAwaySpeed: 1.5
   moveAwayTime: 0.2
   activeScanner: 0
 --- !u!114 &2324941807706679712
@@ -1037,7 +1091,7 @@ PrefabInstance:
     - target: {fileID: -3542989201901835053, guid: 51c379bcd4072ab44b4af965d54a65d9,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1782628800597589751, guid: 51c379bcd4072ab44b4af965d54a65d9,
         type: 3}
@@ -1066,6 +1120,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 87c590440cf93bc4d99ed36d803abad9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c379bcd4072ab44b4af965d54a65d9, type: 3}
+--- !u!4 &6033450638499963047 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 51c379bcd4072ab44b4af965d54a65d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1639780499331042237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8179521131875486388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1782628800597589751, guid: 51c379bcd4072ab44b4af965d54a65d9,
@@ -1081,12 +1141,6 @@ Transform:
 --- !u!1 &7340945163502621364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 51c379bcd4072ab44b4af965d54a65d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1639780499331042237}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6033450638499963047 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 51c379bcd4072ab44b4af965d54a65d9,
     type: 3}
   m_PrefabInstance: {fileID: 1639780499331042237}
   m_PrefabAsset: {fileID: 0}

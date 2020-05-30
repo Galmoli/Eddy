@@ -16,6 +16,8 @@ public class PlayerCombatController : StateMachine
     public AttackSO comboAttack;
 
     public HitDetection swordTrigger;
+
+    [HideInInspector] public PlayerSounds playerSounds;
     
     //Variables
     public int attacksToCombo; 
@@ -47,6 +49,8 @@ public class PlayerCombatController : StateMachine
         
         sword = FindObjectOfType<PlayerSwordScanner>();
         _movementController = GetComponent<PlayerMovementController>();
+        playerSounds = GetComponent<PlayerSounds>();
+
     }
 
     private void Start()

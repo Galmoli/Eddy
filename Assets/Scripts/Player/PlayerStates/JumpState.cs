@@ -46,11 +46,21 @@ public class JumpState : State
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position))) ExitState();
+        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position)))
+        {
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.landSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.landSoundPath, _controller.transform);
+            }
+
+            ExitState();
+        }
     }
 
     public override void ExitState()
     {
+        
+        
         _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
         

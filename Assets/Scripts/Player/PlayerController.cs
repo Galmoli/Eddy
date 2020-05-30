@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMovementController _movementController;
     private PlayerCombatController _combatController;
+    private PlayerSounds _playerSounds;
     [SerializeField] private float timeToRegenerate;
 
     public int initialHealth;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         _movementController = GetComponent<PlayerMovementController>();
         _combatController = GetComponent<PlayerCombatController>();
+        _playerSounds = GetComponent<PlayerSounds>();
         UIManager.OnHeal += Heal;
     }
 
@@ -41,6 +43,12 @@ public class PlayerController : MonoBehaviour
         {
             //Trigger Death Animation
             //
+
+            if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_playerSounds.deathSoundPath, transform);
+            }
+
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
@@ -51,6 +59,11 @@ public class PlayerController : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(Co_Heal());
             UIManager.Instance.Hit(damage);
+
+            if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_playerSounds.damageReceivedSoundPath, transform);
+            }
         }
     }
 

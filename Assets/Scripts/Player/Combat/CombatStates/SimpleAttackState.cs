@@ -36,10 +36,20 @@ public class SimpleAttackState : State
 
         if (_controller.simpleAttackCount < _controller.attacksToCombo)
         {
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.attackSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.attackSoundPath, _controller.transform);
+            }
+
             _attackObject = _controller.basicAttack;
         }
         else
         {
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.comboAttackSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.comboAttackSoundPath, _controller.transform);
+            }
+
             _attackObject = _controller.comboAttack;
             _controller.simpleAttackCount = 0;
         }
@@ -65,6 +75,7 @@ public class SimpleAttackState : State
         {
             _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
             Debug.Log("Enemy damaged: " + _attackObject.damage);
+
             if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
             return;
         }
