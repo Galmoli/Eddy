@@ -107,9 +107,9 @@ public class PlayerMovementController : StateMachine
             jump = true;
             animator.SetTrigger("Jump");
 
-            if (AudioManager.Instance.ValidEvent(playerSounds.landSoundPath))
+            if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
             {
-                AudioManager.Instance.PlayOneShotSound(playerSounds.landSoundPath, transform);
+                AudioManager.Instance.PlayOneShotSound(playerSounds.jumpSoundPath, transform);
             }
         }
         if (!standing && onEdge) inputToStand = true;
