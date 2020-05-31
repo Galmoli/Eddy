@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EddyPipe : MonoBehaviour
 {
-    public AntagonistPersecutionFSM antagonistPersecutionFSM;
+    public AntagonistFSM antagonistFSM;
+    public GameObject triggerToActivate;
 
     public Transform[] eddysInstancePos;
     public GameObject EddyRagdoll;
@@ -18,6 +19,8 @@ public class EddyPipe : MonoBehaviour
     {
         if(other.gameObject.tag == "Player" && !activated)
         {
+            antagonistFSM.ChangeState(AntagonistFSM.States.WAITINGFORPIPE);
+            triggerToActivate.SetActive(true);
             StartCoroutine(InstantiateEddies());
             activated = true;
         }
@@ -32,7 +35,7 @@ public class EddyPipe : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.5f);
-        antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.APPEARING_DOWN);
+        antagonistFSM.ChangeState(AntagonistFSM.States.APPEARING_DOWN);
 
     }
 }
