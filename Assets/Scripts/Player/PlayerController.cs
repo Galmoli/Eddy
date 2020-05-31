@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestoreHealth()
     {
+        _movementController.animator.SetTrigger("Revive");
         health = initialHealth;
         UIManager.Instance.RestoreHealth();
     }
