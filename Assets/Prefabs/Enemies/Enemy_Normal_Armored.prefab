@@ -203,10 +203,12 @@ MonoBehaviour:
   healthPoints: 0
   stunned: 0
   hit: 0
+  dead: 0
   hitDirection: {x: 0, y: 0, z: 0}
-  animator: {fileID: 2662106151638430873}
-  statesText: {fileID: 6042603823539219424}
   respawnable: 0
+  animator: {fileID: 2662106151638430873}
+  ragdoll: {fileID: 1058685090794112881, guid: 14da161bad9fe9a45b755d0f2cf3e3e9, type: 3}
+  statesText: {fileID: 6042603823539219424}
   armored: 1
   initialHealthPoints: 1
   attackPoints: 1
@@ -235,6 +237,8 @@ MonoBehaviour:
   stunImpulse: 4
   staggerImpulse: 2
   staggeredTime: 0.5
+  minDeathImpulse: 4000
+  maxDeathImpulse: 6000
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2
@@ -540,6 +544,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1078315216926970473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585176258004475125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6e2db538c97dc4f82f34210e868589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 0}
+  combatController: {fileID: 0}
+  swordScanner: {fileID: 0}
+  aggressiveEnemy: {fileID: 6042603824428787192}
 --- !u!1001 &1901108965351753212
 PrefabInstance:
   m_ObjectHideFlags: 0
