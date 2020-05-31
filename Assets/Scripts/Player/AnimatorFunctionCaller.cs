@@ -7,6 +7,7 @@ public class AnimatorFunctionCaller : MonoBehaviour
     public PlayerMovementController movementController;
     public PlayerCombatController combatController;
     public PlayerSwordScanner swordScanner;
+    public ThrowHandsEnemyAggressiveFSM aggressiveEnemy;
 
     private void Start()
     {
@@ -27,5 +28,10 @@ public class AnimatorFunctionCaller : MonoBehaviour
     public void StandEdge()
     {
         movementController.StandEdge();
+    }
+
+    public void EnemyAttack()
+    {
+        aggressiveEnemy.Attack();
     }
 }
