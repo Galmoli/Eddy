@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     private PlayerCombatController _combatController;
     private PlayerSounds _playerSounds;
     [SerializeField] private float timeToRegenerate;
+    [SerializeField] private float timeToStartRegeneration;
 
     public int initialHealth;
     public int health;
+    private bool _isDead;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         health = initialHealth;
+        _isDead = false;
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public void Hit(int damage)
     {
+        if (_isDead) return;
         health -= damage;
         if (health <= 0)
         {
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
             }
 
             SetDeadState();
+            _isDead = true;
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
         else
@@ -57,7 +62,7 @@ public class PlayerController : MonoBehaviour
             float number = UnityEngine.Random.Range(1, 4);
             _movementController.animator.SetTrigger("Hit" + number.ToString());
             StopAllCoroutines();
-            StartCoroutine(Co_Heal());
+            StartCoroutine(Co_Regenerate());
             UIManager.Instance.Hit(damage);
 
             if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
@@ -81,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
     public void Spawn()
     {
+        _isDead = false;
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));
         _combatController.SetState(new IdleState(_combatController));
@@ -89,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestoreHealth()
     {
+        _movementController.animator.SetTrigger("Revive");
         health = initialHealth;
         UIManager.Instance.RestoreHealth();
     }
@@ -100,6 +107,12 @@ public class PlayerController : MonoBehaviour
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
+    }
+
+    private IEnumerator Co_Regenerate()
+    {
+        yield return new WaitForSeconds(timeToStartRegeneration);
+        StartCoroutine(Co_Heal());
     }
     
     private IEnumerator Co_Heal()

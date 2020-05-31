@@ -25,6 +25,7 @@ public class AntagonistBlackboard : MonoBehaviour
     public GameObject[] destinies;
 
     public GameObject pipe;
+    public GameObject[] pipes;
 
     public GameObject[] zones;
 

@@ -71,15 +71,50 @@ public class SimpleAttackState : State
 
     public override void Interact()
     {
-        if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+        if (_controller.swordTrigger.hitObject.tag == "Enemy")
         {
-            _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
-            Debug.Log("Enemy damaged: " + _attackObject.damage);
+            if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+            {
+                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
+                Debug.Log("Enemy damaged: " + _attackObject.damage);
 
-            if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+                if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+
+                if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyHitSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyHitSoundPath, _controller.transform);
+                }
+
+                return;
+            }
+
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyArmoredHitSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyArmoredHitSoundPath, _controller.transform);
+            }
+
             return;
         }
-        Debug.Log("Armor hit");
+
+        if(_controller.swordTrigger.hitObject.tag == "Wood")
+        {
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.woodObjectHitSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.woodObjectHitSoundPath, _controller.transform);
+            }
+
+            return;
+        }
+
+        if (_controller.swordTrigger.hitObject.tag == "Metal")
+        {
+            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.metalObjectHitSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.metalObjectHitSoundPath, _controller.transform);
+            }
+
+            return;
+        }
     }
 
     public override void ExitState()
