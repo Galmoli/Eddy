@@ -20,7 +20,7 @@ public class JumpState : State
         _controller.jump = false;
         if(_controller.edgeAvailable && PlayerUtils.CanInteractWithEdge(_controller.transform.forward, _controller.edgeGameObject.transform.forward, _controller.angleToAllowClimbEdge)) ExitState();
         _controller.animator.SetBool("isOnAir", true);
-        if(UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Jump) UIHelperController.Instance.DisableHelper();
+        if(UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Jump) UIHelperController.Instance.DisableHelper(1);
     }
 
     public override void Update()
