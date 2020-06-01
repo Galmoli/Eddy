@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
 
 public class PlayerMovementController : StateMachine
 {
@@ -49,6 +50,8 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public PushPullObject moveObject;
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
     [HideInInspector] public Rigidbody standRb;
+
+    private EventInstance dragSoundEvent;
 
 
     [Header("Animation")]
@@ -106,11 +109,7 @@ public class PlayerMovementController : StateMachine
         {
             jump = true;
             animator.SetTrigger("Jump");
-
-            if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(playerSounds.jumpSoundPath, transform);
-            }
+            JumpSound();
         }
         if (!standing && onEdge) inputToStand = true;
     }
@@ -203,4 +202,53 @@ public class PlayerMovementController : StateMachine
     {
         return state;
     }
+
+    #region Sounds
+    public void JumpSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.jumpSoundPath, transform);
+        }  
+    }
+
+    public void LandingSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.landSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.landSoundPath, transform);
+        }
+    }
+
+    public void DragSound()
+    {
+        if (!AudioManager.Instance.isPlaying(dragSoundEvent))
+        {
+            if (AudioManager.Instance.ValidEvent(playerSounds.draggableObjectSoundPath))
+            {
+                dragSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.draggableObjectSoundPath, transform);
+            }
+        }
+    }
+
+    public void StopDragSound()
+    {
+        dragSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+    
+    public void StepSound()
+    {
+        /*if (AudioManager.Instance.ValidEvent(playerSounds.woodStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.woodStepSoundPath, transform);
+        }*/
+
+        //Step on stone? Check surface type
+
+        /*if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
+        }*/
+    }
+    #endregion
 }

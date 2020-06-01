@@ -36,20 +36,10 @@ public class SimpleAttackState : State
 
         if (_controller.simpleAttackCount < _controller.attacksToCombo)
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.attackSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.attackSoundPath, _controller.transform);
-            }
-
             _attackObject = _controller.basicAttack;
         }
         else
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.comboAttackSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.comboAttackSoundPath, _controller.transform);
-            }
-
             _attackObject = _controller.comboAttack;
             _controller.simpleAttackCount = 0;
         }
@@ -80,39 +70,23 @@ public class SimpleAttackState : State
 
                 if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
 
-                if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyHitSoundPath))
-                {
-                    AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyHitSoundPath, _controller.transform);
-                }
-
+                _controller.SimpleAttackSound();
                 return;
             }
 
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyArmoredHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyArmoredHitSoundPath, _controller.transform);
-            }
-
+            _controller.ArmoredHitSound();
             return;
         }
 
         if(_controller.swordTrigger.hitObject.tag == "Wood")
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.woodObjectHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.woodObjectHitSoundPath, _controller.transform);
-            }
-
+            _controller.WoodObjectHitSound();
             return;
         }
 
         if (_controller.swordTrigger.hitObject.tag == "Metal")
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.metalObjectHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.metalObjectHitSoundPath, _controller.transform);
-            }
-
+            _controller.MetalObjectHitSound();
             return;
         }
     }

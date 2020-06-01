@@ -36,7 +36,7 @@ public class UIHelperController : MonoBehaviour
     
     [HideInInspector] public HelperAction actionToComplete;
 
-    public void EnableHelper(HelperAction action, Transform anchor)
+    public void EnableHelper(HelperAction action, Vector3 anchor)
     {
         background.SetActive(true);
         actionToComplete = action;
@@ -61,7 +61,7 @@ public class UIHelperController : MonoBehaviour
                 Joystcik.SetActive(true);
                 break;
         }
-        helpersParent.transform.position = UIManager.Instance.mainCamera.WorldToScreenPoint(anchor.position);
+        helpersParent.transform.position = anchor;
     }
 
     public void DisableHelper()

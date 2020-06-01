@@ -36,22 +36,7 @@ public class PlayerSounds : MonoBehaviour
     public string draggableObjectSoundPath;
     public string elevatorSoundPath;
 
-    public void PlayerStep()
-    {
-        if (AudioManager.Instance.ValidEvent(woodStepSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(woodStepSoundPath, transform);
-        }
-
-        //Step on stone? Check surface type
-
-        /*if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
-        }*/
-    }
-
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -60,5 +45,5 @@ public class PlayerSounds : MonoBehaviour
                 AudioManager.Instance.PlayOneShotSound(woodStepSoundPath, transform);
             }
         }
-    }
+    }*/
 }
