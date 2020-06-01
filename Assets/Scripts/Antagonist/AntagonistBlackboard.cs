@@ -33,6 +33,8 @@ public class AntagonistBlackboard : MonoBehaviour
 
     public GameObject enemyCollider;
 
+    public Animator animator;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

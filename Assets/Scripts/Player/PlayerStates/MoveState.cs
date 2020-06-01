@@ -33,7 +33,8 @@ public class MoveState : State
 
         if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Move && _controller.movementVector.magnitude >= 0.7f)
         {
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Jump, _controller.transform.position + Vector3.up * 2, _controller.transform);
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Move);
         } 
         
         if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);

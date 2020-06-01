@@ -325,6 +325,8 @@ GameObject:
   - component: {fileID: 9003181894529615293}
   - component: {fileID: 9003181894529615294}
   - component: {fileID: 9003181894529615290}
+  - component: {fileID: 8619872430862459843}
+  - component: {fileID: 1349668485662294643}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: CheckPoint
@@ -423,3 +425,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPos: {fileID: 9003181893419340050}
   light: {fileID: 5785973789144881583}
+--- !u!65 &8619872430862459843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003181894529615295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.11, z: 3}
+  m_Center: {x: 0, y: -0.52, z: 0}
+--- !u!65 &1349668485662294643
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003181894529615295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.06, y: 2.19, z: 3.11}
+  m_Center: {x: 0, y: 0.52, z: 0}

@@ -14,4 +14,20 @@ public class CheckPoint : MonoBehaviour
         FindObjectOfType<PlayerController>().RestoreHealth();
         light.enabled = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position+ Vector3.up * 2);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            UIHelperController.Instance.DisableHelper();
+        }
+    }
 }

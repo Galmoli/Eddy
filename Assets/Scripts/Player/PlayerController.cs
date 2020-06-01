@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Move, transform.position + Vector3.up*2, transform);
         health = initialHealth;
         _isDead = false;
     }
