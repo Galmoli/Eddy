@@ -5,14 +5,14 @@ using UnityEngine;
 public class PersecutionTrigger : MonoBehaviour
 {
 
-    public AntagonistFSM antagonistFSM;
-    public AntagonistFSM.States state;
+    public AntagonistPersecutionFSM antagonistPersecutionFSM;
+    public AntagonistPersecutionFSM.States state;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            antagonistFSM.ChangeState(state);
+            antagonistPersecutionFSM.ChangeState(state);
             gameObject.SetActive(false);
         }
     }

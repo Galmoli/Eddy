@@ -31,18 +31,6 @@ public class PushPullObject : MonoBehaviour
         _input.PlayerControls.Sword.started += ctx => SwordInput();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
-            {
-                //UI Helper
-                UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
-            }
-        }
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -63,8 +51,6 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //UI Helper
-            UIHelperController.Instance.DisableHelper();
             canMove = false;
         }
     }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class AntagonistAttackEvents : MonoBehaviour
 {
 
-    public AntagonistFSM antagonistFSM;
+    public AntagonistPersecutionFSM antagonistPersecutionFSM;
+    public AntagonistBossFSM antagonistBossFSM;
+    public AntagonistEndingFSM antagonistEndingFSM;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,7 +18,12 @@ public class AntagonistAttackEvents : MonoBehaviour
                 break;
             case "Obstacle":
 
-                antagonistFSM.ChangeState(AntagonistFSM.States.STUNNED);
+                if (antagonistPersecutionFSM.enabled)
+                    antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.STUNNED);
+                else if (antagonistBossFSM.enabled)
+                    antagonistBossFSM.ChangeState(AntagonistBossFSM.States.STUNNED);
+                else
+                    antagonistEndingFSM.ChangeState(AntagonistEndingFSM.States.STUNNED);
 
                 break;
            
@@ -27,12 +34,19 @@ public class AntagonistAttackEvents : MonoBehaviour
     {
         switch (other.tag)
         {
+            case "Pipe":
 
+                other.gameObject.SetActive(false);
+
+                if (antagonistPersecutionFSM.enabled)
+                    antagonistPersecutionFSM.ChangeState(AntagonistPersecutionFSM.States.WAITINGFORPIPE);
+
+                break;
             case "End":
 
                 other.gameObject.SetActive(false);
-                antagonistFSM.ChangeState(AntagonistFSM.States.WAITTOBEHEAD);
-
+                antagonistPersecutionFSM.enabled = false;
+                antagonistBossFSM.enabled = true;
                 break;
         }
     }

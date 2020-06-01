@@ -167,7 +167,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 arrivePlusAvoid.target = blackboard.player.gameObject;
                 break;
             case States.ATTACK:
-                blackboard.animator.SetTrigger("hasAttacked");
+                // Play attack animation      
+                Attack(); // Called by animation event
                 timeAfterAttacks = blackboard.timeAfterAttacks;
                 break;
         }
@@ -175,7 +176,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         blackboard.statesText.text = currentState.ToString();
     }
 
-    public void Attack()
+    private void Attack()
     {
         Collider[] colliders = Physics.OverlapSphere(blackboard.attackPoint.position, blackboard.damageZoneRadius);
         

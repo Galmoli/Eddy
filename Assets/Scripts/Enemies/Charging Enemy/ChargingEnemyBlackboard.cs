@@ -218,12 +218,12 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     {
         if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
         {
-            healthPoints = 0;
+            Death();
         }
 
         if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
         {
-            healthPoints = 0;
+            Death();
         }
     }
 
