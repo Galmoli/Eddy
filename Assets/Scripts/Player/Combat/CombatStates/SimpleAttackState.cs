@@ -70,7 +70,7 @@ public class SimpleAttackState : State
 
                 if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
 
-                _controller.SimpleAttackSound();
+                _controller.EnemyHitSound();
                 return;
             }
 
