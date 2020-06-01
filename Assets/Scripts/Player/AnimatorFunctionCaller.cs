@@ -34,4 +34,21 @@ public class AnimatorFunctionCaller : MonoBehaviour
     {
         aggressiveEnemy.Attack();
     }
+
+
+    //SOUNDS
+    public void SimpleAttackSound()
+    {
+        combatController.SimpleAttackSound();
+    }
+
+    public void ComboAttackSound()
+    {
+        combatController.ComboAttackSound();
+    }
+
+    public void AreaAttackChargedSound()
+    {
+        combatController.AreaAttackChargedSound();
+    }
 }

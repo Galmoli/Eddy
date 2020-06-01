@@ -207,12 +207,12 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     {
         if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
         {
-            Death();
+            healthPoints = 0;
         }
 
         if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
         {
-            Death();
+            healthPoints = 0;
         }
     }
 }

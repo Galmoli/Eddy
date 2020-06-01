@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         _playerController.Spawn();
+        FindObjectOfType<WaveController>().Reset();
         foreach (var e in enemySpawnManager.enemyList)
         {
             if (e.enemyB.dead && !e.enemyB.respawnable)
