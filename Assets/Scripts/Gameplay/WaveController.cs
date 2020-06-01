@@ -18,15 +18,19 @@ public class WaveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GeneralDialogue.OnDialogueDisabled += Init;
     }
 
-    public void Init()
+    public void Init(string dialogueID)
     {
-        closeAreaCols[0].SetActive(true);
-        closeAreaCols[1].SetActive(true);
-        activate = true;
-        currentWave = 0;
-        StartCoroutine(WaveProducer());
+        if (dialogueID == "Conversation_11")
+        {
+            closeAreaCols[0].SetActive(true);
+            closeAreaCols[1].SetActive(true);
+            activate = true;
+            currentWave = 0;
+            StartCoroutine(WaveProducer());
+        }
     }
 
     public void Reset()
