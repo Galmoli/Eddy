@@ -33,11 +33,6 @@ public class HitDetection : MonoBehaviour
     public void EnableTrigger()
     {
         _trigger.enabled = true;
-
-        if (AudioManager.Instance.ValidEvent(_controller.playerSounds.attackSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.attackSoundPath, _controller.transform);
-        }
     }
 
     public void DisableTrigger()

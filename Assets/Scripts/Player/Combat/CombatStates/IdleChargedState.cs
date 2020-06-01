@@ -17,10 +17,7 @@ public class IdleChargedState : State
 
         _controller.animator.SetTrigger("StartChargeAttack");
 
-        if (AudioManager.Instance.ValidEvent(_controller.playerSounds.areaAttackChargingSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.areaAttackChargingSoundPath, _controller.transform);
-        }
+        _controller.AreaAttackChargingSound();
     }
 
     public override void Interact()
@@ -30,10 +27,7 @@ public class IdleChargedState : State
 
     public override void ExitState()
     {
-        if (AudioManager.Instance.ValidEvent(_controller.playerSounds.areaAttackSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.areaAttackSoundPath, _controller.transform);
-        }
+        _controller.AreaAttackSound();
 
         _controller.SetState(new AreaAttackState(_controller, 1));
     }
