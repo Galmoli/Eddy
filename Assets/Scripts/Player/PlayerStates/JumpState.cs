@@ -48,11 +48,7 @@ public class JumpState : State
 
         if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position)))
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.landSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.landSoundPath, _controller.transform);
-            }
-
+            _controller.LandingSound();
             ExitState();
         }
     }

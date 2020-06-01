@@ -1,5 +1,4 @@
-﻿using FMOD.Studio;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +6,11 @@ public class PushState : State
 {
     private PlayerMovementController _controller;
     private PlayerSwordScanner _scannerSword;
-    private PlayerSounds _playerSounds;
-
-    private EventInstance dragSoundEvent;
 
     public PushState(PlayerMovementController controller)
     {
         _controller = controller;
         _scannerSword = controller.scannerSword;
-        _playerSounds = controller.playerSounds;
     }
 
     public override void Enter()
@@ -62,15 +57,7 @@ public class PushState : State
                 _controller.moveObject.moving = true;
             }
 
-            if (!AudioManager.Instance.isPlaying(dragSoundEvent))
-            {
-                if (AudioManager.Instance.ValidEvent(_playerSounds.draggableObjectSoundPath))
-                {
-                    dragSoundEvent = AudioManager.Instance.PlayEvent(_playerSounds.draggableObjectSoundPath, _controller.transform);
-                }
-            }
-
-
+            _controller.DragSound();
         }
         else if (_controller.moveObject && vector3D.magnitude < _controller.joystickDeadZone)
         {
@@ -78,7 +65,7 @@ public class PushState : State
             _controller.animator.SetBool("isPushing", false);
             _controller.animator.SetBool("isDragging", false);
 
-            dragSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _controller.StopDragSound();
         }
         ExitState();
     }
@@ -100,7 +87,7 @@ public class PushState : State
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
 
-            dragSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _controller.StopDragSound();
         }
     }
 
