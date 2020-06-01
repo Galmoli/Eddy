@@ -203,4 +203,21 @@ public class PlayerMovementController : StateMachine
     {
         return state;
     }
+
+    #region Sounds
+    public void StepSound()
+    {
+        /*if (AudioManager.Instance.ValidEvent(playerSounds.woodStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.woodStepSoundPath, transform);
+        }*/
+
+        //Step on stone? Check surface type
+
+        /*if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
+        }*/
+    }
+    #endregion
 }

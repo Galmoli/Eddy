@@ -11,6 +11,7 @@ public class AnimatorFunctionCaller : MonoBehaviour
 
     private void Start()
     {
+        movementController = FindObjectOfType<PlayerMovementController>();
         combatController = FindObjectOfType<PlayerCombatController>();
         swordScanner = FindObjectOfType<PlayerSwordScanner>();
     }
@@ -36,7 +37,12 @@ public class AnimatorFunctionCaller : MonoBehaviour
     }
 
 
-    //SOUNDS
+    #region Sounds
+    public void StepSound()
+    {
+        movementController.StepSound();
+    }
+    
     public void SimpleAttackSound()
     {
         combatController.SimpleAttackSound();
@@ -51,4 +57,5 @@ public class AnimatorFunctionCaller : MonoBehaviour
     {
         combatController.AreaAttackChargedSound();
     }
+    #endregion
 }
