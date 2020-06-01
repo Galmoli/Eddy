@@ -36,11 +36,6 @@ public class SimpleAttackState : State
 
         if (_controller.simpleAttackCount < _controller.attacksToCombo)
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.attackSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.attackSoundPath, _controller.transform);
-            }
-
             _attackObject = _controller.basicAttack;
         }
         else
