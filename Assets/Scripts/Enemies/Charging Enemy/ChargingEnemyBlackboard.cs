@@ -191,12 +191,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         gameObject.SetActive(false);
 
         dead = true;
-
-        if (AudioManager.Instance.ValidEvent(deathSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
-        }
-
+        DeathSound();
     }
 
     public override void EnemyInVolume(bool scannerOn)
@@ -227,6 +222,32 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         }
     }
 
+    #region Sounds
+
+    public void AttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(attackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+        }
+    }
+
+    public void NoticeSound()
+    {
+        if (AudioManager.Instance.ValidEvent(noticeSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(noticeSoundPath, transform);
+        }
+    }
+
+    public void DeathSound()
+    {
+        if (AudioManager.Instance.ValidEvent(deathSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
+        }
+    }
+
     public void StepSound()
     {
         if (AudioManager.Instance.ValidEvent(stepSoundPath))
@@ -234,4 +255,5 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
             AudioManager.Instance.PlayOneShotSound(stepSoundPath, transform);
         }
     }
+    #endregion
 }

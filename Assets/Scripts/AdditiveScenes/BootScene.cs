@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class BootScene : MonoBehaviour
 {
+    [SerializeField] private int _initialSceneIdx;
     private int _currentSceneIdx;
     private void Start()
     {
         _currentSceneIdx = SceneManager.GetActiveScene().buildIndex;
         
         LoadFirstScene();
-        LoadSecondScene();
+        LoadScene(_initialSceneIdx -1);
+        LoadScene(_initialSceneIdx +1);
     }
 
     private void LoadFirstScene()
@@ -22,14 +24,14 @@ public class BootScene : MonoBehaviour
 
     private IEnumerator Co_LoadFirstScene()
     {
-        var loading = SceneManager.LoadSceneAsync(_currentSceneIdx + 1, LoadSceneMode.Additive);
+        var loading = SceneManager.LoadSceneAsync(_initialSceneIdx, LoadSceneMode.Additive);
         yield return loading;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx + 1));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_initialSceneIdx));
         SceneManager.MoveGameObjectToScene(GameObject.Find("MaintainBetweenScenes"), SceneManager.GetActiveScene());
     }
     
-    private void LoadSecondScene()
+    private void LoadScene(int idx)
     {
-        SceneManager.LoadSceneAsync(_currentSceneIdx + 2, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
     }
 }
