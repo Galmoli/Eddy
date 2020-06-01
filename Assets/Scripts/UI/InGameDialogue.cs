@@ -26,6 +26,9 @@ public class InGameDialogue : MonoBehaviour
             return instance;
         }
     }
+    
+    public static Action<string> OnDialogueDisabled = delegate(string s) {  };
+    
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Image pointer;
     [SerializeField] private float timeToAdd;
@@ -116,6 +119,7 @@ public class InGameDialogue : MonoBehaviour
 
     private void DisableDialogue()
     {
+        OnDialogueDisabled(_currentDialogue.dialoguePopUp.id);
         UIManager.Instance.popUpEnabled = false;
         dialogueImage.gameObject.SetActive(false);
     }

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 {
+    public GameObject ragdoll;
     public Text statesText;
 
     [Header("General Stats")]
@@ -45,6 +46,10 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     [Header("Enemy Stagger")]
     public float staggerImpulse;
     public float staggeredTime;
+
+    [Header("Enemy Death")]
+    public float minDeathImpulse = 4000;
+    public float maxDeathImpulse = 6000;
 
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
@@ -172,6 +177,14 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 
     public override void Death()
     {
+        Vector3 dir = transform.position - player.transform.position;
+        dir = dir.normalized;
+
+        GameObject rd = Instantiate(ragdoll, transform.position, Quaternion.identity);
+        rd.transform.rotation = transform.rotation;
+
+        float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
+        rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
         gameObject.SetActive(false);
     }
 
@@ -194,12 +207,12 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     {
         if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
         {
-            Death();
+            healthPoints = 0;
         }
 
         if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
         {
-            Death();
+            healthPoints = 0;
         }
     }
 }

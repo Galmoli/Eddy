@@ -19,6 +19,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5423216724689644984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6766770707028318294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6e2db538c97dc4f82f34210e868589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 0}
+  combatController: {fileID: 0}
+  swordScanner: {fileID: 0}
+  aggressiveEnemy: {fileID: 8826770843429977465}
 --- !u!1 &8826770841903395683
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,10 +237,12 @@ MonoBehaviour:
   healthPoints: 0
   stunned: 0
   hit: 0
+  dead: 0
   hitDirection: {x: 0, y: 0, z: 0}
-  animator: {fileID: 6573365272424064847}
-  statesText: {fileID: 8826770841903395681}
   respawnable: 0
+  animator: {fileID: 6573365272424064847}
+  ragdoll: {fileID: 1058685090794112881, guid: 8e66d0a4bf8169849bb6944415a1c54b, type: 3}
+  statesText: {fileID: 8826770841903395681}
   armored: 0
   initialHealthPoints: 2
   attackPoints: 1
@@ -253,6 +271,8 @@ MonoBehaviour:
   stunImpulse: 4
   staggerImpulse: 2
   staggeredTime: 0.5
+  minDeathImpulse: 4000
+  maxDeathImpulse: 6000
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2

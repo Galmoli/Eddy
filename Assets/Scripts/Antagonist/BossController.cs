@@ -73,11 +73,4 @@ public class BossController : MonoBehaviour
         antagonistBossFSM.ChangeState(AntagonistBossFSM.States.FALLING);
     }
 
-    [System.Serializable]
-    public class Wave
-    {
-        public GameObject[] enemies;
-        public float interval;
-        public float duration;
-    }
 }
