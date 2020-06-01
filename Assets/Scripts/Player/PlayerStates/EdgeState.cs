@@ -23,13 +23,6 @@ public class EdgeState : State
     {
         Debug.Log("Edge State");
         _controller.onEdge = true;
-
-        if (!ValidEdge())
-        {
-            _controller.onEdge = false;
-            _controller.edgeAvailable = false;
-            ExitState();
-        }
         
         _projectedVector = _controller.GetProjectedVector();
         
@@ -40,6 +33,14 @@ public class EdgeState : State
 
     public override void Update()
     {
+        if (!ValidEdge())
+        {
+            _controller.onEdge = false;
+            _controller.edgeAvailable = false;
+            ExitState();
+            return;
+        }
+
         if (_controller.standing || autoStand) return;
         
         //Puts player on grab position. 
@@ -105,11 +106,13 @@ public class EdgeState : State
         }
     }
 
+
     private bool ValidEdge()
     {
         RaycastHit hit;
         if (Physics.Raycast(_edgeDetection.transform.position, _controller.transform.forward, out hit, 1f, LayerMask.GetMask("Appear")))
         {
+            Debug.Log(hit.collider.gameObject);
             if (_scannerCollider.bounds.Contains(hit.point))
                 return true;
             else
