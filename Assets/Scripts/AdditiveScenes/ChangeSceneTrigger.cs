@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class ChangeSceneTrigger : MonoBehaviour
 {
+    private enum RespectiveToTrigger
+    {
+        Right,
+        Left
+    }
+    
     [SerializeField] private bool playerExitsOnRight;
     private Transform _player;
     private AdditiveSceneManager _sceneManager;
+    private RespectiveToTrigger _respectiveToTrigger;
     private bool triggerActivated = false;
 
     private void Awake()
@@ -20,7 +27,16 @@ public class ChangeSceneTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _player = other.transform;
-            WhereIsPlayer();
+            _respectiveToTrigger = TriggerEnterCheck();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _player = other.transform;
+            if(_respectiveToTrigger != TriggerEnterCheck()) WhereIsPlayer();
         }
     }
 
@@ -36,7 +52,7 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void WhereIsPlayer()
     {
-        if (playerExitsOnRight)
+        if (!playerExitsOnRight)
         {
             if (GetDotProduct() < 0) OnPlayerEnter();
             else OnPlayerExit();
@@ -46,6 +62,12 @@ public class ChangeSceneTrigger : MonoBehaviour
             if (GetDotProduct() < 0) OnPlayerExit();
             else OnPlayerEnter();
         }
+    }
+
+    private RespectiveToTrigger TriggerEnterCheck()
+    {
+        if (GetDotProduct() < 0) return RespectiveToTrigger.Left;
+        return RespectiveToTrigger.Right;
     }
 
     private float GetDotProduct()
