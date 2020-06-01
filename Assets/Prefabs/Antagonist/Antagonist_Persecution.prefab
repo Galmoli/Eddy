@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4961601050687014008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.32}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 5161032688319171884}
@@ -41,7 +41,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.74
   m_Height: 1.71
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyCollider: {fileID: 4961601050687014008}
+  animator: {fileID: 8385318343548666421}
 --- !u!114 &947180087630601207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +199,7 @@ Animator:
   m_GameObject: {fileID: 8292282934065426441}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 381140ae4a11d8040aa07ed3372ec78f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7ac25d4dc92a22d47b136792d48ccc9b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -297,7 +298,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 116cd84ed3aefd845863d822ac39183d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.67
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 116cd84ed3aefd845863d822ac39183d,
         type: 3}
