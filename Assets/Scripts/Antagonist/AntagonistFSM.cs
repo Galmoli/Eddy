@@ -47,11 +47,9 @@ public class AntagonistFSM : MonoBehaviour
                 ChangeState(States.GUARDING);
                 break;
             case States.GUARDING:
-
                 navMeshAgent.SetDestination(blackboard.player.transform.position);
-
+                blackboard.animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
                 break;
-
             case States.PERSECUTION:
 
                 navMeshAgent.SetDestination(blackboard.player.transform.position);
@@ -88,8 +86,10 @@ public class AntagonistFSM : MonoBehaviour
             case States.INITIAL:
                 break;
             case States.GUARDING:
+                blackboard.animator.SetFloat("Speed", 0);
                 break;
             case States.PERSECUTION:
+                blackboard.animator.SetBool("isCharging", false);
                 blackboard.attackCollider.enabled = false;
                 break;
             case States.STUNNED:
@@ -114,6 +114,7 @@ public class AntagonistFSM : MonoBehaviour
         switch (newState)
         {
             case States.INITIAL:
+                blackboard.animator.SetFloat("Speed", 0);
                 break;
             case States.GUARDING:
                 navMeshAgent.speed = blackboard.guardingSpeed;
@@ -124,12 +125,14 @@ public class AntagonistFSM : MonoBehaviour
                 currentPipe++;
                 break;
             case States.PERSECUTION:
+                blackboard.animator.SetBool("isCharging", true);
                 navMeshAgent.speed = blackboard.persecutionSpeed;
                 blackboard.attackCollider.enabled = true;
                 blackboard.firstObstacle.SetActive(false);
                 blackboard.secondObstacle.SetActive(false);
                 break;
             case States.STUNNED:
+                blackboard.animator.SetTrigger("Damaged");
                 navMeshAgent.enabled = false;
                 rigidbody.isKinematic = false;
                 rigidbody.AddForce(-transform.forward * blackboard.obstacleImpactForce, ForceMode.Impulse);
