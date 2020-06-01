@@ -137,4 +137,79 @@ public class PlayerCombatController : StateMachine
     {
         return state;
     }
+
+    #region Sounds
+    public void SimpleAttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath, transform);
+        }
+    }
+
+    public void ComboAttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.comboAttackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.comboAttackSoundPath, transform);
+        }
+    }
+
+    public void AreaAttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackSoundPath, transform);
+        }
+    }
+
+    public void AreaAttackChargingSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargingSoundPath, transform);
+        }
+    }
+
+    public void AreaAttackChargedSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargedSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargedSoundPath, transform);
+        }
+    }
+
+    public void EnemyHitSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.enemyHitSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.enemyHitSoundPath, transform);
+        }
+    }
+
+    public void ArmoredHitSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.enemyArmoredHitSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.enemyArmoredHitSoundPath, transform);
+        }
+    }
+
+    public void WoodObjectHitSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.woodObjectHitSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.woodObjectHitSoundPath, transform);
+        }
+    }
+
+    public void MetalObjectHitSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.metalObjectHitSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.metalObjectHitSoundPath, transform);
+        }
+    }
+
+    #endregion
 }

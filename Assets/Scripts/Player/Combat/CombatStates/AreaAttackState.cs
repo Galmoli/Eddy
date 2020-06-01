@@ -47,39 +47,23 @@ public class AreaAttackState : State
 
                 if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
 
-                if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyHitSoundPath))
-                {
-                    AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyHitSoundPath, _controller.transform);
-                }
-
+                _controller.EnemyHitSound();
                 return;
             }
 
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.enemyArmoredHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.enemyArmoredHitSoundPath, _controller.transform);
-            }
-
+            _controller.ArmoredHitSound();
             return;
         }
 
         if (_controller.swordTrigger.hitObject.tag == "Wood")
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.woodObjectHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.woodObjectHitSoundPath, _controller.transform);
-            }
-
+            _controller.WoodObjectHitSound();
             return;
         }
 
         if (_controller.swordTrigger.hitObject.tag == "Metal")
         {
-            if (AudioManager.Instance.ValidEvent(_controller.playerSounds.metalObjectHitSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_controller.playerSounds.metalObjectHitSoundPath, _controller.transform);
-            }
-
+            _controller.MetalObjectHitSound();
             return;
         }
     }
