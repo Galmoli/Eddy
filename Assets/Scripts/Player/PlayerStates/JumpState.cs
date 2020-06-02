@@ -55,12 +55,10 @@ public class JumpState : State
 
     public override void ExitState()
     {
-        
-        
         _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
         
-        if (_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
+        if (_controller.edgeAvailable && ValidEdge()) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
     }
     
@@ -128,5 +126,19 @@ public class JumpState : State
 
         if (vector3D != Vector3.zero) vector3D = vector3D.normalized * _residualCollisionAvoidanceSpeed;
         return vector3D;
+    }
+
+    private bool ValidEdge()
+    {
+        if(_controller.edgeGameObject.layer == LayerMask.NameToLayer("Appear"))
+        {
+            if (_controller.scannerSword.UsingScannerInHand())
+            {
+                _controller.scannerSword.ScannerOff();
+                return false;
+            }
+        }
+
+        return true;
     }
 }
