@@ -73,6 +73,12 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     private bool checkingInVolumeScannerOn;
     private bool checkingInVolumeScannerOff;
 
+    [Header("Sound")]
+    public string noticeSoundPath;
+    public string stepSoundPath;
+    public string attackSoundPath;
+    public string deathSoundPath;
+
     public override void Start()
     {
         GameManager.Instance.enemySpawnManager.Add(this);
@@ -186,6 +192,9 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
         rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
         gameObject.SetActive(false);
+
+        dead = true;
+        DeathSound();
     }
 
     public override void EnemyInVolume(bool scannerOn)
@@ -215,4 +224,38 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
             healthPoints = 0;
         }
     }
+
+    #region Sounds
+    public void AttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(attackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+        }
+    }
+
+    public void NoticeSound()
+    {
+        if (AudioManager.Instance.ValidEvent(noticeSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(noticeSoundPath, transform);
+        }
+    }
+
+    public void DeathSound()
+    {
+        if (AudioManager.Instance.ValidEvent(deathSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
+        }
+    }
+
+    public override void StepSound()
+    {
+        if (AudioManager.Instance.ValidEvent(stepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stepSoundPath, transform);
+        }
+    }
+    #endregion
 }

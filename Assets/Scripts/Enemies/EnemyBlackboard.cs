@@ -18,6 +18,7 @@ public abstract class EnemyBlackboard : MonoBehaviour
     public abstract bool CanBeDamaged();
     public abstract void EnemyInVolume(bool scannerOn);
     public abstract void Death();
+    public abstract void StepSound();
 
     //Variables
     [HideInInspector] public PlayerMovementController player;
