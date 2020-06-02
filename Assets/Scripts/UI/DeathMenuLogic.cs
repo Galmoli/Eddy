@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DeathMenuLogic : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class DeathMenuLogic : MonoBehaviour
     private InputActions _input;
     private DeathMenuOptions _option;
 
-    [SerializeField] private GameObject tryAgainImage;
-    [SerializeField] private GameObject mainMenuImage;
+    [SerializeField] private TextMeshProUGUI tryAgainImage;
+    [SerializeField] private TextMeshProUGUI mainMenuImage;
+    public Animator tryAgainBgAnim;
+    public Animator mainMenuBgAnim;
 
     private void Awake()
     {
@@ -31,6 +34,8 @@ public class DeathMenuLogic : MonoBehaviour
         _input.Enable();
         _option = DeathMenuOptions.TryAgain;
         tryAgainImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        tryAgainImage.color = Color.black;
+        tryAgainBgAnim.SetTrigger("enable");
     }
 
     private void OnDisable()
@@ -46,7 +51,11 @@ public class DeathMenuLogic : MonoBehaviour
                 break;
             case DeathMenuOptions.MainMenu:
                 mainMenuImage.transform.localScale = new Vector3(1, 1, 1);
+                mainMenuImage.color = Color.white;
+                mainMenuBgAnim.SetTrigger("disable");
                 tryAgainImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                tryAgainImage.color = Color.black;
+                tryAgainBgAnim.SetTrigger("enable");
                 _option = DeathMenuOptions.TryAgain;
                 break;
         }
@@ -58,7 +67,11 @@ public class DeathMenuLogic : MonoBehaviour
         {
             case DeathMenuOptions.TryAgain:
                 tryAgainImage.transform.localScale = new Vector3(1, 1, 1);
+                tryAgainImage.color = Color.white;
+                tryAgainBgAnim.SetTrigger("disable");
                 mainMenuImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                mainMenuImage.color = Color.black;
+                mainMenuBgAnim.SetTrigger("enable");
                 _option = DeathMenuOptions.MainMenu;
                 break;
             case DeathMenuOptions.MainMenu:
