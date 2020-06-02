@@ -223,9 +223,9 @@ MonoBehaviour:
     m_Bits: 85505
   enemyColliderChaseHeight: 1.2
   maxVerticalDistance: 3
-  detectionDistanceOnSight: 10
+  detectionDistanceOnSight: 19
   detectionDistanceOffSight: 5
-  playerOutOfRangeDistance: 10
+  playerOutOfRangeDistance: 20
   visionAngle: 30
   timeInNotice: 0.7
   chasingSpeed: 5
@@ -251,6 +251,10 @@ MonoBehaviour:
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
+  noticeSoundPath: event:/Enemy 1/Noticing The Player/Enemy1_
+  stepSoundPath: event:/Enemy 1/Step FALTA/Enemy1_Step_Take1
+  attackSoundPath: event:/Enemy 2/Attacking/Enemy2_Attack_Take1
+  deathSoundPath: event:/Enemy 1/Death/Enemy1_Death_Take1
 --- !u!114 &6042603824428787139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,10 +560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6e2db538c97dc4f82f34210e868589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementController: {fileID: 0}
-  combatController: {fileID: 0}
-  swordScanner: {fileID: 0}
-  aggressiveEnemy: {fileID: 6042603824428787192}
 --- !u!1001 &1901108965351753212
 PrefabInstance:
   m_ObjectHideFlags: 0

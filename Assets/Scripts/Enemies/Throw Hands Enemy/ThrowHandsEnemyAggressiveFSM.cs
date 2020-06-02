@@ -160,6 +160,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.NOTICE:
                 blackboard.animator.SetTrigger("hasNoticed");
+                blackboard.NoticeSound();
                 break;
             case States.CHASE:
                 blackboard.ownKS.maxSpeed = blackboard.chasingSpeed;
@@ -187,6 +188,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             }
         }
+
+        blackboard.AttackSound();
     }
 
     private void LookAtPlayer()

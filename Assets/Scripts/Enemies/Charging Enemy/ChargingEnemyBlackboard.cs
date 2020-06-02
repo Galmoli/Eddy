@@ -223,7 +223,6 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     }
 
     #region Sounds
-
     public void AttackSound()
     {
         if (AudioManager.Instance.ValidEvent(attackSoundPath))
@@ -248,7 +247,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         }
     }
 
-    public void StepSound()
+    public override void StepSound()
     {
         if (AudioManager.Instance.ValidEvent(stepSoundPath))
         {
