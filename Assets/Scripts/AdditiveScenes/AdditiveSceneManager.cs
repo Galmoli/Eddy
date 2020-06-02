@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class AdditiveSceneManager : MonoBehaviour
 {
     [SerializeField] private bool firstScene;
+    [SerializeField] private bool secondScene;
     private int _currentSceneIdx;
     [HideInInspector] public int _bootSceneIdx = 0;
 
@@ -47,9 +48,13 @@ public class AdditiveSceneManager : MonoBehaviour
             DestroyNextScene();
             yield break;
         }
+
+        if (!secondScene)
+        {
+            var loading = SceneManager.LoadSceneAsync(_currentSceneIdx - 2, LoadSceneMode.Additive);
+            yield return loading;
+        }
         
-        var loading = SceneManager.LoadSceneAsync(_currentSceneIdx - 2, LoadSceneMode.Additive);
-        yield return loading;
         if (!firstScene)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_currentSceneIdx - 1));
