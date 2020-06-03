@@ -77,6 +77,10 @@ public class AntagonistFSM : MonoBehaviour
             case States.WAITINGFORPIPE:
                 break;
             case States.WAITTOBEHEAD:
+                //ChangeState(States.BEHEADED);
+                break;
+            case States.BEHEADED:
+
                 break;
         }
     }
@@ -110,6 +114,9 @@ public class AntagonistFSM : MonoBehaviour
             case States.WAITTOBEHEAD:
                 navMeshAgent.enabled = true;
                 blackboard.enemyCollider.SetActive(true);
+                break;
+            case States.BEHEADED:
+               
                 break;
         }
 
@@ -152,6 +159,11 @@ public class AntagonistFSM : MonoBehaviour
                 transform.position = blackboard.destinies[2].transform.position;
                 transform.rotation = blackboard.destinies[2].transform.rotation;
                 break;
+            case States.BEHEADED:
+                blackboard.head.transform.parent = null;
+                blackboard.head.SetActive(true);
+                blackboard.mesh.SetActive(false);
+                break;
         }
 
         currentState = newState;
@@ -159,6 +171,6 @@ public class AntagonistFSM : MonoBehaviour
 
     public enum States
     {
-        INITIAL, GUARDING, PERSECUTION, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING, WAITTOBEHEAD
+        INITIAL, GUARDING, PERSECUTION, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING, WAITTOBEHEAD, BEHEADED
     }
 }

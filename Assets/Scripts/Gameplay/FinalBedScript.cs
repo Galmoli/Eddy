@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FinalBedScript : MonoBehaviour
 {
-    private InputActions inputActions;
 
     // Start is called before the first frame update
     void Awake()
@@ -12,15 +11,6 @@ public class FinalBedScript : MonoBehaviour
         GeneralDialogue.OnDialogueDisabled += EndGame;
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
 
     public void EndGame(string id)
     {
