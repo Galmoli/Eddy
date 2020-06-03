@@ -99,7 +99,7 @@ public class PushPullObject : MonoBehaviour
     //Moves this GameObject when the player pushes it.
     public void Push()
     {
-        _rb.velocity = -moveVector.normalized * 1.05f * speedWhenMove;
+        _rb.velocity = -moveVector.normalized * 1.14f * speedWhenMove;
     }
 
     //Gets the angle between the closest vector and the director vector
