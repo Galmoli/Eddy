@@ -6,5 +6,6 @@ using UnityEngine;
 public class GeneralDialoguePopUp : ScriptableObject
 {
     public string speaker;
+    public Sprite speakerImage;
     public DialoguePopUpLine[] lines;
 }
