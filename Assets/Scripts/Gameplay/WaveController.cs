@@ -23,11 +23,11 @@ public class WaveController : MonoBehaviour
 
     public void Init(string dialogueID)
     {
-        if (dialogueID == "Conversation_11")
+        if (dialogueID == "Conversation_5")
         {
             closeAreaCols[0].SetActive(true);
             closeAreaCols[1].SetActive(true);
-            activate = true;
+            //activate = true;
             currentWave = 0;
             StartCoroutine(WaveProducer());
         }
@@ -72,10 +72,24 @@ public class WaveController : MonoBehaviour
     {
         if (currentWave < waves.Length)
         {
+            if (currentWave == 2)
+            {
+                InGameDialogue.Instance.EnableDialogue("PopUp_12");
+            }
+
+            if (currentWave == 3)
+            {
+                InGameDialogue.Instance.EnableDialogue("PopUp_13");
+            }
+
+            activate = false;
+
             StartCoroutine(WaveProducer());
         }
         else
         {
+            InGameDialogue.Instance.EnableDialogue("PopUp_14");
+
             wavesCompleted = true;
             closeAreaCols[0].SetActive(false);
             closeAreaCols[1].SetActive(false);
@@ -84,6 +98,10 @@ public class WaveController : MonoBehaviour
 
     public IEnumerator WaveProducer()
     {
+        yield return new WaitForSeconds(1.0f);
+
+        activate = true;
+
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
             int randomPipe = Random.Range(0, pipePositions.Length);
