@@ -45,14 +45,14 @@ public class ObtainSword : MonoBehaviour
             /*draggables[0].SetActive(false);
             draggables[1].SetActive(true);*/
 
-            GeneralDialogue.Instance.EnableDialogue("Conversation_6");
+            GeneralDialogue.Instance.EnableDialogue("Conversation_2");
             UIHelperController.Instance.DisableHelper();
         }
     }
 
     public void SwordDialogueCompleted(string id)
     {
-        if (id == "Conversation_6")
+        if (id == "Conversation_2")
         {
             UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Scanner, GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up * 2,
                 GameObject.FindGameObjectWithTag("Player").transform);
