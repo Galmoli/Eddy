@@ -19,6 +19,7 @@ namespace Steerings
 		public static SteeringOutput GetSteering (KinematicState ownKS, GameObject target, float targetAngularRadius = 2f, float slowDownAngularRadius = 10f, float timeToDesiredAngularSpeed = 0.1f)
 		{
 			SteeringOutput result = new SteeringOutput();
+			if (!target) return null;
 
 			result.linearActive = false;
 			result.angularActive = true;
