@@ -4,50 +4,20 @@ using UnityEngine;
 
 public class FinalBedScript : MonoBehaviour
 {
-    bool playerInside;
-    private InputActions inputActions;
 
     // Start is called before the first frame update
     void Awake()
     {
-        inputActions = new InputActions();
-        inputActions.PlayerControls.MoveObject.started += ctx => EndGame();
+        GeneralDialogue.OnDialogueDisabled += EndGame;
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
 
-    private void OnDisable()
+    public void EndGame(string id)
     {
-        inputActions.Disable();
-    }
-
-    public void EndGame()
-    {
-        Debug.Log(playerInside);
-        if (playerInside)
-        {
-            
+        if (id == "Conversation_7")
             UIManager.Instance.MainMenu();
-        }
+
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            playerInside = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            playerInside = false;
-        }
-    }
 
 }

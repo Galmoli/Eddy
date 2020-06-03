@@ -28,6 +28,7 @@ public class BootScene : MonoBehaviour
         yield return loading;
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_initialSceneIdx));
         SceneManager.MoveGameObjectToScene(GameObject.Find("MaintainBetweenScenes"), SceneManager.GetActiveScene());
+        SceneManager.UnloadSceneAsync(_currentSceneIdx);
     }
     
     private void LoadScene(int idx)

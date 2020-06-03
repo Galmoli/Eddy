@@ -50,7 +50,8 @@ public class PlayerInsideVolume : MonoBehaviour
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    UIManager.Instance.ShowScannerWarning();
+                    InGameDialogue.Instance.EnableDialogue("PopUp_25");
+                    //UIManager.Instance.ShowScannerWarning();
                     return false;
                 }
 
@@ -74,7 +75,8 @@ public class PlayerInsideVolume : MonoBehaviour
             {
                 if (c.bounds.size.x >= maxAxisX && c.bounds.size.x >= maxAxisZ)
                 {
-                    UIManager.Instance.ShowScannerWarning();
+                    InGameDialogue.Instance.EnableDialogue("PopUp_25");
+                    //UIManager.Instance.ShowScannerWarning();
                     _disableLater = true;
                     return false;
                 }

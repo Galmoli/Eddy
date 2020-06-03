@@ -5,15 +5,16 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private Transform respawnPos;
-    [SerializeField] private Light light;
+    [SerializeField] private GameObject activateCheckpointObj;
 
     public bool dialogue = false;
 
     public void Activate()
     {
         GameManager.Instance.respawnPos = respawnPos.position;
+        GameManager.Instance.checkpointSceneIdex = gameObject.scene.buildIndex;
         FindObjectOfType<PlayerController>().RestoreHealth();
-        light.enabled = true;
+        activateCheckpointObj.SetActive(true);
 
         if (dialogue)
         {
