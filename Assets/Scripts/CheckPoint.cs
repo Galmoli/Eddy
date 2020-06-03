@@ -12,6 +12,7 @@ public class CheckPoint : MonoBehaviour
     public void Activate()
     {
         GameManager.Instance.respawnPos = respawnPos.position;
+        GameManager.Instance.checkpointSceneIdex = gameObject.scene.buildIndex;
         FindObjectOfType<PlayerController>().RestoreHealth();
         activateCheckpointObj.SetActive(true);
 
