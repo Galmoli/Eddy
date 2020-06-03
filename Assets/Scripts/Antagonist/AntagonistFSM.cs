@@ -143,6 +143,7 @@ public class AntagonistFSM : MonoBehaviour
                 rigidbody.AddForce(Vector3.down * blackboard.downPipeImpulse, ForceMode.Impulse);
                 break;
             case States.WAITTOBEHEAD:
+                blackboard.animator.SetTrigger("Guillotine");
                 navMeshAgent.enabled = false;
                 blackboard.enemyCollider.SetActive(false);
                 transform.position = blackboard.destinies[2].transform.position;
