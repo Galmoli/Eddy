@@ -30,6 +30,7 @@ public class GeneralDialogue : MonoBehaviour
     [SerializeField] private Image gdSpeakerBackground;
     private InputActions _input;
     private bool skipDialogue;
+    private bool _onGoingDialogue;
     private Conversation _conversation;
 
     private void Awake()
@@ -38,10 +39,18 @@ public class GeneralDialogue : MonoBehaviour
         _input.PlayerControls.SkipDialogue.started += ctx => skipDialogue = true;
     }
 
+    private void Start()
+    {
+        _onGoingDialogue = false;
+    }
+
     public void EnableDialogue(string id)
     {
+        if (_onGoingDialogue) return;
+        
         _input.Enable();
         UIManager.Instance.paused = true;
+        _onGoingDialogue = true;
         dialogueImage.gameObject.SetActive(true);
         _conversation = conversations.First(c => c.id == id);
         StartCoroutine(AnimatedText(_conversation));
@@ -51,6 +60,7 @@ public class GeneralDialogue : MonoBehaviour
     {
         OnDialogueDisabled(_conversation.id);
         _input.Disable();
+        _onGoingDialogue = false;
         UIManager.Instance.paused = false;
         dialogueImage.gameObject.SetActive(false);
     }
