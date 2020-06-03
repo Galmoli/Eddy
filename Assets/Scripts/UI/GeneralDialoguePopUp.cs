@@ -7,5 +7,6 @@ public class GeneralDialoguePopUp : ScriptableObject
 {
     public string speaker;
     public Sprite speakerImage;
+    public Color speakerColor;
     public DialoguePopUpLine[] lines;
 }

@@ -27,6 +27,7 @@ public class GeneralDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gdText;
     [SerializeField] private TextMeshProUGUI gdSpeaker;
     [SerializeField] private Image gdSpeakerImage;
+    [SerializeField] private Image gdSpeakerBackground;
     private InputActions _input;
     private bool skipDialogue;
     private Conversation _conversation;
@@ -65,7 +66,10 @@ public class GeneralDialogue : MonoBehaviour
         foreach (var d in conv.dialogues)
         {
             gdSpeaker.text = d.speaker;
+            gdSpeaker.color = d.speakerColor;
             gdSpeakerImage.sprite = d.speakerImage;
+            gdSpeakerBackground.color = d.speakerColor;
+            
             foreach (var l in d.lines)
             {
                 line = new StringBuilder();
