@@ -23,6 +23,8 @@ namespace Steerings
 		public static SteeringOutput GetSteering (KinematicState ownKS, GameObject target)
 		{
 			SteeringOutput steering = new SteeringOutput ();
+			if (!target) return null;
+			
 			Vector3 directionToTarget;
 
 			directionToTarget = target.transform.position - ownKS.position;

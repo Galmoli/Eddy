@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChopDoor : MonoBehaviour
 {
+    public AntagonistFSM antagonistFSM;
     public float force;
     Rigidbody rb;
 
@@ -17,5 +18,13 @@ public class ChopDoor : MonoBehaviour
     void Update()
     {
         rb.AddForce(force * Vector3.down, ForceMode.Force);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Guillotine")
+        {
+            antagonistFSM.ChangeState(AntagonistFSM.States.BEHEADED);
+        }
     }
 }
