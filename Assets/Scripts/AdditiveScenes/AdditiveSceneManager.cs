@@ -9,11 +9,21 @@ public class AdditiveSceneManager : MonoBehaviour
     [SerializeField] private bool firstScene;
     [SerializeField] private bool secondScene;
     private int _currentSceneIdx;
-    [HideInInspector] public int _bootSceneIdx = 0;
+    [HideInInspector] public int _bootSceneIdx = 2;
 
     private void Start()
     {
         _currentSceneIdx = gameObject.scene.buildIndex;
+    }
+    
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+    }
+    
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
     }
 
     public IEnumerator LoadNextScene()
@@ -63,6 +73,48 @@ public class AdditiveSceneManager : MonoBehaviour
         }
     }
 
+    public IEnumerator LoadScene(int idx)
+    {
+        if(idx == gameObject.scene.buildIndex) yield break;
+        
+        var loading = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
+        yield return loading;
+        
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(idx));
+        
+        if (idx - 1 > _bootSceneIdx && !IsSceneInstanced(idx - 1))
+        {
+            var loadPrevious = SceneManager.LoadSceneAsync(idx - 1, LoadSceneMode.Additive);
+            yield return loadPrevious;
+        }
+
+        if (idx + 1 < SceneManager.sceneCountInBuildSettings && !IsSceneInstanced(idx + 1))
+        {
+            var loadNext = SceneManager.LoadSceneAsync(idx + 1, LoadSceneMode.Additive);
+            yield return loadNext;
+        }
+        
+        MoveObjectsToActiveScene();
+
+        if (_currentSceneIdx - 1 != idx - 1 &&
+            _currentSceneIdx - 1 != idx &&
+            _currentSceneIdx - 1 != idx + 1 &&
+            IsSceneInstanced(_currentSceneIdx - 1))
+        {
+            SceneManager.UnloadSceneAsync(_currentSceneIdx - 1);
+        }
+        
+        if (_currentSceneIdx + 1 != idx - 1 &&
+            _currentSceneIdx + 1 != idx &&
+            _currentSceneIdx + 1 != idx + 1 &&
+            IsSceneInstanced(_currentSceneIdx + 1))
+        {
+            SceneManager.UnloadSceneAsync(_currentSceneIdx + 1);
+        }
+        
+        SceneManager.UnloadSceneAsync(_currentSceneIdx);
+    }
+
     private void DestroyPreviousScene()
     {
         if (_currentSceneIdx > _bootSceneIdx + 2)
@@ -82,5 +134,18 @@ public class AdditiveSceneManager : MonoBehaviour
     private void MoveObjectsToActiveScene()
     {
         SceneManager.MoveGameObjectToScene(GameObject.Find("MaintainBetweenScenes"), SceneManager.GetActiveScene());
+    }
+
+    private void ActiveSceneChanged(Scene p, Scene n)
+    {
+        if (n.buildIndex == gameObject.scene.buildIndex)
+        {
+            GameManager.Instance.asm = this;
+        }
+    }
+
+    private bool IsSceneInstanced(int idx)
+    {
+        return SceneManager.GetSceneByBuildIndex(idx).isLoaded;
     }
 }

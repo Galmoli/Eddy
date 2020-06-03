@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPos;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
+    [HideInInspector] public int checkpointSceneIdex;
+    [HideInInspector] public AdditiveSceneManager asm;
     //[HideInInspector] public List<GameObject> nonRespawnableEnemies;
     private PlayerController _playerController;
 
@@ -31,9 +34,27 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        GoToScene();
         _playerController.Spawn();
+        ResetWaveController();
+        ResetEnemies();
+
+        /*foreach (var e in nonRespawnableEnemies)
+        {
+            Destroy(e);
+        }
+
+        nonRespawnableEnemies.Clear();*/
+    }
+
+    private void ResetWaveController()
+    {
         var wc = FindObjectOfType<WaveController>();
         if(wc) wc.Reset();
+    }
+
+    private void ResetEnemies()
+    {
         foreach (var e in enemySpawnManager.enemyList)
         {
             if (e.enemyB.dead && !e.enemyB.respawnable)
@@ -48,12 +69,10 @@ public class GameManager : MonoBehaviour
                 e.enemyB.ResetHealth();
             }
         }
+    }
 
-        /*foreach (var e in nonRespawnableEnemies)
-        {
-            Destroy(e);
-        }
-
-        nonRespawnableEnemies.Clear();*/
+    private void GoToScene()
+    {
+        StartCoroutine(asm.LoadScene(checkpointSceneIdex));
     }
 }
