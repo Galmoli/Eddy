@@ -77,9 +77,12 @@ public class AdditiveSceneManager : MonoBehaviour
     {
         if(idx == gameObject.scene.buildIndex) yield break;
         
-        var loading = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
-        yield return loading;
-        
+        if (!IsSceneInstanced(idx))
+        {
+            var loading = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);
+            yield return loading;
+        }
+
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(idx));
         
         if (idx - 1 > _bootSceneIdx && !IsSceneInstanced(idx - 1))
@@ -112,7 +115,13 @@ public class AdditiveSceneManager : MonoBehaviour
             SceneManager.UnloadSceneAsync(_currentSceneIdx + 1);
         }
         
-        SceneManager.UnloadSceneAsync(_currentSceneIdx);
+        if (_currentSceneIdx != idx - 1 &&
+            _currentSceneIdx != idx &&
+            _currentSceneIdx != idx + 1 &&
+            IsSceneInstanced(_currentSceneIdx + 1))
+        {
+            SceneManager.UnloadSceneAsync(_currentSceneIdx);
+        }
     }
 
     private void DestroyPreviousScene()

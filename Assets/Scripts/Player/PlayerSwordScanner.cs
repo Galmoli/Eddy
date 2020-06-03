@@ -88,8 +88,8 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             if (HoldingSword())
             {
-                if (Physics.Raycast(transform.root.position, transform.root.forward, out stabbingHit, hitObjectDistance, stabSwordLayers))
-                {   
+                if (Physics.Raycast(playerMovement.transform.position, playerMovement.transform.forward, out stabbingHit, hitObjectDistance, stabSwordLayers))
+                {
                     if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
                         if (!_sphereCollider.bounds.Contains(stabbingHit.point))
@@ -119,7 +119,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }                   
                 }
 
-                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out stabbingHit, playerMovement.characterController.height / 2 + 0.5f, stabSwordLayers))
+                if(Physics.Raycast(floorDetectionPoint.position, -playerMovement.transform.up, out stabbingHit, playerMovement.characterController.height / 2 + 0.5f, stabSwordLayers))
                 {
                     if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
