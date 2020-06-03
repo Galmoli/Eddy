@@ -118,7 +118,7 @@ public class AdditiveSceneManager : MonoBehaviour
         if (_currentSceneIdx != idx - 1 &&
             _currentSceneIdx != idx &&
             _currentSceneIdx != idx + 1 &&
-            IsSceneInstanced(_currentSceneIdx + 1))
+            IsSceneInstanced(_currentSceneIdx))
         {
             SceneManager.UnloadSceneAsync(_currentSceneIdx);
         }

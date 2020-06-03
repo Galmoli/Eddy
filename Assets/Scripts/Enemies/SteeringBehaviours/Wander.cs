@@ -16,7 +16,7 @@ namespace Steerings
 
             if (ownKS.linearVelocity.magnitude > 0.001f)
             {
-                surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
+                if(surrogateTarget) surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
                 SteeringOutput st = Align.GetSteering(ownKS, surrogateTarget);
                 result.angularAcceleration = st.angularAcceleration;
                 result.angularActive = st.angularActive;
@@ -33,9 +33,9 @@ namespace Steerings
         {
             targetOrientation += wanderRate * (Random.value - Random.value);
 
-            surrogateTarget.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
+            if(surrogateTarget) surrogateTarget.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
 
-            surrogateTarget.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
+            if(surrogateTarget) surrogateTarget.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
 
             return Seek.GetSteering(ownKS, surrogateTarget);
         }
