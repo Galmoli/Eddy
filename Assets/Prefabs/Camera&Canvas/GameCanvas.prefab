@@ -2709,7 +2709,6 @@ RectTransform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 3074844986169683384}
-  - {fileID: 1935829228093858437}
   m_Father: {fileID: 1108083699}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2948,79 +2947,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9cc05fa9c4cb5504db189981893cb0da, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &3391269758475902903
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1935829228093858437}
-  - component: {fileID: 57400672181472402}
-  - component: {fileID: 144562152432374285}
-  m_Layer: 5
-  m_Name: AvatarSword
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1935829228093858437
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_LocalRotation: {x: -0, y: -0, z: 0.076742515, w: 0.99705094}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.29, y: 0.29, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5893777776585234510}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.803}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54, y: 0.8}
-  m_SizeDelta: {x: 23.88, y: 53}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &57400672181472402
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_CullTransparentMesh: 0
---- !u!114 &144562152432374285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af61e9dda268584998448929a20443a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4597,6 +4523,33 @@ MonoBehaviour:
   - name: Sword Feedback 13
     dialoguePopUp: {fileID: 11400000, guid: 23e66c67c731cd94cbbe4bbb04d383fa, type: 2}
     target: {fileID: 0}
+  - name: Aggy Feedback 1
+    dialoguePopUp: {fileID: 11400000, guid: 2d2cf5bc31f1f4d4786e2c78debd5853, type: 2}
+    target: {fileID: 0}
+  - name: Sword Feedback 14
+    dialoguePopUp: {fileID: 11400000, guid: f27457e0450d58147b6db65667550352, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 2
+    dialoguePopUp: {fileID: 11400000, guid: 66b2b0a557b33534ea0a83ccf62c6ab8, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 3
+    dialoguePopUp: {fileID: 11400000, guid: fd2f767ff2406584aa0349d163a15eef, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 4
+    dialoguePopUp: {fileID: 11400000, guid: fb6f085b9d37f1a4b9d5bf7524ca1118, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 5
+    dialoguePopUp: {fileID: 11400000, guid: 1f580cfc3244a6644838c9dda9ccb352, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 6
+    dialoguePopUp: {fileID: 11400000, guid: 8765be07d9385724d8b87788d8067cee, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 6
+    dialoguePopUp: {fileID: 11400000, guid: 25d4e87b5a877354691db4be14a0c62b, type: 2}
+    target: {fileID: 0}
+  - name: SwordAdvice
+    dialoguePopUp: {fileID: 11400000, guid: 326b1fee6e8708d42b5777b3bb4d7409, type: 2}
+    target: {fileID: 0}
 --- !u!114 &1663000875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4616,10 +4569,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f4679703560637498e02863fc9065dd, type: 2}
   - {fileID: 11400000, guid: 656a303a607b59342814beb76b8c06b5, type: 2}
   - {fileID: 11400000, guid: 3402b5164e09dba4ab733b38542501d9, type: 2}
+  - {fileID: 11400000, guid: 62b7d77a64090244fa2f653b82f8fa66, type: 2}
+  - {fileID: 11400000, guid: 8c0844a83efdbef40b22e580c50634ac, type: 2}
   gdText: {fileID: 256871134164018142}
   gdSpeaker: {fileID: 8175986602359957263}
-  gdSpeakerImage: {fileID: 0}
-  gdSpeakerBackground: {fileID: 0}
+  gdSpeakerImage: {fileID: 5604537116888470013}
+  gdSpeakerBackground: {fileID: 9169162714598996329}
 --- !u!1 &5219180785015956500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7032,7 +6987,7 @@ GameObject:
   - component: {fileID: 6665025248300660437}
   - component: {fileID: 5604537116888470013}
   m_Layer: 5
-  m_Name: AvatarAggy
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
