@@ -232,6 +232,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 32497363, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5219180785004601457, guid: d7fafde62bc29a44eac73ea36f1eef96,
         type: 3}
       propertyPath: m_Name
@@ -349,12 +353,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
---- !u!1 &1499309174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3778562506139003856, guid: d7fafde62bc29a44eac73ea36f1eef96,
-    type: 3}
-  m_PrefabInstance: {fileID: 586528256}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1704556081
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,12 +454,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa91003840a5ac64482c2f2589dbdadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   timeToShowMenu: 0
-  deathMenu: {fileID: 1499309174}
+  deathMenu: {fileID: 0}
   pauseMenu: {fileID: 1829008006}
   configMenu: {fileID: 390738632}
   mainMenu: {fileID: 428138736}
+  scannerWarning: {fileID: 0}
+  lifeUILogic: {fileID: 0}
   paused: 0
+  popUpEnabled: 0
 --- !u!1 &1829008006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5219180786239184665, guid: d7fafde62bc29a44eac73ea36f1eef96,

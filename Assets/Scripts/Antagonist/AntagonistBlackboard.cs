@@ -35,6 +35,9 @@ public class AntagonistBlackboard : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject head;
+    public GameObject mesh;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

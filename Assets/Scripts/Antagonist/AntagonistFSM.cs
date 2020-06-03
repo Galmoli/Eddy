@@ -76,6 +76,12 @@ public class AntagonistFSM : MonoBehaviour
                 break;
             case States.WAITINGFORPIPE:
                 break;
+            case States.WAITTOBEHEAD:
+                //ChangeState(States.BEHEADED);
+                break;
+            case States.BEHEADED:
+
+                break;
         }
     }
 
@@ -108,6 +114,9 @@ public class AntagonistFSM : MonoBehaviour
             case States.WAITTOBEHEAD:
                 navMeshAgent.enabled = true;
                 blackboard.enemyCollider.SetActive(true);
+                break;
+            case States.BEHEADED:
+               
                 break;
         }
 
@@ -143,10 +152,17 @@ public class AntagonistFSM : MonoBehaviour
                 rigidbody.AddForce(Vector3.down * blackboard.downPipeImpulse, ForceMode.Impulse);
                 break;
             case States.WAITTOBEHEAD:
+                InGameDialogue.Instance.EnableDialogue("PopUp_23");
+                blackboard.animator.SetTrigger("Guillotine");
                 navMeshAgent.enabled = false;
                 blackboard.enemyCollider.SetActive(false);
                 transform.position = blackboard.destinies[2].transform.position;
                 transform.rotation = blackboard.destinies[2].transform.rotation;
+                break;
+            case States.BEHEADED:
+                blackboard.head.transform.parent = null;
+                blackboard.head.SetActive(true);
+                blackboard.mesh.SetActive(false);
                 break;
         }
 
@@ -155,6 +171,6 @@ public class AntagonistFSM : MonoBehaviour
 
     public enum States
     {
-        INITIAL, GUARDING, PERSECUTION, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING, WAITTOBEHEAD
+        INITIAL, GUARDING, PERSECUTION, STUNNED, WAITINGFORPIPE, APPEARING_DOWN, APPEARING_ROTATING, WAITTOBEHEAD, BEHEADED
     }
 }

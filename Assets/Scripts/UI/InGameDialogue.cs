@@ -10,10 +10,10 @@ using UnityEngine.UI;
 public class InGameDialogue : MonoBehaviour
 {
     [Serializable]
-    public struct DialoguePopUp
+    public struct DialoguePopUpStruct
     {
         public string name;
-        public global::DialoguePopUp  dialoguePopUp;
+        public DialoguePopUp  dialoguePopUp;
         public Transform target;
     }
 
@@ -32,8 +32,8 @@ public class InGameDialogue : MonoBehaviour
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Image pointer;
     [SerializeField] private float timeToAdd;
-    [SerializeField] private DialoguePopUp[] inGameDialogues;
-    private DialoguePopUp _currentDialogue;
+    public DialoguePopUpStruct[] inGameDialogues;
+    private DialoguePopUpStruct _currentDialogue;
     private TextMeshProUGUI text;
     private Canvas _canvas;
     private Camera _mainCamera;
@@ -145,7 +145,7 @@ public class InGameDialogue : MonoBehaviour
         return pointerPos;
     }
     
-    private IEnumerator AnimatedText(DialoguePopUp d)
+    private IEnumerator AnimatedText(DialoguePopUpStruct d)
     {
         var line = new StringBuilder();
         foreach (var l in d.dialoguePopUp.lines)

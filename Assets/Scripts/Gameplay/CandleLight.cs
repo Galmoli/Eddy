@@ -15,7 +15,6 @@ public class CandleLight : MonoBehaviour
     void Start()
     {
         candleLight = GetComponent<Light>();
-        Debug.Log("candle" + candleLight.intensity.ToString()); 
         iniSpeed = speed;
 
         intensityGoal = Random.Range(intensity - intensityVariation, intensity + intensityVariation);
