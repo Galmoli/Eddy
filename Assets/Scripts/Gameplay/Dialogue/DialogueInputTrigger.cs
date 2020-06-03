@@ -6,6 +6,7 @@ public class DialogueInputTrigger : MonoBehaviour
 {
     public string dialogueId;
     public bool general = true;
+    public bool deactivate = false;
     public UIHelperController.HelperAction action;
 
     bool playerInside;
@@ -41,6 +42,9 @@ public class DialogueInputTrigger : MonoBehaviour
             }
 
             UIHelperController.Instance.DisableHelper();
+
+            if (deactivate)
+                gameObject.SetActive(false);
         }
     }
 
