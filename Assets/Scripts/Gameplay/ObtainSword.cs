@@ -8,6 +8,7 @@ public class ObtainSword : MonoBehaviour
 
     public CheckPoint checkpoint;
     public GameObject[] dialogueTriggers;
+    public GameObject[] draggables;
 
     private InputActions inputActions;
 
@@ -15,6 +16,7 @@ public class ObtainSword : MonoBehaviour
     {
         inputActions = new InputActions();
         inputActions.PlayerControls.MoveObject.started += ctx => GiveSwordToPlayer();
+        GeneralDialogue.OnDialogueDisabled += SwordDialogueCompleted;
     }
 
     private void OnEnable()
@@ -40,7 +42,20 @@ public class ObtainSword : MonoBehaviour
                 dialogueTriggers[i].SetActive(true);
             }
 
-            GeneralDialogue.Instance.EnableDialogue("Conversation_6");
+            /*draggables[0].SetActive(false);
+            draggables[1].SetActive(true);*/
+
+            GeneralDialogue.Instance.EnableDialogue("Conversation_2");
+            UIHelperController.Instance.DisableHelper();
+        }
+    }
+
+    public void SwordDialogueCompleted(string id)
+    {
+        if (id == "Conversation_2")
+        {
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Scanner, GameObject.FindGameObjectWithTag("Player").transform.position + Vector3.up * 2,
+                GameObject.FindGameObjectWithTag("Player").transform);
         }
     }
 
@@ -49,6 +64,7 @@ public class ObtainSword : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Pick, transform.position + Vector3.up*2.5f);
             playerInside = true;
         }
     }
@@ -57,6 +73,7 @@ public class ObtainSword : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            UIHelperController.Instance.DisableHelper();
             playerInside = false;
         }
     }

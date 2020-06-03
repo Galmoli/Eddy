@@ -20,12 +20,17 @@ public class GeneralDialogue : MonoBehaviour
         }
     }
     
+    public static Action<string> OnDialogueDisabled = delegate(string s) {  };
+    
     [SerializeField] private Image dialogueImage;
     [SerializeField] private Conversation[] conversations;
     [SerializeField] private TextMeshProUGUI gdText;
     [SerializeField] private TextMeshProUGUI gdSpeaker;
+    [SerializeField] private Image gdSpeakerImage;
+    [SerializeField] private Image gdSpeakerBackground;
     private InputActions _input;
     private bool skipDialogue;
+    private Conversation _conversation;
 
     private void Awake()
     {
@@ -38,12 +43,13 @@ public class GeneralDialogue : MonoBehaviour
         _input.Enable();
         UIManager.Instance.paused = true;
         dialogueImage.gameObject.SetActive(true);
-        var conversation = conversations.First(c => c.id == id);
-        StartCoroutine(AnimatedText(conversation));
+        _conversation = conversations.First(c => c.id == id);
+        StartCoroutine(AnimatedText(_conversation));
     }
 
     public void DisableDialogue()
     {
+        OnDialogueDisabled(_conversation.id);
         _input.Disable();
         UIManager.Instance.paused = false;
         dialogueImage.gameObject.SetActive(false);
@@ -60,6 +66,10 @@ public class GeneralDialogue : MonoBehaviour
         foreach (var d in conv.dialogues)
         {
             gdSpeaker.text = d.speaker;
+            gdSpeaker.color = d.speakerColor;
+            gdSpeakerImage.sprite = d.speakerImage;
+            gdSpeakerBackground.color = d.speakerColor;
+            
             foreach (var l in d.lines)
             {
                 line = new StringBuilder();

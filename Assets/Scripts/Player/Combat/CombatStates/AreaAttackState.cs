@@ -38,14 +38,34 @@ public class AreaAttackState : State
 
     public override void Interact()
     {
-        if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+        if (_controller.swordTrigger.hitObject.tag == "Enemy")
         {
-            _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
-            if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
-            Debug.Log("Enemy damaged: " + _attackObject.damage);
+            if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+            {
+                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
+                Debug.Log("Enemy damaged: " + _attackObject.damage);
+
+                if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
+
+                _controller.EnemyHitSound();
+                return;
+            }
+
+            _controller.ArmoredHitSound();
             return;
         }
-        Debug.Log("Armor hit");
+
+        if (_controller.swordTrigger.hitObject.tag == "Wood")
+        {
+            _controller.WoodObjectHitSound();
+            return;
+        }
+
+        if (_controller.swordTrigger.hitObject.tag == "Metal")
+        {
+            _controller.MetalObjectHitSound();
+            return;
+        }
     }
 
     public override void ExitState()

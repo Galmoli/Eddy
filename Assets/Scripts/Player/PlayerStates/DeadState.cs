@@ -9,7 +9,7 @@
     
     public override void Enter()
     {
-        //Set Dead Animation
+        _controller.animator.SetTrigger("Death");
         _controller.characterController.enabled = false;
     }
 

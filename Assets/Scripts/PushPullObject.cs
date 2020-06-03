@@ -29,6 +29,27 @@ public class PushPullObject : MonoBehaviour
         _input = new InputActions();
         _input.Enable();
         _input.PlayerControls.Sword.started += ctx => SwordInput();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
+            {
+
+                if (gameObject.layer == LayerMask.NameToLayer("Appear"))
+                {
+                    if (GetComponentInChildren<PlayerSwordScanner>())
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+                    else
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2);
+                }
+                else
+                    UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -51,6 +72,8 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //UI Helper
+            UIHelperController.Instance.DisableHelper();
             canMove = false;
         }
     }

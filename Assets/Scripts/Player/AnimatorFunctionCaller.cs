@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class AnimatorFunctionCaller : MonoBehaviour
 {
-    public PlayerMovementController movementController;
-    public PlayerCombatController combatController;
-    public PlayerSwordScanner swordScanner;
+    //Player
+    private PlayerMovementController movementController;
+    private PlayerCombatController combatController;
+    private PlayerSwordScanner swordScanner;
+
+    //Enemies
+    private EnemyBlackboard enemyBlackboard;
+
+    //Throw Hands Enemy
+    private ThrowHandsEnemyAggressiveFSM throwHandsEnemy;
 
     private void Start()
     {
+        movementController = FindObjectOfType<PlayerMovementController>();
         combatController = FindObjectOfType<PlayerCombatController>();
         swordScanner = FindObjectOfType<PlayerSwordScanner>();
+
+        enemyBlackboard = GetComponentInParent<EnemyBlackboard>();
+
+        throwHandsEnemy = GetComponentInParent<ThrowHandsEnemyAggressiveFSM>();
     }
 
     public void EnableTrigger()
@@ -28,4 +40,37 @@ public class AnimatorFunctionCaller : MonoBehaviour
     {
         movementController.StandEdge();
     }
+
+    public void EnemyStep()
+    {
+        enemyBlackboard.StepSound();
+    }
+
+    public void EnemyAttack()
+    {
+        throwHandsEnemy.Attack();
+    }
+
+
+    #region Sounds
+    public void StepSound()
+    {
+        movementController.StepSound();
+    }
+    
+    public void SimpleAttackSound()
+    {
+        combatController.SimpleAttackSound();
+    }
+
+    public void ComboAttackSound()
+    {
+        combatController.ComboAttackSound();
+    }
+
+    public void AreaAttackChargedSound()
+    {
+        combatController.AreaAttackChargedSound();
+    }
+    #endregion
 }

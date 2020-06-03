@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PauseMenuLogic : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class PauseMenuLogic : MonoBehaviour
     }
 
     private InputActions _input;
+
+    [SerializeField] private TextMeshProUGUI resumeImage;
+    [SerializeField] private TextMeshProUGUI optionsImage;
+    [SerializeField] private TextMeshProUGUI exitImage;
+    public Animator resumeBgAnim;
+    public Animator optionsBgAnim;
+    public Animator exitBgAnim;
 
     private void Awake()
     {
@@ -30,6 +38,9 @@ public class PauseMenuLogic : MonoBehaviour
     {
         _input.Enable();
         _option = PauseMenuOption.Resume;
+        resumeImage.transform.localScale = new Vector3(1.1f,1.1f,1);
+        resumeImage.color = Color.black;
+        resumeBgAnim.SetTrigger("enable");
     }
 
     private void OnDisable()
@@ -44,9 +55,21 @@ public class PauseMenuLogic : MonoBehaviour
             case PauseMenuOption.Resume:
                 break;
             case PauseMenuOption.Options:
+                optionsImage.transform.localScale = new Vector3(1, 1, 1);
+                optionsImage.color = Color.white;
+                optionsBgAnim.SetTrigger("disable");
+                resumeImage.transform.localScale = new Vector3(1.1f,1.1f,1);
+                resumeImage.color = Color.black;
+                resumeBgAnim.SetTrigger("enable");
                 _option = PauseMenuOption.Resume;
                 break;
             case PauseMenuOption.Exit:
+                exitImage.transform.localScale = new Vector3(1,1,1);
+                exitImage.color = Color.white;
+                exitBgAnim.SetTrigger("disable");
+                optionsImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                optionsImage.color = Color.black;
+                optionsBgAnim.SetTrigger("enable");
                 _option = PauseMenuOption.Options;
                 break;
         }
@@ -57,9 +80,21 @@ public class PauseMenuLogic : MonoBehaviour
         switch (_option)
         {
             case PauseMenuOption.Resume:
+                resumeImage.transform.localScale = new Vector3(1,1,1);
+                resumeImage.color = Color.white;
+                resumeBgAnim.SetTrigger("disable");
+                optionsImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                optionsImage.color = Color.black;
+                optionsBgAnim.SetTrigger("enable");
                 _option = PauseMenuOption.Options;
                 break;
             case PauseMenuOption.Options:
+                optionsImage.transform.localScale = new Vector3(1,1,1);
+                optionsImage.color = Color.white;
+                optionsBgAnim.SetTrigger("disable");
+                exitImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                exitImage.color = Color.black;
+                exitBgAnim.SetTrigger("enable");
                 _option = PauseMenuOption.Exit;
                 break;
             case PauseMenuOption.Exit:

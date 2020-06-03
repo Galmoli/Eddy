@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainMenuLogic : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class MainMenuLogic : MonoBehaviour
     }
     private InputActions _input;
     private MainMenuOptions _option;
+
+    [SerializeField] private TextMeshProUGUI playImage;
+    [SerializeField] private TextMeshProUGUI optionsImage;
+    [SerializeField] private TextMeshProUGUI exitImage;
+    public Animator playBgAnim;
+    public Animator optionsBgAnim;
+    public Animator exitBgAnim;
 
     private void Awake()
     {
@@ -26,6 +34,10 @@ public class MainMenuLogic : MonoBehaviour
     {
         _input.Enable();
         _option = MainMenuOptions.Play;
+
+        playImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
+        playImage.color = Color.black;
+        playBgAnim.SetTrigger("enable");
     }
 
     private void OnDisable()
@@ -41,9 +53,21 @@ public class MainMenuLogic : MonoBehaviour
                 break;
             case MainMenuOptions.Options:
                 _option = MainMenuOptions.Play;
+                optionsImage.transform.localScale = new Vector3(1,1, 1);
+                optionsImage.color = Color.white;
+                optionsBgAnim.SetTrigger("disable");
+                playImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                playImage.color = Color.black;
+                playBgAnim.SetTrigger("enable");
                 break;
             case MainMenuOptions.Exit:
                 _option = MainMenuOptions.Options;
+                exitImage.transform.localScale = new Vector3(1,1, 1);
+                exitImage.color = Color.white;
+                exitBgAnim.SetTrigger("disable");
+                optionsImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                optionsImage.color = Color.black;
+                optionsBgAnim.SetTrigger("enable");
                 break;
         }
     }
@@ -54,9 +78,21 @@ public class MainMenuLogic : MonoBehaviour
         {
             case MainMenuOptions.Play:
                 _option = MainMenuOptions.Options;
+                playImage.transform.localScale = new Vector3(1,1,1);
+                playImage.color = Color.white;
+                playBgAnim.SetTrigger("disable");
+                optionsImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                optionsImage.color = Color.black;
+                optionsBgAnim.SetTrigger("enable");
                 break;
             case MainMenuOptions.Options:
                 _option = MainMenuOptions.Exit;
+                optionsImage.transform.localScale = new Vector3(1,1, 1);
+                optionsImage.color = Color.white;
+                optionsBgAnim.SetTrigger("disable");
+                exitImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                exitImage.color = Color.black;
+                exitBgAnim.SetTrigger("enable");
                 break;
             case MainMenuOptions.Exit:
                 break;

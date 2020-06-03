@@ -20,6 +20,7 @@ public class JumpState : State
         _controller.jump = false;
         if(_controller.edgeAvailable && PlayerUtils.CanInteractWithEdge(_controller.transform.forward, _controller.edgeGameObject.transform.forward, _controller.angleToAllowClimbEdge)) ExitState();
         _controller.animator.SetBool("isOnAir", true);
+        if(UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Jump) UIHelperController.Instance.DisableHelper(1);
     }
 
     public override void Update()
@@ -27,7 +28,9 @@ public class JumpState : State
         currentTime += Time.deltaTime;
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
-        vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        
+        if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        else vector3D *= _controller.minSpeed;
 
         if (_controller.edgeAvailable && PlayerUtils.CanInteractWithEdge(_controller.transform.forward, _controller.edgeGameObject.transform.forward, _controller.angleToAllowClimbEdge))
         {
@@ -43,7 +46,11 @@ public class JumpState : State
             
         _controller.characterController.Move(vector3D * Time.deltaTime);
 
-        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position))) ExitState();
+        if(CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position)))
+        {
+            _controller.LandingSound();
+            ExitState();
+        }
     }
 
     public override void ExitState()
@@ -51,7 +58,7 @@ public class JumpState : State
         _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
         
-        if (_controller.edgeAvailable) _controller.SetState(new EdgeState(_controller));
+        if (_controller.edgeAvailable && ValidEdge()) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
     }
     
@@ -77,20 +84,39 @@ public class JumpState : State
         var t = _controller.transform;
         var fForward = _controller.feetOverlap.forward;
         var fRight = _controller.feetOverlap.right;
+        var sword = _controller.scannerSword;
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
         }
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.25f, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
         }
         
-        if (CheckFloor(PlayerUtils.GetFloorColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f)))
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.25f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f, sword)))
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
@@ -100,5 +126,19 @@ public class JumpState : State
 
         if (vector3D != Vector3.zero) vector3D = vector3D.normalized * _residualCollisionAvoidanceSpeed;
         return vector3D;
+    }
+
+    private bool ValidEdge()
+    {
+        if(_controller.edgeGameObject.layer == LayerMask.NameToLayer("Appear"))
+        {
+            if (_controller.scannerSword.UsingScannerInHand())
+            {
+                _controller.scannerSword.ScannerOff();
+                return false;
+            }
+        }
+
+        return true;
     }
 }

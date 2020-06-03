@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPos;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
-    [HideInInspector] public List<GameObject> nonRespawnableEnemies;
+    //[HideInInspector] public List<GameObject> nonRespawnableEnemies;
     private PlayerController _playerController;
 
     private void Start()
@@ -26,24 +26,33 @@ public class GameManager : MonoBehaviour
         respawnPos = player.transform.position;
         _playerController = player.GetComponent<PlayerController>();
         enemySpawnManager = new EnemySpawnManager();
-        nonRespawnableEnemies = new List<GameObject>();
+        //nonRespawnableEnemies = new List<GameObject>();
     }
 
     public void Respawn()
     {
         _playerController.Spawn();
+        FindObjectOfType<WaveController>().Reset();
         foreach (var e in enemySpawnManager.enemyList)
         {
-            if(!e.enemyO.activeSelf) e.enemyO.SetActive(true);
-            e.enemyO.transform.position = e.spawnPos;
-            e.enemyB.ResetHealth();
+            if (e.enemyB.dead && !e.enemyB.respawnable)
+            {
+                Debug.Log("DESTROYED!!!");
+                Destroy(e.enemyO);
+            }
+            else
+            {
+                if (!e.enemyO.activeSelf) e.enemyO.SetActive(true);
+                e.enemyO.transform.position = e.spawnPos;
+                e.enemyB.ResetHealth();
+            }
         }
 
-        foreach (var e in nonRespawnableEnemies)
+        /*foreach (var e in nonRespawnableEnemies)
         {
             Destroy(e);
         }
 
-        nonRespawnableEnemies.Clear();
+        nonRespawnableEnemies.Clear();*/
     }
 }

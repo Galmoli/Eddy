@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMOD.Studio;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -7,9 +8,9 @@ public class PlayerSwordScanner : MonoBehaviour
 {
     private InputActions input;
     private PlayerMovementController playerMovement;
+    private PlayerSounds playerSounds;
 
     public float scannerRadius;
-
   
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
@@ -35,8 +36,12 @@ public class PlayerSwordScanner : MonoBehaviour
     private Vector3 swordInitPos;
     private Quaternion swordInitRot;
 
+    private RaycastHit stabbingHit;
+    private bool horizontalStab;
     private bool movingAwayToStab;
     private Vector3 moveAwayVector;
+
+    private EventInstance scannerSoundEvent;
 
     private void Awake()
     {
@@ -49,6 +54,7 @@ public class PlayerSwordScanner : MonoBehaviour
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovementController>();
+        playerSounds = FindObjectOfType<PlayerSounds>();
 
         playerHand = transform.parent;
         swordInitPos = transform.localPosition;
@@ -78,59 +84,63 @@ public class PlayerSwordScanner : MonoBehaviour
         }
         //
 
-        //Sword
         if (input.PlayerControls.Sword.triggered && CanStab() && swordUnlocked)
         {
             if (HoldingSword())
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.root.position, transform.root.forward, out hit, hitObjectDistance, stabSwordLayers))
+                if (Physics.Raycast(transform.root.position, transform.root.forward, out stabbingHit, hitObjectDistance, stabSwordLayers))
                 {   
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
+                    if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
-                        if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        if (!_sphereCollider.bounds.Contains(stabbingHit.point))
                         {
-                            DistanceToStab(playerMovement.transform.position, hit.point);
-                            Stab(hit.collider.gameObject, false);
+                            DistanceToStab(playerMovement.transform.position, stabbingHit.point);
+                            horizontalStab = true;
+                            Stab(stabbingHit.collider.gameObject);
                             return;
                         }
                     }
-                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
+                    else if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
                     {
-                        if (GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        if (_sphereCollider.bounds.Contains(stabbingHit.point))
                         {
-                            DistanceToStab(playerMovement.transform.position, hit.point);
-                            Stab(hit.collider.gameObject, false);
+                            DistanceToStab(playerMovement.transform.position, stabbingHit.point);
+                            horizontalStab = true;
+                            Stab(stabbingHit.collider.gameObject);
                             return;
                         }
                     }
                     else
                     {
-                        DistanceToStab(playerMovement.transform.position, hit.point);
-                        Stab(hit.collider.gameObject, false);
+                        DistanceToStab(playerMovement.transform.position, stabbingHit.point);
+                        horizontalStab = true;
+                        Stab(stabbingHit.collider.gameObject);
                         return;
                     }                   
                 }
 
-                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out hit, playerMovement.characterController.height / 2 + 0.5f, stabSwordLayers))
+                if(Physics.Raycast(floorDetectionPoint.position, -transform.root.up, out stabbingHit, playerMovement.characterController.height / 2 + 0.5f, stabSwordLayers))
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
+                    if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Hide"))
                     {
-                        if (!GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        if (!_sphereCollider.bounds.Contains(stabbingHit.point))
                         {
-                            Stab(hit.collider.gameObject, true);
+                            horizontalStab = false;
+                            Stab(stabbingHit.collider.gameObject);
                         }
                     }
-                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
+                    else if (stabbingHit.collider.gameObject.layer == LayerMask.NameToLayer("Appear"))
                     {
-                        if (GetComponent<SphereCollider>().bounds.Contains(hit.point))
+                        if (_sphereCollider.bounds.Contains(stabbingHit.point))
                         {
-                            Stab(hit.collider.gameObject, true);
+                            horizontalStab = false;
+                            Stab(stabbingHit.collider.gameObject);
                         }
                     }
                     else
                     {
-                        Stab(hit.collider.gameObject, true);
+                        horizontalStab = false;
+                        Stab(stabbingHit.collider.gameObject);
                     }
                 }
             }
@@ -138,6 +148,21 @@ public class PlayerSwordScanner : MonoBehaviour
             {
                 SwordBack();
             }       
+        }
+
+        if (activeScanner)
+        {
+            if (!AudioManager.Instance.isPlaying(scannerSoundEvent))
+            {
+                if (AudioManager.Instance.ValidEvent(playerSounds.scannerActiveSoundPath))
+                {
+                    scannerSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.scannerActiveSoundPath, transform);
+                }
+            }
+        }
+        else
+        {
+            scannerSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
 
         //animation
@@ -193,18 +218,39 @@ public class PlayerSwordScanner : MonoBehaviour
     public void ScannerOn()
     {
         if (!_playerInsideVolume.CanActivateScanner()) return;
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(true);
+        }
+
         activeScanner = true;
-        
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Scanner) UIHelperController.Instance.DisableHelper();
         transform.GetChild(0).gameObject.SetActive(true);
         _sphereCollider.enabled = true;
         _swordProgressiveColliders.EnableSword();
 
         playerMovement.animator.SetBool("isUsingScanner", true);
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOnSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOnSoundPath, transform);
+        }
     }
 
     public void ScannerOff()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(false);
+        }
+
         activeScanner = false;
 
         transform.GetChild(0).gameObject.SetActive(false);
@@ -213,57 +259,110 @@ public class PlayerSwordScanner : MonoBehaviour
         _scannerIntersectionManager.DeleteIntersections();
 
         playerMovement.animator.SetBool("isUsingScanner", false);
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOffSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOffSoundPath, transform);
+        }
     }
 
-    private void Stab(GameObject obj, bool vertical)
+    private void Stab(GameObject obj)
     {
-        if (vertical) playerMovement.animator.SetTrigger("NailDown");
-        else playerMovement.animator.SetTrigger("NailForward");
+        if (horizontalStab) playerMovement.animator.SetTrigger("NailForward");
+        else playerMovement.animator.SetTrigger("NailDown");
         swordHolder = obj;
         playerMovement.SetState(new StabSwordState(playerMovement));
     }
 
     public void FinishStab()
     {
-        transform.parent = null;
-
-        if (swordHolder.CompareTag("MoveObject"))
+        if (CanFinallyStab())
         {
-            var moveObject = swordHolder.GetComponent<PushPullObject>();
-            if (moveObject) moveObject.swordStabbed = true;
-            else
+            transform.parent = null;
+
+            if (swordHolder.CompareTag("MoveObject"))
             {
-                moveObject = swordHolder.transform.parent.gameObject.GetComponent<PushPullObject>();
-                moveObject.swordStabbed = true;
+                var moveObject = swordHolder.GetComponent<PushPullObject>();
+                if (moveObject) moveObject.swordStabbed = true;
+                else
+                {
+                    moveObject = swordHolder.transform.parent.gameObject.GetComponent<PushPullObject>();
+                    moveObject.swordStabbed = true;
+                }
+            }
+
+            if (swordHolder.CompareTag("CheckPoint"))
+            {
+                CheckPoint c = swordHolder.GetComponent<CheckPoint>();
+                c.Activate();
+
+                if (AudioManager.Instance.ValidEvent(playerSounds.checkpointSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(playerSounds.checkpointSoundPath, transform);
+                }
+            }
+
+            transform.parent = swordHolder.transform;
+
+            if (swordHolder.GetComponent<Switchable>() != null)
+            {
+                swordHolder.GetComponent<Switchable>().SwitchOn();
+
+                if (AudioManager.Instance.ValidEvent(playerSounds.switchSoundPath))
+                {
+                    AudioManager.Instance.PlayOneShotSound(playerSounds.switchSoundPath, transform);
+                }
+            }
+
+            if (activeScanner) _scannerIntersectionManager.CheckIntersections();
+
+            if (AudioManager.Instance.ValidEvent(playerSounds.stabSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(playerSounds.stabSoundPath, transform);
+            }
+        } 
+    }
+
+    private bool CanFinallyStab()
+    {
+        if(swordHolder.layer == LayerMask.NameToLayer("Hide"))
+        {
+            if (!_sphereCollider.bounds.Contains(stabbingHit.point))
+            
+            return true;
+        }
+        else if (swordHolder.layer == LayerMask.NameToLayer("Appear"))
+        {
+            if (_sphereCollider.bounds.Contains(stabbingHit.point))
+            {
+                return true;
             }
         }
-
-        if (swordHolder.CompareTag("CheckPoint"))
+        else
         {
-            CheckPoint c = swordHolder.GetComponent<CheckPoint>();
-            c.Activate();
+            return true;
         }
 
-        transform.parent = swordHolder.transform;
-
-        if (swordHolder.GetComponent<Switchable>() != null)
-        {
-            swordHolder.GetComponent<Switchable>().SwitchOn();
-        }
-
-        if (activeScanner) _scannerIntersectionManager.CheckIntersections();
+        return false;
     }
 
     private void SwordBack()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
-        
+
+        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+
+        foreach (EnemyBlackboard enemy in enemies)
+        {
+            enemy.EnemyInVolume(false);
+        }
+
         if (swordHolder.GetComponent<Switchable>() != null)
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
         
-        if(!scannerInput) ScannerOff();
+        if(!scannerInput && activeScanner) ScannerOff();
         
         transform.parent = null;
 
@@ -272,6 +371,11 @@ public class PlayerSwordScanner : MonoBehaviour
 
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
+
+        if (AudioManager.Instance.ValidEvent(playerSounds.swordBackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
+        }
     }
 
     public void UnlockSword()
@@ -290,9 +394,8 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private bool CanStab()
     {
-        return playerMovement.GetState().GetType() != typeof(EdgeState)
-            && playerMovement.GetState().GetType() != typeof(CombatState)
-            && playerMovement.GetState().GetType() != typeof(PushState);
+        return playerMovement.GetState().GetType() == typeof(MoveState)
+            || (playerMovement.GetState().GetType() == typeof(JumpState) && transform.parent != playerHand);
     }
 
     public bool HoldingSword()
