@@ -2709,7 +2709,6 @@ RectTransform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 3074844986169683384}
-  - {fileID: 1935829228093858437}
   m_Father: {fileID: 1108083699}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2948,79 +2947,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9cc05fa9c4cb5504db189981893cb0da, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &3391269758475902903
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1935829228093858437}
-  - component: {fileID: 57400672181472402}
-  - component: {fileID: 144562152432374285}
-  m_Layer: 5
-  m_Name: AvatarSword
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1935829228093858437
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_LocalRotation: {x: -0, y: -0, z: 0.076742515, w: 0.99705094}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.29, y: 0.29, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5893777776585234510}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.803}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54, y: 0.8}
-  m_SizeDelta: {x: 23.88, y: 53}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &57400672181472402
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_CullTransparentMesh: 0
---- !u!114 &144562152432374285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391269758475902903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af61e9dda268584998448929a20443a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4547,52 +4473,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueImage: {fileID: 581774327}
   pointer: {fileID: 8691857805661039885}
-  timeToAdd: 0.3
+  timeToAdd: 0.6
   inGameDialogues:
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: e6f6b665e8ee2b942a15d3caec1184f4, type: 2}
+  - name: Sword Feedback 1
+    dialoguePopUp: {fileID: 11400000, guid: 49f076eb4084a1d4894d8007dbfa6a97, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: be89e58e4a86d9a4b8b4c3adeb73fbc2, type: 2}
+  - name: Sword Feedback 2
+    dialoguePopUp: {fileID: 11400000, guid: 3c7c54804da665941a7869e7791eca38, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: b54d82d0fc55dbf4c8a3e8549ace98b3, type: 2}
+  - name: Sword Feedback 3
+    dialoguePopUp: {fileID: 11400000, guid: 86843bdd9d98747498486d9bb286e58f, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 4cb4e55036da28a4caa389c864b06402, type: 2}
+  - name: Sword Feedback 4
+    dialoguePopUp: {fileID: 11400000, guid: f22b82cb310ae594388bf9c202c6bb5e, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 1101d6c9b2bed284189150326f763973, type: 2}
+  - name: Sword Feedback 5
+    dialoguePopUp: {fileID: 11400000, guid: b1269ce9221fd284db5e15e272738c69, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 02bb10c0f3304a04ca9c422784c48774, type: 2}
+  - name: Sword Feedback 6
+    dialoguePopUp: {fileID: 11400000, guid: fe1172438f2883443b2effd7f2e6a3ef, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 8053984d0ddb35a40b89e3e3fb6d34ea, type: 2}
+  - name: Sword Feedback 7
+    dialoguePopUp: {fileID: 11400000, guid: 5de9a19cb744ae747bd0c51195b7700d, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 05423ec28ee6db0419d368936c636ebe, type: 2}
+  - name: Sword Feedback 8
+    dialoguePopUp: {fileID: 11400000, guid: 176bc356371a5d141812f15ff93c5925, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 22c14c4247ad2704ab323cc8a8c78ae8, type: 2}
+  - name: Sword Feedback 9
+    dialoguePopUp: {fileID: 11400000, guid: 5f60fdfdede74ef48b389c9cd07a31e6, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: c71b433bfee8d314081721014c947d20, type: 2}
+  - name: Sword Feedback 10
+    dialoguePopUp: {fileID: 11400000, guid: 53da15b2f1c4d9f468cbee984dae1e6c, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 56f2afa6f95760d4da9bd0686ad4b128, type: 2}
+  - name: Sword Feedback 11
+    dialoguePopUp: {fileID: 11400000, guid: 626031865db5c7c45ae9a92549c0bdf0, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 98d08d88ff6f39e44856c278e715f65b, type: 2}
+  - name: Enemy Wave 1
+    dialoguePopUp: {fileID: 11400000, guid: 381c4ce42be03224f8da7e369e70ca75, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 02b005952c97da04ab00febcd06e0cf6, type: 2}
+  - name: Enemy Wave 2
+    dialoguePopUp: {fileID: 11400000, guid: 0fc02a83496710044be54a37fa5fc0dd, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: 0b2c08fea427ee344b9ed5d22b3d4128, type: 2}
+  - name: Enemy Wave 3
+    dialoguePopUp: {fileID: 11400000, guid: 114e2f9148f5eae4aa595ced8bfe267c, type: 2}
     target: {fileID: 0}
-  - name: SwordCongratulation1
-    dialoguePopUp: {fileID: 11400000, guid: fd26dbeb968bd5d47b59c4595ba2ae5f, type: 2}
+  - name: Sword Feedback 12
+    dialoguePopUp: {fileID: 11400000, guid: 187d707e195290d4891d07e3ecbe554d, type: 2}
+    target: {fileID: 0}
+  - name: Sword Feedback 13
+    dialoguePopUp: {fileID: 11400000, guid: 23e66c67c731cd94cbbe4bbb04d383fa, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 1
+    dialoguePopUp: {fileID: 11400000, guid: 2d2cf5bc31f1f4d4786e2c78debd5853, type: 2}
+    target: {fileID: 0}
+  - name: Sword Feedback 14
+    dialoguePopUp: {fileID: 11400000, guid: f27457e0450d58147b6db65667550352, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 2
+    dialoguePopUp: {fileID: 11400000, guid: 66b2b0a557b33534ea0a83ccf62c6ab8, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 3
+    dialoguePopUp: {fileID: 11400000, guid: fd2f767ff2406584aa0349d163a15eef, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 4
+    dialoguePopUp: {fileID: 11400000, guid: fb6f085b9d37f1a4b9d5bf7524ca1118, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 5
+    dialoguePopUp: {fileID: 11400000, guid: 1f580cfc3244a6644838c9dda9ccb352, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 6
+    dialoguePopUp: {fileID: 11400000, guid: 8765be07d9385724d8b87788d8067cee, type: 2}
+    target: {fileID: 0}
+  - name: Aggy Feedback 6
+    dialoguePopUp: {fileID: 11400000, guid: 25d4e87b5a877354691db4be14a0c62b, type: 2}
+    target: {fileID: 0}
+  - name: SwordAdvice
+    dialoguePopUp: {fileID: 11400000, guid: 326b1fee6e8708d42b5777b3bb4d7409, type: 2}
     target: {fileID: 0}
 --- !u!114 &1663000875
 MonoBehaviour:
@@ -4608,23 +4564,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueImage: {fileID: 1108083700}
   conversations:
-  - {fileID: 11400000, guid: 71146bf1b20347c4c8fb68a2ced6f723, type: 2}
-  - {fileID: 11400000, guid: 73b82d27df1ee5546ba130b5cb4e32ab, type: 2}
-  - {fileID: 11400000, guid: df73262a4d8bdde49a6b446ad8ede91b, type: 2}
-  - {fileID: 11400000, guid: 622f23923d40b5e4bae5030995cde92d, type: 2}
-  - {fileID: 11400000, guid: 94e566ce62511dd41ad23b4e92b9dff1, type: 2}
-  - {fileID: 11400000, guid: c6199b6cc5aa8ef4bb99c4398e2cf097, type: 2}
-  - {fileID: 11400000, guid: 007631462ea978849ba1915394e9fd69, type: 2}
-  - {fileID: 11400000, guid: 69356d1b7d07d434e9f71a96664cd996, type: 2}
-  - {fileID: 11400000, guid: 5e5c2027275b009419e37cc4091fdef0, type: 2}
-  - {fileID: 11400000, guid: 0c41086c3306dae4daa09636f5b84f42, type: 2}
-  - {fileID: 11400000, guid: 101697345df5ea54b999830421c89866, type: 2}
-  - {fileID: 11400000, guid: aa3dfc40cfee39b4d9f6aec6847794d5, type: 2}
-  - {fileID: 11400000, guid: 7a41243a0dfc8bc478533345a0ba16af, type: 2}
-  - {fileID: 11400000, guid: b65899e3c7d174446ab368ec434e67fb, type: 2}
-  - {fileID: 11400000, guid: 08990c244a14e714a883eaef46c685f5, type: 2}
-  - {fileID: 11400000, guid: 3f9d401226538f94a872427dd5b8c3e0, type: 2}
-  - {fileID: 11400000, guid: ddf60eac9e0dde44e8d28cc2e963e4cc, type: 2}
+  - {fileID: 11400000, guid: a10854a1b41adb244b2b8f5c685834fa, type: 2}
+  - {fileID: 11400000, guid: b7797ba12a8d1d34594061049e35d46c, type: 2}
+  - {fileID: 11400000, guid: 1f4679703560637498e02863fc9065dd, type: 2}
+  - {fileID: 11400000, guid: 656a303a607b59342814beb76b8c06b5, type: 2}
+  - {fileID: 11400000, guid: 3402b5164e09dba4ab733b38542501d9, type: 2}
+  - {fileID: 11400000, guid: 62b7d77a64090244fa2f653b82f8fa66, type: 2}
+  - {fileID: 11400000, guid: 8c0844a83efdbef40b22e580c50634ac, type: 2}
   gdText: {fileID: 256871134164018142}
   gdSpeaker: {fileID: 8175986602359957263}
   gdSpeakerImage: {fileID: 5604537116888470013}
@@ -4933,7 +4879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 75, y: 125.3}
+  m_AnchoredPosition: {x: 75, y: 125}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5219180785428535739
@@ -7041,7 +6987,7 @@ GameObject:
   - component: {fileID: 6665025248300660437}
   - component: {fileID: 5604537116888470013}
   m_Layer: 5
-  m_Name: AvatarAggy
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9376,7 +9322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 92.3}
+  m_AnchoredPosition: {x: 0, y: 92}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6629112205428669799

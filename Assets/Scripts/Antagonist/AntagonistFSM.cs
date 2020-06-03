@@ -76,6 +76,8 @@ public class AntagonistFSM : MonoBehaviour
                 break;
             case States.WAITINGFORPIPE:
                 break;
+            case States.WAITTOBEHEAD:
+                break;
         }
     }
 
@@ -143,6 +145,7 @@ public class AntagonistFSM : MonoBehaviour
                 rigidbody.AddForce(Vector3.down * blackboard.downPipeImpulse, ForceMode.Impulse);
                 break;
             case States.WAITTOBEHEAD:
+                InGameDialogue.Instance.EnableDialogue("PopUp_23");
                 blackboard.animator.SetTrigger("Guillotine");
                 navMeshAgent.enabled = false;
                 blackboard.enemyCollider.SetActive(false);
