@@ -34,6 +34,7 @@ namespace Steerings
 		public static SteeringOutput GetSteering (KinematicState ownKS, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers, SphereCollider scanner)
 		{
 			Vector3 centralDirection;
+			if (!surrogateTarget) return null;
 			
 			if (ownKS.linearVelocity.magnitude < 0.0001f)
 			{
