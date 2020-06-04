@@ -346,7 +346,7 @@ public class PlayerSwordScanner : MonoBehaviour
         return false;
     }
 
-    private void SwordBack()
+    public void SwordBack()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
