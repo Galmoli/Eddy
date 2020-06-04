@@ -46,9 +46,9 @@ public class CameraRail : MonoBehaviour
         }*/
     }
 
-    public Vector3 ProjectPosition(Vector3 pos)
+    public Vector3 ProjectPosition(Vector3 pos, bool immediately = false)
     {
-        closestRoadPointNum = GetClosestRoadPoint(pos);
+        closestRoadPointNum = GetClosestRoadPoint(pos, immediately);
         closestConnectedRoadPointNum = GetSecondClosestPoint(pos);
 
         lastNodeIdx = closestRoadPointNum;
@@ -83,11 +83,11 @@ public class CameraRail : MonoBehaviour
         }*/
     }
 
-    private int GetClosestRoadPoint(Vector3 pos)
+    private int GetClosestRoadPoint(Vector3 pos, bool immediately = false)
     {
         int closestRoadPointNum;
 
-        if (lastNodeIdx < 0)
+        if (lastNodeIdx < 0 || immediately)
         {
             closestRoadPointNum = 0;
 

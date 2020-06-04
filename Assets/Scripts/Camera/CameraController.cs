@@ -15,7 +15,9 @@ public class CameraController : MonoBehaviour
     private bool closeEnough;
 
     void Update()
-    {      
+    {
+        if (Input.GetKeyDown(KeyCode.L)) SetPlayerPosition();
+        
         if(rail != null)
         {
             Vector3 pos = rail.ProjectPosition(target.position);
@@ -37,19 +39,23 @@ public class CameraController : MonoBehaviour
             }
             else
             {
+                Vector3 rot = rail.ProjectRotation(target.position, transform.position);
+
                 if (closeEnough)
                 {
-                    Vector3 rot = rail.ProjectRotation(target.position, transform.position);
-
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    Vector3 rot = rail.ProjectRotation(target.position, transform.position);
-
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed / 5 * Time.deltaTime);
                 }
             }
         }
+    }
+
+    public void SetPlayerPosition()
+    {
+        transform.position = rail.ProjectPosition(target.position, true);
+        transform.rotation = Quaternion.Euler(rail.ProjectRotation(target.position, transform.position));
     }
 }
