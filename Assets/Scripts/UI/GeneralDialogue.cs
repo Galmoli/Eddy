@@ -85,7 +85,7 @@ public class GeneralDialogue : MonoBehaviour
                 line = new StringBuilder();
                 var c = l.line.ToCharArray();
             
-                for (int i= 0; i < c.Length; i++)
+                for (int i = 0; i < c.Length; i++)
                 {
                     if (!skipDialogue)
                     {
@@ -94,24 +94,15 @@ public class GeneralDialogue : MonoBehaviour
                             while (c[i] != '>')
                             {
                                 line.Append(c[i]);
-                                i++;
-                                yield return null;
-                            }
-                        }
-
-                        if (c[i] == ' ') //Don't wait for spaces
-                        {
-                            while (c[i] == ' ')
-                            {
-                                line.Append(c[i]);
-                                i++;
+                                if(i < c.Length) i++;
+                                else break;
                                 yield return null;
                             }
                         }
 
                         line.Append(c[i]);
                         gdText.text = line.ToString();
-                        yield return new WaitForSeconds(0.03f);
+                        if(c[i] != ' ') yield return new WaitForSeconds(0.03f);
                 
                         if ((c[i] == '.' || c[i] == '?' || c[i] == '!') && i < c.Length - 1) //Wait for dots.
                         {
