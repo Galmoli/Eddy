@@ -5,6 +5,9 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DrawRailPaths : MonoBehaviour
 {
+    public bool showCameraPath;
+    public bool showRoadPointsPath;
+
     private NodeConnections connections;
 
     private void Awake()
@@ -14,9 +17,14 @@ public class DrawRailPaths : MonoBehaviour
 
     private void Update()
     {
-        foreach (NodeConnections.Connection c in connections.connections)
+        if (showCameraPath || showRoadPointsPath)
         {
-            Debug.DrawLine(c.node1.transform.position, c.node2.transform.position, Color.red);
+            foreach (NodeConnections.Connection c in connections.connections)
+            {
+                if(showCameraPath) Debug.DrawLine(c.node1.transform.position, c.node2.transform.position, Color.red);
+
+                if(showRoadPointsPath) Debug.DrawLine(c.node1.transform.parent.position, c.node2.transform.parent.position, Color.green);
+            }
         }
     }
 }

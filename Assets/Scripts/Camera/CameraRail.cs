@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class CameraRail : MonoBehaviour
 {
-    private PlayerController player;
-    
+    private int lastNodeIdx;
+
     private Transform[] roadPoints;
     private CameraNode[] nodes;
 
@@ -15,9 +15,7 @@ public class CameraRail : MonoBehaviour
     private int closestConnectedRoadPointNum;
 
     private void Start()
-    {
-        player = FindObjectOfType<PlayerController>();
-        
+    {    
         nodes = FindObjectsOfType<CameraNode>();
         roadPoints = new Transform[nodes.Length];
 
@@ -25,6 +23,8 @@ public class CameraRail : MonoBehaviour
         {
             roadPoints[i] = nodes[i].transform.parent;
         }
+
+        lastNodeIdx = -1;
     }
 
     private void Update()
@@ -50,6 +50,8 @@ public class CameraRail : MonoBehaviour
     {
         closestRoadPointNum = GetClosestRoadPoint(pos);
         closestConnectedRoadPointNum = GetSecondClosestPoint(pos);
+
+        lastNodeIdx = closestRoadPointNum;
 
         Vector3 posOnSegment = ProjectPositionOnRoadSegment(roadPoints[closestRoadPointNum].position, roadPoints[closestConnectedRoadPointNum].position, pos);
 
@@ -83,19 +85,44 @@ public class CameraRail : MonoBehaviour
 
     private int GetClosestRoadPoint(Vector3 pos)
     {
-        int closestRoadPointNum = 0;
-        float minDistance = 0f;
+        int closestRoadPointNum;
 
-        for(int i = 0; i < roadPoints.Length; i++)
+        if (lastNodeIdx < 0)
         {
-            float distance = (roadPoints[i].position - pos).sqrMagnitude;
+            closestRoadPointNum = 0;
 
-            if(minDistance == 0f || distance < minDistance)
+            float minDistance = 0f;
+
+            for (int i = 0; i < roadPoints.Length; i++)
             {
-                minDistance = distance;
-                closestRoadPointNum = i;
+                float distance = (roadPoints[i].position - pos).sqrMagnitude;
+
+                if (minDistance == 0f || distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestRoadPointNum = i;
+                }
             }
         }
+        else
+        {
+            closestRoadPointNum = lastNodeIdx;
+
+            float minDistance = (roadPoints[closestRoadPointNum].position - pos).sqrMagnitude;
+
+            foreach(CameraNode connectedNode in nodes[lastNodeIdx].connectedNodes)
+            {
+                int idx = System.Array.IndexOf(nodes, connectedNode);
+
+                float distance = (roadPoints[idx].position - pos).sqrMagnitude;
+
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestRoadPointNum = idx;
+                }
+            }
+        }   
 
         return closestRoadPointNum;
     }
@@ -109,7 +136,12 @@ public class CameraRail : MonoBehaviour
         {
             int idx = System.Array.IndexOf(nodes, connectedNode);
 
-            float angle = Vector3.Angle(roadPoints[idx].transform.position - roadPoints[closestRoadPointNum].transform.position, player.transform.position - roadPoints[closestRoadPointNum].transform.position);
+            Vector3 v1 = roadPoints[idx].transform.position - roadPoints[closestRoadPointNum].transform.position;
+            v1.y = 0;
+            Vector3 v2 = pos - roadPoints[closestRoadPointNum].transform.position;
+            v2.y = 0;
+
+            float angle = Vector3.Angle(v1, v2);
 
             if (minAngle == 0f || angle < minAngle)
             {
@@ -177,8 +209,6 @@ public class CameraRail : MonoBehaviour
 
     public Vector3 ProjectRotation(Vector3 pos, Vector3 camPos)
     {
-        int closestRoadPointNum = GetClosestRoadPoint(pos);
-
         return ProjectRotationOnSegment(nodes[closestRoadPointNum].transform, nodes[closestConnectedRoadPointNum].transform, camPos);
 
         /*if (closestRoadPointNum == 0)
