@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalBedScript : MonoBehaviour
 {
@@ -15,8 +16,17 @@ public class FinalBedScript : MonoBehaviour
     public void EndGame(string id)
     {
         if (id == "Conversation_7")
-            UIManager.Instance.MainMenu();
+        {
+            UIManager.Instance.FadeIn();
+            StartCoroutine(LoadFinalDialogue());
+        }
 
+    }
+
+    IEnumerator LoadFinalDialogue()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("LastDialogueScene");
     }
 
 
