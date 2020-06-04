@@ -25,13 +25,13 @@ public class CameraRail : MonoBehaviour
 
     private void Update()
     {
-        foreach(CameraNode node in nodes)
+        /*foreach(CameraNode node in nodes)
         {
             foreach (CameraNode connection in node.connectedNodes)
             {
                 Debug.DrawLine(node.transform.position, connection.transform.position, Color.red);
             }
-        }
+        }*/
         
         /*if(nodes.Length > 1)
         {

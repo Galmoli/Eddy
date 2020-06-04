@@ -18,9 +18,4 @@ public class CameraNode : MonoBehaviour
                 connection.connectedNodes.Add(this);
         }
     }
-
-    void Update()
-    {
-        
-    }
 }
