@@ -76,4 +76,9 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(asm.LoadScene(checkpointSceneIdex));
     }
+    
+    public void GoToScene(int idx)
+    {
+        StartCoroutine(asm.LoadScene(idx));
+    }
 }
