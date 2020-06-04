@@ -15,14 +15,12 @@ public class CameraController : MonoBehaviour
     private bool closeEnough;
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L)) SetPlayerPosition();
-        
+    {  
         if(rail != null)
         {
             Vector3 pos = rail.ProjectPosition(target.position);
 
-            closeEnough = Vector3.Distance(target.position, pos) < 1;
+            closeEnough = Vector3.Distance(target.position, pos) < 2;
 
             if (closeEnough)
             {
@@ -30,7 +28,7 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, pos, movementSpeed / 5 * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, pos, movementSpeed / 4 * Time.deltaTime);
             }
 
             if (lookAtPlayer)
@@ -47,7 +45,7 @@ public class CameraController : MonoBehaviour
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed / 5 * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed / 4 * Time.deltaTime);
                 }
             }
         }
