@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         _combatController = GetComponent<PlayerCombatController>();
         _playerSounds = GetComponent<PlayerSounds>();
         UIManager.OnHeal += Heal;
+        SceneManager.activeSceneChanged += EnablePlayer;
     }
 
     private void Start()
@@ -132,5 +134,12 @@ public class PlayerController : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    private void EnablePlayer(Scene p, Scene n)
+    {
+        if (n.buildIndex != 4) return;
+        var cc = GetComponent<CharacterController>();
+        if (!cc.enabled) cc.enabled = true;
     }
 }
