@@ -20,10 +20,11 @@ namespace Steerings
 		public override SteeringOutput GetSteering ()
 		{
 			SteeringOutput result = ArrivePlusAvoid.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
-
+			if (!surrogateTarget) return null;
+			
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
-				if(surrogateTarget) surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
+				surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
 				SteeringOutput st = Align.GetSteering(ownKS, surrogateTarget);
 				result.angularAcceleration = st.angularAcceleration;
 				result.angularActive = st.angularActive;

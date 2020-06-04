@@ -27,6 +27,7 @@ public class PushState : State
 
     public override void Update()
     {
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
 
