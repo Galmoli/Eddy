@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CameraRail : MonoBehaviour
 {
+    private PlayerController player;
+    
     private Transform[] roadPoints;
     private CameraNode[] nodes;
 
@@ -14,6 +16,8 @@ public class CameraRail : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+        
         nodes = FindObjectsOfType<CameraNode>();
         roadPoints = new Transform[nodes.Length];
 
@@ -99,20 +103,18 @@ public class CameraRail : MonoBehaviour
     private int GetSecondClosestPoint(Vector3 pos)
     {
         int closestConnectedRoadPointNum = 0;
-        float minDistance = 0f;
+        float minAngle = 0f;
 
-        for (int i = 0; i < roadPoints.Length; i++)
+        foreach(CameraNode connectedNode in nodes[closestRoadPointNum].connectedNodes)
         {
-            float distance = (roadPoints[i].position - pos).sqrMagnitude;
+            int idx = System.Array.IndexOf(nodes, connectedNode);
 
-            if (i != closestRoadPointNum && (minDistance == 0f || distance < minDistance))
+            float angle = Vector3.Angle(roadPoints[idx].transform.position - roadPoints[closestRoadPointNum].transform.position, player.transform.position - roadPoints[closestRoadPointNum].transform.position);
+
+            if (minAngle == 0f || angle < minAngle)
             {
-                if (nodes[closestRoadPointNum].connectedNodes.Contains(nodes[i]))
-                {
-                    minDistance = distance;
-                    closestConnectedRoadPointNum = i;
-                }
-
+                minAngle = angle;
+                closestConnectedRoadPointNum = idx;
             }
         }
 

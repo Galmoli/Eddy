@@ -17,7 +17,7 @@ public class NodeConnections : MonoBehaviour
     {
         foreach (Connection c in connections)
         {
-            if (c.node1 != null && c.node2 != null)
+            if (c.node1 != null && c.node2 != null && c.node1 != c.node2)
             {
                 if (!c.node1.connectedNodes.Contains(c.node2))
                 {
