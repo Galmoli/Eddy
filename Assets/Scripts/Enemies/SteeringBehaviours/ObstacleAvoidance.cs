@@ -14,7 +14,8 @@ namespace Steerings
 		public override SteeringOutput GetSteering ()
 		{
 			SteeringOutput result = ObstacleAvoidance.GetSteering (ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
-
+			if (!surrogateTarget) return null;
+			
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
@@ -33,6 +34,7 @@ namespace Steerings
 		public static SteeringOutput GetSteering (KinematicState ownKS, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers, SphereCollider scanner)
 		{
 			Vector3 centralDirection;
+			if (!surrogateTarget) return null;
 			
 			if (ownKS.linearVelocity.magnitude < 0.0001f)
 			{

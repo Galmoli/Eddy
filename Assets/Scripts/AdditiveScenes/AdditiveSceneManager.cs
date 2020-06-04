@@ -75,7 +75,20 @@ public class AdditiveSceneManager : MonoBehaviour
 
     public IEnumerator LoadScene(int idx)
     {
-        if(idx == gameObject.scene.buildIndex) yield break;
+        if (idx == gameObject.scene.buildIndex)
+        {
+            if (idx == 11)
+            {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(idx - 1));                 //Temporal move Mantain
+                MoveObjectsToActiveScene();
+                SceneManager.UnloadSceneAsync(idx);                                                      //Destroy current scene
+                var loading = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Additive);    //Instance new one
+                yield return loading;
+                SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(idx));                     //Move toactive
+                MoveObjectsToActiveScene();
+            }
+            yield break;
+        }
         
         if (!IsSceneInstanced(idx))
         {
