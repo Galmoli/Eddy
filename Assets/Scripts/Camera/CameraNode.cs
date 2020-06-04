@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CameraNode : MonoBehaviour
 {
-    public CameraController cameraController;
-    public List<CameraNode> connectedNodes;
+    [HideInInspector] public CameraController cameraController;
+    [HideInInspector] public List<CameraNode> connectedNodes;
     
     void Start()
     {
