@@ -105,7 +105,7 @@ public class CameraRail : MonoBehaviour
         int closestConnectedRoadPointNum = 0;
         float minAngle = 0f;
 
-        foreach(CameraNode connectedNode in nodes[closestRoadPointNum].connectedNodes)
+        foreach (CameraNode connectedNode in nodes[closestRoadPointNum].connectedNodes)
         {
             int idx = System.Array.IndexOf(nodes, connectedNode);
 
@@ -120,6 +120,29 @@ public class CameraRail : MonoBehaviour
 
         return closestConnectedRoadPointNum;
     }
+
+    /*private int GetSecondClosestPoint(Vector3 pos)
+    {
+        int closestConnectedRoadPointNum = 0;
+        float minDistance = 0f;
+
+        for (int i = 0; i < roadPoints.Length; i++)
+        {
+            float distance = (roadPoints[i].position - pos).sqrMagnitude;
+
+            if (i != closestRoadPointNum && (minDistance == 0f || distance < minDistance))
+            {
+                if (nodes[closestRoadPointNum].connectedNodes.Contains(nodes[i]))
+                {
+                    minDistance = distance;
+                    closestConnectedRoadPointNum = i;
+                }
+
+            }
+        }
+
+        return closestConnectedRoadPointNum;
+    }*/
 
     private Vector3 ProjectPositionOnRoadSegment(Vector3 vector1, Vector3 vector2, Vector3 pos)
     {
