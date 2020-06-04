@@ -24,34 +24,16 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614702}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614703}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614757}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614759}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614770}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614771}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614772}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614774}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614776}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614796}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614800}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661614812}
@@ -63,25 +45,7 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614732}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614734}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614754}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614705}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614716}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614727}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614729}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614849}
       id: 0
       isStickyNote: 0
   stickyNoteInfos: []
@@ -589,9 +553,9 @@ VisualEffectResource:
       = index;\r\n#endif\r\n#endif\r\n\t}\r\n}\r\n"
   - compute: 0
     name: '[System 2]Output ParticleStrip Quad'
-    source: "Shader \"Hidden/VFX/VisualAura/System 2/Output ParticleStrip Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull
-      Off\r\n\t\t\r\n\t\tTags { \"Queue\"=\"Transparent+0\" \"IgnoreProjector\"=\"True\"
-      \"RenderType\"=\"Transparent\" }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tBlend
+    source: "Shader \"Hidden/VFX/CheckpointActivated/System 2/Output ParticleStrip
+      Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull Off\r\n\t\t\r\n\t\tTags { \"Queue\"=\"Transparent+0\"
+      \"IgnoreProjector\"=\"True\" \"RenderType\"=\"Transparent\" }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tBlend
       SrcAlpha One \n\t\tZTest LEqual\n\t\tZWrite Off\n\t\tCull Off\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
       NB_THREADS_PER_GROUP 64\n\t\t#define HAS_ATTRIBUTES 1\n\t\t#define VFX_PASSDEPTH_ACTUAL
       (0)\n\t\t#define VFX_PASSDEPTH_MOTION_VECTOR (1)\n\t\t#define VFX_PASSDEPTH_SELECTION
@@ -1253,7 +1217,7 @@ VisualEffectResource:
       = index;\r\n#endif\r\n#endif\r\n\t}\r\n}\r\n"
   - compute: 0
     name: '[System 3]Output Particle Quad'
-    source: "Shader \"Hidden/VFX/VisualAura/System 3/Output Particle Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull
+    source: "Shader \"Hidden/VFX/CheckpointActivated/System 3/Output Particle Quad\"\n{\r\n\tSubShader\r\n\t{\t\r\n\t\tCull
       Off\r\n\t\t\r\n\t\tTags { \"Queue\"=\"Transparent+0\" \"IgnoreProjector\"=\"True\"
       \"RenderType\"=\"Transparent\" }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tBlend
       SrcAlpha One \n\t\tZTest LEqual\n\t\tZWrite Off\n\t\tCull Off\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -3246,7 +3210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78581a96eae8bf4398c282eb0b098bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -5168,7 +5132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78581a96eae8bf4398c282eb0b098bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -7360,7 +7324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78581a96eae8bf4398c282eb0b098bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
