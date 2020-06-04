@@ -9,7 +9,7 @@ namespace Steerings
 		public override SteeringOutput GetSteering ()
 		{
 			SteeringOutput result = Seek.GetSteering (this.ownKS, this.target);
-
+			
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				transform.rotation = Quaternion.Euler(0, VectorToOrientation(ownKS.linearVelocity), 0);
@@ -23,6 +23,8 @@ namespace Steerings
 		public static SteeringOutput GetSteering (KinematicState ownKS, GameObject target)
 		{
 			SteeringOutput steering = new SteeringOutput ();
+			if (!target) return null;
+			
 			Vector3 directionToTarget;
 
 			directionToTarget = target.transform.position - ownKS.position;

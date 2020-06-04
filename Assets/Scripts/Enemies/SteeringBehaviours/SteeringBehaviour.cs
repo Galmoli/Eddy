@@ -34,7 +34,8 @@ namespace Steerings
 		void Update ()
 		{
 			SteeringOutput steering = GetSteering ();
-
+			if (steering == null) return;
+			
             #region Movement
             if (steering.linearActive)
 			{

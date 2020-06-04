@@ -14,7 +14,8 @@ namespace Steerings
 		public override  SteeringOutput GetSteering ()
 		{
 			SteeringOutput result = Arrive.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed);
-
+			if (!surrogateTarget) return null;
+			
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
