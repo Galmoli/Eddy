@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000023A252BCED8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000020A3A8812A8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,10 +18,1189 @@
 [LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
 [LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSound                     : filename = Assets/StreamingAssets/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Priority: 1, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] SystemI::createSound                     : setdata soundi = 0000020A5A693DA8 : node = 0000020AD735FBD0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000020A5A838758.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000020A5A693DA8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/StreamingAssets/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 942720
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 35968
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000020AD735FCE0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='DraggableObject_Take1', format=2, channels=1, frequency=48000, lengthbytes=133536, lengthpcm=749595, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.705353.
+[LOG] Thread::initThread                       :     Init FMOD file thread. Priority: 1, Stack Size: 49152, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000020A5A693DA8
+[LOG] SoundI::getSubSound                      : sound 0000020A5A693DA8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : DraggableObject_Take1 (0000020A5A693DA8)
+[LOG] SoundI::release                          :     DraggableObject_Take1 (0000020A5A8397E8)
+[LOG] SoundI::release                          :     DraggableObject_Take1 (0000020A5A693BF8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='DraggableObject_Take1', format=2, channels=2, frequency=48000, lengthbytes=73920, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988617.
+[LOG] SoundI::release                          :  (0000020A5A3B2D68)
+[LOG] SoundI::release                          :     DraggableObject_Take1 (0000020A5A834EC8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Elevator_Travelling_Take1', format=2, channels=2, frequency=48000, lengthbytes=101888, lengthpcm=444000, pcmblocksize=0, loopstart=0, loopend=443076, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988586.
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Elevator_Travelling_Take1 (0000020A5A8346A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take3', format=2, channels=2, frequency=48000, lengthbytes=3936, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take2', format=2, channels=2, frequency=48000, lengthbytes=4064, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take1', format=2, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=11769, pcmblocksize=0, loopstart=0, loopend=11076, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SoundI::release                          :  (0000020A5A3B5FB8)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take1 (0000020A5A8356E8)
+[LOG] SoundI::release                          :  (0000020A5A3B2D68)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take2 (0000020A5A836588)
+[LOG] SoundI::release                          :  (0000020A5A3B4FE8)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take3 (0000020A5A8382C8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31C58
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take3', format=2, channels=2, frequency=48000, lengthbytes=3936, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31C58
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take2', format=2, channels=2, frequency=48000, lengthbytes=4064, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31C58
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take1', format=2, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=11769, pcmblocksize=0, loopstart=0, loopend=11076, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SoundI::release                          :  (0000020A5A3B5FB8)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take1 (0000020A5A835068)
+[LOG] SoundI::release                          :  (0000020A5A3B2D68)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take2 (0000020A5A836A68)
+[LOG] SoundI::release                          :  (0000020A5A3B70F8)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take3 (0000020A5A836248)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take3', format=2, channels=2, frequency=48000, lengthbytes=3936, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take2', format=2, channels=2, frequency=48000, lengthbytes=4064, lengthpcm=17307, pcmblocksize=0, loopstart=0, loopend=16614, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='MainCharacter_StepWood_Take1', format=2, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=11769, pcmblocksize=0, loopstart=0, loopend=11076, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988495.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take1 (0000020A5A8370E8)
+[LOG] SoundI::release                          :  (0000020A5A3B2D68)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take2 (0000020A5A8346A8)
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     MainCharacter_StepWood_Take3 (0000020A5A8375C8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take2', format=2, channels=2, frequency=48000, lengthbytes=3424, lengthpcm=22384, pcmblocksize=0, loopstart=0, loopend=22152, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.818359.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take1', format=2, channels=2, frequency=48000, lengthbytes=10336, lengthpcm=38999, pcmblocksize=0, loopstart=0, loopend=38306, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.959778.
+[LOG] SoundI::release                          :  (0000020A5A3B5B68)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take1 (0000020A5A836588)
+[LOG] SoundI::release                          :  (0000020A5A3B4468)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take2 (0000020A5A8363E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31838
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take2', format=2, channels=2, frequency=48000, lengthbytes=3424, lengthpcm=22384, pcmblocksize=0, loopstart=0, loopend=22152, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.818359.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31838
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take1', format=2, channels=2, frequency=48000, lengthbytes=10336, lengthpcm=38999, pcmblocksize=0, loopstart=0, loopend=38306, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.959778.
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take1 (0000020A5A838128)
+[LOG] SoundI::release                          :  (0000020A5A3B4FE8)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take2 (0000020A5A8375C8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take2', format=2, channels=2, frequency=48000, lengthbytes=3424, lengthpcm=22384, pcmblocksize=0, loopstart=0, loopend=22152, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.818359.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take1', format=2, channels=2, frequency=48000, lengthbytes=10336, lengthpcm=38999, pcmblocksize=0, loopstart=0, loopend=38306, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.959778.
+[LOG] SoundI::release                          :  (0000020A5A3B3498)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take1 (0000020A5A837908)
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take2 (0000020A5A838FC8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take2', format=2, channels=2, frequency=48000, lengthbytes=3424, lengthpcm=22384, pcmblocksize=0, loopstart=0, loopend=22152, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.818359.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take1', format=2, channels=2, frequency=48000, lengthbytes=10336, lengthpcm=38999, pcmblocksize=0, loopstart=0, loopend=38306, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.959778.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take1 (0000020A5A835D68)
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take2 (0000020A5A833B48)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take3', format=2, channels=2, frequency=48000, lengthbytes=9088, lengthpcm=62999, pcmblocksize=0, loopstart=0, loopend=62767, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999969.
+[LOG] SoundI::release                          :  (0000020A5A3B5B68)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take3 (0000020A5A839648)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32AC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_EnemyHit_Take3', format=2, channels=2, frequency=48000, lengthbytes=9088, lengthpcm=62999, pcmblocksize=0, loopstart=0, loopend=62767, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999969.
+[LOG] SoundI::release                          :  (0000020A5A3B5FB8)
+[LOG] SoundI::release                          :     Sword_EnemyHit_Take3 (0000020A5A834D28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32AC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_SpiralCharge_Take1', format=2, channels=2, frequency=48000, lengthbytes=30176, lengthpcm=177692, pcmblocksize=0, loopstart=0, loopend=177460, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.680359.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32AC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_SpiralCharge_Take2', format=2, channels=2, frequency=48000, lengthbytes=50368, lengthpcm=178154, pcmblocksize=0, loopstart=0, loopend=177230, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988617.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Sword_SpiralCharge_Take2 (0000020A5A837908)
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Sword_SpiralCharge_Take1 (0000020A5A836DA8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32AC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_Spiral_Take1', format=2, channels=2, frequency=48000, lengthbytes=18464, lengthpcm=266076, pcmblocksize=0, loopstart=0, loopend=265844, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4D08)
+[LOG] SoundI::release                          :     Sword_Spiral_Take1 (0000020A5A8363E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F326A8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Sword_SpiralChargeMax_Take1', format=2, channels=2, frequency=48000, lengthbytes=32224, lengthpcm=177461, pcmblocksize=0, loopstart=0, loopend=177229, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Sword_SpiralChargeMax_Take1 (0000020A5A838128)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32CD8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B5FB8)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8356E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31E68
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4D08)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A839308)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31A48
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B70F8)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A837908)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32CD8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B70F8)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A839648)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32EE8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A834D28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A835068)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F326A8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4468)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A838128)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32AC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B5158)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8353A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8339A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A837908)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B5158)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A838128)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A833B48)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A836DA8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32CD8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A839B28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B5B68)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A837908)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A835A28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31628
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A834848)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B3498)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A834028)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31208
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8387A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32CD8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4468)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8397E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8360A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F328B8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B5B68)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A833B48)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32EE8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A838128)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31C58
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A838C88)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32498
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6B38)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8356E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4468)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A835A28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31208
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8339A8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31838
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4B98)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A839308)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B4468)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A833668)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F31C58
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B8238)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8370E8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B3A58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A835A28)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F326A8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B7F58)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A8382C8)
+[LOG] Manager::readBank                        : fileversion = 123, compatVersion = 119 (oldest = 44, newest = 123)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 867872
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 38240
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000E89F7FF5BC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF383480A0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF38348070
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF38348170
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF38348230
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000020AD7F32288
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enemy1_Step_Take1', format=2, channels=2, frequency=48000, lengthbytes=73280, lengthpcm=443307, pcmblocksize=0, loopstart=0, loopend=443075, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.988556.
+[LOG] SoundI::release                          :  (0000020A5A3B6CA8)
+[LOG] SoundI::release                          :     Enemy1_Step_Take1 (0000020A5A838128)
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.
