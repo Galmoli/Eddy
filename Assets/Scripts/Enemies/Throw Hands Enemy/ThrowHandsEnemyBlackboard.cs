@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 {
+    public GameObject ragdoll;
     public Text statesText;
-    public bool respawnable = false;
 
     [Header("General Stats")]
     public bool armored;
@@ -47,6 +47,10 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float staggerImpulse;
     public float staggeredTime;
 
+    [Header("Enemy Death")]
+    public float minDeathImpulse = 4000;
+    public float maxDeathImpulse = 6000;
+
     [Header("Arrive Steering Variables")]
     public float closeEnoughRadius;
     public float slowDownRadius;
@@ -65,6 +69,16 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float wanderRadius;
     public float wanderOffset;
 
+    //Other variables
+    private bool checkingInVolumeScannerOn;
+    private bool checkingInVolumeScannerOff;
+
+    [Header("Sound")]
+    public string noticeSoundPath;
+    public string stepSoundPath;
+    public string attackSoundPath;
+    public string deathSoundPath;
+
     public override void Start()
     {
         GameManager.Instance.enemySpawnManager.Add(this);
@@ -77,15 +91,16 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
 
-        if (respawnable)
+        /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
         else
-            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);
+            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);*/
 
         healthPoints = initialHealthPoints;
 
         stunned = false;
         hit = false;
+        dead = false;
 
         if (GetComponent<ArrivePlusAvoid>() != null)
         {
@@ -99,6 +114,8 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 
         initialTransform.transform.parent = null;
 
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
     }
 
     public override void Update()
@@ -163,4 +180,82 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     {
         return swordScanner.activeScanner && scannerSphereCollider.bounds.Contains(transform.position);
     }
+
+    public override void Death()
+    {
+        Vector3 dir = transform.position - player.transform.position;
+        dir = dir.normalized;
+
+        GameObject rd = Instantiate(ragdoll, transform.position, Quaternion.identity);
+        rd.transform.rotation = transform.rotation;
+
+        float deathImpulse = Random.Range(minDeathImpulse, maxDeathImpulse);
+        rd.transform.GetChild(0).GetComponent<Rigidbody>().AddForce(dir * deathImpulse);
+        gameObject.SetActive(false);
+
+        dead = true;
+        DeathSound();
+    }
+
+    public override void EnemyInVolume(bool scannerOn)
+    {
+        if (scannerOn) checkingInVolumeScannerOn = true;
+        else checkingInVolumeScannerOff = true;
+
+        StartCoroutine(CheckingInVolumeCoroutine());
+    }
+
+    private IEnumerator CheckingInVolumeCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        checkingInVolumeScannerOn = false;
+        checkingInVolumeScannerOff = false;
+    }
+
+    public override void OnCollisionStay(Collision other)
+    {
+        if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
+        {
+            healthPoints = 0;
+        }
+
+        if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
+        {
+            healthPoints = 0;
+        }
+    }
+
+    #region Sounds
+    public void AttackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(attackSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+        }
+    }
+
+    public void NoticeSound()
+    {
+        if (AudioManager.Instance.ValidEvent(noticeSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(noticeSoundPath, transform);
+        }
+    }
+
+    public void DeathSound()
+    {
+        if (AudioManager.Instance.ValidEvent(deathSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
+        }
+    }
+
+    public override void StepSound()
+    {
+        if (AudioManager.Instance.ValidEvent(stepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stepSoundPath, transform);
+        }
+    }
+    #endregion
 }

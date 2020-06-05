@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
 
 public class PlayerMovementController : StateMachine
 {
@@ -31,9 +32,11 @@ public class PlayerMovementController : StateMachine
 
     //Objects
     [HideInInspector] public PlayerSwordScanner scannerSword;
+    [HideInInspector] public SphereCollider scannerCollider;
 
     //Components
     [HideInInspector] public CharacterController characterController;
+    [HideInInspector] public PlayerSounds playerSounds;
 
     //Variables
     [HideInInspector] public bool inputMoveObject;
@@ -48,6 +51,8 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
     [HideInInspector] public Rigidbody standRb;
 
+    private EventInstance dragSoundEvent;
+
 
     [Header("Animation")]
     public Animator animator;
@@ -55,9 +60,11 @@ public class PlayerMovementController : StateMachine
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerSounds = GetComponent<PlayerSounds>();
         cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();
         scannerSword = FindObjectOfType<PlayerSwordScanner>();
+        scannerCollider = scannerSword.GetComponent<SphereCollider>();
         scannerIntersect = FindObjectOfType<ScannerIntersectionManager>();
 
         _input.PlayerControls.Move.performed += callbackContext => movementVector = callbackContext.ReadValue<Vector2>();
@@ -102,6 +109,7 @@ public class PlayerMovementController : StateMachine
         {
             jump = true;
             animator.SetTrigger("Jump");
+            JumpSound();
         }
         if (!standing && onEdge) inputToStand = true;
     }
@@ -127,7 +135,7 @@ public class PlayerMovementController : StateMachine
 
     private IEnumerator Co_StandEdge()
     {
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
         transform.position = finalPos;
         yield return new WaitForEndOfFrame();
 
@@ -157,7 +165,7 @@ public class PlayerMovementController : StateMachine
     private IEnumerator Co_WaistStand()
     {
         StandDeactivatePlayer();
-        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSapce(edgeGameObject, edgeCompletedOffset);
+        Vector3 finalPos = GetProjectedVector() + edgePosition + PlayerUtils.GetEdgeOffsetOnLocalSpace(edgeGameObject, edgeCompletedOffset);
 
         while (Vector3.Distance(transform.position, finalPos) > 0.2f)
         {
@@ -194,4 +202,53 @@ public class PlayerMovementController : StateMachine
     {
         return state;
     }
+
+    #region Sounds
+    public void JumpSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.jumpSoundPath, transform);
+        }  
+    }
+
+    public void LandingSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.landSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.landSoundPath, transform);
+        }
+    }
+
+    public void DragSound()
+    {
+        if (!AudioManager.Instance.isPlaying(dragSoundEvent))
+        {
+            if (AudioManager.Instance.ValidEvent(playerSounds.draggableObjectSoundPath))
+            {
+                dragSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.draggableObjectSoundPath, transform);
+            }
+        }
+    }
+
+    public void StopDragSound()
+    {
+        dragSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+    
+    public void StepSound()
+    {
+        /*if (AudioManager.Instance.ValidEvent(playerSounds.woodStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.woodStepSoundPath, transform);
+        }*/
+
+        //Step on stone? Check surface type
+
+        /*if (AudioManager.Instance.ValidEvent(stoneStepSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(stoneStepSoundPath, transform);
+        }*/
+    }
+    #endregion
 }

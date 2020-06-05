@@ -20,8 +20,8 @@ public class PushPullObject : MonoBehaviour
     private BoxCollider _boxCollider;
     private Rigidbody _rb;
     private InputActions _input;
-    
-    
+    private Vector3 meshForward;
+
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
@@ -29,6 +29,33 @@ public class PushPullObject : MonoBehaviour
         _input = new InputActions();
         _input.Enable();
         _input.PlayerControls.Sword.started += ctx => SwordInput();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void Start()
+    {
+        meshForward = transform.forward;
+        _rb.interpolation = RigidbodyInterpolation.Interpolate;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
+            {
+
+                if (gameObject.layer == LayerMask.NameToLayer("Appear"))
+                {
+                    if (GetComponentInChildren<PlayerSwordScanner>())
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+                    else
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2);
+                }
+                else
+                    UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -51,6 +78,8 @@ public class PushPullObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //UI Helper
+            UIHelperController.Instance.DisableHelper();
             canMove = false;
         }
     }
@@ -58,18 +87,19 @@ public class PushPullObject : MonoBehaviour
     private void FixedUpdate()
     {
         _triggerTransform.up = Vector3.up;
+        _triggerTransform.forward = meshForward;
     }
-
+    
     //Moves this GameObject when the player pulls it.
     public void Pull()
     {
-        _rb.velocity = moveVector.normalized * 1.15f * speedWhenMove;
+        _rb.velocity = moveVector.normalized * 1.14f * speedWhenMove;
     }
     
     //Moves this GameObject when the player pushes it.
     public void Push()
     {
-        _rb.velocity = -moveVector.normalized * speedWhenMove;
+        _rb.velocity = -moveVector.normalized * 1.14f * speedWhenMove;
     }
 
     //Gets the angle between the closest vector and the director vector

@@ -28,6 +28,7 @@ public class HornedEnemyWall : MonoBehaviour
                     {
                         rb.isKinematic = false;
                         rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
+                        Destroy(rb.gameObject, 5.0f);
                     }
 
                 }

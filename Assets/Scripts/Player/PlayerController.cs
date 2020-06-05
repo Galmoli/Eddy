@@ -2,26 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovementController _movementController;
     private PlayerCombatController _combatController;
+    private PlayerSounds _playerSounds;
     [SerializeField] private float timeToRegenerate;
+    [SerializeField] private float timeToStartRegeneration;
 
     public int initialHealth;
     public int health;
+    private bool _isDead;
 
     private void Awake()
     {
         _movementController = GetComponent<PlayerMovementController>();
         _combatController = GetComponent<PlayerCombatController>();
+        _playerSounds = GetComponent<PlayerSounds>();
         UIManager.OnHeal += Heal;
+        SceneManager.activeSceneChanged += EnablePlayer;
     }
 
     private void Start()
     {
+        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Move, transform.position + Vector3.up*2, transform);
         health = initialHealth;
+        _isDead = false;
     }
 
     // Update is called once per frame
@@ -36,12 +44,20 @@ public class PlayerController : MonoBehaviour
 
     public void Hit(int damage)
     {
+        if (_isDead) return;
         health -= damage;
         if (health <= 0)
         {
             //Trigger Death Animation
             //
+
+            if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_playerSounds.deathSoundPath, transform);
+            }
+
             SetDeadState();
+            _isDead = true;
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
         else
@@ -49,8 +65,13 @@ public class PlayerController : MonoBehaviour
             float number = UnityEngine.Random.Range(1, 4);
             _movementController.animator.SetTrigger("Hit" + number.ToString());
             StopAllCoroutines();
-            StartCoroutine(Co_Heal());
+            StartCoroutine(Co_Regenerate());
             UIManager.Instance.Hit(damage);
+
+            if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(_playerSounds.damageReceivedSoundPath, transform);
+            }
         }
     }
 
@@ -68,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void Spawn()
     {
+        _isDead = false;
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));
         _combatController.SetState(new IdleState(_combatController));
@@ -76,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestoreHealth()
     {
+        _movementController.animator.SetTrigger("Revive");
         health = initialHealth;
         UIManager.Instance.RestoreHealth();
     }
@@ -87,6 +110,12 @@ public class PlayerController : MonoBehaviour
             SetDeadState();
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
         }
+    }
+
+    private IEnumerator Co_Regenerate()
+    {
+        yield return new WaitForSeconds(timeToStartRegeneration);
+        StartCoroutine(Co_Heal());
     }
     
     private IEnumerator Co_Heal()
@@ -105,5 +134,12 @@ public class PlayerController : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    private void EnablePlayer(Scene p, Scene n)
+    {
+        if (n.buildIndex != 4) return;
+        var cc = GetComponent<CharacterController>();
+        if (!cc.enabled) cc.enabled = true;
     }
 }

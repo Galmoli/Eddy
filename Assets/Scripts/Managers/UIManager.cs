@@ -18,7 +18,8 @@ public class UIManager : MonoBehaviour
     }
     
     public static Action OnHeal = delegate {};
-    
+
+    public Camera mainCamera;
     [SerializeField] private float timeToShowMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject pauseMenu;
@@ -26,7 +27,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject scannerWarning;
     [SerializeField] private LifeUILogic lifeUILogic;
+    [SerializeField] private Animator fadeAnimator;
     [HideInInspector] public bool paused;
+    [HideInInspector] public bool popUpEnabled;
 
     private InputActions _input;
 
@@ -40,7 +43,14 @@ public class UIManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("Prototype_Level");
+        FadeIn();
+        StartCoroutine(LoadFirstDialogueScene());     
+    }
+
+    IEnumerator LoadFirstDialogueScene()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("FirstDialogueScene");
     }
 
     public void ExitGame()
@@ -137,5 +147,14 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         HideScannerWarning();
+    }
+
+    public void FadeIn()
+    {
+        fadeAnimator.SetTrigger("In");
+    }
+    public void FadeOut()
+    {
+        fadeAnimator.SetTrigger("Out");
     }
 }

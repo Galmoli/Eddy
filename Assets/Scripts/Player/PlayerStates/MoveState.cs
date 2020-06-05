@@ -30,7 +30,16 @@ public class MoveState : State
         
         vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         _controller.RotateTowardsForward(vector3D);
-        vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Move && _controller.movementVector.magnitude >= 0.7f)
+        {
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Jump, _controller.transform.position + Vector3.up * 2, _controller.transform);
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Move);
+        } 
+        
+        if (!UIManager.Instance.popUpEnabled) vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+        else vector3D *= _controller.minSpeed;
+        
         SnapToFloor();
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
@@ -47,7 +56,7 @@ public class MoveState : State
         if (_controller.gameObject.layer == LayerMask.NameToLayer("Player")) layer = _controller.layersToCheckFloorOutsideScanner;
         else layer = _controller.layersToCheckFloorInsideScanner;
         
-        if (!_controller.characterController.isGrounded)
+        if (!_controller.characterController.isGrounded || PlayerOnRamp())
         {
             RaycastHit hitInfo = new RaycastHit();
             if (Physics.Raycast(new Ray(_controller.feetOverlap.position, Vector3.down), out hitInfo, snapDistance, layer))
@@ -59,6 +68,21 @@ public class MoveState : State
         {
             verticalSnap = Vector3.zero;
         }
+    }
+
+    private bool PlayerOnRamp()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_controller.transform.position - Vector3.up * (_controller.characterController.height / 2), -_controller.transform.up, out hit, 0.5f, ~LayerMask.GetMask("Player")))
+        {
+            float surfaceAngle = Vector3.Angle(hit.normal, _controller.transform.up);
+            if(surfaceAngle > 10f)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     public override void ExitState()

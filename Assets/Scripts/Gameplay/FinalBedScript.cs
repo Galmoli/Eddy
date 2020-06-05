@@ -1,53 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalBedScript : MonoBehaviour
 {
-    bool playerInside;
-    private InputActions inputActions;
 
     // Start is called before the first frame update
     void Awake()
     {
-        inputActions = new InputActions();
-        inputActions.PlayerControls.MoveObject.started += ctx => EndGame();
+        GeneralDialogue.OnDialogueDisabled += EndGame;
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
 
-    private void OnDisable()
+    public void EndGame(string id)
     {
-        inputActions.Disable();
-    }
-
-    public void EndGame()
-    {
-        Debug.Log(playerInside);
-        if (playerInside)
+        if (id == "Conversation_7")
         {
-            
-            UIManager.Instance.MainMenu();
+            UIManager.Instance.FadeIn();
+            StartCoroutine(LoadFinalDialogue());
         }
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator LoadFinalDialogue()
     {
-        if (other.tag == "Player")
-        {
-            playerInside = true;
-        }
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("LastDialogueScene");
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            playerInside = false;
-        }
-    }
 
 }

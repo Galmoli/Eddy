@@ -22,13 +22,15 @@ public class PushState : State
             _scannerSword.ScannerOff();
         }
         _controller.RotateTowardsForward(GetLookCenterVector());
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
     }
 
     public override void Update()
     {
+        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
-        
+
         if (_controller.moveObject && _controller.moveObject.canMove && _controller.inputMoveObject && !_controller.scannerSword.UsingScannerInHand() && vector3D.magnitude >= _controller.joystickDeadZone)
         {
             if (PlayerUtils.InputDirectionTolerance(_controller.moveObject.moveVector, _controller.moveObject.angleToAllowMovement, _controller.cameraTransform, _controller.movementVector) && _controller.moveObject.canPull)
@@ -51,16 +53,20 @@ public class PushState : State
 
             if (!_controller.moveObject.moving)
             {
-                if(_controller.moveObject.swordStabbed) _controller.scannerIntersect.DeleteIntersections();
+                if (_controller.moveObject.swordStabbed) _controller.scannerIntersect.DeleteIntersections();
                 else _controller.scannerIntersect.CheckIntersections(_controller.moveObject.GetComponent<BoxCollider>());
                 _controller.moveObject.moving = true;
             }
+
+            _controller.DragSound();
         }
         else if (_controller.moveObject && vector3D.magnitude < _controller.joystickDeadZone)
         {
             _controller.moveObject.moving = false;
             _controller.animator.SetBool("isPushing", false);
             _controller.animator.SetBool("isDragging", false);
+
+            _controller.StopDragSound();
         }
         ExitState();
     }
@@ -77,10 +83,12 @@ public class PushState : State
             {
                 _controller.moveObject.UnlockAllConstrains();
             }
-            
+
             _controller.CheckCollisions();
             _controller.SetState(new MoveState(_controller));
             _controller.animator.SetBool("isGrabbing", false);
+
+            _controller.StopDragSound();
         }
     }
 

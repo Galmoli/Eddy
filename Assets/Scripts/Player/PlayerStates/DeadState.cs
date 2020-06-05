@@ -9,8 +9,9 @@
     
     public override void Enter()
     {
-        //Set Dead Animation
+        _controller.animator.SetTrigger("Death");
         _controller.characterController.enabled = false;
+        if(!_controller.scannerSword.HoldingSword()) _controller.scannerSword.SwordBack();
     }
 
     public override void Interact()

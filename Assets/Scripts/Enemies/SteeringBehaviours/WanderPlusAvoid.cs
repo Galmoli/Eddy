@@ -21,7 +21,7 @@ namespace Steerings
 		public override SteeringOutput GetSteering ()
 		{
 			SteeringOutput result = WanderPlusAvoid.GetSteering (ownKS, wanderRate, wanderRate, wanderOffset, ref targetOrientation, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, ref avoidActive, avoidLayers, scanner);
-
+			if (!surrogateTarget) return null;
 			if (ownKS.linearVelocity.magnitude > 0.001f)
 			{
 				surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));

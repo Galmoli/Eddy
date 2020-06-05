@@ -61,14 +61,34 @@ public class SimpleAttackState : State
 
     public override void Interact()
     {
-        if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+        if (_controller.swordTrigger.hitObject.tag == "Enemy")
         {
-            _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
-            Debug.Log("Enemy damaged: " + _attackObject.damage);
-            if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+            if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+            {
+                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
+                Debug.Log("Enemy damaged: " + _attackObject.damage);
+
+                if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+
+                _controller.EnemyHitSound();
+                return;
+            }
+
+            _controller.ArmoredHitSound();
             return;
         }
-        Debug.Log("Armor hit");
+
+        if(_controller.swordTrigger.hitObject.tag == "Wood")
+        {
+            _controller.WoodObjectHitSound();
+            return;
+        }
+
+        if (_controller.swordTrigger.hitObject.tag == "Metal")
+        {
+            _controller.MetalObjectHitSound();
+            return;
+        }
     }
 
     public override void ExitState()

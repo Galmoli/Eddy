@@ -13,7 +13,8 @@ namespace Steerings
         public override SteeringOutput GetSteering()
         {
             SteeringOutput result = Wander.GetSteering(ownKS, ref targetOrientation, wanderRate, wanderRadius, wanderOffset);
-
+            if (!surrogateTarget) return null;
+            
             if (ownKS.linearVelocity.magnitude > 0.001f)
             {
                 surrogateTarget.transform.rotation = Quaternion.Euler(0, 0, VectorToOrientation(ownKS.linearVelocity));
@@ -33,9 +34,9 @@ namespace Steerings
         {
             targetOrientation += wanderRate * (Random.value - Random.value);
 
-            surrogateTarget.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
+            if(surrogateTarget) surrogateTarget.transform.position = OrientationToVector(targetOrientation) * wanderRadius;
 
-            surrogateTarget.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
+            if(surrogateTarget) surrogateTarget.transform.position += ownKS.position + OrientationToVector(ownKS.orientation) * wanderOffset;
 
             return Seek.GetSteering(ownKS, surrogateTarget);
         }

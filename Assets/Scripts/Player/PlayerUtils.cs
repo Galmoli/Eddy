@@ -46,7 +46,7 @@ public class PlayerUtils
         return Vector3.Angle(pf, -ef) <= a;
     }
 
-    public static Vector3 GetEdgeOffsetOnLocalSapce(GameObject edge, Vector3 offset)
+    public static Vector3 GetEdgeOffsetOnLocalSpace(GameObject edge, Vector3 offset)
     {
         var result = edge.transform.right * offset.x;
         result += edge.transform.up * offset.y;
@@ -61,5 +61,14 @@ public class PlayerUtils
             return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
         }
         return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+    }
+
+    public static Collider[] GetResidualColliders(PlayerMovementController _controller, Vector3 position, PlayerSwordScanner sword)
+    {
+        if (Vector3.Dot(position, sword.transform.position) <= 4 && sword.activeScanner)
+        {
+            return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+        }
+        return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
     }
 }
