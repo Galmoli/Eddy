@@ -12,24 +12,13 @@ public class CameraController : MonoBehaviour
     [Header("Look At Player / Nodes Rotation")]
     public bool lookAtPlayer;
 
-    private bool closeEnough;
-
     void Update()
     {  
         if(rail != null)
         {
             Vector3 pos = rail.ProjectPosition(target.position);
 
-            closeEnough = Vector3.Distance(target.position, pos) < 2;
-
-            if (closeEnough)
-            {
-                transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = Vector3.Lerp(transform.position, pos, movementSpeed / 4 * Time.deltaTime);
-            }
+            transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
 
             if (lookAtPlayer)
             {
@@ -39,14 +28,7 @@ public class CameraController : MonoBehaviour
             {
                 Vector3 rot = rail.ProjectRotation(target.position, transform.position);
 
-                if (closeEnough)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed / 4 * Time.deltaTime);
-                }
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
             }
         }
     }
