@@ -9,30 +9,20 @@ public class CameraController : MonoBehaviour
     public Transform target;
 
     [Header("Movement")]
-    public float maxMovementSpeed;
+    public float movementSpeed = 2f;
     //public float slowingRadius;
 
     [Header("Rotation")]
     public float rotationSpeed;
     public bool lookAtPlayer;
 
-    private Rigidbody rb;
-    private Vector3 desiredVelocity = Vector3.zero;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
     void Update()
     {
         if (rail != null)
         {
-
-
             Vector3 pos = rail.ProjectPosition(target.position);
 
-            transform.position = Vector3.Lerp(transform.position, pos, maxMovementSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
 
             /*float distanceFromPosition = (pos - transform.position).magnitude;
             float stoppingFactor;
@@ -42,8 +32,6 @@ public class CameraController : MonoBehaviour
             desiredVelocity = (pos - transform.position).normalized * maxMovementSpeed * stoppingFactor;
 
             rb.velocity += desiredVelocity - rb.velocity;*/
-
-
 
             if (lookAtPlayer)
             {

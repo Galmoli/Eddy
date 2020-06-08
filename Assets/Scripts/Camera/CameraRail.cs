@@ -280,4 +280,15 @@ public class CameraRail : MonoBehaviour
 
         return node1.eulerAngles + rotDif * posPercent;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(roadPoints[closestRoadPointNum].transform.position, 0.5f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(roadPoints[closestConnectedRoadPointNum].transform.position, 0.5f);
+        }
+    }
 }
