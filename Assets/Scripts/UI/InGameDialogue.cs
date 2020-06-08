@@ -58,54 +58,14 @@ public class InGameDialogue : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) EnableDialogue("PopUp_1");
-        
-        if (!dialogueImage.gameObject.activeSelf) return;
-            
-        float minX = dialogueImage.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
-        float maxX = Screen.width - minX;
-        
-        float minY = dialogueImage.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
-        float maxY = Screen.height - minY;
-        
-        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position);
-        Vector2 playerPos = _mainCamera.WorldToScreenPoint(_player.position);
-
-        if (playerPos.x > pos.x)
-        {
-            pos += offsetDialogueLeft * _canvas.scaleFactor;
-            leftPointer.SetActive(true);
-            rightPointer.SetActive(false);
-        }
-        else
-        {
-            pos += offsetDialogueRight * _canvas.scaleFactor;
-            leftPointer.SetActive(false);
-            rightPointer.SetActive(true);
-        }
-
-        if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
-        {
-            if (pos.x < Screen.width / 2)
-            {
-                pos.x = maxX;
-            }
-            else
-            {
-                pos.x = minX;
-            }
-        }
-        
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
-
-        dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.25f);
+        if (dialogueImage.gameObject.activeSelf) DialoguePosition(true);
     }
 
     public void EnableDialogue(string id)
     {
         _currentDialogue = inGameDialogues.First(d => d.dialoguePopUp.id == id);
         dialogueImage.gameObject.SetActive(true);
-        InstantiateDialoguePosition();
+        DialoguePosition(false);
         if(_currentDialogue.dialoguePopUp.playerWalk) UIManager.Instance.popUpEnabled = true;
         StartCoroutine(AnimatedText(_currentDialogue));
     }
@@ -160,7 +120,7 @@ public class InGameDialogue : MonoBehaviour
         DisableDialogue();
     }
 
-    private void InstantiateDialoguePosition()
+    private void DialoguePosition(bool lerp)
     {
         float minX = dialogueImage.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
         float maxX = Screen.width - minX;
@@ -171,8 +131,18 @@ public class InGameDialogue : MonoBehaviour
         Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position);
         Vector2 playerPos = _mainCamera.WorldToScreenPoint(_player.position);
 
-        if (playerPos.x > pos.x) pos += offsetDialogueLeft;
-        else pos += offsetDialogueRight;
+        if (playerPos.x > pos.x)
+        {
+            pos += offsetDialogueLeft * _canvas.scaleFactor;
+            leftPointer.SetActive(true);
+            rightPointer.SetActive(false);
+        }
+        else
+        {
+            pos += offsetDialogueRight * _canvas.scaleFactor;
+            leftPointer.SetActive(false);
+            rightPointer.SetActive(true);
+        }
 
         if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
         {
@@ -189,6 +159,7 @@ public class InGameDialogue : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
-        dialogueImage.transform.position = pos;
+        if(lerp) dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.25f);
+        else dialogueImage.transform.position = pos;
     }
 }
