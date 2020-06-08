@@ -46,11 +46,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     public void SetPositionImmediately()
     {
         transform.position = rail.ProjectPosition(target.position, true);
