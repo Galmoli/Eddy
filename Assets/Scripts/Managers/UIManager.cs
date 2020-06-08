@@ -41,6 +41,11 @@ public class UIManager : MonoBehaviour
         _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
     }
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     public void Play()
     {
         FadeIn();
@@ -55,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void ExitGame()
     {
-        print("ExitGame");
+        Application.Quit();
     }
 
     private void ShowPauseMenu()
