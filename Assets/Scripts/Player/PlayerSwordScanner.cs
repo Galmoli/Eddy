@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.VFX;
 
 public class PlayerSwordScanner : MonoBehaviour
 {
@@ -42,6 +43,11 @@ public class PlayerSwordScanner : MonoBehaviour
     private Vector3 moveAwayVector;
 
     private EventInstance scannerSoundEvent;
+
+    [Header("VFX")]
+    public VisualEffect[] swordVfx;
+    public Material swordBasicMat;
+    public Material swordActiveMat;
 
     private void Awake()
     {
@@ -229,6 +235,11 @@ public class PlayerSwordScanner : MonoBehaviour
         activeScanner = true;
         if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Scanner) UIHelperController.Instance.DisableHelper();
         transform.GetChild(0).gameObject.SetActive(true);
+        foreach (VisualEffect vfx in swordVfx)
+        {
+            vfx.Play();
+        }
+        GetComponent<MeshRenderer>().material = swordActiveMat;
         _sphereCollider.enabled = true;
         _swordProgressiveColliders.EnableSword();
 
@@ -254,6 +265,11 @@ public class PlayerSwordScanner : MonoBehaviour
         activeScanner = false;
 
         transform.GetChild(0).gameObject.SetActive(false);
+        foreach (VisualEffect vfx in swordVfx)
+        {
+            vfx.Stop();
+        }
+        GetComponent<MeshRenderer>().material = swordBasicMat;
         _sphereCollider.enabled = false;
         _swordProgressiveColliders.DisableSword();
         _scannerIntersectionManager.DeleteIntersections();
