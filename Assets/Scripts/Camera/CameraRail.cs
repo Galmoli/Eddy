@@ -137,9 +137,7 @@ public class CameraRail : MonoBehaviour
             int idx = System.Array.IndexOf(nodes, connectedNode);
 
             Vector3 v1 = roadPoints[idx].transform.position - roadPoints[closestRoadPointNum].transform.position;
-            v1.y = 0;
             Vector3 v2 = pos - roadPoints[closestRoadPointNum].transform.position;
-            v2.y = 0;
 
             float angle = Vector3.Angle(v1, v2);
 
