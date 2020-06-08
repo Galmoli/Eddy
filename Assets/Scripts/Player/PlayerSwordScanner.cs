@@ -416,7 +416,12 @@ public class PlayerSwordScanner : MonoBehaviour
 
     public bool HoldingSword()
     {
-        return transform.parent == playerHand && swordUnlocked;
+        return transform.parent == playerHand && SwordUnlocked();
+    }
+
+    public bool SwordUnlocked()
+    {
+        return swordUnlocked;
     }
 
     public bool UsingScannerInHand()

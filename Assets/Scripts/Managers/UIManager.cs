@@ -117,12 +117,7 @@ public class UIManager : MonoBehaviour
     
     public IEnumerator ShowDeathMenu()
     {
-        var currentTime = 0f;
-        while (currentTime < timeToShowMenu)
-        {
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(timeToShowMenu);
         deathMenu.SetActive(true);
     }
 

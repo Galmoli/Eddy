@@ -18,33 +18,25 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPos;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
-    [HideInInspector] public int checkpointSceneIdex;
+    [HideInInspector] public int checkpointSceneIndex = 4;
     [HideInInspector] public AdditiveSceneManager asm;
-    //[HideInInspector] public List<GameObject> nonRespawnableEnemies;
     private PlayerController _playerController;
 
     private void Start()
     {
         var player = GameObject.Find("Player");
         respawnPos = player.transform.position;
+        checkpointSceneIndex = 4;
         _playerController = player.GetComponent<PlayerController>();
         enemySpawnManager = new EnemySpawnManager();
-        //nonRespawnableEnemies = new List<GameObject>();
     }
 
     public void Respawn()
     {
-        GoToScene();
         _playerController.Spawn();
         ResetWaveController();
         ResetEnemies();
-
-        /*foreach (var e in nonRespawnableEnemies)
-        {
-            Destroy(e);
-        }
-
-        nonRespawnableEnemies.Clear();*/
+        GoToScene();
     }
 
     private void ResetWaveController()
@@ -74,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void GoToScene()
     {
-        StartCoroutine(asm.LoadScene(checkpointSceneIdex));
+        StartCoroutine(asm.LoadScene(checkpointSceneIndex));
     }
     
     public void GoToScene(int idx)

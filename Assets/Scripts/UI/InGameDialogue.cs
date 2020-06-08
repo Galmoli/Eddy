@@ -67,8 +67,9 @@ public class InGameDialogue : MonoBehaviour
         float pmaxY = Screen.height - pminY;
 
         Vector3 cameraProjectedForward = Vector3.ProjectOnPlane(_mainCamera.transform.forward, Vector3.up);
+        Vector3 cameraProjectedLeft = Vector3.ProjectOnPlane(-_mainCamera.transform.right, Vector3.up);
         
-        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12);
+        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12 + cameraProjectedLeft * 2);
 
         Vector2 pointerDir = ((Vector2)_mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pos).normalized;
         Vector2 pointerPos = GetPointerPos(pointerDir, minX, minY);
@@ -113,6 +114,7 @@ public class InGameDialogue : MonoBehaviour
     {
         _currentDialogue = inGameDialogues.First(d => d.dialoguePopUp.id == id);
         dialogueImage.gameObject.SetActive(true);
+        InstantiateDialoguePosition();
         if(_currentDialogue.dialoguePopUp.playerWalk) UIManager.Instance.popUpEnabled = true;
         StartCoroutine(AnimatedText(_currentDialogue));
     }
@@ -186,5 +188,61 @@ public class InGameDialogue : MonoBehaviour
         }
         if (!d.dialoguePopUp.instantText) yield return new WaitForSeconds(5f);
         DisableDialogue();
+    }
+
+    private void InstantiateDialoguePosition()
+    {
+        float minX = dialogueImage.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
+        float maxX = Screen.width - minX;
+        float pminX = pointer.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
+        float pmaxX = Screen.width - pminX;
+        
+        float minY = dialogueImage.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
+        float maxY = Screen.height - minY;
+        float pminY = pointer.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
+        float pmaxY = Screen.height - pminY;
+
+        Vector3 cameraProjectedForward = Vector3.ProjectOnPlane(_mainCamera.transform.forward, Vector3.up);
+        Vector3 cameraProjectedLeft = Vector3.ProjectOnPlane(-_mainCamera.transform.right, Vector3.up);
+        
+        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12 + cameraProjectedLeft * 2);
+
+        Vector2 pointerDir = ((Vector2)_mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pos).normalized;
+        Vector2 pointerPos = GetPointerPos(pointerDir, minX, minY);
+        pointerPos += pos;
+        
+        Vector2 pointerAngleV2 = ((Vector2) _mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pointerPos).normalized;
+        
+
+        var angle = Mathf.Atan2(pointerAngleV2.y, pointerAngleV2.x) * Mathf.Rad2Deg + 90;
+        pointer.transform.rotation = Quaternion.AngleAxis(angle, pointer.transform.forward);
+
+        if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
+        {
+            if (pos.x < Screen.width / 2)
+            {
+                pos.x = maxX;
+            }
+            else
+            {
+                pos.x = minX;
+            }
+            if (pointerPos.x < Screen.width / 2)
+            {
+                pointerPos.x = pmaxX;
+            }
+            else
+            {
+                pointerPos.x = pminX;
+            }
+        }
+        
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        pointerPos.x = Mathf.Clamp(pointerPos.x, pminX, pmaxX);
+        pointerPos.y = Mathf.Clamp(pointerPos.y, pminY, pmaxY);
+
+        dialogueImage.transform.position = pos;
+        pointer.transform.position = pointerPos;
     }
 }
