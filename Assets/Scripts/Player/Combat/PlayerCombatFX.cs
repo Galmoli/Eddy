@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerCombatFX : MonoBehaviour
 {
     public ParticleSystem swordTrailParticles;
+    public ParticleSystem comboTrailParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,13 @@ public class PlayerCombatFX : MonoBehaviour
     public void TrailOff()
     {
         swordTrailParticles.gameObject.SetActive(false);
+    }
+    public void ComboTrailOn()
+    {
+        comboTrailParticles.gameObject.SetActive(true);
+    }
+    public void ComboTrailOff()
+    {
+        comboTrailParticles.gameObject.SetActive(false);
     }
 }
