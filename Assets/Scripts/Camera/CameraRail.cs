@@ -287,7 +287,7 @@ public class CameraRail : MonoBehaviour
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(roadPoints[closestRoadPointNum].transform.position, 0.5f);
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.red;
             Gizmos.DrawSphere(roadPoints[closestConnectedRoadPointNum].transform.position, 0.5f);
         }
     }

@@ -24,7 +24,8 @@ public class CameraController : MonoBehaviour
 
             transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
 
-            /*float distanceFromPosition = (pos - transform.position).magnitude;
+            /*Vector3 desiredVelocity;
+            float distanceFromPosition = (pos - transform.position).magnitude;
             float stoppingFactor;
 
             stoppingFactor = Mathf.Clamp(distanceFromPosition / slowingRadius, 0.0f, 1.0f);
