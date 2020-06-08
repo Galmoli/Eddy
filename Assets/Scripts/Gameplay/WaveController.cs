@@ -13,12 +13,15 @@ public class WaveController : MonoBehaviour
     int currentWave;
     List<EnemyBlackboard> currentEnemies = new List<EnemyBlackboard>();
 
+    public GameObject aggyDialogueTrigger;
+
     bool wavesCompleted;
 
     // Start is called before the first frame update
     void Start()
     {
         GeneralDialogue.OnDialogueDisabled += Init;
+        Reset();
     }
 
     public void Init(string dialogueID)
@@ -39,8 +42,9 @@ public class WaveController : MonoBehaviour
         {
             currentWave = 0;
             closeAreaCols[0].SetActive(false);
-            closeAreaCols[1].SetActive(false);
+            closeAreaCols[1].SetActive(true);
             activate = false;
+            aggyDialogueTrigger.SetActive(true);
         }
     }
 
