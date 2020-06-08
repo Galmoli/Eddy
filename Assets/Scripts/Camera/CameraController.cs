@@ -10,13 +10,13 @@ public class CameraController : MonoBehaviour
 
     [Header("Movement")]
     public float maxMovementSpeed;
-    public float slowingRadius;
+    //public float slowingRadius;
 
     [Header("Rotation")]
     public float rotationSpeed;
     public bool lookAtPlayer;
 
-    private Rigidbody rb;   
+    private Rigidbody rb;
     private Vector3 desiredVelocity = Vector3.zero;
 
     private void Start()
@@ -25,9 +25,26 @@ public class CameraController : MonoBehaviour
     }
 
     void Update()
-    {  
-        if(rail != null)
+    {
+        if (rail != null)
         {
+
+
+            Vector3 pos = rail.ProjectPosition(target.position);
+
+            transform.position = Vector3.Lerp(transform.position, pos, maxMovementSpeed * Time.deltaTime);
+
+            /*float distanceFromPosition = (pos - transform.position).magnitude;
+            float stoppingFactor;
+
+            stoppingFactor = Mathf.Clamp(distanceFromPosition / slowingRadius, 0.0f, 1.0f);
+
+            desiredVelocity = (pos - transform.position).normalized * maxMovementSpeed * stoppingFactor;
+
+            rb.velocity += desiredVelocity - rb.velocity;*/
+
+
+
             if (lookAtPlayer)
             {
                 transform.LookAt(target.position);
@@ -43,28 +60,7 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rail != null)
-        {
-            Vector3 pos = rail.ProjectPosition(target.position);
 
-            //transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
-
-            float distanceFromPosition = (pos - transform.position).magnitude;
-            float stoppingFactor;
-
-            if (slowingRadius > 0)
-            {
-                stoppingFactor = Mathf.Clamp(distanceFromPosition / slowingRadius, 0.0f, 1.0f);
-            }
-            else
-            {
-                stoppingFactor = Mathf.Clamp(distanceFromPosition, 0.0f, 1.0f);
-            }
-
-            desiredVelocity = (pos - transform.position).normalized * maxMovementSpeed * stoppingFactor;
-
-            rb.velocity += desiredVelocity - rb.velocity;
-        }
     }
 
     public void SetPositionImmediately()
