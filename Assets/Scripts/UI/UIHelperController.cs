@@ -54,6 +54,8 @@ public class UIHelperController : MonoBehaviour
 
     public void EnableHelper(HelperAction action, Vector3 anchor)
     {
+        DisableHelper();
+        StopAllCoroutines();
         background.SetActive(true);
         actionToComplete = action;
         switch (action)
