@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class HornedEnemyWall : MonoBehaviour
 {
     public float power, radius;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public VisualEffect vfx;
+    private bool canPlay = true;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player" && !collision.gameObject.GetComponent<HornedEnemyWall>())
         {
+            if (vfx != null && canPlay)
+            {
+                vfx.Play();
+                canPlay = false;
+            }
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider hit in colliders)
