@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetCurrentScene()
+    {
+        return gameObject.scene.buildIndex;
+    }
+
     private void GoToScene()
     {
         StartCoroutine(asm.LoadScene(checkpointSceneIndex));
