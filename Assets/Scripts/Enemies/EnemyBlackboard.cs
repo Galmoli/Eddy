@@ -25,6 +25,7 @@ public abstract class EnemyBlackboard : MonoBehaviour
     [HideInInspector] public PlayerSwordScanner swordScanner;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public KinematicState ownKS;
+    [HideInInspector] public CapsuleCollider col;
 
     [HideInInspector] public float healthPoints;
     [HideInInspector] public bool stunned;

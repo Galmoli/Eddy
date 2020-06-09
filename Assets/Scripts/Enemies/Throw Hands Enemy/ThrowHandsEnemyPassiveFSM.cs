@@ -44,6 +44,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
         arrivePlusAvoid.enabled = false;
         blackboard.animator.SetFloat("speed", 0);
         timer = 0;
+        blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     // Update is called once per frame
@@ -63,6 +64,8 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
                     ChangeState(States.IDLE);
                     break;
                 }
+
+                CheckConstraints();
 
                 break;
             case States.IDLE:
@@ -89,6 +92,8 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
                 }
 
                 timer += Time.deltaTime;
+
+                CheckConstraints();
 
                 break;
         }
@@ -122,6 +127,7 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
             case States.BACK_TO_INITIAL:
                 arrivePlusAvoid.target = blackboard.initialTransform;
                 arrivePlusAvoid.enabled = true;
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
                 break;
             case States.IDLE:
                 
@@ -129,9 +135,33 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
             case States.WANDER:
                 blackboard.ownKS.maxSpeed = blackboard.wanderSpeed;
                 wanderPlusAvoid.enabled = true;
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
                 break;
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
+    }
+
+    private void CheckConstraints()
+    {
+        RaycastHit floorHit;
+        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.1f))
+        {
+            if (floorHit.collider.gameObject.layer != LayerMask.NameToLayer("TriggerDetection")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("EnemyLimits")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("VoidCollider"))
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            }
+            else
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+        }
+        else
+        {
+            blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 }

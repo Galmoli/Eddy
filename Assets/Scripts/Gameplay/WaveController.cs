@@ -13,12 +13,18 @@ public class WaveController : MonoBehaviour
     int currentWave;
     List<EnemyBlackboard> currentEnemies = new List<EnemyBlackboard>();
 
+    public GameObject aggyDialogueTrigger;
+
     bool wavesCompleted;
+
+    private WaveScene waveScene;
 
     // Start is called before the first frame update
     void Start()
     {
+        waveScene = GetComponent<WaveScene>();
         GeneralDialogue.OnDialogueDisabled += Init;
+        Reset();
     }
 
     public void Init(string dialogueID)
@@ -30,6 +36,7 @@ public class WaveController : MonoBehaviour
             //activate = true;
             currentWave = 0;
             StartCoroutine(WaveProducer());
+            waveScene.waveActivated = true;
         }
     }
 
@@ -39,8 +46,9 @@ public class WaveController : MonoBehaviour
         {
             currentWave = 0;
             closeAreaCols[0].SetActive(false);
-            closeAreaCols[1].SetActive(false);
+            closeAreaCols[1].SetActive(true);
             activate = false;
+            aggyDialogueTrigger.SetActive(true);
         }
     }
 
@@ -93,6 +101,8 @@ public class WaveController : MonoBehaviour
             wavesCompleted = true;
             closeAreaCols[0].SetActive(false);
             closeAreaCols[1].SetActive(false);
+            waveScene.waveActivated = false;
+            waveScene.destroyAllCrowd();
         }
     }
 
@@ -105,6 +115,8 @@ public class WaveController : MonoBehaviour
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
             int randomPipe = Random.Range(0, pipePositions.Length);
+            if (randomPipe == 0) waveScene.playLeftConfetti();
+            else waveScene.playRightConfetti();
             GameObject go = Instantiate(waves[currentWave].enemies[i], pipePositions[randomPipe].transform.position, Quaternion.identity);
             EnemyBlackboard blackboard = go.GetComponent<EnemyBlackboard>();
             ChargingEnemyBlackboard chargingEnemyBlackboard = go.GetComponent<ChargingEnemyBlackboard>();

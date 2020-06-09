@@ -5,14 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class TransitionToMainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator animator;
+
+    private void Start()
     {
-        
+
     }
 
     public void LoadGame()
     {
+        animator.SetTrigger("In");
+        StartCoroutine(WaitToLoadLevel());       
+    }
+
+    IEnumerator WaitToLoadLevel()
+    {
+        yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("MainMenu");
     }
+
+
 }

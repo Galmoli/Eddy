@@ -200,6 +200,7 @@ MonoBehaviour:
   swordScanner: {fileID: 0}
   rb: {fileID: 0}
   ownKS: {fileID: 0}
+  col: {fileID: 0}
   healthPoints: 0
   stunned: 0
   hit: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
   wanderSpeed: 2
   sightObstaclesLayers:
     serializedVersion: 2
-    m_Bits: 85505
+    m_Bits: 224769
   enemyColliderChaseHeight: 1.2
   maxVerticalDistance: 3
   detectionDistanceOnSight: 19
@@ -242,12 +243,13 @@ MonoBehaviour:
   closeEnoughRadius: 1
   slowDownRadius: 10
   lookAheadLength: 2
-  avoidDistance: 10
-  secondaryWhiskerAngle: 50
+  avoidDistance: 1
+  secondaryWhiskerAngle: 60
   secondaryWhiskerRatio: 0.5
   avoidLayers:
     serializedVersion: 2
     m_Bits: 90113
+  scannerSphereCollider: {fileID: 0}
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
