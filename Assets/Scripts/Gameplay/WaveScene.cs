@@ -92,5 +92,6 @@ public class WaveScene : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Destroy(crowd.gameObject);
+        Destroy(this);
     }
 }
