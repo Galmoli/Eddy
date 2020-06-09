@@ -305,6 +305,8 @@ public class PlayerSwordScanner : MonoBehaviour
                     moveObject = swordHolder.transform.parent.gameObject.GetComponent<PushPullObject>();
                     moveObject.swordStabbed = true;
                 }
+
+                transform.parent = moveObject.transform;
             }
 
             if (swordHolder.CompareTag("CheckPoint"))
@@ -318,7 +320,7 @@ public class PlayerSwordScanner : MonoBehaviour
                 }
             }
 
-            transform.parent = swordHolder.transform;
+            if (!swordHolder.CompareTag("MoveObject")) transform.parent = swordHolder.transform;
 
             if (swordHolder.GetComponent<Switchable>() != null)
             {
