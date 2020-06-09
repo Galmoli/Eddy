@@ -49,6 +49,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         enemyPassiveFSM.enabled = false;
         blackboard.animator.SetFloat("speed", 0);
         timer = 0;
+        blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     private void Update()
@@ -109,6 +110,8 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                     ChangeState(States.ATTACK);
                 }
 
+                CheckConstraints();
+
                 break;
             case States.ATTACK:
                 timeAfterAttacks -= Time.deltaTime;
@@ -145,6 +148,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             case States.CHASE:
                 arrivePlusAvoid.enabled = false;
                 blackboard.rb.velocity = blackboard.ownKS.linearVelocity;
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
                 break;
             case States.ATTACK:
                 break;
@@ -202,5 +206,29 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(playerEulerAngles);
         blackboard.ownKS.orientation = playerEulerAngles.y;
+    }
+
+    private void CheckConstraints()
+    {
+        RaycastHit floorHit;
+        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.5f))
+        {
+            if (floorHit.collider.gameObject.layer != LayerMask.NameToLayer("TriggerDetection")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("EnemyLimits")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("VoidCollider"))
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            }
+            else
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+            }
+        }
+        else
+        {
+            blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 }

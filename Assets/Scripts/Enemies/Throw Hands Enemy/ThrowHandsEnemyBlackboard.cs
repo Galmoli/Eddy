@@ -90,6 +90,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
+        col = GetComponent<CapsuleCollider>();
 
         /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
@@ -121,6 +122,8 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public override void Update()
     {
         statesText.transform.parent.transform.LookAt(Camera.main.transform.position);
+
+
     }
 
     public override void OnDestroy()
@@ -222,6 +225,11 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
         {
             healthPoints = 0;
+        }
+
+        if(other.collider.gameObject.tag == "EnemyDead")
+        {
+            //Physics.IgnoreCollision(other.collider, col);
         }
     }
 

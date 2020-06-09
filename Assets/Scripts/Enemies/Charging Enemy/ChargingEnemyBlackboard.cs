@@ -87,6 +87,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
+        col = GetComponent<CapsuleCollider>();
 
         /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
@@ -219,6 +220,11 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         if (checkingInVolumeScannerOn && other.gameObject.layer == LayerMask.NameToLayer("Appear"))
         {
             healthPoints = 0;
+        }
+
+        if (other.collider.gameObject.tag == "EnemyDead")
+        {
+            //Physics.IgnoreCollision(other.collider, col);
         }
     }
 
