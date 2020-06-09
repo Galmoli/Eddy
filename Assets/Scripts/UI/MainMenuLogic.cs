@@ -30,6 +30,13 @@ public class MainMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
     }
 
+    private void OnDestroy()
+    {
+        _input.PlayerControls.MenuAccept.started -= ctx => AcceptItem();
+        _input.PlayerControls.MenuNavigationUp.started -= ctx => ItemUp();
+        _input.PlayerControls.MenuNavigationDown.started -= ctx => ItemDown();
+    }
+
     private void OnEnable()
     {
         _input.Enable();
