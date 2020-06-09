@@ -30,18 +30,23 @@ public class InGameDialogue : MonoBehaviour
     public static Action<string> OnDialogueDisabled = delegate(string s) {  };
     
     [SerializeField] private Image dialogueImage;
-    [SerializeField] private Image pointer;
     [SerializeField] private float timeToAdd;
+    [SerializeField] private GameObject rPointer;
+    [SerializeField] private GameObject lPointer;
+    [SerializeField] private Vector2 offsetDialogueLeft;
+    [SerializeField] private Vector2 offsetDialogueRight;
     public DialoguePopUpStruct[] inGameDialogues;
     private DialoguePopUpStruct _currentDialogue;
     private TextMeshProUGUI text;
     private Canvas _canvas;
     private Camera _mainCamera;
+    private Transform _player;
 
     private void Awake()
     {
         text = dialogueImage.GetComponentInChildren<TextMeshProUGUI>();
         _canvas = GetComponent<Canvas>();
+        _player = GameObject.Find("Player").transform;
     }
 
     private void Start()
@@ -53,66 +58,14 @@ public class InGameDialogue : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) EnableDialogue("PopUp_1");
-        
-        if (!dialogueImage.gameObject.activeSelf) return;
-            
-        float minX = dialogueImage.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
-        float maxX = Screen.width - minX;
-        float pminX = pointer.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
-        float pmaxX = Screen.width - pminX;
-        
-        float minY = dialogueImage.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
-        float maxY = Screen.height - minY;
-        float pminY = pointer.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
-        float pmaxY = Screen.height - pminY;
-
-        Vector3 cameraProjectedForward = Vector3.ProjectOnPlane(_mainCamera.transform.forward, Vector3.up);
-        
-        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position + cameraProjectedForward * 12);
-
-        Vector2 pointerDir = ((Vector2)_mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pos).normalized;
-        Vector2 pointerPos = GetPointerPos(pointerDir, minX, minY);
-        pointerPos += pos;
-        
-        Vector2 pointerAngleV2 = ((Vector2) _mainCamera.WorldToScreenPoint(_currentDialogue.target.position) - pointerPos).normalized;
-        
-
-        var angle = Mathf.Atan2(pointerAngleV2.y, pointerAngleV2.x) * Mathf.Rad2Deg + 90;
-        pointer.transform.rotation = Quaternion.AngleAxis(angle, pointer.transform.forward);
-
-        if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
-        {
-            if (pos.x < Screen.width / 2)
-            {
-                pos.x = maxX;
-            }
-            else
-            {
-                pos.x = minX;
-            }
-            if (pointerPos.x < Screen.width / 2)
-            {
-                pointerPos.x = pmaxX;
-            }
-            else
-            {
-                pointerPos.x = pminX;
-            }
-        }
-        
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pointerPos.x = Mathf.Clamp(pointerPos.x, pminX, pmaxX);
-        pointerPos.y = Mathf.Clamp(pointerPos.y, pminY, pmaxY);
-
-        dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.1f);
-        pointer.transform.position = Vector3.Lerp(pointer.transform.position, pointerPos, 0.1f);
+        if (dialogueImage.gameObject.activeSelf) DialoguePosition(true);
     }
 
     public void EnableDialogue(string id)
     {
         _currentDialogue = inGameDialogues.First(d => d.dialoguePopUp.id == id);
         dialogueImage.gameObject.SetActive(true);
+        DialoguePosition(false);
         if(_currentDialogue.dialoguePopUp.playerWalk) UIManager.Instance.popUpEnabled = true;
         StartCoroutine(AnimatedText(_currentDialogue));
     }
@@ -122,27 +75,6 @@ public class InGameDialogue : MonoBehaviour
         OnDialogueDisabled(_currentDialogue.dialoguePopUp.id);
         UIManager.Instance.popUpEnabled = false;
         dialogueImage.gameObject.SetActive(false);
-    }
-
-    private Vector2 GetPointerPos(Vector2 pointerDir, float sizeX, float sizeY)
-    {
-        Vector2 pointerPos;
-        if (Mathf.Abs(pointerDir.x) >= Mathf.Abs(pointerDir.y))
-        {
-            if (pointerDir.x >= 0) pointerPos.x = sizeX;
-            else pointerPos.x = -sizeX;
-            
-            pointerPos.y = pointerDir.y * sizeY;
-        }
-        else
-        {
-            if (pointerDir.y >= 0) pointerPos.y = sizeY;
-            else pointerPos.y = -sizeY;
-
-            pointerPos.x = pointerDir.x * sizeX;
-        }
-
-        return pointerPos;
     }
     
     private IEnumerator AnimatedText(DialoguePopUpStruct d)
@@ -186,5 +118,48 @@ public class InGameDialogue : MonoBehaviour
         }
         if (!d.dialoguePopUp.instantText) yield return new WaitForSeconds(5f);
         DisableDialogue();
+    }
+
+    private void DialoguePosition(bool lerp)
+    {
+        float minX = dialogueImage.GetPixelAdjustedRect().width * _canvas.scaleFactor / 2;
+        float maxX = Screen.width - minX;
+        
+        float minY = dialogueImage.GetPixelAdjustedRect().height  * _canvas.scaleFactor / 2;
+        float maxY = Screen.height - minY;
+        
+        Vector2 pos = _mainCamera.WorldToScreenPoint(_currentDialogue.target.position);
+        Vector2 playerPos = _mainCamera.WorldToScreenPoint(_player.position);
+
+        if (playerPos.x > pos.x)
+        {
+            pos += offsetDialogueLeft * _canvas.scaleFactor;
+            rPointer.SetActive(false);
+            lPointer.SetActive(true);
+        }
+        else
+        {
+            pos += offsetDialogueRight * _canvas.scaleFactor;
+            rPointer.SetActive(true);
+            lPointer.SetActive(false);
+        }
+
+        if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
+        {
+            if (pos.x < Screen.width / 2)
+            {
+                pos.x = maxX;
+            }
+            else
+            {
+                pos.x = minX;
+            }
+        }
+        
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+        if(lerp) dialogueImage.transform.position = Vector3.Lerp(dialogueImage.transform.position, pos, 0.25f);
+        else dialogueImage.transform.position = pos;
     }
 }
