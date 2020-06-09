@@ -31,8 +31,8 @@ public class InGameDialogue : MonoBehaviour
     
     [SerializeField] private Image dialogueImage;
     [SerializeField] private float timeToAdd;
-    [SerializeField] private GameObject leftPointer;
-    [SerializeField] private GameObject rightPointer;
+    [SerializeField] private GameObject rPointer;
+    [SerializeField] private GameObject lPointer;
     [SerializeField] private Vector2 offsetDialogueLeft;
     [SerializeField] private Vector2 offsetDialogueRight;
     public DialoguePopUpStruct[] inGameDialogues;
@@ -134,14 +134,14 @@ public class InGameDialogue : MonoBehaviour
         if (playerPos.x > pos.x)
         {
             pos += offsetDialogueLeft * _canvas.scaleFactor;
-            leftPointer.SetActive(true);
-            rightPointer.SetActive(false);
+            rPointer.SetActive(false);
+            lPointer.SetActive(true);
         }
         else
         {
             pos += offsetDialogueRight * _canvas.scaleFactor;
-            leftPointer.SetActive(false);
-            rightPointer.SetActive(true);
+            rPointer.SetActive(true);
+            lPointer.SetActive(false);
         }
 
         if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
