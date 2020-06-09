@@ -97,6 +97,7 @@ public class AntagonistFSM : MonoBehaviour
             case States.PERSECUTION:
                 blackboard.animator.SetBool("isCharging", false);
                 blackboard.attackCollider.enabled = false;
+                blackboard.attackCollider.gameObject.layer = LayerMask.NameToLayer("Normal");
                 break;
             case States.STUNNED:
                 navMeshAgent.enabled = true;
@@ -160,9 +161,19 @@ public class AntagonistFSM : MonoBehaviour
                 transform.rotation = blackboard.destinies[2].transform.rotation;
                 break;
             case States.BEHEADED:
-                blackboard.head.transform.parent = null;
-                blackboard.head.SetActive(true);
-                blackboard.mesh.SetActive(false);
+
+                if (currentState == States.WAITTOBEHEAD)
+                {
+                    blackboard.head.transform.parent = null;
+                    blackboard.head.SetActive(true);
+                    blackboard.mesh.SetActive(false);
+                }
+                else
+                {
+                    InGameDialogue.Instance.EnableDialogue("PopUp_23");
+                    navMeshAgent.enabled = false;
+                }
+
                 break;
         }
 
