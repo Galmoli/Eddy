@@ -102,6 +102,7 @@ public class WaveController : MonoBehaviour
             closeAreaCols[0].SetActive(false);
             closeAreaCols[1].SetActive(false);
             waveScene.waveActivated = false;
+            waveScene.destroyAllCrowd();
         }
     }
 
@@ -114,6 +115,8 @@ public class WaveController : MonoBehaviour
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
             int randomPipe = Random.Range(0, pipePositions.Length);
+            if (randomPipe == 0) waveScene.playLeftConfetti();
+            else waveScene.playRightConfetti();
             GameObject go = Instantiate(waves[currentWave].enemies[i], pipePositions[randomPipe].transform.position, Quaternion.identity);
             EnemyBlackboard blackboard = go.GetComponent<EnemyBlackboard>();
             ChargingEnemyBlackboard chargingEnemyBlackboard = go.GetComponent<ChargingEnemyBlackboard>();
