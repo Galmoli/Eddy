@@ -48,9 +48,6 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //Trigger Death Animation
-            //
-
             if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
             {
                 AudioManager.Instance.PlayOneShotSound(_playerSounds.deathSoundPath, transform);
@@ -138,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     private void EnablePlayer(Scene p, Scene n)
     {
-        if (n.buildIndex != 4) return;
+        if (n.buildIndex != GameManager.Instance.checkpointSceneIndex) return;
         var cc = GetComponent<CharacterController>();
         if (!cc.enabled) cc.enabled = true;
     }
