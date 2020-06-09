@@ -8,6 +8,28 @@ public class HornedEnemyWall : MonoBehaviour
     public float power, radius;
     public VisualEffect vfx;
     private bool canPlay = true;
+    //private Material dissolveMat;
+    private MeshRenderer meshRenderer;
+    private bool isDissolving;
+    public bool isKingOfDissolve;
+
+    void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (isKingOfDissolve) meshRenderer.sharedMaterial.SetFloat("dissolveAmount", 0);
+    }
+
+    void Update()
+    {
+        if (isKingOfDissolve)
+        {
+            float amount = meshRenderer.sharedMaterial.GetFloat("dissolveAmount");
+            if (isDissolving && amount <= 1)
+            {
+                meshRenderer.sharedMaterial.SetFloat("dissolveAmount", amount + Time.deltaTime);
+            }
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -17,6 +39,7 @@ public class HornedEnemyWall : MonoBehaviour
             {
                 vfx.Play();
                 canPlay = false;
+                isDissolving = true;
             }
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -30,7 +53,7 @@ public class HornedEnemyWall : MonoBehaviour
                     {
                         rb.isKinematic = false;
                         rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
-                        Destroy(rb.gameObject, 5.0f);
+                        Destroy(rb.gameObject, 1.5f);
                     }
 
                 }
