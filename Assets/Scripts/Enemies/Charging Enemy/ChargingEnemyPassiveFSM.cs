@@ -150,7 +150,7 @@ public class ChargingEnemyPassiveFSM : MonoBehaviour
     private void CheckConstraints()
     {
         RaycastHit floorHit;
-        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.5f))
+        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.1f))
         {
             if (floorHit.collider.gameObject.layer != LayerMask.NameToLayer("TriggerDetection")
             && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
