@@ -59,10 +59,31 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ENEMY_PASSIVE:
 
-                if (PlayerOnSight(blackboard.detectionDistanceOnSight))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
                 {
-                    ChangeState(States.NOTICE);
-                    break;
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
+                        {
+                            if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                            {
+                                ChangeState(States.NOTICE);
+                                break;
+                            }
+                        }
+                    }
+                    else if (!DetectableObstacle(hit, blackboard.scannerSphereCollider) && Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOnSight)
+                    {
+                        if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
+                        {
+                            if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                            {
+                                ChangeState(States.NOTICE);
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
@@ -140,7 +161,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ATTACK:
                 break;
-
         }
 
         switch (newState)
@@ -168,10 +188,10 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         blackboard.statesText.text = currentState.ToString();
     }
 
-    private bool PlayerOnSight(float distance)
+    /*private bool PlayerOnSight(Vector3 start, float distance)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, distance, blackboard.sightObstaclesLayers))
+        if (Physics.Raycast(start, blackboard.player.transform.position - transform.position, out hit, distance, blackboard.sightObstaclesLayers))
         {
             if (hit.collider.gameObject.tag == "Player")
             {
@@ -185,11 +205,11 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
             }
             else if (!DetectableObstacle(hit, blackboard.scannerSphereCollider))
             {
-                float remainingDistance = blackboard.detectionDistanceOnSight - Vector3.Distance(hit.point, blackboard.player.transform.position);
+                float remainingDistance = blackboard.detectionDistanceOnSight - Vector3.Distance(hit.point, transform.position);
 
                 if (remainingDistance > 0)
                 {
-                    if (PlayerOnSight(remainingDistance))
+                    if (PlayerOnSight(hit.point, remainingDistance))
                     {
                         return true;
                     }
@@ -198,7 +218,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         }
 
         return false;
-    }
+    }*/
 
     private static bool DetectableObstacle(RaycastHit hit, SphereCollider scanner)
     {
