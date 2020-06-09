@@ -54,6 +54,8 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         enemyCol.center = Vector3.zero;
 
         timer = 0;
+
+        blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     private void Update()
@@ -66,13 +68,13 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
             case States.ENEMY_PASSIVE:
 
                 RaycastHit hit;
-                if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
-                {                   
+                if (Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
+                {
                     if (hit.collider.gameObject.tag == "Player")
                     {
                         if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
                         {
-                            if(Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                            if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
                             {
                                 ChangeState(States.NOTICE);
                                 break;
@@ -86,11 +88,11 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                     if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
                     {
                         ChangeState(States.NOTICE);
-                    }                     
+                    }
                 }
                 break;
             case States.NOTICE:
-                
+
                 if (timer >= blackboard.timeInNotice)
                 {
                     ChangeState(States.CHASE);
@@ -99,7 +101,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
 
                 LookAtPlayer();
                 timer += Time.deltaTime;
-                
+
                 break;
             case States.CHASE:
 
@@ -108,6 +110,8 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                     ChangeState(States.ENEMY_PASSIVE);
                     break;
                 }
+
+                CheckConstraints();
 
                 break;
         }
@@ -130,6 +134,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 enemyCol.center = Vector3.zero;
                 blackboard.attackCollider.enabled = false;
                 seek.enabled = false;
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
                 break;
         }
 
@@ -171,7 +176,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
 
             blackboard.AttackSound();
             blackboard.stunned = true;
-        }   
+        }
     }
 
     private void LookAtPlayer()
@@ -183,5 +188,29 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         eulerAngles.z = 0;
 
         transform.rotation = Quaternion.Euler(eulerAngles);
+    }
+
+    private void CheckConstraints()
+    {
+        RaycastHit floorHit;
+        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.4f))
+        {
+            if (floorHit.collider.gameObject.layer != LayerMask.NameToLayer("TriggerDetection")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("EnemyLimits")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("VoidCollider"))
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+                Debug.Log("AAAA");
+            }
+            else
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+        }
+        else
+        {
+            blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 }

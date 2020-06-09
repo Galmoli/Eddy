@@ -90,6 +90,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 
         rb = GetComponent<Rigidbody>();
         ownKS = GetComponent<KinematicState>();
+        col = GetComponent<CapsuleCollider>();
 
         /*if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);

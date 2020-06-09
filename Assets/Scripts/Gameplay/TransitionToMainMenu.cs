@@ -14,7 +14,7 @@ public class TransitionToMainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        animator.SetTrigger("Out");
+        animator.SetTrigger("In");
         StartCoroutine(WaitToLoadLevel());       
     }
 
