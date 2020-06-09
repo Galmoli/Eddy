@@ -34,8 +34,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         enemyPassiveFSM = GetComponent<ThrowHandsEnemyPassiveFSM>();
         wanderPlusAvoid = GetComponent<WanderPlusAvoid>();
         arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
-
-
     }
 
     private void OnEnable()
@@ -61,20 +59,10 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ENEMY_PASSIVE:
 
-                RaycastHit hit;
-                if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
-                {                   
-                    if (hit.collider.gameObject.tag == "Player")
-                    {
-                        if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
-                        {
-                            if(Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
-                            {
-                                ChangeState(States.NOTICE);
-                                break;
-                            }
-                        }
-                    }
+                if (PlayerOnSight(transform.position, blackboard.detectionDistanceOnSight))
+                {
+                    ChangeState(States.NOTICE);
+                    break;
                 }
 
                 if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
@@ -82,6 +70,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                     if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
                     {
                         ChangeState(States.NOTICE);
+                        break;
                     }                     
                 }
                 break;
@@ -152,7 +141,6 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ATTACK:
                 break;
-
         }
 
         switch (newState)
@@ -178,6 +166,52 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         }
         currentState = newState;
         blackboard.statesText.text = currentState.ToString();
+    }
+
+    private bool PlayerOnSight(Vector3 start, float distance)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(start, blackboard.player.transform.position - start, out hit, distance, blackboard.sightObstaclesLayers))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
+                {
+                    if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (UndetectableObstacle(hit, blackboard.scannerSphereCollider))
+            {
+                float remainingDistance = blackboard.detectionDistanceOnSight - Vector3.Distance(hit.collider.gameObject.transform.position, transform.position);
+
+                if (remainingDistance > 0)
+                {
+                    if (PlayerOnSight(hit.collider.gameObject.transform.position, remainingDistance))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static bool UndetectableObstacle(RaycastHit hit, SphereCollider scanner)
+    {
+        return HideLayer(hit, scanner) || AppearLayer(hit, scanner);
+    }
+
+    private static bool HideLayer(RaycastHit hit, SphereCollider scanner)
+    {
+        return hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide") && scanner.bounds.Contains(hit.point);
+    }
+
+    private static bool AppearLayer(RaycastHit hit, SphereCollider scanner)
+    {
+        return hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear") && !scanner.bounds.Contains(hit.point);
     }
 
     public void Attack()

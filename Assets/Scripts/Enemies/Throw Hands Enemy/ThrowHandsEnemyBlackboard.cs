@@ -62,7 +62,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     public float secondaryWhiskerRatio;
     public LayerMask avoidLayers;
 
-    private SphereCollider scannerSphereCollider;
+    [HideInInspector] public SphereCollider scannerSphereCollider;
 
     [Header("Wander Steering Variables")]
     public float wanderRate;
