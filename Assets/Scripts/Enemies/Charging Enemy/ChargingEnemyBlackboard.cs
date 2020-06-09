@@ -221,11 +221,6 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         {
             healthPoints = 0;
         }
-
-        if (other.collider.gameObject.tag == "EnemyDead")
-        {
-            //Physics.IgnoreCollision(other.collider, col);
-        }
     }
 
     #region Sounds

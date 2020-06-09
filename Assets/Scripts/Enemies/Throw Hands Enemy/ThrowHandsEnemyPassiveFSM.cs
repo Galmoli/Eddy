@@ -157,7 +157,6 @@ public class ThrowHandsEnemyPassiveFSM : MonoBehaviour
             else
             {
                 blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
-
             }
         }
         else

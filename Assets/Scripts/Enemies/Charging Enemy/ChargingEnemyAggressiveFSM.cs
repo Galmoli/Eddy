@@ -205,7 +205,6 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
             else
             {
                 blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
-
             }
         }
         else
