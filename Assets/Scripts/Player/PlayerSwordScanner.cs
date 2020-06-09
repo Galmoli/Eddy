@@ -424,6 +424,11 @@ public class PlayerSwordScanner : MonoBehaviour
         return swordUnlocked;
     }
 
+    public void LockSword()
+    {
+        swordUnlocked = false;
+    }
+
     public bool UsingScannerInHand()
     {
         return activeScanner && HoldingSword();
