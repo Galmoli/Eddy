@@ -39,6 +39,13 @@ public class CombatState : State
             vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
             _controller.characterController.Move(vector3D * Time.deltaTime);
         }
+
+        if (_combatController.target && _combatController.target.healthPoints > 0 && GetAngleBetweenPlayerAndTarget() > 5)
+        {
+            Vector3 targetDirection = (_combatController.target.transform.position - _controller.transform.position).normalized;
+            Vector3 newDirection = Vector3.RotateTowards(_controller.transform.forward, targetDirection, 2 * Time.deltaTime, 0);
+            _controller.transform.rotation = Quaternion.LookRotation(newDirection);
+        }
     }
 
     public override void ExitState()
@@ -49,5 +56,11 @@ public class CombatState : State
             return;
         }
         _controller.SetState(new MoveState(_controller));
+    }
+
+    private float GetAngleBetweenPlayerAndTarget()
+    {
+        var playerTarget = (_combatController.target.transform.position - _controller.transform.position).normalized;
+        return Vector3.Angle(playerTarget, _controller.transform.forward);
     }
 }

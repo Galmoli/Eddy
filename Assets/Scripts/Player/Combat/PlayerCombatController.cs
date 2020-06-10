@@ -28,6 +28,7 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float animStopTime;
     [SerializeField] private Animator playerAnim;
     [HideInInspector] public int simpleAttackCount;
+    [HideInInspector] public EnemyBlackboard target;
     
     private float _timeSinceLastSimpleAttack;
     private float _timeCharging;
@@ -116,6 +117,11 @@ public class PlayerCombatController : StateMachine
     public void SetMovementControllerToMove()
     {
         _movementController.GetState().ExitState();
+    }
+
+    public void SetTarget(EnemyBlackboard enemy)
+    {
+        target = enemy;
     }
 
     public bool IsAttacking()

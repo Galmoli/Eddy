@@ -63,13 +63,15 @@ public class SimpleAttackState : State
     {
         if (_controller.swordTrigger.hitObject.CompareTag("Enemy"))
         {
-            if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
+            var enemyBlackboard = _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>();
+            if (enemyBlackboard.CanBeDamaged())
             {
-                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit((int)_attackObject.damage, _controller.transform.forward);
+                enemyBlackboard.Hit((int)_attackObject.damage, _controller.transform.forward);
                 Debug.Log("Enemy damaged: " + _attackObject.damage);
 
                 if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
 
+                _controller.SetTarget(enemyBlackboard);
                 _controller.AnimStop();
                 _controller.EnemyHitSound();
                 return;
