@@ -71,23 +71,21 @@ public class PlayerCombatController : StateMachine
     {
         if (!sword.HoldingSword()) return;
         if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
-        if (_chargeCoroutine != null) StopCoroutine(_chargeCoroutine);
+        if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
 
-        if (state.GetType() == typeof(SimpleAttackState) && !auto && simpleAttackCount != 0)
+        if (state.GetType() == typeof(SimpleAttackState) && !auto)
         {
-            print(simpleAttackCount);
+            _chargeCoroutine = StartCoroutine(ChargeCounter());
             _nextAttackReserved = true;
             return;
         }
-
-        if (state.GetType() == typeof(SimpleAttackState)) return;
+        
         if (_comboCoroutine != null) StopCoroutine(_comboCoroutine);
         
         SetState(new SimpleAttackState(this));
         _comboCoroutine = StartCoroutine(ComboCounter());
         _nextAttackReserved = false;
         if(!auto) _chargeCoroutine = StartCoroutine(ChargeCounter());
-        else InputRelease();
     }
 
     private void InputRelease()
