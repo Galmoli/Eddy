@@ -25,6 +25,8 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float timeToCancelCombo;
     [SerializeField] private float timeToStartCharging;
     [SerializeField] private float maxChargeTime;
+    [SerializeField] private float animStopTime;
+    [SerializeField] private Animator _playerAnim;
     [HideInInspector] public int simpleAttackCount;
     
     private float _timeSinceLastSimpleAttack;
@@ -107,6 +109,11 @@ public class PlayerCombatController : StateMachine
         _movementController.GetState().ExitState();
     }
 
+    public bool IsAttacking()
+    {
+        return state.GetType() == typeof(SimpleAttackState) || state.GetType() == typeof(AreaAttackState) || state.GetType() == typeof(IdleChargedState);
+    }
+
     private IEnumerator ComboCounter()
     {
         _timeSinceLastSimpleAttack = 0;
@@ -136,6 +143,18 @@ public class PlayerCombatController : StateMachine
     public State GetState()
     {
         return state;
+    }
+
+    public void AnimStop()
+    {
+        StartCoroutine(Co_AnimStop());
+    }
+
+    private IEnumerator Co_AnimStop()
+    {
+        _playerAnim.enabled = false;
+        yield return new WaitForSeconds(animStopTime);
+        _playerAnim.enabled = true;
     }
 
     #region Sounds
