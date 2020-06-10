@@ -36,6 +36,8 @@ public class DeathMenuLogic : MonoBehaviour
         tryAgainImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
         tryAgainImage.color = Color.black;
         tryAgainBgAnim.SetTrigger("enable");
+        GameManager.Instance.Respawn();
+        Time.timeScale = 0;
     }
 
     private void OnDisable()
@@ -94,8 +96,9 @@ public class DeathMenuLogic : MonoBehaviour
 
     public void Respawn() //Currently used by Button OnClick Event
     {
-        GameManager.Instance.Respawn();
+        UIManager.Instance.FadeOut();
         gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
     
     public void MainMenu() //Currently used by Button OnClick Event

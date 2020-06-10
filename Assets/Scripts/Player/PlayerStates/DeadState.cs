@@ -21,6 +21,7 @@ public class DeadState : State
         _hadSwordUnlocked = _controller.scannerSword.SwordUnlocked();
         _controller.scannerSword.LockSword();
         _sameScene = GameManager.Instance.GetCurrentScene() == GameManager.Instance.checkpointSceneIndex && GameManager.Instance.GetCurrentScene() != 11;
+        UIManager.Instance.DeathFade();
     }
 
     public override void Interact()
