@@ -46,7 +46,8 @@ public class AreaAttackState : State
                 Debug.Log("Enemy damaged: " + _attackObject.damage);
 
                 if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
-
+                
+                _controller.AnimStop();
                 _controller.EnemyHitSound();
                 return;
             }
