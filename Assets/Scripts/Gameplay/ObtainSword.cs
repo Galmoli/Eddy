@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class ObtainSword : MonoBehaviour
         inputActions = new InputActions();
         inputActions.PlayerControls.MoveObject.started += ctx => GiveSwordToPlayer();
         GeneralDialogue.OnDialogueDisabled += SwordDialogueCompleted;
+    }
+
+    private void OnDestroy()
+    {
+        GeneralDialogue.OnDialogueDisabled -= SwordDialogueCompleted;
     }
 
     private void OnEnable()

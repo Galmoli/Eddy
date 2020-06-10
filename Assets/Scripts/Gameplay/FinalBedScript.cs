@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,11 @@ public class FinalBedScript : MonoBehaviour
         GeneralDialogue.OnDialogueDisabled += EndGame;
     }
 
+    private void OnDestroy()
+    {
+        GeneralDialogue.OnDialogueDisabled -= EndGame;
+    }
+
 
     public void EndGame(string id)
     {
@@ -20,7 +26,6 @@ public class FinalBedScript : MonoBehaviour
             UIManager.Instance.FadeIn();
             StartCoroutine(LoadFinalDialogue());
         }
-
     }
 
     IEnumerator LoadFinalDialogue()
@@ -28,6 +33,4 @@ public class FinalBedScript : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("LastDialogueScene");
     }
-
-
 }

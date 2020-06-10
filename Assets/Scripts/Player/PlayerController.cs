@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             float number = UnityEngine.Random.Range(1, 4);
-            _movementController.animator.SetTrigger("Hit" + number.ToString());
+            if(!_combatController.IsAttacking()) _movementController.animator.SetTrigger("Hit" + number);
             StopAllCoroutines();
             StartCoroutine(Co_Regenerate());
             UIManager.Instance.Hit(damage);
