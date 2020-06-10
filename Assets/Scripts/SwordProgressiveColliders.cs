@@ -9,7 +9,9 @@ public class SwordProgressiveColliders : MonoBehaviour
 {
     [HideInInspector] public bool swordActive;
     public LayerMask _layerNormal;
+    public LayerMask _layerNormalInteractables;
     private List<Collider> affectedList = new List<Collider>();
+    private List<Collider> affectedListInteractables = new List<Collider>();
     private List<GameObject> _playerGameObjects = new List<GameObject>();
 
     private void Awake()
@@ -27,7 +29,9 @@ public class SwordProgressiveColliders : MonoBehaviour
     {
         swordActive = true;
         affectedList = Physics.OverlapSphere(transform.position, 4, _layerNormal).ToList();
+        affectedListInteractables = Physics.OverlapSphere(transform.position, 4, _layerNormalInteractables).ToList();
         SetLayer(affectedList, LayerMask.NameToLayer("inScanner"));
+        SetLayer(affectedListInteractables, LayerMask.NameToLayer("InteractablesInScanner"));
         SetPlayerObjectsToLayer(LayerMask.NameToLayer("playerinScanner"));
     }
 
@@ -35,6 +39,7 @@ public class SwordProgressiveColliders : MonoBehaviour
     {
         swordActive = false;
         SetLayer(affectedList, LayerMask.NameToLayer("Normal"));
+        SetLayer(affectedListInteractables, LayerMask.NameToLayer("Interactables"));
         SetPlayerObjectsToPlayerLayer();
     }
 
@@ -45,6 +50,13 @@ public class SwordProgressiveColliders : MonoBehaviour
             affectedList.Add(other);
             other.gameObject.layer = LayerMask.NameToLayer("inScanner");
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interactables"))
+        {
+            affectedListInteractables.Add(other);
+            other.gameObject.layer = LayerMask.NameToLayer("InteractablesInScanner");
+        }
+
         /*else if(other.gameObject == _playerGameObjects[0])
         {
             SetPlayerObjectsToLayer(LayerMask.NameToLayer("inScanner"));
@@ -61,6 +73,16 @@ public class SwordProgressiveColliders : MonoBehaviour
                 SetPlayerObjectsToPlayerLayer();
             }*/
             if(!_playerGameObjects.Contains(other.gameObject)) other.gameObject.layer = LayerMask.NameToLayer("Normal");
+        }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("InteractablesInScanner"))
+        {
+            affectedListInteractables.Remove(other);
+            /*if (other.gameObject == _playerGameObjects[0])
+            {
+                SetPlayerObjectsToPlayerLayer();
+            }*/
+            if (!_playerGameObjects.Contains(other.gameObject)) other.gameObject.layer = LayerMask.NameToLayer("Interactables");
         }
     }
 
