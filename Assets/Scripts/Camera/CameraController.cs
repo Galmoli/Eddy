@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +17,34 @@ public class CameraController : MonoBehaviour
     public float rotationSpeed;
     public bool lookAtPlayer;
 
+    float distance = 5f;
+    float maxSpeed = 15f;
+    float acceleration = 2f;
+    float currentSpeed = 0f;
+
     void Update()
     {
         if (rail != null)
         {
             Vector3 pos = rail.ProjectPosition(target.position);
 
-            transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
+            float desiredSpeed = Vector3.Distance(transform.position, pos) * maxSpeed / distance;
+
+
+
+
+
+            if (currentSpeed < desiredSpeed) currentSpeed += acceleration * Time.deltaTime;
+            else if (currentSpeed > desiredSpeed) currentSpeed = desiredSpeed;
+
+            if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
+            else if (currentSpeed < 0) currentSpeed = 0f;
+
+            //currentSpeed = Mathf.Lerp(currentSpeed, desiredSpeed, acceleration * Time.deltaTime);
+
+            //transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
+
+            transform.position = Vector3.MoveTowards(transform.position, pos, currentSpeed * Time.deltaTime);
 
             /*Vector3 desiredVelocity;
             float distanceFromPosition = (pos - transform.position).magnitude;
