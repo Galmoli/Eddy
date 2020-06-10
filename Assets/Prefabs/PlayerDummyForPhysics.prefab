@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8897846510486497361}
   - component: {fileID: 4817614721843990202}
   - component: {fileID: 1935696728990999212}
-  - component: {fileID: 1660470930}
+  - component: {fileID: 330655035}
   m_Layer: 22
   m_Name: PlayerDummyForPhysics
   m_TagString: Untagged
@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!65 &1660470930
-BoxCollider:
+--- !u!136 &330655035
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -72,6 +72,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.02, y: 1, z: 1.24}
-  m_Center: {x: 0, y: -0.6, z: 0}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.04, z: 0}
