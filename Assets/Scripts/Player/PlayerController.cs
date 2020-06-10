@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
             SetDeadState();
             _isDead = true;
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
+            UIManager.Instance.Hit(damage);
         }
         else
         {

@@ -149,6 +149,17 @@ public class UIManager : MonoBehaviour
         HideScannerWarning();
     }
 
+    public void DeathFade()
+    {
+        StartCoroutine(Co_DeathFade());
+    }
+
+    private IEnumerator Co_DeathFade()
+    {
+        yield return new WaitForSeconds(0.9f);
+        FadeIn();
+    }
+
     public void FadeIn()
     {
         fadeAnimator.SetTrigger("In");
