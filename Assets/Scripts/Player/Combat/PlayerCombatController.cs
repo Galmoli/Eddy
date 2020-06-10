@@ -26,7 +26,6 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float timeToStartCharging;
     [SerializeField] private float maxChargeTime;
     [SerializeField] private float animStopTime;
-    [SerializeField] private Animator playerAnim;
     [HideInInspector] public int simpleAttackCount;
     [HideInInspector] public EnemyBlackboard target;
     
@@ -76,6 +75,7 @@ public class PlayerCombatController : StateMachine
 
         if (state.GetType() == typeof(SimpleAttackState) && !auto)
         {
+            if (simpleAttackCount == 0) return;
             _chargeCoroutine = StartCoroutine(ChargeCounter());
             _nextAttackReserved = true;
             return;
@@ -167,9 +167,9 @@ public class PlayerCombatController : StateMachine
 
     private IEnumerator Co_AnimStop()
     {
-        playerAnim.enabled = false;
+        animator.enabled = false;
         yield return new WaitForSeconds(animStopTime);
-        playerAnim.enabled = true;
+        animator.enabled = true;
     }
 
     #region Sounds
