@@ -8,10 +8,10 @@ public class HornedEnemyWall : MonoBehaviour
     public float power, radius;
     public VisualEffect vfx;
     private bool canPlay = true;
-    //private Material dissolveMat;
     private MeshRenderer meshRenderer;
     private bool isDissolving;
     public bool isKingOfDissolve;
+    public bool willRemain;
 
     void Start()
     {
@@ -53,7 +53,7 @@ public class HornedEnemyWall : MonoBehaviour
                     {
                         rb.isKinematic = false;
                         rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
-                        Destroy(rb.gameObject, 1.5f);
+                        if(!hit.GetComponent<HornedEnemyWall>().willRemain) Destroy(rb.gameObject, 1.5f);
                     }
 
                 }
