@@ -71,7 +71,15 @@ public class SimpleAttackState : State
                 if (_enemyHitList.Contains(enemyBlackboard)) return;
                 enemyBlackboard.Hit((int)_attackObject.damage, _controller.transform.forward);
 
-                if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+                if (_attackObject == _controller.comboAttack)
+                {
+                    _controller.simpleAttackCount = 0;
+                    VibrationManager.Instance.Vibrate(VibrationManager.Presets.HARD_HIT);
+                }
+                else
+                {
+                    VibrationManager.Instance.Vibrate(VibrationManager.Presets.NORMAL_HIT);
+                }
 
                 _enemyHitList.Add(enemyBlackboard);
                 _controller.SetTarget(enemyBlackboard);

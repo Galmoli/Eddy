@@ -87,7 +87,8 @@ public class PlayerCombatController : StateMachine
         }
         
         if (_comboCoroutine != null) StopCoroutine(_comboCoroutine);
-        
+
+
         SetState(new SimpleAttackState(this));
         _comboCoroutine = StartCoroutine(ComboCounter());
         nextAttackReserved = false;

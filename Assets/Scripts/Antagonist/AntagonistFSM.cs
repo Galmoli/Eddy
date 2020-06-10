@@ -80,7 +80,7 @@ public class AntagonistFSM : MonoBehaviour
                 //ChangeState(States.BEHEADED);
                 break;
             case States.BEHEADED:
-
+                
                 break;
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObtainSword : MonoBehaviour
 {
     bool playerInside;
@@ -50,6 +51,8 @@ public class ObtainSword : MonoBehaviour
 
             /*draggables[0].SetActive(false);
             draggables[1].SetActive(true);*/
+
+            VibrationManager.Instance.Vibrate(VibrationManager.Presets.SUCCESS);
 
             GeneralDialogue.Instance.EnableDialogue("Conversation_2");
             UIHelperController.Instance.DisableHelper();
