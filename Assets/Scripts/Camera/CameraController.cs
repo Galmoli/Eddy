@@ -10,17 +10,19 @@ public class CameraController : MonoBehaviour
     public Transform target;
 
     [Header("Movement")]
-    public float movementSpeed = 2f;
-    //public float slowingRadius;
+    public float maxMovementSpeed = 15f;
+    public float maxDistance = 5f;
+    public float movementSpeedIncrement = 5f;
+
+    private float currentMovementSpeed = 0f;
 
     [Header("Rotation")]
-    public float rotationSpeed;
-    public bool lookAtPlayer;
+    public bool lookAtPlayer = false;
+    public float maxRotationSpeed = 15f;
+    public float maxAngle = 5f;
+    public float rotationSpeedIncrement = 5f;
 
-    float distance = 5f;
-    float maxSpeed = 15f;
-    float acceleration = 2f;
-    float currentSpeed = 0f;
+    private float currentRotationSpeed = 0f;
 
     void Update()
     {
@@ -28,33 +30,15 @@ public class CameraController : MonoBehaviour
         {
             Vector3 pos = rail.ProjectPosition(target.position);
 
-            float desiredSpeed = Vector3.Distance(transform.position, pos) * maxSpeed / distance;
+            float desiredMovementSpeed = Vector3.Distance(transform.position, pos) * maxMovementSpeed / maxDistance;
 
+            if (currentMovementSpeed < desiredMovementSpeed) currentMovementSpeed += movementSpeedIncrement * Time.deltaTime;
+            else if (currentMovementSpeed > desiredMovementSpeed) currentMovementSpeed = desiredMovementSpeed;
 
+            if (currentMovementSpeed > maxMovementSpeed) currentMovementSpeed = maxMovementSpeed;
+            else if (currentMovementSpeed < 0) currentMovementSpeed = 0f;
 
-
-
-            if (currentSpeed < desiredSpeed) currentSpeed += acceleration * Time.deltaTime;
-            else if (currentSpeed > desiredSpeed) currentSpeed = desiredSpeed;
-
-            if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
-            else if (currentSpeed < 0) currentSpeed = 0f;
-
-            //currentSpeed = Mathf.Lerp(currentSpeed, desiredSpeed, acceleration * Time.deltaTime);
-
-            //transform.position = Vector3.Lerp(transform.position, pos, movementSpeed * Time.deltaTime);
-
-            transform.position = Vector3.MoveTowards(transform.position, pos, currentSpeed * Time.deltaTime);
-
-            /*Vector3 desiredVelocity;
-            float distanceFromPosition = (pos - transform.position).magnitude;
-            float stoppingFactor;
-
-            stoppingFactor = Mathf.Clamp(distanceFromPosition / slowingRadius, 0.0f, 1.0f);
-
-            desiredVelocity = (pos - transform.position).normalized * maxMovementSpeed * stoppingFactor;
-
-            rb.velocity += desiredVelocity - rb.velocity;*/
+            transform.position = Vector3.MoveTowards(transform.position, pos, currentMovementSpeed * Time.deltaTime);
 
             if (lookAtPlayer)
             {
@@ -64,7 +48,15 @@ public class CameraController : MonoBehaviour
             {
                 Vector3 rot = rail.ProjectRotation(target.position, transform.position);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), rotationSpeed * Time.deltaTime);
+                float desiredRotationSpeed = Mathf.Max(Mathf.Abs(transform.eulerAngles.x - rot.x), Mathf.Abs(transform.eulerAngles.y - rot.y), Mathf.Abs(transform.eulerAngles.z - rot.z)) * maxRotationSpeed / maxAngle;
+
+                if (currentRotationSpeed < desiredRotationSpeed) currentRotationSpeed += rotationSpeedIncrement * Time.deltaTime;
+                else if (currentRotationSpeed > desiredRotationSpeed) currentRotationSpeed = desiredRotationSpeed;
+
+                if (currentRotationSpeed > maxRotationSpeed) currentRotationSpeed = maxRotationSpeed;
+                else if (currentRotationSpeed < 0) currentRotationSpeed = 0f;
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(rot), currentRotationSpeed * Time.deltaTime);  
             }
         }
     }
