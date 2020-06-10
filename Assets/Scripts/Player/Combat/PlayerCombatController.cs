@@ -25,10 +25,14 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float timeToCancelCombo;
     [SerializeField] private float timeToStartCharging;
     [SerializeField] private float maxChargeTime;
+    [SerializeField] private float animStopTime;
+    [SerializeField] private Animator playerAnim;
     [HideInInspector] public int simpleAttackCount;
+    [HideInInspector] public EnemyBlackboard target;
     
     private float _timeSinceLastSimpleAttack;
     private float _timeCharging;
+    private bool _nextAttackReserved;
     private Coroutine _comboCoroutine;
     private Coroutine _chargeCoroutine;
     private PlayerMovementController _movementController;
@@ -41,7 +45,7 @@ public class PlayerCombatController : StateMachine
     {
         _input = new InputActions();
         _input.Enable();
-        _input.PlayerControls.Attack.started += ctx => SimpleAttack();
+        _input.PlayerControls.Attack.started += ctx => SimpleAttack(false);
         _input.PlayerControls.Attack.canceled += ctx => InputRelease();
         
         SetState(new IdleState(this));
@@ -61,20 +65,28 @@ public class PlayerCombatController : StateMachine
     private void Update()
     {
         state.Update();
+        if(_nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
     }
 
-    private void SimpleAttack()
+    private void SimpleAttack(bool auto)
     {
         if (!sword.HoldingSword()) return;
-        if (state.GetType() == typeof(SimpleAttackState)) return;
-        if (_movementController.GetState().GetType() != typeof(MoveState)) return;
+        if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
+        if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
+
+        if (state.GetType() == typeof(SimpleAttackState) && !auto)
+        {
+            _chargeCoroutine = StartCoroutine(ChargeCounter());
+            _nextAttackReserved = true;
+            return;
+        }
         
-        if(_comboCoroutine != null) StopCoroutine(_comboCoroutine);
-        if(_chargeCoroutine != null) StopCoroutine(_chargeCoroutine);
+        if (_comboCoroutine != null) StopCoroutine(_comboCoroutine);
         
         SetState(new SimpleAttackState(this));
         _comboCoroutine = StartCoroutine(ComboCounter());
-        _chargeCoroutine = StartCoroutine(ChargeCounter());
+        _nextAttackReserved = false;
+        if(!auto) _chargeCoroutine = StartCoroutine(ChargeCounter());
     }
 
     private void InputRelease()
@@ -107,10 +119,20 @@ public class PlayerCombatController : StateMachine
         _movementController.GetState().ExitState();
     }
 
+    public void SetTarget(EnemyBlackboard enemy)
+    {
+        target = enemy;
+    }
+
+    public bool IsAttacking()
+    {
+        return state.GetType() == typeof(SimpleAttackState) || state.GetType() == typeof(AreaAttackState) || state.GetType() == typeof(IdleChargedState);
+    }
+
     private IEnumerator ComboCounter()
     {
         _timeSinceLastSimpleAttack = 0;
-        while (_timeSinceLastSimpleAttack < timeToCancelCombo)
+        while (_timeSinceLastSimpleAttack < timeToCancelCombo + basicAttack.attackTime)
         {
             _timeSinceLastSimpleAttack += Time.deltaTime;
             yield return true;    
@@ -136,6 +158,18 @@ public class PlayerCombatController : StateMachine
     public State GetState()
     {
         return state;
+    }
+
+    public void AnimStop()
+    {
+        StartCoroutine(Co_AnimStop());
+    }
+
+    private IEnumerator Co_AnimStop()
+    {
+        playerAnim.enabled = false;
+        yield return new WaitForSeconds(animStopTime);
+        playerAnim.enabled = true;
     }
 
     #region Sounds

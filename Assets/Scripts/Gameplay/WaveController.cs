@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaveController : MonoBehaviour
 {
@@ -25,6 +27,11 @@ public class WaveController : MonoBehaviour
         waveScene = GetComponent<WaveScene>();
         GeneralDialogue.OnDialogueDisabled += Init;
         Reset();
+    }
+
+    private void OnDestroy()
+    {
+        GeneralDialogue.OnDialogueDisabled -= Init;
     }
 
     public void Init(string dialogueID)
