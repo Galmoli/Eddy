@@ -21,11 +21,11 @@ public class PlayerCombatController : StateMachine
     
     //Variables
     public int attacksToCombo; 
+    public float animStopTime;
     
     [SerializeField] private float timeToCancelCombo;
     [SerializeField] private float timeToStartCharging;
     [SerializeField] private float maxChargeTime;
-    [SerializeField] private float animStopTime;
     [HideInInspector] public int simpleAttackCount;
     [HideInInspector] public EnemyBlackboard target;
     
