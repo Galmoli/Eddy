@@ -44,7 +44,7 @@ public class MoveState : State
         
         _controller.characterController.Move(vector3D * Time.deltaTime + verticalSnap);
 
-        _controller.animator.SetFloat("Speed", vector3D.magnitude);
+        if(!_controller.combatController.nextAttackReserved) _controller.animator.SetFloat("Speed", vector3D.magnitude);
 
         ExitState();
     }

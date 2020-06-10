@@ -27,11 +27,12 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float timeToStartCharging;
     [SerializeField] private float maxChargeTime;
     [HideInInspector] public int simpleAttackCount;
+    [HideInInspector] public bool nextAttackReserved;
     [HideInInspector] public EnemyBlackboard target;
     
     private float _timeSinceLastSimpleAttack;
     private float _timeCharging;
-    private bool _nextAttackReserved;
+    
     private Coroutine _comboCoroutine;
     private Coroutine _chargeCoroutine;
     private PlayerMovementController _movementController;
@@ -64,7 +65,7 @@ public class PlayerCombatController : StateMachine
     private void Update()
     {
         state.Update();
-        if(_nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
+        if(nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
     }
 
     private void SimpleAttack(bool auto)
@@ -75,9 +76,13 @@ public class PlayerCombatController : StateMachine
 
         if (state.GetType() == typeof(SimpleAttackState) && !auto)
         {
-            if (simpleAttackCount == 0) return;
+            if (simpleAttackCount == 0)
+            {
+                nextAttackReserved = false;
+                return;
+            }
             _chargeCoroutine = StartCoroutine(ChargeCounter());
-            _nextAttackReserved = true;
+            nextAttackReserved = true;
             return;
         }
         
@@ -85,7 +90,7 @@ public class PlayerCombatController : StateMachine
         
         SetState(new SimpleAttackState(this));
         _comboCoroutine = StartCoroutine(ComboCounter());
-        _nextAttackReserved = false;
+        nextAttackReserved = false;
         if(!auto) _chargeCoroutine = StartCoroutine(ChargeCounter());
     }
 
