@@ -20,8 +20,11 @@ public abstract class EnemyBlackboard : MonoBehaviour
     public abstract void Death();
     public abstract void StepSound();
 
+    public abstract void AnimStop();
+
     //Variables
     [HideInInspector] public PlayerMovementController player;
+    [HideInInspector] public PlayerCombatController playerCombatController;
     [HideInInspector] public PlayerSwordScanner swordScanner;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public KinematicState ownKS;

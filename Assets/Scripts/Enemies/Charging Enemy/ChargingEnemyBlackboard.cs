@@ -81,6 +81,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         GameManager.Instance.enemySpawnManager.Add(this);
 
         player = FindObjectOfType<PlayerMovementController>();
+        playerCombatController = FindObjectOfType<PlayerCombatController>();
         swordScanner = FindObjectOfType<PlayerSwordScanner>();
 
         scannerSphereCollider = FindObjectOfType<PlayerSwordScanner>().GetComponent<SphereCollider>();
@@ -193,6 +194,18 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
         dead = true;
         DeathSound();
+    }
+
+    public override void AnimStop()
+    {
+        StartCoroutine(Co_AnimStop());
+    }
+
+    private IEnumerator Co_AnimStop()
+    {
+        animator.enabled = false;
+        yield return new WaitForSeconds(playerCombatController.animStopTime);
+        animator.enabled = true;
     }
 
     public override void EnemyInVolume(bool scannerOn)
