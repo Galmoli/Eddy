@@ -11,6 +11,7 @@ public class PushPullObject : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform _triggerTransform;
     [SerializeField] private LayerMask _layersToDetectCollision;
+    [SerializeField] private LayerMask _layersToDetectFloor;
     [HideInInspector] public bool canMove;
     [HideInInspector] public bool canPush;
     [HideInInspector] public bool canPull;
@@ -210,7 +211,7 @@ public class PushPullObject : MonoBehaviour
     public bool HasFloor()
     {
         var pos = new Vector3(transform.position.x, transform.position.y - _boxCollider.size.y / 2, transform.position.z);
-        var colliders = Physics.OverlapSphere(pos, 0.1f);
+        var colliders = Physics.OverlapSphere(pos, 0.1f, _layersToDetectFloor);
         return colliders.Any(c => !c.CompareTag("MoveObject"));
     }
 }

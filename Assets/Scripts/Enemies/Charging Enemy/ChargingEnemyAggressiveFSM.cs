@@ -54,6 +54,8 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         enemyCol.center = Vector3.zero;
 
         timer = 0;
+
+        blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     private void Update()
@@ -65,20 +67,10 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 break;
             case States.ENEMY_PASSIVE:
 
-                RaycastHit hit;
-                if(Physics.Raycast(transform.position, blackboard.player.transform.position - transform.position, out hit, blackboard.detectionDistanceOnSight, blackboard.sightObstaclesLayers))
-                {                   
-                    if (hit.collider.gameObject.tag == "Player")
-                    {
-                        if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
-                        {
-                            if(Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
-                            {
-                                ChangeState(States.NOTICE);
-                                break;
-                            }
-                        }
-                    }
+                if (PlayerOnSight(transform.position, blackboard.detectionDistanceOnSight))
+                {
+                    ChangeState(States.NOTICE);
+                    break;
                 }
 
                 if (Vector3.Distance(transform.position, blackboard.player.transform.position) < blackboard.detectionDistanceOffSight)
@@ -86,11 +78,12 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                     if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
                     {
                         ChangeState(States.NOTICE);
-                    }                     
+                        break;
+                    }
                 }
                 break;
             case States.NOTICE:
-                
+
                 if (timer >= blackboard.timeInNotice)
                 {
                     ChangeState(States.CHASE);
@@ -99,7 +92,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
 
                 LookAtPlayer();
                 timer += Time.deltaTime;
-                
+
                 break;
             case States.CHASE:
 
@@ -108,6 +101,8 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                     ChangeState(States.ENEMY_PASSIVE);
                     break;
                 }
+
+                CheckConstraints();
 
                 break;
         }
@@ -130,6 +125,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 enemyCol.center = Vector3.zero;
                 blackboard.attackCollider.enabled = false;
                 seek.enabled = false;
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
                 break;
         }
 
@@ -158,6 +154,52 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         blackboard.statesText.text = currentState.ToString();
     }
 
+    private bool PlayerOnSight(Vector3 start, float distance)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(start, blackboard.player.transform.position - start, out hit, distance, blackboard.sightObstaclesLayers))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                if (Mathf.Acos(Vector3.Dot((blackboard.player.transform.position - transform.position).normalized, Vector3.forward)) <= blackboard.visionAngle)
+                {
+                    if (Math.Abs(blackboard.player.transform.position.y - transform.position.y) < blackboard.maxVerticalDistance)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (UndetectableObstacle(hit, blackboard.scannerSphereCollider))
+            {
+                float remainingDistance = blackboard.detectionDistanceOnSight - Vector3.Distance(hit.collider.gameObject.transform.position, transform.position);
+
+                if (remainingDistance > 0)
+                {
+                    if (PlayerOnSight(hit.collider.gameObject.transform.position, remainingDistance))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static bool UndetectableObstacle(RaycastHit hit, SphereCollider scanner)
+    {
+        return HideLayer(hit, scanner) || AppearLayer(hit, scanner);
+    }
+
+    private static bool HideLayer(RaycastHit hit, SphereCollider scanner)
+    {
+        return hit.collider.gameObject.layer == LayerMask.NameToLayer("Hide") && scanner.bounds.Contains(hit.point);
+    }
+
+    private static bool AppearLayer(RaycastHit hit, SphereCollider scanner)
+    {
+        return hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear") && !scanner.bounds.Contains(hit.point);
+    }
+
     public void HitHandler(GameObject objectHit)
     {
         HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
@@ -171,7 +213,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
 
             blackboard.AttackSound();
             blackboard.stunned = true;
-        }   
+        }
     }
 
     private void LookAtPlayer()
@@ -183,5 +225,28 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         eulerAngles.z = 0;
 
         transform.rotation = Quaternion.Euler(eulerAngles);
+    }
+
+    private void CheckConstraints()
+    {
+        RaycastHit floorHit;
+        if (Physics.Raycast(transform.position + Vector3.down * (blackboard.col.height / 2), Vector3.down, out floorHit, 0.4f))
+        {
+            if (floorHit.collider.gameObject.layer != LayerMask.NameToLayer("TriggerDetection")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("EnemyLimits")
+            && floorHit.collider.gameObject.layer != LayerMask.NameToLayer("VoidCollider"))
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            }
+            else
+            {
+                blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+        }
+        else
+        {
+            blackboard.rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 }
