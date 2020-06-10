@@ -61,7 +61,7 @@ public class SimpleAttackState : State
 
     public override void Interact()
     {
-        if (_controller.swordTrigger.hitObject.tag == "Enemy")
+        if (_controller.swordTrigger.hitObject.CompareTag("Enemy"))
         {
             if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
             {
@@ -79,13 +79,13 @@ public class SimpleAttackState : State
             return;
         }
 
-        if(_controller.swordTrigger.hitObject.tag == "Wood")
+        if(_controller.swordTrigger.hitObject.CompareTag("Wood"))
         {
             _controller.WoodObjectHitSound();
             return;
         }
 
-        if (_controller.swordTrigger.hitObject.tag == "Metal")
+        if (_controller.swordTrigger.hitObject.CompareTag("Metal"))
         {
             _controller.MetalObjectHitSound();
             return;

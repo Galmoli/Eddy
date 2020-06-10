@@ -24,15 +24,15 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position+ Vector3.up * 2);
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             UIHelperController.Instance.DisableHelper();
         }
