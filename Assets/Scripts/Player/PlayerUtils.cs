@@ -65,10 +65,19 @@ public class PlayerUtils
 
     public static Collider[] GetResidualColliders(PlayerMovementController _controller, Vector3 position, PlayerSwordScanner sword)
     {
-        if (Vector3.Dot(position, sword.transform.position) <= 4 && sword.activeScanner)
+        if (Vector3.Distance(position, sword.transform.position) <= 4 && sword.activeScanner)
         {
-            return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+            return Physics.OverlapSphere(position, 0.2f, _controller.layersToCheckFloorInsideScanner);
         }
-        return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+        return Physics.OverlapSphere(position, 0.2f, _controller.layersToCheckFloorOutsideScanner);
+    }
+
+    public static bool HasObjectInFront(PlayerMovementController _controller, Vector3 pos, Vector3 forward)
+    {
+        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return Physics.Raycast(pos, forward, 1f, _controller.layersToCheckFloorOutsideScanner);
+        }
+        return Physics.Raycast(pos, forward, 1f, _controller.layersToCheckFloorInsideScanner);
     }
 }
