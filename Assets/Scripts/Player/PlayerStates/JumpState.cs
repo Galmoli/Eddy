@@ -87,11 +87,17 @@ public class JumpState : State
         var fForward = _controller.feetOverlap.forward;
         var fRight = _controller.feetOverlap.right;
         var sword = _controller.scannerSword;
+        bool _backForceApplied = false;
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f, sword)))
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
+        } else if (_onEnemy)
+        {
+            vector3D.x += t.forward.x;
+            vector3D.z += t.forward.z;
+            _backForceApplied = true;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.25f, sword)))
@@ -144,7 +150,7 @@ public class JumpState : State
         {
             if (!PlayerUtils.HasObjectInFront(_controller, t.position, t.forward))
             {
-                if (_onEnemy)
+                if (_onEnemy && !_backForceApplied)
                 {
                     vector3D.x -= t.forward.x * 0.5f;
                     vector3D.z -= t.forward.z * 0.5f;
@@ -157,7 +163,7 @@ public class JumpState : State
             }
         }
 
-        if (_onEnemy)
+        if (_onEnemy  && !_backForceApplied)
         {
             vector3D.x -= t.forward.x;
             vector3D.z -= t.forward.z;
