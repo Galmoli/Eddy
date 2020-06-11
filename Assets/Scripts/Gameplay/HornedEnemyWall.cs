@@ -57,18 +57,18 @@ public class HornedEnemyWall : MonoBehaviour
                         
 
                         if (!hit.GetComponent<HornedEnemyWall>().willRemain)
-                        {
-                           
+                        {                           
                             Destroy(rb.gameObject, 1.5f);
                         }
-
-                        Destroy(hit.GetComponent<HornedEnemyWall>());
+                        else
+                        {
+                            Destroy(hit.GetComponent<HornedEnemyWall>());
+                        }
+                     
                     }
 
                 }
             }
-
-            Destroy(this);
         }
     }
 }
