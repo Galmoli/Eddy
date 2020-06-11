@@ -67,9 +67,9 @@ public class PlayerUtils
     {
         if (Vector3.Dot(position, sword.transform.position) <= 4 && sword.activeScanner)
         {
-            return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorInsideScanner);
+            return Physics.OverlapSphere(position, 0.2f, _controller.layersToCheckFloorInsideScanner);
         }
-        return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
+        return Physics.OverlapSphere(position, 0.2f, _controller.layersToCheckFloorOutsideScanner);
     }
 
     public static bool HasObjectInFront(PlayerMovementController _controller, Vector3 pos, Vector3 forward)

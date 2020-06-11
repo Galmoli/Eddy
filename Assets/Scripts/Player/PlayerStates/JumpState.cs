@@ -96,26 +96,30 @@ public class JumpState : State
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.25f, sword)))
         {
-            vector3D.x += t.forward.x;
-            vector3D.z += t.forward.z;
+            vector3D.x += t.forward.x * 0.5f;
+            vector3D.z += t.forward.z * 0.5f;
+            vector3D.x -= t.right.x * 0.5f;
+            vector3D.z -= t.right.z * 0.5f;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.25f, sword)))
         {
-            vector3D.x += t.forward.x;
-            vector3D.z += t.forward.z;
+            vector3D.x += t.forward.x * 0.5f;
+            vector3D.z += t.forward.z * 0.5f;
+            vector3D.x += t.right.x * 0.5f;
+            vector3D.z += t.right.z * 0.5f;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f + fRight * 0.5f, sword)))
         {
-            vector3D.x += t.forward.x;
-            vector3D.z += t.forward.z;
+            vector3D.x -= t.right.x;
+            vector3D.z -= t.right.z;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward * 0.5f - fRight * 0.5f, sword)))
         {
-            vector3D.x += t.forward.x;
-            vector3D.z += t.forward.z;
+            vector3D.x += t.right.x;
+            vector3D.z += t.right.z;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fForward, sword)))
@@ -124,12 +128,32 @@ public class JumpState : State
             vector3D.z += t.forward.z;
         }
         
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position + fRight * 0.5f, sword)))
+        {
+            vector3D.x -= t.right.x * 0.5f;
+            vector3D.z -= t.right.z * 0.5f;
+        }
+        
+        if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fRight * 0.5f, sword)))
+        {
+            vector3D.x += t.right.x * 0.5f;
+            vector3D.z += t.right.z * 0.5f;
+        }
+        
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position + fForward * 0.5f, sword)))
         {
             if (!PlayerUtils.HasObjectInFront(_controller, t.position, t.forward))
             {
-                vector3D.x += t.forward.x;
-                vector3D.z += t.forward.z;
+                if (_onEnemy)
+                {
+                    vector3D.x -= t.forward.x * 0.5f;
+                    vector3D.z -= t.forward.z * 0.5f;
+                }
+                else
+                {
+                    vector3D.x += t.forward.x;
+                    vector3D.z += t.forward.z;
+                }
             }
         }
 
