@@ -10,6 +10,7 @@ public class ObtainSword : MonoBehaviour
 
     public CheckPoint checkpoint;
     public GameObject[] dialogueTriggers;
+    public GameObject[] disableObjects;
     public GameObject[] draggables;
 
     private InputActions inputActions;
@@ -47,6 +48,11 @@ public class ObtainSword : MonoBehaviour
             for (int i= 0; i< dialogueTriggers.Length; i++)
             {
                 dialogueTriggers[i].SetActive(true);
+            }
+
+            for (int i = 0; i < disableObjects.Length; i++)
+            {
+                disableObjects[i].SetActive(false);
             }
 
             /*draggables[0].SetActive(false);
