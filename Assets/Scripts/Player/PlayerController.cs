@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead) return;
         health -= damage;
+       
+
         if (health <= 0)
         {
             if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
@@ -61,7 +63,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             float number = UnityEngine.Random.Range(1, 4);
-            if(!_combatController.IsAttacking()) _movementController.animator.SetTrigger("Hit" + number);
+            if (!_combatController.IsAttacking())
+            {
+                VibrationManager.Instance.Vibrate(VibrationManager.Presets.NORMAL_HIT);
+                _movementController.animator.SetTrigger("Hit" + number);
+            }
+            else
+            {
+               
+            }
             StopAllCoroutines();
             StartCoroutine(Co_Regenerate());
             UIManager.Instance.Hit(damage);

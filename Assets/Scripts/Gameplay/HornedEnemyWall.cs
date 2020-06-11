@@ -35,6 +35,7 @@ public class HornedEnemyWall : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player" && !collision.gameObject.GetComponent<HornedEnemyWall>())
         {
+            VibrationManager.Instance.Vibrate(VibrationManager.Presets.DESTRUCTION);
             if (vfx != null && canPlay)
             {
                 vfx.Play();
@@ -53,11 +54,21 @@ public class HornedEnemyWall : MonoBehaviour
                     {
                         rb.isKinematic = false;
                         rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
-                        if(!hit.GetComponent<HornedEnemyWall>().willRemain) Destroy(rb.gameObject, 1.5f);
+                        
+
+                        if (!hit.GetComponent<HornedEnemyWall>().willRemain)
+                        {
+                           
+                            Destroy(rb.gameObject, 1.5f);
+                        }
+
+                        Destroy(hit.GetComponent<HornedEnemyWall>());
                     }
 
                 }
             }
+
+            Destroy(this);
         }
     }
 }
