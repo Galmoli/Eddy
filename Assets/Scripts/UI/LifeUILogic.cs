@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class LifeUILogic : MonoBehaviour
 {
     [SerializeField] private Image[] healDots;
-
+    private Animator anim;
+    
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public void Hit(int damage)
     {
         for (int i = 0; i < damage; i++)
         {
             GetHealthDot(true).enabled = false;
+            anim.SetTrigger("hit");
         }
         StopAllCoroutines();
     }
