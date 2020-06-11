@@ -95,8 +95,8 @@ public class JumpState : State
             vector3D.z += t.forward.z;
         } else if (_onEnemy)
         {
-            vector3D.x += t.forward.x;
-            vector3D.z += t.forward.z;
+            vector3D.x += t.forward.x * 0.5f;
+            vector3D.z += t.forward.z * 0.5f;
             _backForceApplied = true;
         }
         
