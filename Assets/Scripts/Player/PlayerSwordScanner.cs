@@ -16,6 +16,7 @@ public class PlayerSwordScanner : MonoBehaviour
     public Transform floorDetectionPoint;
     public float hitObjectDistance;
     public LayerMask stabSwordLayers;
+    public float swordBackTime;
 
     [Header("MOVE AWAY TO STAB")]
     public float moveAwayDistance;
@@ -368,6 +369,15 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
+        StartCoroutine(WaitToRecoverSword());
+
+       
+    }
+
+    private void SwordRecovered()
+    {
+        if (!_playerInsideVolume.CanDisableScanner()) return;
+
         EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
 
         foreach (EnemyBlackboard enemy in enemies)
@@ -379,9 +389,9 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             swordHolder.GetComponent<Switchable>().SwitchOff();
         }
-        
-        if(!scannerInput && activeScanner) ScannerOff();
-        
+
+        if (!scannerInput && activeScanner) ScannerOff();
+
         transform.parent = null;
 
         transform.parent = playerHand;
@@ -394,6 +404,12 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
         }
+    }
+
+    private IEnumerator WaitToRecoverSword()
+    {
+        yield return new WaitForSeconds(swordBackTime);
+        SwordRecovered();
     }
 
     public void UnlockSword()
