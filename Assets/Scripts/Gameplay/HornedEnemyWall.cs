@@ -13,6 +13,8 @@ public class HornedEnemyWall : MonoBehaviour
     public bool isKingOfDissolve;
     public bool willRemain;
 
+    bool activated = false;
+
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -33,40 +35,44 @@ public class HornedEnemyWall : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Player" && !collision.gameObject.GetComponent<HornedEnemyWall>())
+        if (!activated)
         {
-            VibrationManager.Instance.Vibrate(VibrationManager.Presets.DESTRUCTION);
-            if (vfx != null && canPlay)
+            if (collision.gameObject.tag != "Player" && !collision.gameObject.GetComponent<HornedEnemyWall>())
             {
-                vfx.Play();
-                canPlay = false;
-                isDissolving = true;
-            }
-            Vector3 explosionPos = transform.position;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-            foreach (Collider hit in colliders)
-            {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-                if (rb != null && hit.transform.tag != "Enemy")
+                VibrationManager.Instance.Vibrate(VibrationManager.Presets.DESTRUCTION);
+                if (vfx != null && canPlay)
                 {
-                    if (rb.isKinematic && rb.GetComponent<HornedEnemyWall>())
+                    vfx.Play();
+                    canPlay = false;
+                    isDissolving = true;
+                }
+                Vector3 explosionPos = transform.position;
+                Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+                foreach (Collider hit in colliders)
+                {
+                    Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                    if (rb != null && hit.transform.tag != "Enemy")
                     {
-                        rb.isKinematic = false;
-                        rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
-                        
-
-                        if (!hit.GetComponent<HornedEnemyWall>().willRemain)
-                        {                           
-                            Destroy(rb.gameObject, 1.5f);
-                        }
-                        else
+                        if (rb.isKinematic && rb.GetComponent<HornedEnemyWall>())
                         {
-                            Destroy(hit.GetComponent<HornedEnemyWall>());
-                        }
-                     
-                    }
+                            rb.isKinematic = false;
+                            rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
 
+
+                            if (!hit.GetComponent<HornedEnemyWall>().willRemain)
+                            {
+                                Destroy(rb.gameObject, 1.5f);
+                            }
+                            else
+                            {
+                                hit.GetComponent<HornedEnemyWall>().activated = true;
+                                //Destroy(hit.GetComponent<HornedEnemyWall>());
+                            }
+
+                        }
+
+                    }
                 }
             }
         }
