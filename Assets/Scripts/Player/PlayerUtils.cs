@@ -71,4 +71,13 @@ public class PlayerUtils
         }
         return Physics.OverlapSphere(position, 0.1f, _controller.layersToCheckFloorOutsideScanner);
     }
+
+    public static bool HasObjectInFront(PlayerMovementController _controller, Vector3 pos, Vector3 forward)
+    {
+        if (_controller.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            return Physics.Raycast(pos, forward, 1f, _controller.layersToCheckFloorOutsideScanner);
+        }
+        return Physics.Raycast(pos, forward, 1f, _controller.layersToCheckFloorInsideScanner);
+    }
 }
