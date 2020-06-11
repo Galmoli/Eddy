@@ -221,7 +221,7 @@ public class ThrowHandsEnemyAggressiveFSM : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].tag.Equals("Player"))
-            {
+            {              
                 blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
                 break;
             }

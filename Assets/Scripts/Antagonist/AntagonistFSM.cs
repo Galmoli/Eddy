@@ -162,6 +162,8 @@ public class AntagonistFSM : MonoBehaviour
                 break;
             case States.BEHEADED:
 
+                VibrationManager.Instance.Vibrate(VibrationManager.Presets.HARD_HIT);
+
                 if (currentState == States.WAITTOBEHEAD)
                 {
                     blackboard.head.transform.parent = null;

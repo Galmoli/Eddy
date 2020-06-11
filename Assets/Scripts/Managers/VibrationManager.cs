@@ -43,6 +43,7 @@ public class VibrationManager : MonoBehaviour
                 StartCoroutine(SuccessImplementation());
                 break;
             case Presets.DESTRUCTION:
+                StartCoroutine(DestructionImplementation());
                 break;
             case Presets.TEST:
                 StartCoroutine(TestImplementation());
@@ -67,6 +68,13 @@ public class VibrationManager : MonoBehaviour
     IEnumerator SuccessImplementation()
     {
         Gamepad.current.SetMotorSpeeds(0.6f, 0.1f);
+        yield return new WaitForSeconds(0.5f);
+        Gamepad.current.SetMotorSpeeds(0, 0);
+    }
+
+    IEnumerator DestructionImplementation()
+    {
+        Gamepad.current.SetMotorSpeeds(0.9f, 0.3f);
         yield return new WaitForSeconds(0.5f);
         Gamepad.current.SetMotorSpeeds(0, 0);
     }
