@@ -7,11 +7,13 @@ public class SimpleAttackState : State
     private PlayerCombatController _controller;
     private AttackSO _attackObject;
     private float _currentTime;
+    private List<EnemyBlackboard> _enemyHitList;
 
     public SimpleAttackState(PlayerCombatController controller)
     {
         _controller = controller;
         _currentTime = 0;
+        _enemyHitList = new List<EnemyBlackboard>();
     }
 
     public override void Enter()
@@ -66,11 +68,20 @@ public class SimpleAttackState : State
             var enemyBlackboard = _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>();
             if (enemyBlackboard.CanBeDamaged())
             {
+                if (_enemyHitList.Contains(enemyBlackboard)) return;
                 enemyBlackboard.Hit((int)_attackObject.damage, _controller.transform.forward);
-                Debug.Log("Enemy damaged: " + _attackObject.damage);
 
-                if (_attackObject == _controller.comboAttack) _controller.simpleAttackCount = 0;
+                if (_attackObject == _controller.comboAttack)
+                {
+                    _controller.simpleAttackCount = 0;
+                    VibrationManager.Instance.Vibrate(VibrationManager.Presets.HARD_HIT);
+                }
+                else
+                {
+                    VibrationManager.Instance.Vibrate(VibrationManager.Presets.NORMAL_HIT);
+                }
 
+                _enemyHitList.Add(enemyBlackboard);
                 _controller.SetTarget(enemyBlackboard);
                 _controller.AnimStop();
                 _controller.EnemyHitSound();

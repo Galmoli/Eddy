@@ -43,6 +43,7 @@ public class CombatState : State
         if (_combatController.target && _combatController.target.healthPoints > 0 && GetAngleBetweenPlayerAndTarget() > 5)
         {
             Vector3 targetDirection = (_combatController.target.transform.position - _controller.transform.position).normalized;
+            targetDirection = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
             Vector3 newDirection = Vector3.RotateTowards(_controller.transform.forward, targetDirection, 2 * Time.deltaTime, 0);
             _controller.transform.rotation = Quaternion.LookRotation(newDirection);
         }

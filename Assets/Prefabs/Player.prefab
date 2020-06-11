@@ -1197,6 +1197,7 @@ MonoBehaviour:
   edgeGameObject: {fileID: 0}
   movementVector: {x: 0, y: 0}
   scannerSword: {fileID: 0}
+  combatController: {fileID: 0}
   scannerCollider: {fileID: 0}
   characterController: {fileID: 0}
   playerSounds: {fileID: 0}
@@ -1231,10 +1232,13 @@ MonoBehaviour:
   swordTrigger: {fileID: 2028364641}
   playerSounds: {fileID: 0}
   attacksToCombo: 3
+  animStopTime: 0.2
   timeToCancelCombo: 1.25
   timeToStartCharging: 0.7
   maxChargeTime: 1
   simpleAttackCount: 0
+  nextAttackReserved: 0
+  target: {fileID: 0}
   animator: {fileID: 6778750466571765507}
 --- !u!114 &2682654681668094299
 MonoBehaviour:

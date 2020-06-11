@@ -32,6 +32,7 @@ public class PlayerMovementController : StateMachine
 
     //Objects
     [HideInInspector] public PlayerSwordScanner scannerSword;
+    [HideInInspector] public PlayerCombatController combatController;
     [HideInInspector] public SphereCollider scannerCollider;
 
     //Components
@@ -60,6 +61,7 @@ public class PlayerMovementController : StateMachine
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        combatController = GetComponent<PlayerCombatController>();
         playerSounds = GetComponent<PlayerSounds>();
         cameraTransform = Camera.main.gameObject.transform;
         _input = new InputActions();

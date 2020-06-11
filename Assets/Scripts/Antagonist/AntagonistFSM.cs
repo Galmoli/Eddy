@@ -80,7 +80,7 @@ public class AntagonistFSM : MonoBehaviour
                 //ChangeState(States.BEHEADED);
                 break;
             case States.BEHEADED:
-
+                
                 break;
         }
     }
@@ -161,6 +161,8 @@ public class AntagonistFSM : MonoBehaviour
                 transform.rotation = blackboard.destinies[2].transform.rotation;
                 break;
             case States.BEHEADED:
+
+                VibrationManager.Instance.Vibrate(VibrationManager.Presets.HARD_HIT);
 
                 if (currentState == States.WAITTOBEHEAD)
                 {
