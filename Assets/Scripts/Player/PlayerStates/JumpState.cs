@@ -130,14 +130,14 @@ public class JumpState : State
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position + fRight * 0.5f, sword)))
         {
-            vector3D.x -= t.right.x * 0.5f;
-            vector3D.z -= t.right.z * 0.5f;
+            vector3D.x -= t.right.x * 0.25f;
+            vector3D.z -= t.right.z * 0.25f;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position - fRight * 0.5f, sword)))
         {
-            vector3D.x += t.right.x * 0.5f;
-            vector3D.z += t.right.z * 0.5f;
+            vector3D.x += t.right.x * 0.25f;
+            vector3D.z += t.right.z * 0.25f;
         }
         
         if (CheckFloor(PlayerUtils.GetResidualColliders(_controller, _controller.feetOverlap.position + fForward * 0.5f, sword)))
