@@ -7,7 +7,8 @@ public class JumpState : State
 {
     private PlayerMovementController _controller;
     private float currentTime = 0;
-    private bool hitHead;
+    private bool _hitHead;
+    private bool _onEnemy;
     private float _residualCollisionAvoidanceSpeed = 5;
 
     public JumpState(PlayerMovementController controller)
@@ -57,6 +58,7 @@ public class JumpState : State
     {
         _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
+        _onEnemy = false;
         
         if (_controller.edgeAvailable && ValidEdge()) _controller.SetState(new EdgeState(_controller));
         else _controller.SetState(new MoveState(_controller));
@@ -67,14 +69,14 @@ public class JumpState : State
         var list = colliders.ToList();
         if (colliders.Length > 0 && currentTime >= 0.2f)
         {
-            //At the moment only the moveObject it's checked because it detects the trigger as floor
-            //I don't know if it's possible to make it work with layers.
-            //As it's the only problem for now, it will be hardcoded.
-
+            if (list.Any(c => c.CompareTag("Enemy")))
+            {
+                _onEnemy = true;
+                return false;
+            }
             if (list.All(c => c.name != "Trigger")) return true;
             if (list.Any(c => c.CompareTag("MoveObject")) && colliders.Length != 1) return true;
         }
-
         return false;
     }
 
@@ -120,6 +122,12 @@ public class JumpState : State
         {
             vector3D.x += t.forward.x;
             vector3D.z += t.forward.z;
+        }
+
+        if (_onEnemy)
+        {
+            vector3D.x -= t.forward.x;
+            vector3D.z -= t.forward.z;
         }
         
         //Other positions can be added here. But just checking the back solves the major problem.
