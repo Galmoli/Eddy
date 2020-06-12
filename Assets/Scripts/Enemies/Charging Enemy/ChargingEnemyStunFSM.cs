@@ -96,6 +96,7 @@ public class ChargingEnemyStunFSM : MonoBehaviour
                 break;
             case States.STUNNED:
                 blackboard.rb.AddForce(-transform.forward * blackboard.stunImpulse, ForceMode.Impulse);
+                blackboard.vfxChargeHit.Play();
                 break;
         }
 

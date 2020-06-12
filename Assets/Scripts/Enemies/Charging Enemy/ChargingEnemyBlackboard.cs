@@ -80,6 +80,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     [Header("VFX")]
     public VisualEffect vfxDamaged;
+    public VisualEffect vfxChargeHit;
 
     [Header("CameraShake")]
     private CameraShake cameraShake;
