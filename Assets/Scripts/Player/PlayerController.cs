@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
         SceneManager.activeSceneChanged += EnablePlayer;
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= EnablePlayer;
+    }
+
     private void Start()
     {
         UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Move, transform.position + Vector3.up*2, transform);
@@ -168,5 +173,6 @@ public class PlayerController : MonoBehaviour
         if (n.buildIndex != GameManager.Instance.checkpointSceneIndex) return;
         var cc = GetComponent<CharacterController>();
         if (!cc.enabled) cc.enabled = true;
+        FindObjectOfType<CameraController>().SetPositionImmediately();
     }
 }
