@@ -75,11 +75,11 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     private bool checkingInVolumeScannerOn;
     private bool checkingInVolumeScannerOff;
 
-    [Header("Sound")]
-    public string noticeSoundPath;
-    public string stepSoundPath;
-    public string attackSoundPath;
-    public string deathSoundPath;
+    [Header("Sounds")]
+    [FMODUnity.EventRef] public string noticeSoundPath;
+    [FMODUnity.EventRef] public string stepSoundPath;
+    [FMODUnity.EventRef] public string attackSoundPath;
+    [FMODUnity.EventRef] public string deathSoundPath;
 
     [Header("VFX")]
     public VisualEffect vfxDamaged;

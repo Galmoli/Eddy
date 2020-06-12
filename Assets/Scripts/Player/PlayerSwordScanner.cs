@@ -326,11 +326,6 @@ public class PlayerSwordScanner : MonoBehaviour
             if (swordHolder.GetComponent<Switchable>() != null)
             {
                 swordHolder.GetComponent<Switchable>().SwitchOn();
-
-                if (AudioManager.Instance.ValidEvent(playerSounds.switchSoundPath))
-                {
-                    AudioManager.Instance.PlayOneShotSound(playerSounds.switchSoundPath, transform);
-                }
             }
 
             if (activeScanner) _scannerIntersectionManager.CheckIntersections();

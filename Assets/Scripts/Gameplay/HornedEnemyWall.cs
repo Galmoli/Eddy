@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMOD;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -17,11 +18,15 @@ public class HornedEnemyWall : MonoBehaviour
 
     bool activated = false;
 
+    private PlayerSounds sounds;
+
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         cameraShake = FindObjectOfType<CameraShake>();
         if (isKingOfDissolve) meshRenderer.sharedMaterial.SetFloat("dissolveAmount", 0);
+
+        sounds = FindObjectOfType<PlayerSounds>();
     }
 
     void Update()
@@ -43,6 +48,7 @@ public class HornedEnemyWall : MonoBehaviour
             VibrationManager.Instance.Vibrate(VibrationManager.Presets.DESTRUCTION);
             if (vfx != null && canPlay)
             {
+                PlaySound();
                 vfx.Play();
                 canPlay = false;
                 isDissolving = true;
@@ -74,6 +80,14 @@ public class HornedEnemyWall : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void PlaySound()
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.woodenPlanksSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(sounds.woodenPlanksSoundPath, transform);
         }
     }
 }

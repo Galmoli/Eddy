@@ -5,36 +5,35 @@ using UnityEngine;
 public class PlayerSounds : MonoBehaviour
 {
     [Header("Basics")]
-    public string stoneStepSoundPath;
-    public string woodStepSoundPath;
-    public string damageReceivedSoundPath;
-    public string deathSoundPath;
-    public string jumpSoundPath;
-    public string landSoundPath;
+    [FMODUnity.EventRef] public string stoneStepSoundPath;
+    [FMODUnity.EventRef] public string woodStepSoundPath;
+    [FMODUnity.EventRef] public string damageReceivedSoundPath;
+    [FMODUnity.EventRef] public string deathSoundPath;
+    [FMODUnity.EventRef] public string jumpSoundPath;
+    [FMODUnity.EventRef] public string landSoundPath;
 
     [Header("Combat")]
-    public string attackSoundPath;
-    public string comboAttackSoundPath;
-    public string areaAttackSoundPath;
-    public string areaAttackChargingSoundPath;
-    public string areaAttackChargedSoundPath;
-    public string enemyHitSoundPath;
-    public string enemyArmoredHitSoundPath;
-    public string woodObjectHitSoundPath;
-    public string metalObjectHitSoundPath;
+    [FMODUnity.EventRef] public string attackSoundPath;
+    [FMODUnity.EventRef] public string comboAttackSoundPath;
+    [FMODUnity.EventRef] public string areaAttackSoundPath;
+    [FMODUnity.EventRef] public string areaAttackChargingSoundPath;
+    [FMODUnity.EventRef] public string areaAttackChargedSoundPath;
+    [FMODUnity.EventRef] public string enemyHitSoundPath;
+    [FMODUnity.EventRef] public string enemyArmoredHitSoundPath;
+    [FMODUnity.EventRef] public string woodObjectHitSoundPath;
+    [FMODUnity.EventRef] public string metalObjectHitSoundPath;
 
     [Header("Sword / Scanner")]
-    public string scannerOnSoundPath;
-    public string scannerOffSoundPath;
-    public string scannerActiveSoundPath;
-    public string stabSoundPath;
-    public string swordBackSoundPath;
-    public string switchSoundPath;
-    public string checkpointSoundPath;
+    [FMODUnity.EventRef] public string scannerOnSoundPath;
+    [FMODUnity.EventRef] public string scannerOffSoundPath;
+    [FMODUnity.EventRef] public string scannerActiveSoundPath;
+    [FMODUnity.EventRef] public string stabSoundPath;
+    [FMODUnity.EventRef] public string swordBackSoundPath;
+    [FMODUnity.EventRef] public string checkpointSoundPath;
 
-    [Header("Others")]
-    public string draggableObjectSoundPath;
-    public string elevatorSoundPath;
+    [Header("Environment")]
+    [FMODUnity.EventRef] public string draggableObjectSoundPath;
+    [FMODUnity.EventRef] public string woodenPlanksSoundPath;
 
     /*private void Update()
     {
