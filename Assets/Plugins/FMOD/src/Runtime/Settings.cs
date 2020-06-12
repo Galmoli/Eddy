@@ -189,7 +189,7 @@ namespace FMODUnity
         public ImportType ImportType;
 
         [SerializeField]
-        public string TargetAssetPath;
+        public string TargetAssetPath = "FMODBanks";
 
         [SerializeField]
         public FMOD.DEBUG_FLAGS LoggingLevel = FMOD.DEBUG_FLAGS.WARNING;
@@ -232,6 +232,9 @@ namespace FMODUnity
 
         [SerializeField]
         public ushort LiveUpdatePort = 9264;
+
+        [SerializeField]
+        public bool EnableMemoryTracking;
 
         public static FMODPlatform GetParent(FMODPlatform platform)
         {
@@ -411,10 +414,10 @@ namespace FMODUnity
             ImportType = ImportType.StreamingAssets;
             AutomaticEventLoading = true;
             AutomaticSampleLoading = false;
-            TargetAssetPath = "";
-
+            EnableMemoryTracking = false;
         }
 
+        #if UNITY_EDITOR
         private void OnEnable()
         {
             if (SwitchSettingsMigration == false)
@@ -433,7 +436,14 @@ namespace FMODUnity
             // Fix up slashes for old settings meta data.
             sourceProjectPath = RuntimeUtils.GetCommonPlatformPath(sourceProjectPath);
             SourceBankPathUnformatted = RuntimeUtils.GetCommonPlatformPath(SourceBankPathUnformatted);
-        }
-    }
 
+            // Remove the FMODStudioCache if in the old location
+            string oldCache = "Assets/Plugins/FMOD/Resources/FMODStudioCache.asset";
+            if (File.Exists(oldCache))
+            {
+                AssetDatabase.DeleteAsset(oldCache);
+            }
+        }
+        #endif
+    }
 }
