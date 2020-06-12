@@ -51,39 +51,24 @@ public class HornedEnemyWall : MonoBehaviour
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider hit in colliders)
-            if (collision.gameObject.tag != "Player" && !collision.gameObject.GetComponent<HornedEnemyWall>())
             {
-                VibrationManager.Instance.Vibrate(VibrationManager.Presets.DESTRUCTION);
-                if (vfx != null && canPlay)
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (rb != null && hit.transform.tag != "Enemy")
                 {
-                    vfx.Play();
-                    canPlay = false;
-                    isDissolving = true;
-                }
-                Vector3 explosionPos = transform.position;
-                Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-                foreach (Collider hit in colliders)
-                {
-                    Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-                    if (rb != null && hit.transform.tag != "Enemy")
+                    if (rb.isKinematic && rb.GetComponent<HornedEnemyWall>())
                     {
-                        if (rb.isKinematic && rb.GetComponent<HornedEnemyWall>())
+                        rb.isKinematic = false;
+                        rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
+
+
+                        if (!hit.GetComponent<HornedEnemyWall>().willRemain)
                         {
-                            rb.isKinematic = false;
-                            rb.AddExplosionForce(power, explosionPos - collision.GetContact(0).normal * 2, radius);
-
-
-                            if (!hit.GetComponent<HornedEnemyWall>().willRemain)
-                            {
-                                Destroy(rb.gameObject, 1.5f);
-                            }
-                            else
-                            {
-                                hit.GetComponent<HornedEnemyWall>().activated = true;
-                                //Destroy(hit.GetComponent<HornedEnemyWall>());
-                            }
-
+                            Destroy(rb.gameObject, 1.5f);
+                        }
+                        else
+                        {
+                            hit.GetComponent<HornedEnemyWall>().activated = true;
+                            //Destroy(hit.GetComponent<HornedEnemyWall>());
                         }
 
                     }
