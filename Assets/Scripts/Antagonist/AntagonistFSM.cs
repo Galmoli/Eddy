@@ -159,6 +159,10 @@ public class AntagonistFSM : MonoBehaviour
                 blackboard.enemyCollider.SetActive(false);
                 transform.position = blackboard.destinies[2].transform.position;
                 transform.rotation = blackboard.destinies[2].transform.rotation;
+
+                blackboard.activateWhenGuillotine[0].SetActive(true);
+                blackboard.activateWhenGuillotine[1].SetActive(true);
+
                 break;
             case States.BEHEADED:
 
