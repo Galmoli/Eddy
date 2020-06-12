@@ -33,6 +33,8 @@ public class AntagonistBlackboard : MonoBehaviour
 
     public GameObject enemyCollider;
 
+    public GameObject[] activateWhenGuillotine;
+
     public Animator animator;
 
     public GameObject head;

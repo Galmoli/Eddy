@@ -8,6 +8,8 @@ public class ChopDoor : MonoBehaviour
     public float force;
     Rigidbody rb;
 
+    bool end = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,8 @@ public class ChopDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(force * Vector3.down, ForceMode.Force);
+        if (!end)
+            rb.AddForce(force * Vector3.down, ForceMode.Force);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +28,11 @@ public class ChopDoor : MonoBehaviour
         if (other.tag == "Guillotine")
         {
             antagonistFSM.ChangeState(AntagonistFSM.States.BEHEADED);
+        }
+
+        if (other.tag == "GuillotineEnd")
+        {
+            end = true;
         }
     }
 }

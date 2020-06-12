@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class PlayerCombatController : StateMachine
 {
@@ -40,6 +41,10 @@ public class PlayerCombatController : StateMachine
 
     [Header("Animation")]
     public Animator animator;
+
+    [Header("VFX")]
+    public VisualEffect damagedVFX;
+    public float timerDamagedVFX = 0.2f;
 
     private void Awake()
     {
