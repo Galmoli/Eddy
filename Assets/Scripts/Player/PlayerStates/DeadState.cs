@@ -15,11 +15,8 @@ public class DeadState : State
     {
         _controller.animator.SetTrigger("Death");
         _controller.characterController.enabled = false;
-        
-        if(!_controller.scannerSword.HoldingSword() && _controller.scannerSword.SwordUnlocked()) _controller.scannerSword.SwordBack();
-        
+
         _hadSwordUnlocked = _controller.scannerSword.SwordUnlocked();
-        _controller.scannerSword.LockSword();
         _sameScene = GameManager.Instance.GetCurrentScene() == GameManager.Instance.checkpointSceneIndex && GameManager.Instance.GetCurrentScene() != 11;
         UIManager.Instance.DeathFade();
     }

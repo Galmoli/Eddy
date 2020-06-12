@@ -10,6 +10,7 @@ public class PlayerSwordScanner : MonoBehaviour
     private InputActions input;
     private PlayerMovementController playerMovement;
     private PlayerSounds playerSounds;
+    private SimulateParent _parenting;
 
     public float scannerRadius;
   
@@ -56,6 +57,7 @@ public class PlayerSwordScanner : MonoBehaviour
         _swordProgressiveColliders = GetComponent<SwordProgressiveColliders>();
         _scannerIntersectionManager = GetComponent<ScannerIntersectionManager>();
         _playerInsideVolume = GameObject.Find("Player").GetComponent<PlayerInsideVolume>();
+        _parenting = GetComponent<SimulateParent>();
     }
 
     void Start()
@@ -307,7 +309,8 @@ public class PlayerSwordScanner : MonoBehaviour
                     moveObject.swordStabbed = true;
                 }
 
-                transform.parent = moveObject.transform;
+                transform.parent = null;
+                _parenting.InjectTransform(moveObject.transform);
             }
 
             if (swordHolder.CompareTag("CheckPoint"))
@@ -365,11 +368,9 @@ public class PlayerSwordScanner : MonoBehaviour
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
         StartCoroutine(WaitToRecoverSword());
-
-       
     }
 
-    private void SwordRecovered()
+    public void SwordRecovered()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
@@ -388,6 +389,7 @@ public class PlayerSwordScanner : MonoBehaviour
         if (!scannerInput && activeScanner) ScannerOff();
 
         transform.parent = null;
+        _parenting.UnParent();
 
         transform.parent = playerHand;
         transform.parent = playerHand;

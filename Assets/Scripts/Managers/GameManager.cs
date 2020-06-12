@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             if (e.enemyB.dead && !e.enemyB.respawnable)
             {
-                Debug.Log("DESTROYED!!!");
                 Destroy(e.enemyO);
             }
             else

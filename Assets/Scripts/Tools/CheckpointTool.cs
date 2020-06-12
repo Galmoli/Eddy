@@ -14,11 +14,13 @@ public class CheckpointTool : MonoBehaviour
     }
     
     private CharacterController _cc;
+    private PlayerMovementController _controller;
     [SerializeField] private CPPos[] positions;
 
     private void Awake()
     {
         _cc = GetComponent<CharacterController>();
+        _controller = GetComponent<PlayerMovementController>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,8 @@ public class CheckpointTool : MonoBehaviour
         _cc.enabled = false;
         transform.position = positions[i].position;
         GameManager.Instance.GoToScene(positions[i].scene);
+        if(!_controller.scannerSword.HoldingSword() && _controller.scannerSword.SwordUnlocked()) _controller.scannerSword.SwordRecovered();
+        FindObjectOfType<CameraController>().SetPositionImmediately();
         
         yield return new WaitForSeconds(0.5f);
         _cc.enabled = true;

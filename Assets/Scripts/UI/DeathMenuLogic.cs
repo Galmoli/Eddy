@@ -18,6 +18,7 @@ public class DeathMenuLogic : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI tryAgainImage;
     [SerializeField] private TextMeshProUGUI mainMenuImage;
+    private PlayerMovementController _controller;
     public Animator tryAgainBgAnim;
     public Animator mainMenuBgAnim;
 
@@ -27,6 +28,7 @@ public class DeathMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuAccept.started += ctx => AcceptItem();
         _input.PlayerControls.MenuNavigationUp.started += ctx => ItemUp();
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
+        _controller = FindObjectOfType<PlayerMovementController>();
     }
     
     private void OnEnable()
@@ -36,6 +38,8 @@ public class DeathMenuLogic : MonoBehaviour
         tryAgainImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
         tryAgainImage.color = Color.black;
         tryAgainBgAnim.SetTrigger("enable");
+        if(!_controller.scannerSword.HoldingSword() && _controller.scannerSword.SwordUnlocked()) _controller.scannerSword.SwordRecovered();
+        _controller.scannerSword.LockSword();
         GameManager.Instance.Respawn();
         Time.timeScale = 0;
     }
