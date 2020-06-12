@@ -370,11 +370,9 @@ public class PlayerSwordScanner : MonoBehaviour
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
         StartCoroutine(WaitToRecoverSword());
-
-       
     }
 
-    private void SwordRecovered()
+    public void SwordRecovered()
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
