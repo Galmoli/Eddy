@@ -240,10 +240,10 @@ public class PlayerMovementController : StateMachine
     
     public void StepSound()
     {
-        /*if (AudioManager.Instance.ValidEvent(playerSounds.woodStepSoundPath))
+        if (AudioManager.Instance.ValidEvent(playerSounds.woodStepSoundPath))
         {
             AudioManager.Instance.PlayOneShotSound(playerSounds.woodStepSoundPath, transform);
-        }*/
+        }
 
         //Step on stone? Check surface type
 
