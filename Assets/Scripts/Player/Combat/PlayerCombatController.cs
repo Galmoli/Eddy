@@ -186,9 +186,9 @@ public class PlayerCombatController : StateMachine
     #region Sounds
     public void SimpleAttackSound()
     {
-        if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath))
+        if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath_2))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath, transform);
+            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath_2, transform);
         }
     }
 
@@ -210,9 +210,9 @@ public class PlayerCombatController : StateMachine
 
     public void AreaAttackChargingSound()
     {
-        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath))
+        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath_1))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargingSoundPath, transform);
+            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargingSoundPath_1, transform);
         }
     }
 

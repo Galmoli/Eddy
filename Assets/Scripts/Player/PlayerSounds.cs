@@ -13,10 +13,12 @@ public class PlayerSounds : MonoBehaviour
     [FMODUnity.EventRef] public string landSoundPath;
 
     [Header("Combat")]
-    [FMODUnity.EventRef] public string attackSoundPath;
+    [FMODUnity.EventRef] public string attackSoundPath_1;
+    [FMODUnity.EventRef] public string attackSoundPath_2;
     [FMODUnity.EventRef] public string comboAttackSoundPath;
     [FMODUnity.EventRef] public string areaAttackSoundPath;
-    [FMODUnity.EventRef] public string areaAttackChargingSoundPath;
+    [FMODUnity.EventRef] public string areaAttackChargingSoundPath_1;
+    [FMODUnity.EventRef] public string areaAttackChargingSoundPath_2;
     [FMODUnity.EventRef] public string areaAttackChargedSoundPath;
     [FMODUnity.EventRef] public string enemyHitSoundPath;
     [FMODUnity.EventRef] public string enemyArmoredHitSoundPath;
@@ -34,6 +36,12 @@ public class PlayerSounds : MonoBehaviour
     [Header("Environment")]
     [FMODUnity.EventRef] public string draggableObjectSoundPath;
     [FMODUnity.EventRef] public string woodenPlanksSoundPath;
+
+    [Header("Crowd")]
+    [FMODUnity.EventRef] public string applauseSoundPath;
+    [FMODUnity.EventRef] public string cheersSoundPath; 
+    [FMODUnity.EventRef] public string confettiPopSoundPath;
+    [FMODUnity.EventRef] public string finalRoundSoundPath;
 
     /*private void Update()
     {
