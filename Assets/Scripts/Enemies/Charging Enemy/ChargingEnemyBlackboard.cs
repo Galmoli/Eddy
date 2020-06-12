@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(ChargingEnemyDeathFSM))]
 
@@ -45,6 +46,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     public float staggeredTime;
 
     [Header("Enemy Death")]
+    public float timerDamagedVFX = 0.2f;
     public float minDeathImpulse = 4000;
     public float maxDeathImpulse = 6000;
 
@@ -76,8 +78,16 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     public string attackSoundPath;
     public string deathSoundPath;
 
+    [Header("VFX")]
+    public VisualEffect vfxDamaged;
+
+    [Header("CameraShake")]
+    private CameraShake cameraShake;
+    public float damagedShake = 0.1f;
+
     public override void Start()
     {
+        cameraShake = FindObjectOfType<CameraShake>();
         GameManager.Instance.enemySpawnManager.Add(this);
 
         player = FindObjectOfType<PlayerMovementController>();
@@ -132,6 +142,8 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         this.hitDirection = hitDirection;
         hit = true;
         healthPoints -= damage;
+        StartCoroutine("playDamaged");
+        if (cameraShake != null) cameraShake.ShakeCamera(damagedShake, 0.2f);
     }
 
     public override void ResetHealth()
@@ -235,7 +247,13 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
             healthPoints = 0;
         }
     }
-
+    IEnumerator playDamaged()
+    {
+        vfxDamaged.transform.localEulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 70), 0);
+        vfxDamaged.Play();
+        yield return new WaitForSeconds(timerDamagedVFX);
+        vfxDamaged.Stop();
+    }
     #region Sounds
     public void AttackSound()
     {
