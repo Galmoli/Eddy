@@ -60,7 +60,7 @@ public class CameraController : MonoBehaviour
                 else if (currentRotationSpeed < 0) currentRotationSpeed = 0f;
 
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(rot), currentRotationSpeed * Time.deltaTime);*/
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), 2 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), cameraRotationSpeed * Time.deltaTime);
             }
         }
     }
