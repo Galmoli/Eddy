@@ -12,10 +12,13 @@ public class HornedEnemyWall : MonoBehaviour
     private bool isDissolving;
     public bool isKingOfDissolve;
     public bool willRemain;
+    private CameraShake cameraShake;
+    public float shakeAmount = 2;
 
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        cameraShake = FindObjectOfType<CameraShake>();
         if (isKingOfDissolve) meshRenderer.sharedMaterial.SetFloat("dissolveAmount", 0);
     }
 
@@ -41,6 +44,7 @@ public class HornedEnemyWall : MonoBehaviour
                 vfx.Play();
                 canPlay = false;
                 isDissolving = true;
+                if (isKingOfDissolve && cameraShake != null) cameraShake.ShakeCamera(shakeAmount, 0.3f);
             }
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);

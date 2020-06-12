@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public int health;
     private bool _isDead;
 
+    [Header("CameraShake")]
+    private CameraShake cameraShake;
+    public float damagedShake = 0.5f;
+    public float deadShake = 2;
+
     private void Awake()
     {
         _movementController = GetComponent<PlayerMovementController>();
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
         UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Move, transform.position + Vector3.up*2, transform);
         health = initialHealth;
         _isDead = false;
+        cameraShake = FindObjectOfType<CameraShake>();
     }
 
     // Update is called once per frame
@@ -46,7 +52,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead) return;
         health -= damage;
-       
+
+
 
         if (health <= 0)
         {
@@ -58,6 +65,8 @@ public class PlayerController : MonoBehaviour
             SetDeadState();
             _isDead = true;
             StartCoroutine(UIManager.Instance.ShowDeathMenu());
+            StartCoroutine("PlayDamaged");
+            if (cameraShake != null) cameraShake.ShakeCamera(deadShake, 0.2f);
             UIManager.Instance.Hit(damage);
         }
         else
@@ -74,6 +83,8 @@ public class PlayerController : MonoBehaviour
             }
             StopAllCoroutines();
             StartCoroutine(Co_Regenerate());
+            StartCoroutine("PlayDamaged");
+            if (cameraShake != null) cameraShake.ShakeCamera(damagedShake, 0.2f);
             UIManager.Instance.Hit(damage);
 
             if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
@@ -81,6 +92,14 @@ public class PlayerController : MonoBehaviour
                 AudioManager.Instance.PlayOneShotSound(_playerSounds.damageReceivedSoundPath, transform);
             }
         }
+    }
+
+    IEnumerator PlayDamaged()
+    {
+        _combatController.damagedVFX.transform.localEulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 70), 0);
+        _combatController.damagedVFX.Play();
+        yield return new WaitForSeconds(_combatController.timerDamagedVFX);
+        _combatController.damagedVFX.Stop();
     }
 
     private void Heal()
