@@ -1453,6 +1453,8 @@ MonoBehaviour:
   timeToStartRegeneration: 25
   initialHealth: 16
   health: 16
+  damagedShake: 0.5
+  deadShake: 2
 --- !u!114 &1665188010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,30 +1467,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f71e5c8be8c3f45899395cd2c178b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoneStepSoundPath: event:/Main Character/Step On Stone Floor/MainCharacter_StepStone_Take1
-  woodStepSoundPath: event:/Main Character/Step On Wooden Floor/MainCharacter_StepWood_Take1
-  damageReceivedSoundPath: event:/Main Character/Receive Damage/MainCharacter_ReceiveDamage_Take1
-  deathSoundPath: event:/Main Character/Death/MainCharacter_Death_Take1
-  jumpSoundPath: event:/Main Character/Jump/MainCharacter_Jump_Take1
-  landSoundPath: event:/Main Character/Landing/MainCharacter_Land_Take1
-  attackSoundPath: event:/Sword/Attack/Sword_Attack_Take1
-  comboAttackSoundPath: event:/Sword/Combo Attack/Sword_Combo_Take1
-  areaAttackSoundPath: event:/Sword/Spiral Attack/Sword_Spiral_Take1
-  areaAttackChargingSoundPath: event:/Sword/SpiralCharge/Sword_SpiralCharge_Take1
-  areaAttackChargedSoundPath: event:/Sword/SpiralCharge/Sword_SpiralChargeMax_Take1
-  enemyHitSoundPath: event:/Sword/Enemy Hit/Sword_EnemyHit_Take1
-  enemyArmoredHitSoundPath: event:/Sword/Enemy Hit/Sword_EnemyHit_Take3
-  woodObjectHitSoundPath: event:/Sword/Object Hit/Sword_ObjectHit_Take1
-  metalObjectHitSoundPath: event:/Sword/Object Hit/Sword_ObjectHit_Take2
-  scannerOnSoundPath: event:/Sword/Scanner Activation/Sword_ScannerOn_Take1
-  scannerOffSoundPath: event:/Sword/Scanner Desactivated/Sword_ScannerOff_Take1
-  scannerActiveSoundPath: event:/Sword/Scanner Activated/Sword_ScannerActive_Take1
-  stabSoundPath: event:/Sword/Nailing The Sword/Sword_Nailing_Take1
-  swordBackSoundPath: event:/Sword/Recovering The Sword/Sword_Recovering_Take1
-  switchSoundPath: event:/Sword/Switch Activation/Sword_Switch_Take1
-  checkpointSoundPath: event:/Sword/Checkpoint Activation/Sword_Checkpoint_Take1
-  draggableObjectSoundPath: event:/Draggable Object/Dragging Across The Floor/DraggableObject_Take1
-  elevatorSoundPath: event:/Elevator/Travelling/Elevator_Traveling_Take1
+  stoneStepSoundPath: event:/FX/MainCharacter/RecieveDamage/ReceiveDamage
+  woodStepSoundPath: event:/FX/MainCharacter/StepOnWoodenFloor/StepWood
+  damageReceivedSoundPath: event:/FX/MainCharacter/RecieveDamage/ReceiveDamage
+  deathSoundPath: event:/FX/MainCharacter/Death/Death
+  jumpSoundPath: event:/FX/MainCharacter/Jump/Jump
+  landSoundPath: event:/FX/MainCharacter/Landing/Landing
+  attackSoundPath: event:/FX/Sword/Attack/Attack_1
+  comboAttackSoundPath: event:/FX/Sword/Attack/ComboAttack
+  areaAttackSoundPath: event:/FX/Sword/AreaAttack/AreaAttack
+  areaAttackChargingSoundPath: 
+  areaAttackChargedSoundPath: event:/FX/Sword/AreaAttack/AreaAttackCharged
+  enemyHitSoundPath: event:/FX/Sword/EnemyHit/Hit
+  enemyArmoredHitSoundPath: event:/FX/Sword/EnemyHit/Armor
+  woodObjectHitSoundPath: event:/FX/Sword/ObjectHit/Wood
+  metalObjectHitSoundPath: event:/FX/Sword/ObjectHit/Metal
+  scannerOnSoundPath: event:/FX/Sword/Scanner/ScannerOn
+  scannerOffSoundPath: event:/FX/Sword/Scanner/ScannerOff
+  scannerActiveSoundPath: event:/FX/Sword/Scanner/ScannerActive
+  stabSoundPath: event:/FX/Sword/NailSword/NailSword
+  swordBackSoundPath: event:/FX/Sword/RecoverSword/RecoverSword
+  switchSoundPath: 
+  checkpointSoundPath: event:/FX/Sword/Checkpoint/Checkpoint
+  draggableObjectSoundPath: event:/FX/DraggableObject/DraggableObject
+  elevatorSoundPath: 
 --- !u!114 &1665188009
 MonoBehaviour:
   m_ObjectHideFlags: 0
