@@ -36,6 +36,7 @@ public class CheckpointTool : MonoBehaviour
         _cc.enabled = false;
         transform.position = positions[i].position;
         GameManager.Instance.GoToScene(positions[i].scene);
+        FindObjectOfType<CameraController>().SetPositionImmediately();
         
         yield return new WaitForSeconds(0.5f);
         _cc.enabled = true;
