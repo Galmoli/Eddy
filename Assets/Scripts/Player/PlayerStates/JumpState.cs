@@ -172,7 +172,7 @@ public class JumpState : State
         //Other positions can be added here. But just checking the back solves the major problem.
 
         if (vector3D != Vector3.zero) vector3D = vector3D.normalized * _residualCollisionAvoidanceSpeed;
-        return vector3D;
+        return vector3D.normalized;
     }
 
     private bool ValidEdge()
