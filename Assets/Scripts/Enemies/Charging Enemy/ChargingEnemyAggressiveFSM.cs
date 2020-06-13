@@ -200,7 +200,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
         return hit.collider.gameObject.layer == LayerMask.NameToLayer("Appear") && !scanner.bounds.Contains(hit.point);
     }
 
-    public void HitHandler(GameObject objectHit)
+    public void HitHandler(GameObject objectHit, bool metalSurface)
     {
         HornedEnemyWall enemyWall = objectHit.GetComponent<HornedEnemyWall>();
 
@@ -211,7 +211,7 @@ public class ChargingEnemyAggressiveFSM : MonoBehaviour
                 blackboard.player.GetComponent<PlayerController>().Hit((int)blackboard.attackPoints);
             }
 
-            blackboard.AttackSound();
+            blackboard.AttackSound(metalSurface);
             blackboard.stunned = true;
         }
     }
