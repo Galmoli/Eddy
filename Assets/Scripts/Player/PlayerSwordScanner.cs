@@ -50,6 +50,7 @@ public class PlayerSwordScanner : MonoBehaviour
     public VisualEffect[] swordVfx;
     public Material swordBasicMat;
     public Material swordActiveMat;
+    public VisualEffect appearSwordVFX;
 
     private void Awake()
     {
@@ -401,6 +402,8 @@ public class PlayerSwordScanner : MonoBehaviour
         {
             AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
         }
+
+        appearSwordVFX.Play();
     }
 
     private IEnumerator WaitToRecoverSword()

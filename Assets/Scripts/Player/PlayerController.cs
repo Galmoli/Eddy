@@ -103,8 +103,10 @@ public class PlayerController : MonoBehaviour
     {
         _combatController.damagedVFX.transform.localEulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 70), 0);
         _combatController.damagedVFX.Play();
+        _combatController.meshRenderer.material = _combatController.damagedMeshMat;
         yield return new WaitForSeconds(_combatController.timerDamagedVFX);
         _combatController.damagedVFX.Stop();
+        _combatController.meshRenderer.material = _combatController.iniMeshMat;
     }
 
     private void Heal()
