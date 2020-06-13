@@ -45,6 +45,9 @@ public class PlayerCombatController : StateMachine
     [Header("VFX")]
     public VisualEffect damagedVFX;
     public float timerDamagedVFX = 0.2f;
+    public SkinnedMeshRenderer meshRenderer;
+    [HideInInspector] public Material iniMeshMat;
+    public Material damagedMeshMat;
 
     private void Awake()
     {
@@ -65,6 +68,7 @@ public class PlayerCombatController : StateMachine
     private void Start()
     {
         swordTrigger.DisableTrigger();
+        iniMeshMat = meshRenderer.material;
     }
 
     private void Update()
