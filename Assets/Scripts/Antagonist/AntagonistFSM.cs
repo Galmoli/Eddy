@@ -166,6 +166,7 @@ public class AntagonistFSM : MonoBehaviour
                 break;
             case States.BEHEADED:
 
+                GeneralMusicManager.Instance.UpdateLevel2Event(0.55f, 0);
                 VibrationManager.Instance.Vibrate(VibrationManager.Presets.HARD_HIT);
 
                 if (currentState == States.WAITTOBEHEAD)
