@@ -92,6 +92,12 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     private CameraShake cameraShake;
     public float damagedShake = 0.1f;
 
+    private void OnEnable()
+    {
+        vfxChargeHit.Stop();
+        vfxDamaged.Stop();
+    }
+
     public override void Start()
     {
         cameraShake = FindObjectOfType<CameraShake>();
