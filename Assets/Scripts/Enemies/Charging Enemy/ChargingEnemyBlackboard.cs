@@ -77,6 +77,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [FMODUnity.EventRef] public string stepSoundPath;
     [FMODUnity.EventRef] public string attackSoundPath;
     [FMODUnity.EventRef] public string deathSoundPath;
+    [FMODUnity.EventRef] public string metalCollisionSoundPath;
 
     [Header("VFX")]
     public VisualEffect vfxDamaged;
@@ -256,11 +257,21 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         vfxDamaged.Stop();
     }
     #region Sounds
-    public void AttackSound()
+    public void AttackSound(bool metalSurface)
     {
-        if (AudioManager.Instance.ValidEvent(attackSoundPath))
+        if (metalSurface)
         {
-            AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+            if (AudioManager.Instance.ValidEvent(metalCollisionSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(metalCollisionSoundPath, transform);
+            }
+        }
+        else
+        {
+            if (AudioManager.Instance.ValidEvent(attackSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+            }
         }
     }
 

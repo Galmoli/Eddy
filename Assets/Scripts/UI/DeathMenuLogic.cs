@@ -22,6 +22,10 @@ public class DeathMenuLogic : MonoBehaviour
     public Animator tryAgainBgAnim;
     public Animator mainMenuBgAnim;
 
+    [Header("Sounds")]
+    [FMODUnity.EventRef] public string buttonNavigationSoundPath;
+    [FMODUnity.EventRef] public string buttonClickSoundPath;
+
     private void Awake()
     {
         _input = new InputActions();
@@ -56,6 +60,7 @@ public class DeathMenuLogic : MonoBehaviour
             case DeathMenuOptions.TryAgain:
                 break;
             case DeathMenuOptions.MainMenu:
+                ButtonNavigationSound();
                 mainMenuImage.transform.localScale = new Vector3(1, 1, 1);
                 mainMenuImage.color = Color.white;
                 mainMenuBgAnim.SetTrigger("disable");
@@ -72,6 +77,7 @@ public class DeathMenuLogic : MonoBehaviour
         switch (_option)
         {
             case DeathMenuOptions.TryAgain:
+                ButtonNavigationSound();
                 tryAgainImage.transform.localScale = new Vector3(1, 1, 1);
                 tryAgainImage.color = Color.white;
                 tryAgainBgAnim.SetTrigger("disable");
@@ -87,6 +93,7 @@ public class DeathMenuLogic : MonoBehaviour
 
     private void AcceptItem()
     {
+        ButtonClickSound();
         switch (_option)
         {
             case DeathMenuOptions.TryAgain:
@@ -108,5 +115,21 @@ public class DeathMenuLogic : MonoBehaviour
     public void MainMenu() //Currently used by Button OnClick Event
     {
         UIManager.Instance.MainMenu();
+    }
+
+    private void ButtonNavigationSound()
+    {
+        if (AudioManager.Instance.ValidEvent(buttonNavigationSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(buttonNavigationSoundPath, transform);
+        }
+    }
+
+    private void ButtonClickSound()
+    {
+        if (AudioManager.Instance.ValidEvent(buttonClickSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(buttonClickSoundPath, transform);
+        }
     }
 }

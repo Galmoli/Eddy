@@ -58,7 +58,9 @@ public class PushState : State
                 _controller.moveObject.moving = true;
             }
 
-            _controller.DragSound();
+            if(_controller.characterController.velocity.sqrMagnitude > 0.1f) _controller.DragSound();
+            else _controller.StopDragSound();
+
         }
         else if (_controller.moveObject && vector3D.magnitude < _controller.joystickDeadZone)
         {

@@ -28,6 +28,8 @@ public class WaveScene : MonoBehaviour
     public VisualEffect confettiLeft;
     public VisualEffect confettiRight;
 
+    private PlayerSounds sounds;
+
     void Start()
     {
         topMinIntensity = topSpotlight.intensity;
@@ -35,9 +37,10 @@ public class WaveScene : MonoBehaviour
         fireplaceMaxIntensity = fireplace.intensity;
         crowdMinHeight = crowd.localPosition.y;
         crowd.gameObject.SetActive(false);
+
+        sounds = FindObjectOfType<PlayerSounds>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (waveActivated)
@@ -69,21 +72,23 @@ public class WaveScene : MonoBehaviour
     }
     public void playRightConfetti()
     {
-        StartCoroutine("RightConfetti");
+        StartCoroutine("RightConfetti");     
     }
     public void destroyAllCrowd()
     {
-        StartCoroutine("DestroyCrowd");
+        StartCoroutine("DestroyCrowd");    
     }
 
     IEnumerator LeftConfetti()
     {
+        ConfettiPopSound(confettiLeft.transform);
         confettiLeft.Play();
         yield return new WaitForSeconds(1);
         confettiLeft.Stop();
     }
     IEnumerator RightConfetti()
     {
+        ConfettiPopSound(confettiRight.transform);
         confettiRight.Play();
         yield return new WaitForSeconds(1);
         confettiRight.Stop();
@@ -93,5 +98,37 @@ public class WaveScene : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(crowd.gameObject);
         Destroy(this);
+    }
+
+    public void ApplauseSound()
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.applauseSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, crowd);
+        }
+    }
+
+    public void CheersSound()
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.cheersSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(sounds.cheersSoundPath, sounds.transform);
+        }
+    }
+
+    public void ConfettiPopSound(Transform t)
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.confettiPopSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(sounds.confettiPopSoundPath, t);
+        }
+    }
+
+    public void FinalRoundSound()
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.finalRoundSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(sounds.finalRoundSoundPath, sounds.transform);
+        }
     }
 }

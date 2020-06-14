@@ -58,9 +58,14 @@ public class AnimatorFunctionCaller : MonoBehaviour
         movementController.StepSound();
     }
     
-    public void SimpleAttackSound()
+    public void SimpleAttackSound_1()
     {
-        combatController.SimpleAttackSound();
+        combatController.SimpleAttackSound_1();
+    }
+
+    public void SimpleAttackSound_2()
+    {
+        combatController.SimpleAttackSound_2();
     }
 
     public void ComboAttackSound()
@@ -70,7 +75,9 @@ public class AnimatorFunctionCaller : MonoBehaviour
 
     public void AreaAttackChargedSound()
     {
+        combatController.StopAreaAttackChargingSound_1();
         combatController.AreaAttackChargedSound();
+        combatController.AreaAttackChargingSound_2();
     }
     #endregion
 }
