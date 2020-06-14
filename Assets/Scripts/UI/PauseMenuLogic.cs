@@ -36,6 +36,14 @@ public class PauseMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
     }
 
+    private void OnDestroy()
+    {
+        _input.PlayerControls.MenuBack.started -= ctx => HidePauseMenu();
+        _input.PlayerControls.MenuAccept.started -= ctx => AcceptOption();
+        _input.PlayerControls.MenuNavigationUp.started -= ctx => ItemUp();
+        _input.PlayerControls.MenuNavigationDown.started -= ctx => ItemDown();
+    }
+
     private PauseMenuOption _option;
 
     private void OnEnable()

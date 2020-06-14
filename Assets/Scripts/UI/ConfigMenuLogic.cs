@@ -40,6 +40,15 @@ public class ConfigMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuSlider.performed += callbackContext => sliderVector = callbackContext.ReadValue<Vector2>();
     }
 
+    private void OnDestroy()
+    {
+        _input.PlayerControls.MenuBack.started -= ctx => Back();
+        _input.PlayerControls.MenuNavigationUp.started -= ctx => ItemUp();
+        _input.PlayerControls.MenuNavigationDown.started -= ctx => ItemDown();
+        _input.PlayerControls.MenuAccept.started -= ctx => AcceptItem();
+        _input.PlayerControls.MenuSlider.performed -= callbackContext => sliderVector = callbackContext.ReadValue<Vector2>();
+    }
+
     private void OnEnable()
     {
         _input.Enable();

@@ -34,7 +34,14 @@ public class DeathMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
         _controller = FindObjectOfType<PlayerMovementController>();
     }
-    
+
+    private void OnDestroy()
+    {
+        _input.PlayerControls.MenuAccept.started -= ctx => AcceptItem();
+        _input.PlayerControls.MenuNavigationUp.started -= ctx => ItemUp();
+        _input.PlayerControls.MenuNavigationDown.started -= ctx => ItemDown();
+    }
+
     private void OnEnable()
     {
         _input.Enable();
