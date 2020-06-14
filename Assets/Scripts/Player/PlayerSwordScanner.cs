@@ -38,6 +38,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
     private Vector3 swordInitPos;
     private Quaternion swordInitRot;
+    private bool recoveringSword;
 
     private RaycastHit stabbingHit;
     private bool horizontalStab;
@@ -69,6 +70,7 @@ public class PlayerSwordScanner : MonoBehaviour
         playerHand = transform.parent;
         swordInitPos = transform.localPosition;
         swordInitRot = transform.localRotation;
+        recoveringSword = false;
 
         swordUnlocked = false;
         activeScanner = false;
@@ -154,7 +156,7 @@ public class PlayerSwordScanner : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(!recoveringSword)
             {
                 SwordBack();
             }       
@@ -368,6 +370,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
+        recoveringSword = true;
         StartCoroutine(WaitToRecoverSword());
     }
 
@@ -404,10 +407,12 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         appearSwordVFX.Play();
+
+        recoveringSword = false;
     }
 
     private IEnumerator WaitToRecoverSword()
-    {
+    {  
         yield return new WaitForSeconds(swordBackTime);
         SwordRecovered();
     }
