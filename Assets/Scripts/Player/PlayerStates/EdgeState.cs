@@ -26,6 +26,8 @@ public class EdgeState : State
         
         _projectedVector = _controller.GetProjectedVector();
         
+        _controller.RotateTowardsForward(-_controller.edgeGameObject.transform.forward);
+        
         if (_controller.edgeGameObject.transform.position.y > _controller.transform.position.y) _controller.animator.SetTrigger("Hanging");
         
         TriggerDesiredAnimation(_controller.transform.position, _controller.edgePosition);
@@ -41,12 +43,10 @@ public class EdgeState : State
         {
             var position = _controller.transform.position;
             Vector3 moveVector = Vector3.zero;
-            
             Vector3 lVector = Vector3.Lerp(position,_controller.edgePosition + _projectedVector  + PlayerUtils.GetEdgeOffsetOnLocalSpace(_controller.edgeGameObject,_controller.edgeOffset), _controller.lerpVelocity);
 
             moveVector = lVector - position;
-            _controller.RotateTowardsForward(-_controller.edgeGameObject.transform.forward);
-            
+
             if(_controller.characterController.enabled) _controller.characterController.Move(moveVector);
         }
 
