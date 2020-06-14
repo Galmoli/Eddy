@@ -17,9 +17,13 @@ namespace Steerings
 		[HideInInspector] public LayerMask avoidLayers;
 		[HideInInspector] public SphereCollider scanner;
 
+		[HideInInspector] public string repulsionTag;
+		[HideInInspector] public float repulsionThreshold;
+		[HideInInspector] public float arriveWeight;
+
 		public override SteeringOutput GetSteering ()
 		{
-			SteeringOutput result = ArrivePlusAvoid.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
+			SteeringOutput result = ArrivePlusAvoid.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner, repulsionTag, repulsionThreshold, arriveWeight);
 			if (!surrogateTarget) return null;
 			
 			if (ownKS.linearVelocity.magnitude > 0.001f)
@@ -37,13 +41,16 @@ namespace Steerings
 			return result;
 		}
 
-		public static SteeringOutput GetSteering (KinematicState ownKS, GameObject target, float closeEnoughRadius, float slowDownRadius, float timeToDesiredSpeed, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers, SphereCollider scanner)
+		public static SteeringOutput GetSteering (KinematicState ownKS, GameObject target, float closeEnoughRadius, float slowDownRadius, float timeToDesiredSpeed, float lookAheadLength, float avoidDistance, float secondaryWhiskerAngle, float secondaryWhiskerRatio, LayerMask avoidLayers, SphereCollider scanner, string repulsionTag, float repulsionThreshold, float arriveWeight)
 		{
 			SteeringOutput steeringOutput = ObstacleAvoidance.GetSteering(ownKS, lookAheadLength, avoidDistance, secondaryWhiskerAngle, secondaryWhiskerRatio, avoidLayers, scanner);
 
 			if (steeringOutput == nullSteering)
 			{
-				return Arrive.GetSteering (ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed);
+				SteeringOutput arrive = Arrive.GetSteering(ownKS, target, closeEnoughRadius, slowDownRadius, timeToDesiredSpeed);
+				SteeringOutput linearRepulsion = LinearRepulsion.GetSteering(ownKS, repulsionTag, repulsionThreshold);
+				arrive.linearAcceleration = arrive.linearAcceleration * arriveWeight + linearRepulsion.linearAcceleration * (1 - arriveWeight);
+				return arrive;
 			}
 
 			return steeringOutput;

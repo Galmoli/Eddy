@@ -260,6 +260,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 90113
   scannerSphereCollider: {fileID: 0}
+  repulsionTag: Enemy
+  repulsionThreshold: 100
+  arriveWeight: 0.6
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
@@ -267,6 +270,7 @@ MonoBehaviour:
   stepSoundPath: event:/Enemy 1/Step FALTA/Enemy1_Step_Take1
   attackSoundPath: event:/Enemy 1/Attacking/Enemy1_Attack_Take1
   deathSoundPath: event:/Enemy 1/Death/Enemy1_Death_Take1
+  metalCollisionSoundPath: 
   vfxDamaged: {fileID: 4837453864339302192}
   vfxChargeHit: {fileID: 1165804254395781505}
   damagedShake: 0.1
@@ -315,6 +319,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   scanner: {fileID: 0}
+  repulsionTag: 
+  repulsionThreshold: 0
+  arriveWeight: 0
 --- !u!114 &2119823837993429313
 MonoBehaviour:
   m_ObjectHideFlags: 0
