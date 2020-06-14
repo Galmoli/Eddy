@@ -63,6 +63,11 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     [HideInInspector] public SphereCollider scannerSphereCollider;
 
+    [Header("Linear Repulsion Variables")]
+    [TagSelector] public string repulsionTag;
+    public float repulsionThreshold;
+    public float arriveWeight;
+
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
@@ -77,6 +82,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [FMODUnity.EventRef] public string stepSoundPath;
     [FMODUnity.EventRef] public string attackSoundPath;
     [FMODUnity.EventRef] public string deathSoundPath;
+    [FMODUnity.EventRef] public string metalCollisionSoundPath;
 
     [Header("VFX")]
     public VisualEffect vfxDamaged;
@@ -154,17 +160,21 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     void SetArrivePlusAvoidVariables()
     {
-        ArrivePlusAvoid arrivePlusVoid = GetComponent<ArrivePlusAvoid>();
+        ArrivePlusAvoid arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
 
-        arrivePlusVoid.closeEnoughRadius = closeEnoughRadius;
-        arrivePlusVoid.slowDownRadius = slowDownRadius;
+        arrivePlusAvoid.closeEnoughRadius = closeEnoughRadius;
+        arrivePlusAvoid.slowDownRadius = slowDownRadius;
 
-        arrivePlusVoid.lookAheadLength = lookAheadLength;
-        arrivePlusVoid.avoidDistance = avoidDistance;
-        arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
-        arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
-        arrivePlusVoid.avoidLayers = avoidLayers;
-        arrivePlusVoid.scanner = scannerSphereCollider;
+        arrivePlusAvoid.lookAheadLength = lookAheadLength;
+        arrivePlusAvoid.avoidDistance = avoidDistance;
+        arrivePlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
+        arrivePlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
+        arrivePlusAvoid.avoidLayers = avoidLayers;
+        arrivePlusAvoid.scanner = scannerSphereCollider;
+
+        arrivePlusAvoid.repulsionTag = repulsionTag;
+        arrivePlusAvoid.repulsionThreshold = repulsionThreshold;
+        arrivePlusAvoid.arriveWeight = arriveWeight;
     }
 
     void SetWanderPlusAvoidVariables()
@@ -256,11 +266,21 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         vfxDamaged.Stop();
     }
     #region Sounds
-    public void AttackSound()
+    public void AttackSound(bool metalSurface)
     {
-        if (AudioManager.Instance.ValidEvent(attackSoundPath))
+        if (metalSurface)
         {
-            AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+            if (AudioManager.Instance.ValidEvent(metalCollisionSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(metalCollisionSoundPath, transform);
+            }
+        }
+        else
+        {
+            if (AudioManager.Instance.ValidEvent(attackSoundPath))
+            {
+                AudioManager.Instance.PlayOneShotSound(attackSoundPath, transform);
+            }
         }
     }
 

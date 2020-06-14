@@ -22,6 +22,10 @@ public class PauseMenuLogic : MonoBehaviour
     public Animator optionsBgAnim;
     public Animator exitBgAnim;
 
+    [Header("Sounds")]
+    [FMODUnity.EventRef] public string buttonNavigationSoundPath;
+    [FMODUnity.EventRef] public string buttonClickSoundPath;
+
     private void Awake()
     {
         _input = new InputActions();
@@ -55,6 +59,7 @@ public class PauseMenuLogic : MonoBehaviour
             case PauseMenuOption.Resume:
                 break;
             case PauseMenuOption.Options:
+                ButtonNavigationSound();
                 optionsImage.transform.localScale = new Vector3(1, 1, 1);
                 optionsImage.color = Color.white;
                 optionsBgAnim.SetTrigger("disable");
@@ -64,6 +69,7 @@ public class PauseMenuLogic : MonoBehaviour
                 _option = PauseMenuOption.Resume;
                 break;
             case PauseMenuOption.Exit:
+                ButtonNavigationSound();
                 exitImage.transform.localScale = new Vector3(1,1,1);
                 exitImage.color = Color.white;
                 exitBgAnim.SetTrigger("disable");
@@ -80,6 +86,7 @@ public class PauseMenuLogic : MonoBehaviour
         switch (_option)
         {
             case PauseMenuOption.Resume:
+                ButtonNavigationSound();
                 resumeImage.transform.localScale = new Vector3(1,1,1);
                 resumeImage.color = Color.white;
                 resumeBgAnim.SetTrigger("disable");
@@ -89,6 +96,7 @@ public class PauseMenuLogic : MonoBehaviour
                 _option = PauseMenuOption.Options;
                 break;
             case PauseMenuOption.Options:
+                ButtonNavigationSound();
                 optionsImage.transform.localScale = new Vector3(1,1,1);
                 optionsImage.color = Color.white;
                 optionsBgAnim.SetTrigger("disable");
@@ -104,6 +112,7 @@ public class PauseMenuLogic : MonoBehaviour
 
     private void AcceptOption()
     {
+        ButtonClickSound();
         switch (_option)
         {
             case PauseMenuOption.Resume:
@@ -115,6 +124,22 @@ public class PauseMenuLogic : MonoBehaviour
             case PauseMenuOption.Exit:
                 UIManager.Instance.MainMenu();
                 break;
+        }
+    }
+
+    private void ButtonNavigationSound()
+    {
+        if (AudioManager.Instance.ValidEvent(buttonNavigationSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(buttonNavigationSoundPath, transform);
+        }
+    }
+
+    private void ButtonClickSound()
+    {
+        if (AudioManager.Instance.ValidEvent(buttonClickSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(buttonClickSoundPath, transform);
         }
     }
 }

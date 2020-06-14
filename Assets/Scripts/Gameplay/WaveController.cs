@@ -95,6 +95,7 @@ public class WaveController : MonoBehaviour
             if (currentWave == 3)
             {
                 InGameDialogue.Instance.EnableDialogue("PopUp_13");
+                waveScene.FinalRoundSound();
             }
 
             activate = false;
@@ -103,6 +104,8 @@ public class WaveController : MonoBehaviour
         }
         else
         {
+            waveScene.ApplauseSound();
+
             InGameDialogue.Instance.EnableDialogue("PopUp_14");
 
             wavesCompleted = true;
@@ -115,6 +118,7 @@ public class WaveController : MonoBehaviour
 
     public IEnumerator WaveProducer()
     {
+        waveScene.CheersSound();
         yield return new WaitForSeconds(1.0f);
 
         activate = true;
