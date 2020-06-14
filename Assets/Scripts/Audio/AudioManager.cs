@@ -124,6 +124,16 @@ public class AudioManager : MonoBehaviour
         return soundEvent;
     }
 
+    public EventInstance PlayMusic(string path)
+    {
+        EventInstance soundEvent = RuntimeManager.CreateInstance(path);
+        if (!soundEvent.Equals(null))
+        {
+            soundEvent.start();
+        }
+        return soundEvent;
+    }
+
     public void UpdateEventParameter(EventInstance soundEvent, SoundManagerParameter parameter)
     {
         soundEvent.setParameterByName(parameter.GetName(), parameter.GetValue());

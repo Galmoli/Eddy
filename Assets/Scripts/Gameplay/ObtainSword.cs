@@ -60,6 +60,8 @@ public class ObtainSword : MonoBehaviour
 
             VibrationManager.Instance.Vibrate(VibrationManager.Presets.SUCCESS);
 
+            GeneralMusicManager.Instance.UpdateLevel1Event(0.7f, 0);
+
             GeneralDialogue.Instance.EnableDialogue("Conversation_2");
             UIHelperController.Instance.DisableHelper();
         }

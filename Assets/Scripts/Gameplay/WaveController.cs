@@ -43,7 +43,7 @@ public class WaveController : MonoBehaviour
             //activate = true;
             currentWave = 0;
             StartCoroutine(WaveProducer());
-            waveScene.waveActivated = true;
+            waveScene.waveActivated = true;           
         }
     }
 
@@ -87,6 +87,11 @@ public class WaveController : MonoBehaviour
     {
         if (currentWave < waves.Length)
         {
+            if (currentWave == 1)
+            { 
+                GeneralMusicManager.Instance.UpdateLevel2Event(0.53f, 0);
+            }
+
             if (currentWave == 2)
             {
                 InGameDialogue.Instance.EnableDialogue("PopUp_12");
@@ -113,6 +118,8 @@ public class WaveController : MonoBehaviour
             closeAreaCols[1].SetActive(false);
             waveScene.waveActivated = false;
             waveScene.destroyAllCrowd();
+
+            GeneralMusicManager.Instance.ChangeMusic(2);
         }
     }
 
