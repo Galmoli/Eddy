@@ -22,6 +22,9 @@ public class AreaAttackState : State
 
         _controller.SetMovementControllerCombatState(_attackObject.attackTime);
         _controller.animator.SetTrigger("AreaAttack");
+
+        _controller.StopAreaAttackChargingSound_1();
+        _controller.AreaAttackSound();
     }
 
     public override void Update()
@@ -34,6 +37,8 @@ public class AreaAttackState : State
         {
             ExitState();
         }
+
+        _controller.StopAreaAttackChargingSound_2();
     }
 
     public override void Interact()
