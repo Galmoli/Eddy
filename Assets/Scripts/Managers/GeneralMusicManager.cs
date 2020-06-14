@@ -79,16 +79,28 @@ public class GeneralMusicManager : MonoBehaviour
     {
         if (currentMusic == 1)
         {
-            UpdateLevel1Event(1, 2);
+            levelMusic1_Event.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //UpdateLevel1Event(1, 2);
         }
 
         if (currentMusic == 2)
         {
-            UpdateLevel2Event(1, 2);
+            levelMusic2_Event.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //UpdateLevel2Event(1, 2);
         }
 
-        listenToChangeMusic = true;
-        levelToChange = newMusic;
+        if (newMusic == 1)
+        {
+            PlayLevel1Music();
+        }
+
+        if (newMusic == 2)
+        {
+            PlayLevel2Music();
+        }
+
+        //listenToChangeMusic = true;
+        //levelToChange = newMusic;
     }
        
     
