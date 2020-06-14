@@ -40,12 +40,6 @@ public class ConfigMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuSlider.performed += callbackContext => sliderVector = callbackContext.ReadValue<Vector2>();
     }
 
-    private void Start()
-    {
-        sliderMusic.value = PlayerPrefs.GetFloat("musicVolume", 1);
-        sliderSFX.value = PlayerPrefs.GetFloat("sfxVolume", 1);
-    }
-
     private void OnDestroy()
     {
         _input.PlayerControls.MenuBack.started -= ctx => Back();
@@ -63,6 +57,9 @@ public class ConfigMenuLogic : MonoBehaviour
         volumeMusic.transform.localScale = new Vector3(1.1f,1.1f, 1);
         volumeMusic.color = Color.black;
         volumeMusicBgAnim.SetTrigger("enable");
+        
+        sliderMusic.value = PlayerPrefs.GetFloat("musicVolume", 1);
+        sliderSFX.value = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 
     private void OnDisable()
