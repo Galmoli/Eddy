@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using FMOD.Studio;
 
 public class PlayerCombatController : StateMachine
 {
@@ -45,6 +46,9 @@ public class PlayerCombatController : StateMachine
     [Header("VFX")]
     public VisualEffect damagedVFX;
     public float timerDamagedVFX = 0.2f;
+
+    private EventInstance areaAttackChargingSoundEvent_1;
+    private EventInstance areaAttackChargingSoundEvent_2;
 
     private void Awake()
     {
@@ -184,7 +188,15 @@ public class PlayerCombatController : StateMachine
     }
 
     #region Sounds
-    public void SimpleAttackSound()
+    public void SimpleAttackSound_1()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath_1))
+        {
+            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath_1, transform);
+        }
+    }
+
+    public void SimpleAttackSound_2()
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath_2))
         {
@@ -208,12 +220,36 @@ public class PlayerCombatController : StateMachine
         }
     }
 
-    public void AreaAttackChargingSound()
+    public void AreaAttackChargingSound_1()
     {
-        if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath_1))
+        if (!AudioManager.Instance.isPlaying(areaAttackChargingSoundEvent_1))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargingSoundPath_1, transform);
+            if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath_1))
+            {
+                areaAttackChargingSoundEvent_1 = AudioManager.Instance.PlayEvent(playerSounds.areaAttackChargingSoundPath_1, transform);
+            }
         }
+    }
+
+    public void StopAreaAttackChargingSound_1()
+    {
+        areaAttackChargingSoundEvent_1.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void AreaAttackChargingSound_2()
+    {
+        if (!AudioManager.Instance.isPlaying(areaAttackChargingSoundEvent_2))
+        {
+            if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargingSoundPath_2))
+            {
+                areaAttackChargingSoundEvent_2 = AudioManager.Instance.PlayEvent(playerSounds.areaAttackChargingSoundPath_2, transform);
+            }
+        }
+    }
+
+    public void StopAreaAttackChargingSound_2()
+    {
+        areaAttackChargingSoundEvent_2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void AreaAttackChargedSound()

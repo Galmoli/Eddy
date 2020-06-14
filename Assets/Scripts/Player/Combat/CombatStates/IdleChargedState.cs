@@ -17,7 +17,7 @@ public class IdleChargedState : State
 
         _controller.animator.SetTrigger("StartChargeAttack");
 
-        _controller.AreaAttackChargingSound();
+        _controller.AreaAttackChargingSound_1();
     }
 
     public override void Interact()
@@ -27,6 +27,7 @@ public class IdleChargedState : State
 
     public override void ExitState()
     {
+        _controller.StopAreaAttackChargingSound_2();
         _controller.AreaAttackSound();
 
         _controller.SetState(new AreaAttackState(_controller, 1));
