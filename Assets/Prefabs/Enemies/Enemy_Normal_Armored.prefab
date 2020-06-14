@@ -333,7 +333,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 224769
   enemyColliderChaseHeight: 1.2
-  maxVerticalDistance: 3
+  maxVerticalDistance: 3.5
   detectionDistanceOnSight: 19
   detectionDistanceOffSight: 5
   playerOutOfRangeDistance: 20
@@ -361,6 +361,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 90113
   scannerSphereCollider: {fileID: 0}
+  repulsionTag: Enemy
+  repulsionThreshold: 15
+  arriveWeight: 0.6
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
@@ -369,6 +372,7 @@ MonoBehaviour:
   attackSoundPath: event:/Enemy 2/Attacking/Enemy2_Attack_Take1
   deathSoundPath: event:/Enemy 1/Death/Enemy1_Death_Take1
   vfxDamaged: {fileID: 2673585980375571859}
+  damagedShake: 0.1
 --- !u!114 &6042603824428787139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +458,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   scanner: {fileID: 0}
+  repulsionTag: 
+  repulsionThreshold: 0
+  arriveWeight: 0
 --- !u!114 &6042603824428787199
 MonoBehaviour:
   m_ObjectHideFlags: 0
