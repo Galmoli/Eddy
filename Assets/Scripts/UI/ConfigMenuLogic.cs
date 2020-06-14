@@ -3,22 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ConfigMenuLogic : MonoBehaviour
 {
     private enum ConfigMenuOptions
     {
-        Volume,
+        VolumeMusic,
+        VolumeSFX,
         Back
     }
     
     private InputActions _input;
     private ConfigMenuOptions _option;
 
-    [SerializeField] private TextMeshProUGUI volume;
+    [SerializeField] private Slider sliderMusic;
+    [SerializeField] private Slider sliderSFX;
+    
+    [SerializeField] private TextMeshProUGUI volumeMusic;
+    [SerializeField] private TextMeshProUGUI volumeSFX;
     [SerializeField] private TextMeshProUGUI backImage;
-    public Animator volumeBgAnim;
+    public Animator volumeMusicBgAnim;
+    public Animator volumeSFXBgAnim;
     public Animator backBgAnim;
+
+    private Vector2 sliderVector;
 
     private void Awake()
     {
@@ -28,16 +37,17 @@ public class ConfigMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuNavigationUp.started += ctx => ItemUp();
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
         _input.PlayerControls.MenuAccept.started += ctx => AcceptItem();
+        _input.PlayerControls.MenuSlider.performed += callbackContext => sliderVector = callbackContext.ReadValue<Vector2>();
     }
 
     private void OnEnable()
     {
         _input.Enable();
-        _option = ConfigMenuOptions.Volume;
+        _option = ConfigMenuOptions.VolumeMusic;
 
-        volume.transform.localScale = new Vector3(1.1f,1.1f, 1);
-        volume.color = Color.black;
-        volumeBgAnim.SetTrigger("enable");
+        volumeMusic.transform.localScale = new Vector3(1.1f,1.1f, 1);
+        volumeMusic.color = Color.black;
+        volumeMusicBgAnim.SetTrigger("enable");
     }
 
     private void OnDisable()
@@ -45,20 +55,42 @@ public class ConfigMenuLogic : MonoBehaviour
         _input.Disable();
     }
 
+    private void Update()
+    {
+        switch (_option)
+        {
+            case ConfigMenuOptions.VolumeMusic:
+                if(Mathf.Abs(sliderVector.x) > 0.25f) sliderMusic.value += sliderVector.x * 0.02f;
+                break;
+            case ConfigMenuOptions.VolumeSFX:
+                if(Mathf.Abs(sliderVector.x) > 0.25f) sliderSFX.value += sliderVector.x * 0.02f;
+                break;
+        }
+    }
+
     private void ItemUp()
     {
         switch (_option)
         {
-            case ConfigMenuOptions.Volume:
+            case ConfigMenuOptions.VolumeMusic:
+                break;
+            case ConfigMenuOptions.VolumeSFX:
+                _option = ConfigMenuOptions.VolumeMusic;
+                volumeSFX.transform.localScale = new Vector3(1,1, 1);
+                volumeSFX.color = Color.white;
+                volumeSFXBgAnim.SetTrigger("disable");
+                volumeMusic.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                volumeMusic.color = Color.black;
+                volumeMusicBgAnim.SetTrigger("enable");
                 break;
             case ConfigMenuOptions.Back:
-                _option = ConfigMenuOptions.Volume;
+                _option = ConfigMenuOptions.VolumeSFX;
                 backImage.transform.localScale = new Vector3(1,1,1);
                 backImage.color = Color.white;
                 backBgAnim.SetTrigger("disable");
-                volume.transform.localScale = new Vector3(1.1f,1.1f, 1);
-                volume.color = Color.black;
-                volumeBgAnim.SetTrigger("enable");
+                volumeSFX.transform.localScale = new Vector3(1.1f,1.1f, 1);
+                volumeSFX.color = Color.black;
+                volumeSFXBgAnim.SetTrigger("enable");
                 break;
         }
     }
@@ -67,14 +99,23 @@ public class ConfigMenuLogic : MonoBehaviour
     {
         switch (_option)
         {
-            case ConfigMenuOptions.Volume:
-                volume.transform.localScale = new Vector3(1, 1, 1);
-                volume.color = Color.white;
-                volumeBgAnim.SetTrigger("disable");
+            case ConfigMenuOptions.VolumeMusic:
+                _option = ConfigMenuOptions.VolumeSFX;
+                volumeMusic.transform.localScale = new Vector3(1, 1, 1);
+                volumeMusic.color = Color.white;
+                volumeMusicBgAnim.SetTrigger("disable");
+                volumeSFX.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                volumeSFX.color = Color.black;
+                volumeSFXBgAnim.SetTrigger("enable");
+                break;
+            case ConfigMenuOptions.VolumeSFX:
+                _option = ConfigMenuOptions.Back;
+                volumeSFX.transform.localScale = new Vector3(1, 1, 1);
+                volumeSFX.color = Color.white;
+                volumeSFXBgAnim.SetTrigger("disable");
                 backImage.transform.localScale = new Vector3(1.1f,1.1f, 1);
                 backImage.color = Color.black;
                 backBgAnim.SetTrigger("enable");
-                _option = ConfigMenuOptions.Back;
                 break;
             case ConfigMenuOptions.Back:
                 break;
@@ -85,8 +126,6 @@ public class ConfigMenuLogic : MonoBehaviour
     {
         switch (_option)
         {
-            case ConfigMenuOptions.Volume:
-                break;
             case ConfigMenuOptions.Back:
                 Back();
                 break;
