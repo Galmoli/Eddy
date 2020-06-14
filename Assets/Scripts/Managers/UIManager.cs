@@ -41,6 +41,11 @@ public class UIManager : MonoBehaviour
         _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
     }
 
+    private void OnDestroy()
+    {
+        _input.PlayerControls.Pause.started -= ctx => ShowPauseMenu();
+    }
+
     private void Start()
     {
         Time.timeScale = 1;

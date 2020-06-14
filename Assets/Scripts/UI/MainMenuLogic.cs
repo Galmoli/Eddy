@@ -123,6 +123,7 @@ public class MainMenuLogic : MonoBehaviour
                 UIManager.Instance.Play();
                 break;
             case MainMenuOptions.Options:
+                optionsImage.color = Color.white;
                 UIManager.Instance.ShowConfigMenu();
                 break;
             case MainMenuOptions.Exit:

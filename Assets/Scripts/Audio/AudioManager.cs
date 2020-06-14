@@ -46,6 +46,9 @@ public class AudioManager : MonoBehaviour
 
         musicBus = RuntimeManager.GetBus("bus:/Master/Music");
         SFXBus = RuntimeManager.GetBus("bus:/Master/SFX");
+        
+        SetMusicVolume(PlayerPrefs.GetFloat("musicVolume", 1));
+        SetSFXVolume(PlayerPrefs.GetFloat("sfxVolume", 1));
     }
 
     void Update()

@@ -113,6 +113,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MenuSlider"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""59a30987-8359-47c3-80b9-e89970e6011c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -390,6 +398,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""SkipDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b25cf554-acb6-4728-b46c-f0f3c599a1ba"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSlider"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bd3fcdf-095d-4eb3-a961-a9fa3264dd2a"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuSlider"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -410,6 +440,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_MenuNavigationUp = m_PlayerControls.FindAction("MenuNavigationUp", throwIfNotFound: true);
         m_PlayerControls_MenuNavigationDown = m_PlayerControls.FindAction("MenuNavigationDown", throwIfNotFound: true);
         m_PlayerControls_SkipDialogue = m_PlayerControls.FindAction("SkipDialogue", throwIfNotFound: true);
+        m_PlayerControls_MenuSlider = m_PlayerControls.FindAction("MenuSlider", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -471,6 +502,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_MenuNavigationUp;
     private readonly InputAction m_PlayerControls_MenuNavigationDown;
     private readonly InputAction m_PlayerControls_SkipDialogue;
+    private readonly InputAction m_PlayerControls_MenuSlider;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -487,6 +519,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MenuNavigationUp => m_Wrapper.m_PlayerControls_MenuNavigationUp;
         public InputAction @MenuNavigationDown => m_Wrapper.m_PlayerControls_MenuNavigationDown;
         public InputAction @SkipDialogue => m_Wrapper.m_PlayerControls_SkipDialogue;
+        public InputAction @MenuSlider => m_Wrapper.m_PlayerControls_MenuSlider;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -532,6 +565,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @SkipDialogue.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
                 @SkipDialogue.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
                 @SkipDialogue.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkipDialogue;
+                @MenuSlider.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
+                @MenuSlider.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
+                @MenuSlider.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -572,6 +608,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @SkipDialogue.started += instance.OnSkipDialogue;
                 @SkipDialogue.performed += instance.OnSkipDialogue;
                 @SkipDialogue.canceled += instance.OnSkipDialogue;
+                @MenuSlider.started += instance.OnMenuSlider;
+                @MenuSlider.performed += instance.OnMenuSlider;
+                @MenuSlider.canceled += instance.OnMenuSlider;
             }
         }
     }
@@ -590,5 +629,6 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMenuNavigationUp(InputAction.CallbackContext context);
         void OnMenuNavigationDown(InputAction.CallbackContext context);
         void OnSkipDialogue(InputAction.CallbackContext context);
+        void OnMenuSlider(InputAction.CallbackContext context);
     }
 }
