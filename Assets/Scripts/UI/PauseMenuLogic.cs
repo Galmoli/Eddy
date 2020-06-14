@@ -30,7 +30,7 @@ public class PauseMenuLogic : MonoBehaviour
     {
         _input = new InputActions();
         _input.Enable();
-        _input.PlayerControls.MenuBack.started += ctx => UIManager.Instance.HidePauseMenu();
+        _input.PlayerControls.MenuBack.started += ctx => HidePauseMenu();
         _input.PlayerControls.MenuAccept.started += ctx => AcceptOption();
         _input.PlayerControls.MenuNavigationUp.started += ctx => ItemUp();
         _input.PlayerControls.MenuNavigationDown.started += ctx => ItemDown();
@@ -119,6 +119,7 @@ public class PauseMenuLogic : MonoBehaviour
                 UIManager.Instance.HidePauseMenu();
                 break;
             case PauseMenuOption.Options:
+                optionsImage.color = Color.white;
                 UIManager.Instance.ShowConfigMenu();
                 break;
             case PauseMenuOption.Exit:
@@ -141,5 +142,12 @@ public class PauseMenuLogic : MonoBehaviour
         {
             AudioManager.Instance.PlayOneShotSound(buttonClickSoundPath, transform);
         }
+    }
+
+    private void HidePauseMenu()
+    {
+        optionsImage.color = Color.white;
+        exitImage.color = Color.white;
+        UIManager.Instance.HidePauseMenu();
     }
 }

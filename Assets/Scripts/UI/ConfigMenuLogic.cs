@@ -127,6 +127,7 @@ public class ConfigMenuLogic : MonoBehaviour
         switch (_option)
         {
             case ConfigMenuOptions.Back:
+                backImage.color = Color.white;
                 Back();
                 break;
         }
@@ -134,6 +135,8 @@ public class ConfigMenuLogic : MonoBehaviour
 
     private void Back()
     {
+        volumeSFX.color = Color.white;
+        backImage.color = Color.white;
         UIManager.Instance.HideConfigMenu();
     }
 }
