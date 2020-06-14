@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         ResetWaveController();
         ResetEnemies();
         GoToScene();
+        RemoveDeadEnemies();
     }
 
     private void ResetWaveController()
@@ -60,6 +61,16 @@ public class GameManager : MonoBehaviour
                 e.enemyO.transform.position = e.spawnPos;
                 e.enemyB.ResetHealth();
             }
+        }  
+    }
+
+    private void RemoveDeadEnemies()
+    {
+        GameObject[] deadEnemys = GameObject.FindGameObjectsWithTag("EnemyDead");
+        Debug.Log(deadEnemys.Length);
+        for (int i = 0; i < deadEnemys.Length; i++)
+        {
+            Destroy(deadEnemys[i]);
         }
     }
 
