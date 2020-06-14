@@ -24,6 +24,7 @@ public class FinalBedScript : MonoBehaviour
         if (id == "Conversation_7")
         {
             UIManager.Instance.FadeIn();
+            GeneralMusicManager.Instance.ChangeMusic(0);
             StartCoroutine(LoadFinalDialogue());
         }
     }

@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
 
     private List<SoundManagerMovingSound> positionEvents;
 
+    private Bus musicBus;
+    private Bus SFXBus;
+
     public static AudioManager Instance
     {
         get
@@ -31,7 +34,6 @@ public class AudioManager : MonoBehaviour
     {
         if ((instance != null && instance != this))
         {
-            //DestroyObject(this.gameObject);
             Destroy(this.gameObject);
             return;
         }
@@ -41,6 +43,9 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(this);
             Init();
         }
+
+        musicBus = RuntimeManager.GetBus("bus:/Master/Music");
+        SFXBus = RuntimeManager.GetBus("bus:/Master/SFX");
     }
 
     void Update()
@@ -120,6 +125,16 @@ public class AudioManager : MonoBehaviour
             SoundManagerMovingSound movingSound = new SoundManagerMovingSound(transform, soundEvent);
             positionEvents.Add(movingSound);
             eventsList.Add(soundEvent);
+        }
+        return soundEvent;
+    }
+
+    public EventInstance PlayMusic(string path)
+    {
+        EventInstance soundEvent = RuntimeManager.CreateInstance(path);
+        if (!soundEvent.Equals(null))
+        {
+            soundEvent.start();
         }
         return soundEvent;
     }
@@ -204,6 +219,16 @@ public class AudioManager : MonoBehaviour
         if (RuntimeManager.StudioSystem.getVCA("vca:/"+channel, out vca) != FMOD.RESULT.OK)
             return;
         vca.setVolume(channelVolume);
+    }
+
+    public void SetMusicVolume(float volume)
+    {   
+        musicBus.setVolume(Mathf.Clamp(volume, 0f, 1f));
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        SFXBus.setVolume(Mathf.Clamp(volume, 0f, 1f));
     }
 
     public bool ValidEvent(string eventPath)
