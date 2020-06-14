@@ -254,6 +254,7 @@ public class PlayerCombatController : StateMachine
     public void StopAreaAttackChargingSound_2()
     {
         areaAttackChargingSoundEvent_2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        Debug.Log("Stopped");
     }
 
     public void AreaAttackChargedSound()
