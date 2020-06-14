@@ -63,6 +63,11 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     [HideInInspector] public SphereCollider scannerSphereCollider;
 
+    [Header("Linear Repulsion Variables")]
+    [TagSelector] public string repulsionTag;
+    public float repulsionThreshold;
+    public float arriveWeight;
+
     [Header("Wander Steering Variables")]
     public float wanderRate;
     public float wanderRadius;
@@ -155,17 +160,21 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
 
     void SetArrivePlusAvoidVariables()
     {
-        ArrivePlusAvoid arrivePlusVoid = GetComponent<ArrivePlusAvoid>();
+        ArrivePlusAvoid arrivePlusAvoid = GetComponent<ArrivePlusAvoid>();
 
-        arrivePlusVoid.closeEnoughRadius = closeEnoughRadius;
-        arrivePlusVoid.slowDownRadius = slowDownRadius;
+        arrivePlusAvoid.closeEnoughRadius = closeEnoughRadius;
+        arrivePlusAvoid.slowDownRadius = slowDownRadius;
 
-        arrivePlusVoid.lookAheadLength = lookAheadLength;
-        arrivePlusVoid.avoidDistance = avoidDistance;
-        arrivePlusVoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
-        arrivePlusVoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
-        arrivePlusVoid.avoidLayers = avoidLayers;
-        arrivePlusVoid.scanner = scannerSphereCollider;
+        arrivePlusAvoid.lookAheadLength = lookAheadLength;
+        arrivePlusAvoid.avoidDistance = avoidDistance;
+        arrivePlusAvoid.secondaryWhiskerAngle = secondaryWhiskerAngle;
+        arrivePlusAvoid.secondaryWhiskerRatio = secondaryWhiskerRatio;
+        arrivePlusAvoid.avoidLayers = avoidLayers;
+        arrivePlusAvoid.scanner = scannerSphereCollider;
+
+        arrivePlusAvoid.repulsionTag = repulsionTag;
+        arrivePlusAvoid.repulsionThreshold = repulsionThreshold;
+        arrivePlusAvoid.arriveWeight = arriveWeight;
     }
 
     void SetWanderPlusAvoidVariables()

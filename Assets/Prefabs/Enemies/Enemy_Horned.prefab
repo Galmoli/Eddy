@@ -392,7 +392,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 224769
   enemyColliderChaseHeight: 1.2
-  maxVerticalDistance: 3
+  maxVerticalDistance: 3.5
   detectionDistanceOnSight: 19
   detectionDistanceOffSight: 5
   playerOutOfRangeDistance: 20
@@ -417,13 +417,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 90113
   scannerSphereCollider: {fileID: 0}
+  repulsionTag: Enemy
+  repulsionThreshold: 15
+  arriveWeight: 0.6
   wanderRate: 20
   wanderRadius: 10
   wanderOffset: 10
-  noticeSoundPath: event:/Enemy 1/Noticing The Player/Enemy1_Notice_Take1
-  stepSoundPath: event:/Enemy 1/Step FALTA/Enemy1_Step_Take1
-  attackSoundPath: event:/Enemy 1/Attacking/Enemy1_Attack_Take1
-  deathSoundPath: event:/Enemy 1/Death/Enemy1_Death_Take1
+  noticeSoundPath: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  stepSoundPath: event:/SFX/Enemies/EnemyStep/EnemyStep
+  attackSoundPath: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  deathSoundPath: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  metalCollisionSoundPath: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
   vfxDamaged: {fileID: 3874045947869062526}
   vfxChargeHit: {fileID: 1712074973475428819}
   damagedShake: 0.1
@@ -472,6 +476,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   scanner: {fileID: 0}
+  repulsionTag: 
+  repulsionThreshold: 0
+  arriveWeight: 0
 --- !u!114 &5168323584233096812
 MonoBehaviour:
   m_ObjectHideFlags: 0
