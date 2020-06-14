@@ -40,6 +40,12 @@ public class ConfigMenuLogic : MonoBehaviour
         _input.PlayerControls.MenuSlider.performed += callbackContext => sliderVector = callbackContext.ReadValue<Vector2>();
     }
 
+    private void Start()
+    {
+        sliderMusic.value = PlayerPrefs.GetFloat("musicVolume", 1);
+        sliderSFX.value = PlayerPrefs.GetFloat("sfxVolume", 1);
+    }
+
     private void OnDestroy()
     {
         _input.PlayerControls.MenuBack.started -= ctx => Back();
@@ -69,10 +75,20 @@ public class ConfigMenuLogic : MonoBehaviour
         switch (_option)
         {
             case ConfigMenuOptions.VolumeMusic:
-                if(Mathf.Abs(sliderVector.x) > 0.25f) sliderMusic.value += sliderVector.x * 0.02f;
+                if (Mathf.Abs(sliderVector.x) > 0.25f)
+                {
+                    sliderMusic.value += sliderVector.x * 0.02f;
+                    AudioManager.Instance.SetMusicVolume(sliderMusic.value);
+                    PlayerPrefs.SetFloat("musicVolume", sliderMusic.value);
+                }
                 break;
             case ConfigMenuOptions.VolumeSFX:
-                if(Mathf.Abs(sliderVector.x) > 0.25f) sliderSFX.value += sliderVector.x * 0.02f;
+                if (Mathf.Abs(sliderVector.x) > 0.25f)
+                {
+                    sliderSFX.value += sliderVector.x * 0.02f;
+                    AudioManager.Instance.SetSFXVolume(sliderSFX.value);
+                    PlayerPrefs.SetFloat("sfxVolume", sliderSFX.value);
+                }
                 break;
         }
     }
