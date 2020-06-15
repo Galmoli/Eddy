@@ -25,6 +25,7 @@ public class UIHelperController : MonoBehaviour
         Talk,
         Read,
         Pick,
+        SpinAttack,
         None
     }
 
@@ -39,6 +40,8 @@ public class UIHelperController : MonoBehaviour
     [SerializeField] private GameObject ButtonTalk;
     [SerializeField] private GameObject ButtonRead;
     [SerializeField] private GameObject ButtonPick;
+    [SerializeField] private GameObject ButtonAttack;
+    [SerializeField] private GameObject ButtonSpinAttack;
 
     [HideInInspector] public HelperAction actionToComplete;
 
@@ -70,7 +73,7 @@ public class UIHelperController : MonoBehaviour
                 ButtonY.SetActive(true);
                 break;
             case HelperAction.Attack:
-                ButtonX.SetActive(true);
+                ButtonAttack.SetActive(true);
                 break;
             case HelperAction.Scanner:
                 ButtonR1.SetActive(true);
@@ -86,6 +89,9 @@ public class UIHelperController : MonoBehaviour
                 break;
             case HelperAction.Pick:
                 ButtonPick.SetActive(true);
+                break;
+            case HelperAction.SpinAttack:
+                ButtonSpinAttack.SetActive(true);
                 break;
         }
         helpersParent.transform.position = anchor;
@@ -113,6 +119,8 @@ public class UIHelperController : MonoBehaviour
         ButtonTalk.SetActive(false);
         ButtonRead.SetActive(false);
         ButtonPick.SetActive(false);
+        ButtonAttack.SetActive(false);
+        ButtonSpinAttack.SetActive(false);
     }
 
     public void DisableHelper(float time)

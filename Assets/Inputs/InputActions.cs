@@ -121,6 +121,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpinAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b095434-767a-47c3-b63b-d034d7582f91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -215,7 +223,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""633a8f47-9366-4054-8923-a346e1442fef"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -281,7 +289,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b916a3be-9e00-41a7-8fe0-ce49eec8a499"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -293,6 +301,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""56bc88de-7658-459a-8051-a1d237d6e75e"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scanner"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9360ec5-830c-4459-9026-bc3ccabed278"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -420,6 +439,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""MenuSlider"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""062b4ac6-9023-4d87-9e6f-50255ec4aacc"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpinAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5f098cf-db94-4246-ae51-565de4bfaa53"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpinAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -441,6 +482,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_PlayerControls_MenuNavigationDown = m_PlayerControls.FindAction("MenuNavigationDown", throwIfNotFound: true);
         m_PlayerControls_SkipDialogue = m_PlayerControls.FindAction("SkipDialogue", throwIfNotFound: true);
         m_PlayerControls_MenuSlider = m_PlayerControls.FindAction("MenuSlider", throwIfNotFound: true);
+        m_PlayerControls_SpinAttack = m_PlayerControls.FindAction("SpinAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -503,6 +545,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_MenuNavigationDown;
     private readonly InputAction m_PlayerControls_SkipDialogue;
     private readonly InputAction m_PlayerControls_MenuSlider;
+    private readonly InputAction m_PlayerControls_SpinAttack;
     public struct PlayerControlsActions
     {
         private @InputActions m_Wrapper;
@@ -520,6 +563,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MenuNavigationDown => m_Wrapper.m_PlayerControls_MenuNavigationDown;
         public InputAction @SkipDialogue => m_Wrapper.m_PlayerControls_SkipDialogue;
         public InputAction @MenuSlider => m_Wrapper.m_PlayerControls_MenuSlider;
+        public InputAction @SpinAttack => m_Wrapper.m_PlayerControls_SpinAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,6 +612,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MenuSlider.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
                 @MenuSlider.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
                 @MenuSlider.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMenuSlider;
+                @SpinAttack.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSpinAttack;
+                @SpinAttack.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSpinAttack;
+                @SpinAttack.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSpinAttack;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -611,6 +658,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MenuSlider.started += instance.OnMenuSlider;
                 @MenuSlider.performed += instance.OnMenuSlider;
                 @MenuSlider.canceled += instance.OnMenuSlider;
+                @SpinAttack.started += instance.OnSpinAttack;
+                @SpinAttack.performed += instance.OnSpinAttack;
+                @SpinAttack.canceled += instance.OnSpinAttack;
             }
         }
     }
@@ -630,5 +680,6 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMenuNavigationDown(InputAction.CallbackContext context);
         void OnSkipDialogue(InputAction.CallbackContext context);
         void OnMenuSlider(InputAction.CallbackContext context);
+        void OnSpinAttack(InputAction.CallbackContext context);
     }
 }

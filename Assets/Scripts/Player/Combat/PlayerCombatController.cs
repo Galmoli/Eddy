@@ -59,6 +59,8 @@ public class PlayerCombatController : StateMachine
         _input.Enable();
         _input.PlayerControls.Attack.started += ctx => SimpleAttack(false);
         _input.PlayerControls.Attack.canceled += ctx => InputRelease();
+        _input.PlayerControls.SpinAttack.started += ctx => SpinAttack();
+        _input.PlayerControls.SpinAttack.canceled += ctx => InputRelease();
         
         SetState(new IdleState(this));
         swordTrigger.OnHit += StateInteract;
@@ -81,11 +83,17 @@ public class PlayerCombatController : StateMachine
         if(nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
     }
 
+    public void SpinAttack()
+    {
+        if (!sword.HoldingSword()) return;
+        StartCoroutine(ChargeCounter());
+    }
+
     private void SimpleAttack(bool auto)
     {
         if (!sword.HoldingSword()) return;
         if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
-        if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
+        //if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
 
         if (state.GetType() == typeof(SimpleAttackState) && !auto)
         {
@@ -94,7 +102,7 @@ public class PlayerCombatController : StateMachine
                 nextAttackReserved = false;
                 return;
             }
-            _chargeCoroutine = StartCoroutine(ChargeCounter());
+            //_chargeCoroutine = StartCoroutine(ChargeCounter());
             nextAttackReserved = true;
             return;
         }
@@ -105,15 +113,15 @@ public class PlayerCombatController : StateMachine
         SetState(new SimpleAttackState(this));
         _comboCoroutine = StartCoroutine(ComboCounter());
         nextAttackReserved = false;
-        if(!auto) _chargeCoroutine = StartCoroutine(ChargeCounter());
+        //if(!auto) _chargeCoroutine = StartCoroutine(ChargeCounter());
     }
 
     private void InputRelease()
     {
         if (state.GetType() == typeof(SimpleAttackState))
         {
-            animator.SetBool("isChargingAttack", false);
-            StopCoroutine(_chargeCoroutine);
+            //animator.SetBool("isChargingAttack", false);
+            //StopCoroutine(_chargeCoroutine);
             return;
         }
 
