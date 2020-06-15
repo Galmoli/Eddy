@@ -81,10 +81,11 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     private bool checkingInVolumeScannerOff;
 
     [Header("Sounds")]
+    [FMODUnity.EventRef] public string pipeSpawnSoundPath;
     [FMODUnity.EventRef] public string noticeSoundPath;
     [FMODUnity.EventRef] public string stepSoundPath;
     [FMODUnity.EventRef] public string attackSoundPath;
-    [FMODUnity.EventRef] public string deathSoundPath;
+    [FMODUnity.EventRef] public string deathSoundPath; 
 
     [Header("VFX")]
     public VisualEffect vfxDamaged;
@@ -272,6 +273,14 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         vfxDamaged.Stop();
     }
     #region Sounds
+    public void PipeSpawnSound()
+    {
+        if (AudioManager.Instance.ValidEvent(pipeSpawnSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(pipeSpawnSoundPath, transform);
+        }
+    }
+
     public void AttackSound()
     {
         if (AudioManager.Instance.ValidEvent(attackSoundPath))

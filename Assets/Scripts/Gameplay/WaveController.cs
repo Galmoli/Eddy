@@ -147,6 +147,7 @@ public class WaveController : MonoBehaviour
                 chargingEnemyBlackboard.detectionDistanceOnSight = 50;
                 chargingEnemyBlackboard.detectionDistanceOffSight = 50;
                 chargingEnemyBlackboard.playerOutOfRangeDistance = 100;
+                chargingEnemyBlackboard.PipeSpawnSound();
             }
 
             if (throwHandsEnemyBlackboard)
@@ -154,6 +155,7 @@ public class WaveController : MonoBehaviour
                 throwHandsEnemyBlackboard.detectionDistanceOnSight = 50;
                 throwHandsEnemyBlackboard.detectionDistanceOffSight = 50;
                 throwHandsEnemyBlackboard.playerOutOfRangeDistance = 100;
+                throwHandsEnemyBlackboard.PipeSpawnSound();
             }
 
             if (i < waves[currentWave].enemies.Length - 1)
