@@ -78,6 +78,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     private bool checkingInVolumeScannerOff;
 
     [Header("Sounds")]
+    [FMODUnity.EventRef] public string pipeSpawnSoundPath;
     [FMODUnity.EventRef] public string noticeSoundPath;
     [FMODUnity.EventRef] public string stepSoundPath;
     [FMODUnity.EventRef] public string attackSoundPath;
@@ -272,6 +273,14 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         vfxDamaged.Stop();
     }
     #region Sounds
+    public void PipeSpawnSound()
+    {
+        if (AudioManager.Instance.ValidEvent(pipeSpawnSoundPath))
+        {
+            AudioManager.Instance.PlayOneShotSound(pipeSpawnSoundPath, transform);
+        }
+    }
+
     public void AttackSound(bool metalSurface)
     {
         if (metalSurface)
