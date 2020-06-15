@@ -45,6 +45,8 @@ public class WaveScene : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L)) CheersSound();
+        
         if (waveActivated)
         {
             crowd.gameObject.SetActive(true);
@@ -108,7 +110,7 @@ public class WaveScene : MonoBehaviour
         {
             if (AudioManager.Instance.ValidEvent(sounds.crowdSoundPath))
             {
-                crowdSoundEvent = AudioManager.Instance.PlayEvent(sounds.crowdSoundPath, transform);
+                crowdSoundEvent = AudioManager.Instance.PlayEvent(sounds.crowdSoundPath, sounds.transform);
             }
         }
     }
@@ -122,7 +124,7 @@ public class WaveScene : MonoBehaviour
     {
         if (AudioManager.Instance.ValidEvent(sounds.applauseSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, crowd);
+            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, sounds.transform);
         }
     }
 
