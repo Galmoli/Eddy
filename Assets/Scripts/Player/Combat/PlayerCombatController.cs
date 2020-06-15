@@ -30,6 +30,7 @@ public class PlayerCombatController : StateMachine
     [SerializeField] private float maxChargeTime;
     [HideInInspector] public int simpleAttackCount;
     [HideInInspector] public bool nextAttackReserved;
+    [HideInInspector] public bool nextSpinAttackReserved;
     [HideInInspector] public EnemyBlackboard target;
     
     private float _timeSinceLastSimpleAttack;
@@ -49,7 +50,6 @@ public class PlayerCombatController : StateMachine
     public SkinnedMeshRenderer meshRenderer;
     [HideInInspector] public Material iniMeshMat;
     public Material damagedMeshMat;
-    bool charging;
 
     private EventInstance areaAttackChargingSoundEvent_1;
     private EventInstance areaAttackChargingSoundEvent_2;
@@ -81,20 +81,34 @@ public class PlayerCombatController : StateMachine
     private void Update()
     {
         state.Update();
-        if(nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
+        if (nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
+        else if (nextSpinAttackReserved && state.GetType() == typeof(IdleState))
+        {
+            nextSpinAttackReserved = false;
+            SpinAttack();
+        }
     }
 
     public void SpinAttack()
     {
         if (!sword.HoldingSword()) return;
+        if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
+
+        if (state.GetType() == typeof(SimpleAttackState))
+        {
+            nextSpinAttackReserved = true;
+            return;
+        }
+
         StartCoroutine(ChargeCounter());
     }
 
     private void SimpleAttack(bool auto)
     {
-        if (charging) return;
         if (!sword.HoldingSword()) return;
         if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
+        if (state.GetType() == typeof(IdleChargedState) || state.GetType() == typeof(AreaAttackState)) return;
+
         //if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
 
         if (state.GetType() == typeof(SimpleAttackState) && !auto)
@@ -129,7 +143,6 @@ public class PlayerCombatController : StateMachine
 
         if (state.GetType() == typeof(IdleChargedState))
         {
-            charging = false;
             StateInteract();
         }
     }
@@ -183,7 +196,6 @@ public class PlayerCombatController : StateMachine
             _timeCharging += Time.deltaTime;
             if (_timeCharging >= timeToStartCharging && state.GetType() != typeof(IdleChargedState))
             {
-                charging = true;
                 swordTrigger.DisableTrigger();
                 SetState(new IdleChargedState(this));
             }
