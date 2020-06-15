@@ -124,7 +124,7 @@ public class WaveScene : MonoBehaviour
     {
         if (AudioManager.Instance.ValidEvent(sounds.applauseSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, sounds.transform);
+            AudioManager.Instance.PlayEvent(sounds.applauseSoundPath, sounds.transform);
         }
     }
 
@@ -132,7 +132,7 @@ public class WaveScene : MonoBehaviour
     {
         if (AudioManager.Instance.ValidEvent(sounds.cheersSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.cheersSoundPath, sounds.transform);
+            AudioManager.Instance.PlayEvent(sounds.cheersSoundPath, sounds.transform);
         }
     }
 
@@ -148,7 +148,7 @@ public class WaveScene : MonoBehaviour
     {
         if (AudioManager.Instance.ValidEvent(sounds.finalRoundSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.finalRoundSoundPath, sounds.transform);
+            AudioManager.Instance.PlayEvent(sounds.finalRoundSoundPath, sounds.transform);
         }
     }
 }

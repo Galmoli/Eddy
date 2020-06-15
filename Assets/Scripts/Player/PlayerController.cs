@@ -62,10 +62,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_playerSounds.deathSoundPath, transform);
-            }
+            PlayDeathSound();
 
             SetDeadState();
             _isDead = true;
@@ -92,10 +89,7 @@ public class PlayerController : MonoBehaviour
             if (cameraShake != null) cameraShake.ShakeCamera(damagedShake, 0.2f);
             UIManager.Instance.Hit(damage);
 
-            if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(_playerSounds.damageReceivedSoundPath, transform);
-            }
+            PlayDamageSound();
         }
     }
 
@@ -177,4 +171,22 @@ public class PlayerController : MonoBehaviour
         if (!cc.enabled) cc.enabled = true;
         FindObjectOfType<CameraController>().SetPositionImmediately();
     }
+
+    #region Sounds
+    private void PlayDamageSound()
+    {
+        if (AudioManager.Instance.ValidEvent(_playerSounds.damageReceivedSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(_playerSounds.damageReceivedSoundPath, transform);
+        }
+    }
+
+    private void PlayDeathSound()
+    {
+        if (AudioManager.Instance.ValidEvent(_playerSounds.deathSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(_playerSounds.deathSoundPath, transform);
+        }
+    }
+    #endregion
 }

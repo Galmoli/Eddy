@@ -87,7 +87,7 @@ public class HornedEnemyWall : MonoBehaviour
     {
         if (AudioManager.Instance.ValidEvent(sounds.woodenPlanksSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.woodenPlanksSoundPath, transform);
+            AudioManager.Instance.PlayEvent(sounds.woodenPlanksSoundPath, transform);
         }
     }
 }

@@ -75,6 +75,7 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
             paused = true;
+            AudioManager.Instance.PauseAllEvents();
         }
     }
 
@@ -85,6 +86,7 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1;
             paused = false;
+            AudioManager.Instance.ResumeAllEvents();
         }
     }
 
