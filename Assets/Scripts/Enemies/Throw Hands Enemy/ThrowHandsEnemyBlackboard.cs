@@ -95,7 +95,6 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
 
     private void OnEnable()
     {
-        vfxChargeHit.Stop();
         vfxDamaged.Stop();
     }
 
