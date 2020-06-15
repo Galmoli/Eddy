@@ -253,6 +253,14 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         checkingInVolumeScannerOff = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "EnemiesDeadZone")
+        {
+            healthPoints = 0;
+        }
+    }
+
     public override void OnCollisionStay(Collision other)
     {
         if (checkingInVolumeScannerOff && other.gameObject.layer == LayerMask.NameToLayer("Hide"))
@@ -265,6 +273,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
             healthPoints = 0;
         }
     }
+
     IEnumerator playDamaged()
     {
         vfxDamaged.transform.localEulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 70), 0);
