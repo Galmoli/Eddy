@@ -38,6 +38,7 @@ public class PlayerSounds : MonoBehaviour
     [FMODUnity.EventRef] public string woodenPlanksSoundPath;
 
     [Header("Crowd")]
+    [FMODUnity.EventRef] public string crowdSoundPath;
     [FMODUnity.EventRef] public string applauseSoundPath;
     [FMODUnity.EventRef] public string cheersSoundPath; 
     [FMODUnity.EventRef] public string confettiPopSoundPath;

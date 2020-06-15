@@ -4,8 +4,8 @@ namespace Steerings
 {
 	public class LinearRepulsion : SteeringBehaviour
 	{
-		public string idTag = "Enemy";
-		public float repulsionThreshold = 20f;
+		public string idTag;
+		public float repulsionThreshold;
 
 		public override SteeringOutput GetSteering ()
 		{
@@ -36,7 +36,7 @@ namespace Steerings
 
 			SteeringOutput result = new SteeringOutput ();
 
-			GameObject[] targets = GameObject.FindGameObjectsWithTag (tag);
+			GameObject[] targets = GameObject.FindGameObjectsWithTag ("Enemy");
 
 			foreach (GameObject target in targets)
 			{
