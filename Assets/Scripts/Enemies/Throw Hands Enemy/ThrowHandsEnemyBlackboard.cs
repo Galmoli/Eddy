@@ -310,7 +310,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
     {
         if (AudioManager.Instance.ValidEvent(deathSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
+            AudioManager.Instance.PlayEvent(deathSoundPath, transform);
         }
     }
 

@@ -320,7 +320,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     {
         if (AudioManager.Instance.ValidEvent(deathSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(deathSoundPath, transform);
+            AudioManager.Instance.PlayEvent(deathSoundPath, transform);
         }
     }
 

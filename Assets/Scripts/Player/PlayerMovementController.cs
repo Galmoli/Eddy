@@ -210,7 +210,7 @@ public class PlayerMovementController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.jumpSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.jumpSoundPath, transform);
         }  
     }
 
@@ -218,7 +218,7 @@ public class PlayerMovementController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.landSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.landSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.landSoundPath, transform);
         }
     }
 

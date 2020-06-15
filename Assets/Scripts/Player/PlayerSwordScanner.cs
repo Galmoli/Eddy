@@ -164,17 +164,11 @@ public class PlayerSwordScanner : MonoBehaviour
 
         if (activeScanner)
         {
-            if (!AudioManager.Instance.isPlaying(scannerSoundEvent))
-            {
-                if (AudioManager.Instance.ValidEvent(playerSounds.scannerActiveSoundPath))
-                {
-                    scannerSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.scannerActiveSoundPath, transform);
-                }
-            }
+            ScannerSound();
         }
         else
         {
-            scannerSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            StopScannerSound();
         }
 
         //animation
@@ -251,10 +245,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
         playerMovement.animator.SetBool("isUsingScanner", true);
 
-        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOnSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOnSoundPath, transform);
-        }
+        ScannerOnSound();
     }
 
     public void ScannerOff()
@@ -282,10 +273,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
         playerMovement.animator.SetBool("isUsingScanner", false);
 
-        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOffSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.scannerOffSoundPath, transform);
-        }
+        ScannerOffSound();
     }
 
     private void Stab(GameObject obj)
@@ -321,10 +309,7 @@ public class PlayerSwordScanner : MonoBehaviour
                 CheckPoint c = swordHolder.GetComponent<CheckPoint>();
                 c.Activate();
 
-                if (AudioManager.Instance.ValidEvent(playerSounds.checkpointSoundPath))
-                {
-                    AudioManager.Instance.PlayOneShotSound(playerSounds.checkpointSoundPath, transform);
-                }
+                CheckpointSound();
             }
 
             if (!swordHolder.CompareTag("MoveObject")) transform.parent = swordHolder.transform;
@@ -336,10 +321,7 @@ public class PlayerSwordScanner : MonoBehaviour
 
             if (activeScanner) _scannerIntersectionManager.CheckIntersections();
 
-            if (AudioManager.Instance.ValidEvent(playerSounds.stabSoundPath))
-            {
-                AudioManager.Instance.PlayOneShotSound(playerSounds.stabSoundPath, transform);
-            }
+            StabSound();
         } 
     }
 
@@ -401,10 +383,7 @@ public class PlayerSwordScanner : MonoBehaviour
         transform.localPosition = swordInitPos;
         transform.localRotation = swordInitRot;
 
-        if (AudioManager.Instance.ValidEvent(playerSounds.swordBackSoundPath))
-        {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.swordBackSoundPath, transform);
-        }
+        SwordBackSound();
 
         appearSwordVFX.Play();
 
@@ -455,5 +434,63 @@ public class PlayerSwordScanner : MonoBehaviour
     public bool UsingScannerInHand()
     {
         return activeScanner && HoldingSword();
-    } 
+    }
+
+    #region Sound
+    private void ScannerOnSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOnSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(playerSounds.scannerOnSoundPath, transform);
+        }
+    }
+
+    private void ScannerOffSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.scannerOffSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(playerSounds.scannerOffSoundPath, transform);
+        }
+    }
+
+    private void ScannerSound()
+    {
+        if (!AudioManager.Instance.isPlaying(scannerSoundEvent))
+        {
+            if (AudioManager.Instance.ValidEvent(playerSounds.scannerActiveSoundPath))
+            {
+                scannerSoundEvent = AudioManager.Instance.PlayEvent(playerSounds.scannerActiveSoundPath, transform);
+            }
+        }
+    }
+
+    private void StopScannerSound()
+    {
+        scannerSoundEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    private void StabSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.stabSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(playerSounds.stabSoundPath, transform);
+        }
+    }
+
+    private void SwordBackSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.swordBackSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(playerSounds.swordBackSoundPath, transform);
+        }
+    }
+
+    private void CheckpointSound()
+    {
+        if (AudioManager.Instance.ValidEvent(playerSounds.checkpointSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(playerSounds.checkpointSoundPath, transform);
+        }
+    }
+    #endregion
 }
