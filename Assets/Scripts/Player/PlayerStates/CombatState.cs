@@ -6,7 +6,6 @@ public class CombatState : State
 {
     private PlayerMovementController _controller;
     private PlayerCombatController _combatController;
-    private PlayerSwordScanner _scannerSword;
     private float _timeToExitState;
     private float _currentTime;
     private bool _exitWhenFinished;
@@ -15,8 +14,15 @@ public class CombatState : State
     {
         _controller = controller;
         _combatController = combatController;
-        _scannerSword = controller.scannerSword;
         _timeToExitState = time;
+        _exitWhenFinished = true;
+    }
+
+    public CombatState(PlayerMovementController controller, PlayerCombatController combatController)
+    {
+        _controller = controller;
+        _combatController = combatController;
+        _exitWhenFinished = false;
     }
 
     public override void Enter()
@@ -37,6 +43,7 @@ public class CombatState : State
         {
             var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
             vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
+            vector3D.y = _controller.characterController.velocity.y + Physics.gravity.y * Time.deltaTime;
             _controller.characterController.Move(vector3D * Time.deltaTime);
         }
 

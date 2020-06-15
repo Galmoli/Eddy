@@ -133,6 +133,11 @@ public class PlayerCombatController : StateMachine
         _movementController.SetState(new CombatState(_movementController, this, time));
     }
 
+    public void SetMovementControllerCombatState()
+    {
+        _movementController.SetState(new CombatState(_movementController, this));
+    }
+
     public void SetMovementControllerToMove()
     {
         _movementController.GetState().ExitState();
