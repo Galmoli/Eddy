@@ -81,6 +81,8 @@ public class PlayerCombatController : StateMachine
     private void Update()
     {
         state.Update();
+
+        Debug.Log(nextSpinAttackReserved);
         if (nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
         else if (nextSpinAttackReserved && state.GetType() == typeof(IdleState))
         {
@@ -134,12 +136,14 @@ public class PlayerCombatController : StateMachine
 
     private void InputRelease()
     {
-        if (state.GetType() == typeof(SimpleAttackState))
+        /*if (state.GetType() == typeof(SimpleAttackState))
         {
             //animator.SetBool("isChargingAttack", false);
             //StopCoroutine(_chargeCoroutine);
             return;
-        }
+        }*/
+
+        nextSpinAttackReserved = false;
 
         if (state.GetType() == typeof(IdleChargedState))
         {
