@@ -110,6 +110,7 @@ public class WaveController : MonoBehaviour
         else
         {
             waveScene.ApplauseSound();
+            waveScene.StopCrowdSound();
 
             InGameDialogue.Instance.EnableDialogue("PopUp_14");
 
@@ -125,6 +126,7 @@ public class WaveController : MonoBehaviour
 
     public IEnumerator WaveProducer()
     {
+        waveScene.PlayCrowdSound();
         waveScene.CheersSound();
         yield return new WaitForSeconds(1.0f);
 

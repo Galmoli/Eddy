@@ -81,6 +81,8 @@ public class PlayerCombatController : StateMachine
     private void Update()
     {
         state.Update();
+
+        Debug.Log(nextSpinAttackReserved);
         if (nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
         else if (nextSpinAttackReserved && state.GetType() == typeof(IdleState))
         {
@@ -134,12 +136,14 @@ public class PlayerCombatController : StateMachine
 
     private void InputRelease()
     {
-        if (state.GetType() == typeof(SimpleAttackState))
+        /*if (state.GetType() == typeof(SimpleAttackState))
         {
             //animator.SetBool("isChargingAttack", false);
             //StopCoroutine(_chargeCoroutine);
             return;
-        }
+        }*/
+
+        nextSpinAttackReserved = false;
 
         if (state.GetType() == typeof(IdleChargedState))
         {
@@ -225,7 +229,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath_1))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath_1, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.attackSoundPath_1, transform);
         }
     }
 
@@ -233,7 +237,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.attackSoundPath_2))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.attackSoundPath_2, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.attackSoundPath_2, transform);
         }
     }
 
@@ -241,7 +245,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.comboAttackSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.comboAttackSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.comboAttackSoundPath, transform);
         }
     }
 
@@ -249,7 +253,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.areaAttackSoundPath, transform);
         }
     }
 
@@ -283,14 +287,13 @@ public class PlayerCombatController : StateMachine
     public void StopAreaAttackChargingSound_2()
     {
         areaAttackChargingSoundEvent_2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        Debug.Log("Stopped");
     }
 
     public void AreaAttackChargedSound()
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.areaAttackChargedSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.areaAttackChargedSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.areaAttackChargedSoundPath, transform);
         }
     }
 
@@ -298,7 +301,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.enemyHitSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.enemyHitSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.enemyHitSoundPath, transform);
         }
     }
 
@@ -306,7 +309,7 @@ public class PlayerCombatController : StateMachine
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.enemyArmoredHitSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(playerSounds.enemyArmoredHitSoundPath, transform);
+            AudioManager.Instance.PlayEvent(playerSounds.enemyArmoredHitSoundPath, transform);
         }
     }
 
