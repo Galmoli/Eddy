@@ -49,6 +49,7 @@ public class PlayerCombatController : StateMachine
     public SkinnedMeshRenderer meshRenderer;
     [HideInInspector] public Material iniMeshMat;
     public Material damagedMeshMat;
+    bool charging;
 
     private EventInstance areaAttackChargingSoundEvent_1;
     private EventInstance areaAttackChargingSoundEvent_2;
@@ -58,7 +59,7 @@ public class PlayerCombatController : StateMachine
         _input = new InputActions();
         _input.Enable();
         _input.PlayerControls.Attack.started += ctx => SimpleAttack(false);
-        _input.PlayerControls.Attack.canceled += ctx => InputRelease();
+        //_input.PlayerControls.Attack.canceled += ctx => InputRelease();
         _input.PlayerControls.SpinAttack.started += ctx => SpinAttack();
         _input.PlayerControls.SpinAttack.canceled += ctx => InputRelease();
         
@@ -91,6 +92,7 @@ public class PlayerCombatController : StateMachine
 
     private void SimpleAttack(bool auto)
     {
+        if (charging) return;
         if (!sword.HoldingSword()) return;
         if (_movementController.GetState().GetType() != typeof(MoveState) && _movementController.GetState().GetType() != typeof(CombatState)) return;
         //if (_chargeCoroutine != null && !auto) StopCoroutine(_chargeCoroutine);
@@ -127,6 +129,7 @@ public class PlayerCombatController : StateMachine
 
         if (state.GetType() == typeof(IdleChargedState))
         {
+            charging = false;
             StateInteract();
         }
     }
@@ -180,6 +183,7 @@ public class PlayerCombatController : StateMachine
             _timeCharging += Time.deltaTime;
             if (_timeCharging >= timeToStartCharging && state.GetType() != typeof(IdleChargedState))
             {
+                charging = true;
                 swordTrigger.DisableTrigger();
                 SetState(new IdleChargedState(this));
             }
