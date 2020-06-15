@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using FMOD.Studio;
 
 public class WaveScene : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class WaveScene : MonoBehaviour
     public VisualEffect confettiRight;
 
     private PlayerSounds sounds;
+    private EventInstance crowdSoundEvent;
 
     void Start()
     {
@@ -43,6 +45,8 @@ public class WaveScene : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L)) CheersSound();
+        
         if (waveActivated)
         {
             crowd.gameObject.SetActive(true);
@@ -100,11 +104,27 @@ public class WaveScene : MonoBehaviour
         Destroy(this);
     }
 
+    public void PlayCrowdSound()
+    {
+        if (!AudioManager.Instance.isPlaying(crowdSoundEvent))
+        {
+            if (AudioManager.Instance.ValidEvent(sounds.crowdSoundPath))
+            {
+                crowdSoundEvent = AudioManager.Instance.PlayEvent(sounds.crowdSoundPath, sounds.transform);
+            }
+        }
+    }
+
+    public void StopCrowdSound()
+    {
+        crowdSoundEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     public void ApplauseSound()
     {
         if (AudioManager.Instance.ValidEvent(sounds.applauseSoundPath))
         {
-            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, crowd);
+            AudioManager.Instance.PlayOneShotSound(sounds.applauseSoundPath, sounds.transform);
         }
     }
 

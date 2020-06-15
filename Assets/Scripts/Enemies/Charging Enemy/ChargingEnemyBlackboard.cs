@@ -64,7 +64,7 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
     [HideInInspector] public SphereCollider scannerSphereCollider;
 
     [Header("Linear Repulsion Variables")]
-    [TagSelector] public string repulsionTag;
+    public string repulsionTag;
     public float repulsionThreshold;
     public float arriveWeight;
 
