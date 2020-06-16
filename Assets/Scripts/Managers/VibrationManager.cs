@@ -29,25 +29,28 @@ public class VibrationManager : MonoBehaviour
 
     public void Vibrate(Presets preset)
     {
-        switch (preset)
+        if (Gamepad.current != null)
         {
-            case Presets.NORMAL_HIT:
-                StartCoroutine(NormalHitImplementation());
-                break;
-            case Presets.HARD_HIT:
-                StartCoroutine(HardHitImplementation());
-                break;
-            case Presets.HEARTBEAT:
-                break;
-            case Presets.SUCCESS:
-                StartCoroutine(SuccessImplementation());
-                break;
-            case Presets.DESTRUCTION:
-                StartCoroutine(DestructionImplementation());
-                break;
-            case Presets.TEST:
-                StartCoroutine(TestImplementation());
-                break;
+            switch (preset)
+            {
+                case Presets.NORMAL_HIT:
+                    StartCoroutine(NormalHitImplementation());
+                    break;
+                case Presets.HARD_HIT:
+                    StartCoroutine(HardHitImplementation());
+                    break;
+                case Presets.HEARTBEAT:
+                    break;
+                case Presets.SUCCESS:
+                    StartCoroutine(SuccessImplementation());
+                    break;
+                case Presets.DESTRUCTION:
+                    StartCoroutine(DestructionImplementation());
+                    break;
+                case Presets.TEST:
+                    StartCoroutine(TestImplementation());
+                    break;
+            }
         }
     }
 
