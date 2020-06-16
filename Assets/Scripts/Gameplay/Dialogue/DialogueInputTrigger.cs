@@ -41,7 +41,7 @@ public class DialogueInputTrigger : MonoBehaviour
                 InGameDialogue.Instance.EnableDialogue(dialogueId);
             }
 
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.DisableHelper(action);
 
             if (deactivate)
                 gameObject.SetActive(false);
@@ -52,7 +52,7 @@ public class DialogueInputTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            UIHelperController.Instance.EnableHelper(action, transform.position);
+            UIHelperController.Instance.EnableHelper(action, transform.position, transform);
             playerInside = true;
         }
     }
@@ -61,7 +61,7 @@ public class DialogueInputTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-           UIHelperController.Instance.DisableHelper();
+           UIHelperController.Instance.DisableHelper(action);
            playerInside = false;
         }
     }

@@ -49,12 +49,12 @@ public class PushPullObject : MonoBehaviour
                 if (gameObject.layer == LayerMask.NameToLayer("Appear"))
                 {
                     if (GetComponentInChildren<PlayerSwordScanner>())
-                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2, transform);
                     else
-                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2);
+                        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2, transform);
                 }
                 else
-                    UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2);
+                    UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2, transform);
             }
         }
     }
@@ -80,7 +80,8 @@ public class PushPullObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //UI Helper
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Drag);
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.NailSword);
             canMove = false;
         }
     }

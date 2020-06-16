@@ -63,7 +63,7 @@ public class ObtainSword : MonoBehaviour
             GeneralMusicManager.Instance.UpdateLevel1Event(0.7f, 0);
 
             GeneralDialogue.Instance.EnableDialogue("Conversation_2");
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Pick);
         }
     }
 
@@ -81,7 +81,7 @@ public class ObtainSword : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Pick, transform.position + Vector3.up*2.5f);
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Pick, transform.position + Vector3.up*2.5f, transform);
             playerInside = true;
         }
     }
@@ -90,7 +90,7 @@ public class ObtainSword : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Pick);
             playerInside = false;
         }
     }

@@ -26,7 +26,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2);
+            UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2, transform);
         }
     }
 
@@ -34,7 +34,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            UIHelperController.Instance.DisableHelper();
+            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.NailSword);
         }
     }
 }

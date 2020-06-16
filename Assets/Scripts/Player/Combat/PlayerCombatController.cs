@@ -82,7 +82,6 @@ public class PlayerCombatController : StateMachine
     {
         state.Update();
 
-        Debug.Log(nextSpinAttackReserved);
         if (nextAttackReserved && state.GetType() == typeof(IdleState)) SimpleAttack(true);
         else if (nextSpinAttackReserved && state.GetType() == typeof(IdleState))
         {

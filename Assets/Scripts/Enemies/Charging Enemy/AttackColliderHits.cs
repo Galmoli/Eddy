@@ -9,7 +9,10 @@ public class AttackColliderHits : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (enemyAggressiveFSM.enabled && other.gameObject.layer != LayerMask.NameToLayer("ScannerLayer")
-            && other.gameObject.layer != LayerMask.NameToLayer("TriggerDetection") && other.gameObject.tag != "EnemyDead")
+            && other.gameObject.layer != LayerMask.NameToLayer("TriggerDetection") &&
+            other.gameObject.layer != LayerMask.NameToLayer("Interactables") &&
+            other.gameObject.layer != LayerMask.NameToLayer("InteractablesInScanner")
+            && other.gameObject.tag != "EnemyDead")
         { 
             if(other.tag == "Metal") enemyAggressiveFSM.HitHandler(other.transform.gameObject, true);
             else enemyAggressiveFSM.HitHandler(other.transform.gameObject, false);

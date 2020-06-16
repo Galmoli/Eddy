@@ -5,6 +5,7 @@ using UnityEngine;
 public class IdleChargedState : State
 {
     private PlayerCombatController _controller;
+    private float _currentTime;
 
     public IdleChargedState(PlayerCombatController controller)
     {
@@ -18,6 +19,12 @@ public class IdleChargedState : State
         _controller.animator.SetTrigger("StartChargeAttack");
         _controller.SetMovementControllerCombatState();
         _controller.AreaAttackChargingSound_1();
+        _currentTime = 0;
+    }
+
+    public override void Update()
+    {
+        _currentTime += Time.deltaTime;
     }
 
     public override void Interact()
@@ -27,6 +34,6 @@ public class IdleChargedState : State
 
     public override void ExitState()
     {
-        _controller.SetState(new AreaAttackState(_controller, 1));
+        _controller.SetState(new AreaAttackState(_controller, Mathf.Clamp(_currentTime/_controller.areaAttack.chargeTime, 0, 1)));
     }
 }
