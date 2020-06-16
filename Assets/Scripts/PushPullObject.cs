@@ -48,7 +48,7 @@ public class PushPullObject : MonoBehaviour
 
                 if (gameObject.layer == LayerMask.NameToLayer("Appear"))
                 {
-                    if (GetComponentInChildren<PlayerSwordScanner>())
+                    if (GameObject.FindObjectOfType<SimulateParent>()._simulate)
                         UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Drag, transform.position + Vector3.up * 2, transform);
                     else
                         UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.NailSword, transform.position + Vector3.up * 2, transform);
