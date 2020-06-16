@@ -25,6 +25,8 @@ public class AreaAttackState : State
 
         _controller.StopAreaAttackChargingSound_1();
         _controller.AreaAttackSound();
+
+        if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.SpinAttack)) UIHelperController.Instance.DisableHelper(1, UIHelperController.HelperAction.SpinAttack);
     }
 
     public override void Update()
@@ -48,7 +50,8 @@ public class AreaAttackState : State
             if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
             {
                 _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
-                Debug.Log("Enemy damaged: " + _attackObject.damage);
+
+                Debug.Log("Enemy damaged: " + _attackObject.damage * _damageMultiplier);
 
                 if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
 

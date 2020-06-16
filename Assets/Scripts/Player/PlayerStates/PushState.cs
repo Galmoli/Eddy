@@ -22,12 +22,12 @@ public class PushState : State
             _scannerSword.ScannerOff();
         }
         _controller.RotateTowardsForward(GetLookCenterVector());
-        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
+        if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.Drag)) UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Drag);
     }
 
     public override void Update()
     {
-        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Drag) UIHelperController.Instance.DisableHelper();
+        if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.Drag)) UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Drag);
         var vector3D = PlayerUtils.RetargetVector(_controller.movementVector, _controller.cameraTransform, _controller.joystickDeadZone);
         vector3D *= Mathf.Lerp(_controller.minSpeed, _controller.maxSpeed, _controller.movementVector.magnitude);
 

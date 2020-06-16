@@ -15,7 +15,7 @@ public class StabSwordState : State
     public override void Enter()
     {
         Debug.Log("Stab Sword State");
-        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.NailSword) UIHelperController.Instance.DisableHelper();
+        if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.NailSword)) UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.NailSword);
     }
 
     public override void Update()

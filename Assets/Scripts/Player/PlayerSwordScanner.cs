@@ -233,7 +233,7 @@ public class PlayerSwordScanner : MonoBehaviour
         }
 
         activeScanner = true;
-        if (UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Scanner) UIHelperController.Instance.DisableHelper();
+        if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.Scanner)) UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Scanner);
         transform.GetChild(0).gameObject.SetActive(true);
         foreach (VisualEffect vfx in swordVfx)
         {

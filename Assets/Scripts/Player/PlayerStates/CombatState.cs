@@ -28,7 +28,7 @@ public class CombatState : State
     public override void Enter()
     {
         Debug.Log("Combat State");
-        if(UIHelperController.Instance.actionToComplete == UIHelperController.HelperAction.Attack) UIHelperController.Instance.DisableHelper(1);
+        if(UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.Attack)) UIHelperController.Instance.DisableHelper(1, UIHelperController.HelperAction.Attack);
     }
 
     public override void Update()

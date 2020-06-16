@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SimulateParent : MonoBehaviour
 {
-    private bool _simulate;
+    [HideInInspector]
+    public bool _simulate;
     private Transform _targetTransform;
     private Vector3 _offset;
     void Update()

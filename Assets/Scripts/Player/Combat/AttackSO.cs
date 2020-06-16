@@ -6,4 +6,5 @@ public class AttackSO : ScriptableObject
 {
     public float damage;
     public float attackTime;
+    public float chargeTime;
 }

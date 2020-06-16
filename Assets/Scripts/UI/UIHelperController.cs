@@ -29,142 +29,57 @@ public class UIHelperController : MonoBehaviour
         None
     }
 
-    [SerializeField] private GameObject helpersParent;
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject ButtonA;
-    [SerializeField] private GameObject ButtonB;
-    [SerializeField] private GameObject ButtonY;
-    [SerializeField] private GameObject ButtonX;
-    [SerializeField] private GameObject ButtonR1;
-    [SerializeField] private GameObject Joystcik;
-    [SerializeField] private GameObject ButtonTalk;
-    [SerializeField] private GameObject ButtonRead;
-    [SerializeField] private GameObject ButtonPick;
-    [SerializeField] private GameObject ButtonAttack;
-    [SerializeField] private GameObject ButtonSpinAttack;
+    [System.Serializable]
+    public class Helper
+    {
+        public GameObject helper;
+        [HideInInspector]public Transform parent;
+        [HideInInspector] public Vector3 parentOffset;
+    }
 
-    [HideInInspector] public HelperAction actionToComplete;
-
-    private Transform parent = null;
-    private Vector3 parentOffset;
+    [SerializeField] private Helper[] helpers;
+    [HideInInspector] public List<HelperAction> actionsToComplete = new List<HelperAction>();
 
     private void Update()
     {
-        if (parent)
-            transform.position = parent.transform.position + parentOffset;
-        transform.forward = Camera.main.transform.forward;
+        for (int i = 0; i < helpers.Length; i++)
+        {
+            if (helpers[i].helper.activeInHierarchy)
+            {
+                helpers[i].helper.transform.position = helpers[i].parent.position + helpers[i].parentOffset;
+                helpers[i].helper.transform.forward = Camera.main.transform.forward;
+            }
+        }
     }
 
-    public void EnableHelper(HelperAction action, Vector3 anchor)
+  /*  public void EnableHelper(HelperAction action, Vector3 anchor)
     {
-        DisableHelper();
-        StopAllCoroutines();
-        background.SetActive(true);
-        actionToComplete = action;
-        switch (action)
-        {
-            case HelperAction.Jump:
-                ButtonA.SetActive(true);
-                break;
-            case HelperAction.Drag:
-                ButtonB.SetActive(true);
-                break;
-            case HelperAction.NailSword:
-                ButtonY.SetActive(true);
-                break;
-            case HelperAction.Attack:
-                ButtonAttack.SetActive(true);
-                break;
-            case HelperAction.Scanner:
-                ButtonR1.SetActive(true);
-                break;
-            case HelperAction.Move:
-                Joystcik.SetActive(true);
-                break;
-            case HelperAction.Talk:
-                ButtonTalk.SetActive(true);
-                break;
-            case HelperAction.Read:
-                ButtonRead.SetActive(true);
-                break;
-            case HelperAction.Pick:
-                ButtonPick.SetActive(true);
-                break;
-            case HelperAction.SpinAttack:
-                ButtonSpinAttack.SetActive(true);
-                break;
-        }
-        helpersParent.transform.position = anchor;
-    }
+        
+    }*/
 
     public void EnableHelper(HelperAction action, Vector3 anchor, Transform parent)
     {
-        EnableHelper(action, anchor);
-        this.parent = parent;
-        parentOffset = transform.position - parent.position;
+        actionsToComplete.Add(action);
+        helpers[(int)action].helper.SetActive(true);
+        helpers[(int)action].helper.transform.position = anchor;
+        helpers[(int)action].parent = parent;
+        helpers[(int)action].parentOffset = helpers[(int)action].helper.transform.position - parent.transform.position;
     }
 
-    public void DisableHelper()
+    public void DisableHelper(float time, HelperAction action)
     {
-        parent = null;
-        background.SetActive(false);
-        actionToComplete = HelperAction.None;
-        
-        ButtonA.SetActive(false);
-        ButtonB.SetActive(false);
-        ButtonX.SetActive(false);
-        ButtonY.SetActive(false);
-        ButtonR1.SetActive(false);
-        Joystcik.SetActive(false);
-        ButtonTalk.SetActive(false);
-        ButtonRead.SetActive(false);
-        ButtonPick.SetActive(false);
-        ButtonAttack.SetActive(false);
-        ButtonSpinAttack.SetActive(false);
+        StartCoroutine(DisableHelperTimed(time,action));
     }
 
-    public void DisableHelper(float time)
-    {
-        StartCoroutine(DisableHelperTimed(time));
-    }
-
-    IEnumerator DisableHelperTimed(float time)
+    IEnumerator DisableHelperTimed(float time, HelperAction action)
     {
         yield return new WaitForSeconds(time);
-        DisableHelper();
+        DisableHelper(action);
     }
 
     public void DisableHelper(HelperAction action)
     {
-        switch (action)
-        {
-            case HelperAction.Jump:
-                ButtonA.SetActive(false);
-                break;
-            case HelperAction.Drag:
-                ButtonB.SetActive(false);
-                break;
-            case HelperAction.NailSword:
-                ButtonY.SetActive(false);
-                break;
-            case HelperAction.Attack:
-                ButtonX.SetActive(false);
-                break;
-            case HelperAction.Scanner:
-                ButtonR1.SetActive(false);
-                break;
-            case HelperAction.Move:
-                Joystcik.SetActive(false);
-                break;
-            case HelperAction.Talk:
-                ButtonTalk.SetActive(false);
-                break;
-            case HelperAction.Read:
-                ButtonRead.SetActive(false);
-                break;
-            case HelperAction.Pick:
-                ButtonPick.SetActive(false);
-                break;
-        }
+        actionsToComplete.Remove(action);
+        helpers[(int)action].helper.SetActive(false);
     }
 }
