@@ -49,7 +49,7 @@ public class AreaAttackState : State
         {
             if (_controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().CanBeDamaged())
             {
-                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().healthPoints -= Mathf.Round(_attackObject.damage * _damageMultiplier);
+                _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit(_attackObject.damage * _damageMultiplier, _controller.transform.forward);
 
                 Debug.Log("Enemy damaged: " + _attackObject.damage * _damageMultiplier);
 

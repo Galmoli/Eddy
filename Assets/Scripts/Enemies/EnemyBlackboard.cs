@@ -14,7 +14,7 @@ public abstract class EnemyBlackboard : MonoBehaviour
 
     //Functions
     public abstract void ResetHealth();
-    public abstract void Hit(int damage, Vector3 hitDirection);
+    public abstract void Hit(float damage, Vector3 hitDirection);
     public abstract bool CanBeDamaged();
     public abstract void EnemyInVolume(bool scannerOn);
     public abstract void Death();

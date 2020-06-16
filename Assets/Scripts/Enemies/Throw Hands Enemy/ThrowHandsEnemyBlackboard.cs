@@ -151,7 +151,7 @@ public class ThrowHandsEnemyBlackboard : EnemyBlackboard
         Destroy(initialTransform);
     }
 
-    public override void Hit(int damage, Vector3 hitDirection)
+    public override void Hit(float damage, Vector3 hitDirection)
     {
         this.hitDirection = hitDirection;
         hit = true;
