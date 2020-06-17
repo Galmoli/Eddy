@@ -103,6 +103,12 @@ public class WaveController : MonoBehaviour
                 waveScene.FinalRoundSound();
             }
 
+            if (currentWave == 4)
+            {
+                InGameDialogue.Instance.EnableDialogue("PopUp_12");
+                waveScene.FinalRoundSound();
+            }
+
             activate = false;
 
             FindObjectOfType<PlayerController>().RestoreHealth();
