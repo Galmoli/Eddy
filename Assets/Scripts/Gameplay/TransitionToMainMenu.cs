@@ -22,6 +22,7 @@ public class TransitionToMainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<CreditsMusic>().StopMusic();
     }
 
 
