@@ -52,6 +52,8 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
     [HideInInspector] public Rigidbody standRb;
 
+    [HideInInspector] public bool dontMove;
+
     private EventInstance dragSoundEvent;
 
     [Header("Animation")]

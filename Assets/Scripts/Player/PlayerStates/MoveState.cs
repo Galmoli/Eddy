@@ -22,7 +22,7 @@ public class MoveState : State
 
     public override void Update()
     {
-        if (UIManager.Instance.paused)
+        if (UIManager.Instance.paused || _controller.dontMove)
         {
             _controller.animator.SetFloat("Speed", 0);
             return;
