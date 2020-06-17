@@ -140,6 +140,43 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 720
+--- !u!114 &-9084801431389845873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  SubDir: 
+  lastModified: 637280144800088721
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3394
+  Exists: 1
+--- !u!114 &-9054884437457619480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-9004144344304605925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +223,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &-8964302334664536439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  guid: 6d83d209bc576b468ff00f2b16c018b7
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-8959769846289532909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music IV
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music IV
+  guid: b5713d559b074b4ab3c38c8474825661
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 114083
 --- !u!114 &-8950730895781520946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +412,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/Death/Death
   guid: f94cb4c08acc234fb8060f53fbe04e1f
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -337,6 +420,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &-8690545197791302155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-8689528628156527478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,16 +492,33 @@ MonoBehaviour:
   Path: event:/Music/Level Music II
   guid: f1b2261d745ecc40bf62bb4365f5582d
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 2288794065135120793}
-  - {fileID: 6338453459193962731}
+  - {fileID: -1810880545197322647}
+  - {fileID: -448519190732316697}
   MinDistance: 0
   MaxDistance: 0
   Length: 208021
+--- !u!114 &-8632595257049135846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-8621983707879891171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +657,29 @@ MonoBehaviour:
   - Name: 
     Value: 3016
   Exists: 1
+--- !u!114 &-8302870567600035387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  guid: a18e5ada52a5a0418616e16f2a424b2a
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2910
 --- !u!114 &-8230475068647512894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +714,31 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-8208157632272863359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music III (Random Generator)
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music III (Random Generator)
+  guid: 06d1295a5329cc4fbb45c9d5f131774e
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2686390175702998667}
+  - {fileID: -2484566686490297363}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 89253
 --- !u!114 &-8196721124187756322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +785,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &-8141226261805357063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  guid: 50cc027ad025b64a824b9b8d8d2b0639
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
 --- !u!114 &-8081462792826862132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +866,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2876
+--- !u!114 &-8024742987996995851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music V
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music V
+  guid: 4bfbbe1ad2d3bf4ba3dcf26eb4e1e566
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 310313
 --- !u!114 &-8001227409785553895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,6 +953,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1731
+--- !u!114 &-7913880289293556832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerActive
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerActive
+  guid: 041ed7d300a2a34eab404b49c6089726
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 25958
 --- !u!114 &-7903611774602912778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +1033,93 @@ MonoBehaviour:
   - Name: 
     Value: 3056
   Exists: 1
+--- !u!114 &-7788146994891003239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttack
+  guid: 1302ebf0ffe03b478407c82ab4548289
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 720
+--- !u!114 &-7747302094918188244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Applause
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Applause
+  guid: 37dd51014a2d3a4d8dceb99b06da869c
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2155
+--- !u!114 &-7731248365918539196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280130100689229
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7714585662506662769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Wood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Wood
+  guid: 93721e1147af6640ad2c42fb4bdce9f0
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 330
 --- !u!114 &-7701691158202372654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +1135,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Attack/ComboAttack
   guid: c47fb86b0cff544fa8bc24670f14c477
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -837,7 +1158,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/AreaAttack/AreaAttackCharged
   guid: 53b6998d5419764196e51eb5872eba8d
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -869,6 +1190,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
+--- !u!114 &-7637515650097332685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/EnemyHit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/EnemyHit
+  guid: 624acd4ed7ade347ba3b702bb994d970
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 693
 --- !u!114 &-7618028427777453561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +1283,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 237
+--- !u!114 &-7565071753265875688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  SubDir: 
+  lastModified: 637280147007118817
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3394
+  Exists: 1
 --- !u!114 &-7532913569377399502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1373,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 414
+--- !u!114 &-7470217415003724322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildCry
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildCry
+  guid: 65479ae61e75074ea37d768b205b8bc8
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3522
 --- !u!114 &-7342507980986960475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,11 +1428,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/StreamingAssets/Master.strings.bank
   SubDir: 
-  lastModified: 637280112492572975
+  lastModified: 637280130100789026
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 3306
+    Value: 3394
   Exists: 1
 --- !u!114 &-7325201872110539292
 MonoBehaviour:
@@ -1166,6 +1553,46 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 600
+--- !u!114 &-7216598662191909690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-7208999090714334204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/RecoverSword/RecoverSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/RecoverSword/RecoverSword
+  guid: eb9875031021774ea5509a7c81ab3505
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1187
 --- !u!114 &-7195907962567347791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1679,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
+--- !u!114 &-7169928502084403850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/ComboAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/ComboAttack
+  guid: c47fb86b0cff544fa8bc24670f14c477
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1731
 --- !u!114 &-7163158803070637144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,6 +1725,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8249
+--- !u!114 &-7132967149819064303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Spawn/PipeSpawn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Spawn/PipeSpawn
+  guid: 9906ca348cf9284aa45cd03ffb6f7535
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &-7114043425329534135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,6 +1820,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2250
+--- !u!114 &-7066652018269644247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-7063687863838799897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,7 +1852,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
   guid: cddb0e4d61961d4793d6f14c7faf5868
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1512,6 +2002,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2150
+--- !u!114 &-6970626971324371235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6968821232964453316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,6 +2036,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6953375386613885456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music V
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music V
+  guid: 4bfbbe1ad2d3bf4ba3dcf26eb4e1e566
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 310313
 --- !u!114 &-6913639359662799190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,6 +2155,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 375
+--- !u!114 &-6875588935606837130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOff
+  guid: 2129d8e4909d4f488281af9e26f15be0
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1598
 --- !u!114 &-6750921514505874768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,7 +2193,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Attack/Attack_1
   guid: 4d476289f0c74646971b4efc1bf0a126
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1711,6 +2264,31 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6661218884618342074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music II
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music II
+  guid: f1b2261d745ecc40bf62bb4365f5582d
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2056192169425273254}
+  - {fileID: -7216598662191909690}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 208021
 --- !u!114 &-6570204486124289053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,6 +2352,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6547364946385453851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6519921227836751179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,7 +2384,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/EnemyHit/Armor
   guid: 4f8074ccae648c46b7e1a464936c2786
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1812,7 +2407,7 @@ MonoBehaviour:
   Path: event:/SFX/Crowd/Applause
   guid: 37dd51014a2d3a4d8dceb99b06da869c
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1843,6 +2438,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 455
+--- !u!114 &-6402098517399620482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music V
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music V
+  guid: 4bfbbe1ad2d3bf4ba3dcf26eb4e1e566
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 310313
+--- !u!114 &-6399980586164363563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Metal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Metal
+  guid: e75aa0cb03ff3645ae04f482c9ee3cca
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 542
 --- !u!114 &-6381114182517807748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,6 +2541,52 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 1
+--- !u!114 &-6216154437974566047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyStep/EnemyStep
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyStep/EnemyStep
+  guid: ed9ad4d941141243a06f4f18b040bf5e
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 414
+--- !u!114 &-6179793385477534218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  guid: 53b6998d5419764196e51eb5872eba8d
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 830
 --- !u!114 &-6155869551972391513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1948,6 +2635,63 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 7708
+--- !u!114 &-6085673477876161507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-6077204519919465618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_1
+  guid: 4d476289f0c74646971b4efc1bf0a126
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 133
+--- !u!114 &-6068279372592418957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-6043205246322637180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,6 +2739,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1149
+--- !u!114 &-6039555783511775826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  guid: 54386668ed338c4796d4a5a1178df269
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
 --- !u!114 &-6030427535898109084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2157,6 +2924,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 235
+--- !u!114 &-5746745881617678238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/CrowdLoop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/CrowdLoop
+  guid: a85648accca2c449bc144ac0b8e2efce
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 8.55
+  Length: 49555
+--- !u!114 &-5740984226676430847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/DraggableObject
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/DraggableObject
+  guid: eae0f6e25a52df4497e34ae814de9804
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2250
 --- !u!114 &-5732687209754762315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,7 +2985,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Checkpoint/Checkpoint
   guid: 5d4d75a9de14f54a96ef3f0ab785ccdc
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2203,6 +3016,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 8.55
   Length: 49555
+--- !u!114 &-5678805290970447971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  guid: 54386668ed338c4796d4a5a1178df269
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
 --- !u!114 &-5661540184534279970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,6 +3079,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 693
+--- !u!114 &-5649970352642508205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Spawn/PipeSpawn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Spawn/PipeSpawn
+  guid: 9906ca348cf9284aa45cd03ffb6f7535
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &-5640402039277008295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2356,6 +3215,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 734
+--- !u!114 &-5589675695090321985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepWood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepWood
+  guid: 14d9b1bb0c13be4ea67059d58bbc4d7f
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 455
 --- !u!114 &-5533547364021351777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,6 +3272,48 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-5398472361833919496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music I
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music I
+  guid: 3a7e29ca6ad95e4c81be7cb47d327161
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7066652018269644247}
+  - {fileID: 6582871117845747580}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 291591
+--- !u!114 &-5388806759167526671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
   m_EditorClassIdentifier: 
   Name: PROGRESS
   Min: 0
@@ -2442,6 +3366,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 789
+--- !u!114 &-5340899394642131957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOn
+  guid: 5922d9704a8bdc4d9ecf86825d93f0ee
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 545
 --- !u!114 &-5328145762246788246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2525,7 +3472,7 @@ MonoBehaviour:
   Path: event:/SFX/Environment/WoodenPlanks
   guid: a2c10020ae62a9478a8d271d38eda665
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -2548,7 +3495,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/ObjectHit/Wood
   guid: 93721e1147af6640ad2c42fb4bdce9f0
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2556,6 +3503,31 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 330
+--- !u!114 &-5211862249111845784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music II
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music II
+  guid: f1b2261d745ecc40bf62bb4365f5582d
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 218772671888895567}
+  - {fileID: 2796799389453475015}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 208021
 --- !u!114 &-5170308092688474663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2579,6 +3551,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 693
+--- !u!114 &-5130797988066875008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  guid: a18e5ada52a5a0418616e16f2a424b2a
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1290
 --- !u!114 &-5110675835833903185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2644,6 +3639,46 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-5024873704606594814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-5020308286557295862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonClick
+  guid: e16a08816fb11a44abf360eef90104f3
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 60
 --- !u!114 &-4963266595503612053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,6 +3696,29 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 0
+--- !u!114 &-4941223953801599587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  guid: a18e5ada52a5a0418616e16f2a424b2a
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1710
 --- !u!114 &-4886605376864312227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,6 +3760,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-4829315979954779269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  guid: 9cea05f388b5724eaf67d9f2d052c465
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4758278904962397318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,6 +3843,77 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 89253
+--- !u!114 &-4727539820532354931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music I
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music I
+  guid: 3a7e29ca6ad95e4c81be7cb47d327161
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7926222561290319909}
+  - {fileID: -4095489103710937182}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 291591
+--- !u!114 &-4635828023943914941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Wood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Wood
+  guid: 93721e1147af6640ad2c42fb4bdce9f0
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 330
+--- !u!114 &-4619753066950238442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  guid: cddb0e4d61961d4793d6f14c7faf5868
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 789
 --- !u!114 &-4617716059842641767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,6 +4032,63 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1781
+--- !u!114 &-4524268896988829445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-4507719708923539713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepWood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepWood
+  guid: 14d9b1bb0c13be4ea67059d58bbc4d7f
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 455
+--- !u!114 &-4488774543138877117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-4466454056052698566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2938,6 +4147,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2155
+--- !u!114 &-4390613195482962869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/Armor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/Armor
+  guid: 4f8074ccae648c46b7e1a464936c2786
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320
 --- !u!114 &-4386208103504579204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,7 +4312,7 @@ MonoBehaviour:
   Path: event:/SFX/Crowd/Cheers
   guid: 34b1203163f8a74ca1fcfab8855ca8ce
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -3088,6 +4320,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2459
+--- !u!114 &-4236342869798442873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/FinalRound
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/FinalRound
+  guid: de788fba6a261745889d6e1eb1e06e2e
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8249
+--- !u!114 &-4180467146105675557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Death/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Death/Death
+  guid: f94cb4c08acc234fb8060f53fbe04e1f
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-4142745975999992354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3111,6 +4389,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
+--- !u!114 &-4095489103710937182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-4076425071761264319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/ConfettiPop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/ConfettiPop
+  guid: a61247dfb993bb43a82946e84c86bfca
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 353
 --- !u!114 &-4075093110674748971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,6 +4449,29 @@ MonoBehaviour:
   - Name: 
     Value: 3306
   Exists: 1
+--- !u!114 &-4054285434020129475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Jump/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Jump/Jump
+  guid: d08623a720f59243877989b5ccd7e5ae
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-4021012957704804092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3303,7 +4644,7 @@ MonoBehaviour:
   Path: event:/SFX/UI/ButtonNavigation
   guid: 3167e5858d32b345a9405f55d9049da0
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3311,6 +4652,46 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 119
+--- !u!114 &-3848676430025141081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-3827701384447482446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Metal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Metal
+  guid: e75aa0cb03ff3645ae04f482c9ee3cca
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 542
 --- !u!114 &-3827018283065589350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3395,7 +4776,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
   guid: 7b5e042d59a773438d625a3090904ec2
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -3486,6 +4867,29 @@ MonoBehaviour:
   - Name: 
     Value: 3056
   Exists: 1
+--- !u!114 &-3628764527499698843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyStep/EnemyStep
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyStep/EnemyStep
+  guid: ed9ad4d941141243a06f4f18b040bf5e
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 414
 --- !u!114 &-3625043827308324528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3573,7 +4977,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
   guid: 6d83d209bc576b468ff00f2b16c018b7
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -3676,6 +5080,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 8.55
   Length: 49555
+--- !u!114 &-3437583576053715071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music V
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music V
+  guid: 4bfbbe1ad2d3bf4ba3dcf26eb4e1e566
+  Banks:
+  - {fileID: -7731248365918539196}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 310313
 --- !u!114 &-3338492556832881268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3841,6 +5268,98 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 330
+--- !u!114 &-3227528535878460472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  guid: 9a02f9677c63c249a570e091599e208a
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 440
+--- !u!114 &-3223430306483589147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Metal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Metal
+  guid: e75aa0cb03ff3645ae04f482c9ee3cca
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 542
+--- !u!114 &-3171448084416940961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonNavigation
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonNavigation
+  guid: 3167e5858d32b345a9405f55d9049da0
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 119
+--- !u!114 &-3162290109238337383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  guid: 6d83d209bc576b468ff00f2b16c018b7
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-3149400381077138793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3865,6 +5384,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 160
+--- !u!114 &-3121640615901865397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280147006959247
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-3083177754159064637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3970,6 +5507,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 545
+--- !u!114 &-2794309391335096501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Jump/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Jump/Jump
+  guid: d08623a720f59243877989b5ccd7e5ae
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-2775389350173724284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3993,6 +5553,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1149
+--- !u!114 &-2765970393410132700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  guid: 4b44ebf52e0c3447ad72d45d8700f27b
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1969
 --- !u!114 &-2762693981710668154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4031,7 +5614,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
   guid: 9a02f9677c63c249a570e091599e208a
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -4078,6 +5661,29 @@ MonoBehaviour:
   guid: 7b5e042d59a773438d625a3090904ec2
   Banks:
   - {fileID: 4511159670626501401}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 211
+--- !u!114 &-2681336354403895602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  guid: 7b5e042d59a773438d625a3090904ec2
+  Banks:
+  - {fileID: -707738958044835867}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -4248,6 +5854,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3993
+--- !u!114 &-2502279583085245153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  guid: 6d83d209bc576b468ff00f2b16c018b7
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-2489478306767011182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4271,6 +5900,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 374
+--- !u!114 &-2484566686490297363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2443024610184386416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4421,7 +6067,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/RecoverSword/RecoverSword
   guid: eb9875031021774ea5509a7c81ab3505
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -4429,6 +6075,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1187
+--- !u!114 &-2313474147073781276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-2287567873880559156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  guid: cddb0e4d61961d4793d6f14c7faf5868
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 789
 --- !u!114 &-2284181554086401417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4478,6 +6164,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1598
+--- !u!114 &-2244506151052635851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/FinalRound
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/FinalRound
+  guid: de788fba6a261745889d6e1eb1e06e2e
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8249
 --- !u!114 &-2221254045768768239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,6 +6210,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1795
+--- !u!114 &-2204509326561825968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/ConfettiPop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/ConfettiPop
+  guid: a61247dfb993bb43a82946e84c86bfca
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 353
 --- !u!114 &-2189051647348769356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4589,6 +6321,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 208021
+--- !u!114 &-2063286078143710966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerActive
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerActive
+  guid: 041ed7d300a2a34eab404b49c6089726
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 25958
 --- !u!114 &-2046879846287878019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4637,6 +6392,112 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4365
+--- !u!114 &-2003648741133776726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_2
+  guid: 6be15f1342ffc145a421c60b36670d73
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 374
+--- !u!114 &-1868964199432029768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music I
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music I
+  guid: 3a7e29ca6ad95e4c81be7cb47d327161
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8652429001846799872}
+  - {fileID: 1398481130658313042}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 291591
+--- !u!114 &-1810880545197322647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-1783378650033382053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280138962615272
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-1777327785876285542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Death/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Death/Death
+  guid: f94cb4c08acc234fb8060f53fbe04e1f
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-1761864822554226586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,6 +6544,31 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 133
+--- !u!114 &-1752953374790681257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music III (Random Generator)
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music III (Random Generator)
+  guid: 06d1295a5329cc4fbb45c9d5f131774e
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4488774543138877117}
+  - {fileID: -5024873704606594814}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 89253
 --- !u!114 &-1731312252520986343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4793,6 +6679,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 754
+--- !u!114 &-1571007262771332464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/WoodenPlanks
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/WoodenPlanks
+  guid: a2c10020ae62a9478a8d271d38eda665
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
 --- !u!114 &-1527248760653195141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4882,6 +6791,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 734
+--- !u!114 &-1366245292585207967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  guid: 35bb4430b670bc4d911d085dbacb264b
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237
 --- !u!114 &-1361404510625685277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,6 +6854,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 237
+--- !u!114 &-1324774372837823938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/ComboAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/ComboAttack
+  guid: c47fb86b0cff544fa8bc24670f14c477
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1731
+--- !u!114 &-1318921716504638893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  guid: 7b5e042d59a773438d625a3090904ec2
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 211
 --- !u!114 &-1308069340443659954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5036,6 +7014,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-1176083297921439464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  guid: 7b5e042d59a773438d625a3090904ec2
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 211
 --- !u!114 &-1168054341815960928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +7125,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 253628
+--- !u!114 &-1091402392097949859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280145997266416
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1071436955565067678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5142,6 +7161,75 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-1058510203740709431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  guid: 4b44ebf52e0c3447ad72d45d8700f27b
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1969
+--- !u!114 &-1051497975372616303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/WoodenPlanks
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/WoodenPlanks
+  guid: a2c10020ae62a9478a8d271d38eda665
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
+--- !u!114 &-1031170152752061888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepStone
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepStone
+  guid: 5d909f0f9a507b489ff3238b6c2e19d4
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &-1025330305250138909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5160,6 +7248,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-1022165852012895279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/WoodenPlanks
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/WoodenPlanks
+  guid: a2c10020ae62a9478a8d271d38eda665
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
 --- !u!114 &-1015381695170718297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5230,6 +7341,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1892
+--- !u!114 &-907373753413830310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/DraggableObject
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/DraggableObject
+  guid: eae0f6e25a52df4497e34ae814de9804
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2250
 --- !u!114 &-870845483526799921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5391,6 +7525,93 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 693
+--- !u!114 &-751572061225125727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonClick
+  guid: e16a08816fb11a44abf360eef90104f3
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 60
+--- !u!114 &-707738958044835867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280144799978939
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-651932003263096955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_2
+  guid: 6be15f1342ffc145a421c60b36670d73
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 374
+--- !u!114 &-631573615091316282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Wood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Wood
+  guid: 93721e1147af6640ad2c42fb4bdce9f0
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 330
 --- !u!114 &-624150605052640956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,6 +7746,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 838
+--- !u!114 &-531367633822196259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music IV
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music IV
+  guid: b5713d559b074b4ab3c38c8474825661
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 114083
 --- !u!114 &-530807203066010362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5571,6 +7815,63 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &-481078310250893174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-448519190732316697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-419491436053211072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_2
+  guid: 6be15f1342ffc145a421c60b36670d73
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 374
 --- !u!114 &-383701449056760111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5594,6 +7895,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 789
+--- !u!114 &-375697431807061433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Checkpoint/Checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Checkpoint/Checkpoint
+  guid: 5d4d75a9de14f54a96ef3f0ab785ccdc
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1795
+--- !u!114 &-360178610475832483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Cheers
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Cheers
+  guid: 34b1203163f8a74ca1fcfab8855ca8ce
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2459
 --- !u!114 &-334667000984131723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5633,7 +7980,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Scanner/ScannerActive
   guid: 041ed7d300a2a34eab404b49c6089726
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -5666,6 +8013,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 208021
+--- !u!114 &-194414886222768625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  SubDir: 
+  lastModified: 637280130100789026
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3394
+  Exists: 1
 --- !u!114 &-180105697151004240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5691,6 +8058,75 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 291591
+--- !u!114 &-180034831638127346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/WoodenPlanks
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/WoodenPlanks
+  guid: a2c10020ae62a9478a8d271d38eda665
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
+--- !u!114 &-179778736360617529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  guid: 9cea05f388b5724eaf67d9f2d052c465
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-173312393797010905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/ConfettiPop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/ConfettiPop
+  guid: a61247dfb993bb43a82946e84c86bfca
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 353
 --- !u!114 &-154509946530077242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5739,6 +8175,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1079
+--- !u!114 &-105864416296007365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  guid: 4b44ebf52e0c3447ad72d45d8700f27b
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1969
 --- !u!114 &-98600972293384198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,6 +8215,52 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 1
+--- !u!114 &-88268276505198345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  guid: 35bb4430b670bc4d911d085dbacb264b
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237
+--- !u!114 &-86058384436628649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonClick
+  guid: e16a08816fb11a44abf360eef90104f3
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 60
 --- !u!114 &-81177547110486343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5794,7 +8299,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/Spawn/PipeSpawn
   guid: 9906ca348cf9284aa45cd03ffb6f7535
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -5815,60 +8320,62 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7327562717589964011}
-  - {fileID: 2431818054673258163}
+  - {fileID: -7565071753265875688}
+  - {fileID: -1091402392097949859}
   EditorEvents:
-  - {fileID: 4695038423393353112}
-  - {fileID: -329249721780010653}
-  - {fileID: 4951380788449502465}
-  - {fileID: 6479457424398883156}
-  - {fileID: 1898162614545851980}
-  - {fileID: 354866941265617970}
-  - {fileID: -3859695589088677876}
-  - {fileID: -4259157750878588356}
-  - {fileID: 4149865558669306036}
-  - {fileID: -6484619778819573616}
-  - {fileID: 2976397780077685854}
-  - {fileID: 518953478544982714}
-  - {fileID: -6750921514505874768}
-  - {fileID: -6519921227836751179}
-  - {fileID: 6598641245559335038}
-  - {fileID: -7672534586175209958}
-  - {fileID: 8541198204133631233}
-  - {fileID: 554739038653156219}
-  - {fileID: -5732687209754762315}
-  - {fileID: 8687504432207867377}
-  - {fileID: 962519783400980094}
-  - {fileID: 972167412637586431}
-  - {fileID: 5878634647865821318}
-  - {fileID: -3551862130345056145}
-  - {fileID: -3771632418916238592}
-  - {fileID: -5214712274565660284}
-  - {fileID: -35614792236142119}
-  - {fileID: -2753231729383668664}
-  - {fileID: 6138293326054598274}
-  - {fileID: 3528181920830795216}
-  - {fileID: -5217169101488447991}
-  - {fileID: 7321252439931387697}
-  - {fileID: 2931377663518376401}
-  - {fileID: -7701691158202372654}
-  - {fileID: 3830255198546478683}
-  - {fileID: -7063687863838799897}
-  - {fileID: 6423280873958583389}
-  - {fileID: 1861740212672365580}
-  - {fileID: 825545831057658280}
-  - {fileID: 5640467991234562833}
-  - {fileID: 4894885460506279899}
-  - {fileID: -2330261922742640999}
-  - {fileID: 2001064301138314719}
-  - {fileID: -8678028493391926668}
-  - {fileID: -8705024797079138650}
+  - {fileID: 5640304142250907856}
+  - {fileID: -2063286078143710966}
+  - {fileID: -8208157632272863359}
+  - {fileID: 7919829665322463661}
+  - {fileID: -4507719708923539713}
+  - {fileID: -6875588935606837130}
+  - {fileID: 7089021647253768437}
+  - {fileID: -360178610475832483}
+  - {fileID: -88268276505198345}
+  - {fileID: 6063252366520916781}
+  - {fileID: -4727539820532354931}
+  - {fileID: 203444557540357911}
+  - {fileID: -6402098517399620482}
+  - {fileID: -6077204519919465618}
+  - {fileID: -4390613195482962869}
+  - {fileID: 2663996310379683976}
+  - {fileID: 1778452746130782262}
+  - {fileID: -6039555783511775826}
+  - {fileID: 3209905674461575408}
+  - {fileID: -375697431807061433}
+  - {fileID: 5331002543985682980}
+  - {fileID: -7637515650097332685}
+  - {fileID: -7470217415003724322}
+  - {fileID: 50916574935712946}
+  - {fileID: -3162290109238337383}
+  - {fileID: 2252379832075489363}
+  - {fileID: -7714585662506662769}
+  - {fileID: -7132967149819064303}
+  - {fileID: 4496625668231650530}
+  - {fileID: -4829315979954779269}
+  - {fileID: -8302870567600035387}
+  - {fileID: -180034831638127346}
+  - {fileID: 4411367322834737246}
+  - {fileID: 7003243029485936428}
+  - {fileID: -531367633822196259}
+  - {fileID: 4146023537459924336}
+  - {fileID: 1619419847101292638}
+  - {fileID: 962855939476537053}
+  - {fileID: -2794309391335096501}
+  - {fileID: 6485986440886448576}
+  - {fileID: -751572061225125727}
+  - {fileID: -3223430306483589147}
+  - {fileID: -5740984226676430847}
+  - {fileID: 4121261114522611534}
+  - {fileID: -3628764527499698843}
+  - {fileID: 3407403536741297894}
+  - {fileID: -4180467146105675557}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -1091402392097949859}
   StringsBanks:
-  - {fileID: -7327562717589964011}
-  stringsBankWriteTime: 637280112492572975
+  - {fileID: -7565071753265875688}
+  stringsBankWriteTime: 637280145997376120
   cacheVersion: 3
 --- !u!114 &29519016540411667
 MonoBehaviour:
@@ -5935,6 +8442,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 374
+--- !u!114 &50916574935712946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_2
+  guid: 6be15f1342ffc145a421c60b36670d73
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 374
 --- !u!114 &90673920275847733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5983,6 +8513,63 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 145
+--- !u!114 &203444557540357911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh
+  guid: 4b44ebf52e0c3447ad72d45d8700f27b
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1969
+--- !u!114 &218772671888895567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &233159674584806401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &265247155786025573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6000,6 +8587,24 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 0
+--- !u!114 &278229931108209845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  SubDir: 
+  lastModified: 637280130100689229
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &298187919112704387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6056,7 +8661,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Scanner/ScannerOff
   guid: 2129d8e4909d4f488281af9e26f15be0
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -6065,6 +8670,69 @@ MonoBehaviour:
   MaxDistance: 20
   Length: 1598
 --- !u!114 &371829689268829997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &383588825499390206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOff
+  guid: 2129d8e4909d4f488281af9e26f15be0
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1598
+--- !u!114 &421843152536093104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  guid: 35bb4430b670bc4d911d085dbacb264b
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237
+--- !u!114 &504309355598934326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6096,7 +8764,7 @@ MonoBehaviour:
   Path: event:/SFX/Environment/EnemyShadows/ChildLaugh
   guid: 4b44ebf52e0c3447ad72d45d8700f27b
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -6165,7 +8833,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Scanner/ScannerOn
   guid: 5922d9704a8bdc4d9ecf86825d93f0ee
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -6219,6 +8887,31 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 211
+--- !u!114 &733053469813116877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music III (Random Generator)
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music III (Random Generator)
+  guid: 06d1295a5329cc4fbb45c9d5f131774e
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6068279372592418957}
+  - {fileID: 9178968000760002274}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 89253
 --- !u!114 &785717330255216549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6374,7 +9067,7 @@ MonoBehaviour:
   Path: event:/SFX/UI/ButtonClick
   guid: e16a08816fb11a44abf360eef90104f3
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6512,7 +9205,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/EnemyHit/EnemyHit
   guid: 624acd4ed7ade347ba3b702bb994d970
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -6520,6 +9213,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 693
+--- !u!114 &962855939476537053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  guid: cddb0e4d61961d4793d6f14c7faf5868
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 789
 --- !u!114 &972167412637586431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6535,14 +9251,14 @@ MonoBehaviour:
   Path: event:/SFX/Environment/EnemyShadows/ChildCry
   guid: 65479ae61e75074ea37d768b205b8bc8
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2848
+  Length: 4922
 --- !u!114 &978988895924105479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6793,6 +9509,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 235
+--- !u!114 &1275190789716247320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/Armor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/Armor
+  guid: 4f8074ccae648c46b7e1a464936c2786
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320
 --- !u!114 &1290466750268440231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6908,6 +9647,92 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 720
+--- !u!114 &1380299890899181771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  guid: 53b6998d5419764196e51eb5872eba8d
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 830
+--- !u!114 &1398481130658313042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &1399861716338111074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Metal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Metal
+  guid: e75aa0cb03ff3645ae04f482c9ee3cca
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 542
+--- !u!114 &1426654400719915426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  guid: 54386668ed338c4796d4a5a1178df269
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
 --- !u!114 &1454283828931031852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6949,6 +9774,75 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 545
+--- !u!114 &1471352416407862965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Landing/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Landing/Landing
+  guid: c672a9a45e77bc45b4bb9c56cf1d581d
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 443
+--- !u!114 &1500054481834590619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildCry
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildCry
+  guid: 65479ae61e75074ea37d768b205b8bc8
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4922
+--- !u!114 &1533983538510996564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepStone
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepStone
+  guid: 5d909f0f9a507b489ff3238b6c2e19d4
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &1543523734208850866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6996,6 +9890,69 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &1578147909246422997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_2
+  guid: 6d83d209bc576b468ff00f2b16c018b7
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &1619419847101292638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Landing/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Landing/Landing
+  guid: c672a9a45e77bc45b4bb9c56cf1d581d
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 443
+--- !u!114 &1659464553648637077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &1699524810183908230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7101,6 +10058,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 353
+--- !u!114 &1778452746130782262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  guid: 53b6998d5419764196e51eb5872eba8d
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 830
 --- !u!114 &1778674735851478469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7185,7 +10165,7 @@ MonoBehaviour:
   Path: event:/SFX/Crowd/FinalRound
   guid: de788fba6a261745889d6e1eb1e06e2e
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -7193,6 +10173,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8249
+--- !u!114 &1864948317583008466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/NailSword/NailSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/NailSword/NailSword
+  guid: 018820bc4aae744f93549b6bf3fb45ba
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1149
+--- !u!114 &1879592660405786971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/ObjectHit/Wood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/ObjectHit/Wood
+  guid: 93721e1147af6640ad2c42fb4bdce9f0
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 330
 --- !u!114 &1898162614545851980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7208,7 +10234,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/Steps/StepWood
   guid: 14d9b1bb0c13be4ea67059d58bbc4d7f
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -7239,6 +10265,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 133
+--- !u!114 &1993203724746683805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Applause
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Applause
+  guid: 37dd51014a2d3a4d8dceb99b06da869c
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2155
 --- !u!114 &2001064301138314719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7254,7 +10303,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/EnemyStep/EnemyStep
   guid: ed9ad4d941141243a06f4f18b040bf5e
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -7326,6 +10375,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 414
+--- !u!114 &2056192169425273254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2164545127715550076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7372,6 +10438,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &2234287443139875139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepStone
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepStone
+  guid: 5d909f0f9a507b489ff3238b6c2e19d4
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &2234450073021751238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7395,6 +10484,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1149
+--- !u!114 &2252379832075489363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy1Attack
+  guid: 7b5e042d59a773438d625a3090904ec2
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 211
 --- !u!114 &2288794065135120793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7435,6 +10547,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 211
+--- !u!114 &2315592004893321146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &2324227957889073825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7582,6 +10711,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 330
+--- !u!114 &2378494646339789196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_1
+  guid: 4d476289f0c74646971b4efc1bf0a126
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 133
 --- !u!114 &2421300075612258877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7670,6 +10822,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 443
+--- !u!114 &2468468354374170363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/EnemyHit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/EnemyHit
+  guid: 624acd4ed7ade347ba3b702bb994d970
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 693
+--- !u!114 &2474848588003813583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Cheers
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Cheers
+  guid: 34b1203163f8a74ca1fcfab8855ca8ce
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2459
 --- !u!114 &2518982776221574764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7722,6 +10920,69 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 830
+--- !u!114 &2663996310379683976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  guid: 50cc027ad025b64a824b9b8d8d2b0639
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
+--- !u!114 &2673004162188767722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Checkpoint/Checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Checkpoint/Checkpoint
+  guid: 5d4d75a9de14f54a96ef3f0ab785ccdc
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1795
+--- !u!114 &2686390175702998667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &2693928085190862318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7739,6 +11000,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &2697579251761193554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
+  guid: a18e5ada52a5a0418616e16f2a424b2a
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2910
 --- !u!114 &2702941566157248855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7823,6 +11107,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &2747023077972575333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildCry
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildCry
+  guid: 65479ae61e75074ea37d768b205b8bc8
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3522
 --- !u!114 &2748199279152379626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7938,6 +11245,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 374
+--- !u!114 &2796799389453475015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &2817233318545608790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8020,7 +11344,7 @@ MonoBehaviour:
   Path: event:/SFX/Crowd/CrowdLoop
   guid: a85648accca2c449bc144ac0b8e2efce
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -8043,16 +11367,39 @@ MonoBehaviour:
   Path: event:/Music/Level Music I
   guid: 3a7e29ca6ad95e4c81be7cb47d327161
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 6635811871496731532}
-  - {fileID: -1361404510625685277}
+  - {fileID: -8690545197791302155}
+  - {fileID: -2313474147073781276}
   MinDistance: 0
   MaxDistance: 0
   Length: 291591
+--- !u!114 &2986153649876959143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Jump/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Jump/Jump
+  guid: d08623a720f59243877989b5ccd7e5ae
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &2993228744534083253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8162,6 +11509,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 25958
+--- !u!114 &3091532796761981695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  guid: 9a02f9677c63c249a570e091599e208a
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 440
 --- !u!114 &3100491390955543372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8294,6 +11664,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 414
+--- !u!114 &3209905674461575408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOn
+  guid: 5922d9704a8bdc4d9ecf86825d93f0ee
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 545
 --- !u!114 &3320055813753331546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8338,6 +11731,54 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &3380175265431862769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyStep/EnemyStep
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyStep/EnemyStep
+  guid: ed9ad4d941141243a06f4f18b040bf5e
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 414
+--- !u!114 &3407403536741297894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music II
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music II
+  guid: f1b2261d745ecc40bf62bb4365f5582d
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6547364946385453851}
+  - {fileID: 8457864003258305287}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 208021
 --- !u!114 &3427235257581786504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8386,6 +11827,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1454
+--- !u!114 &3488427621242873348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Cheers
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Cheers
+  guid: 34b1203163f8a74ca1fcfab8855ca8ce
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2459
+--- !u!114 &3500861894398292904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Cheers
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Cheers
+  guid: 34b1203163f8a74ca1fcfab8855ca8ce
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2459
 --- !u!114 &3510319615294762220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8424,7 +11911,7 @@ MonoBehaviour:
   Path: event:/SFX/Environment/EnemyShadows/ChildLaugh_2
   guid: a18e5ada52a5a0418616e16f2a424b2a
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -8455,6 +11942,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 440
+--- !u!114 &3610543689137369767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepWood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepWood
+  guid: 14d9b1bb0c13be4ea67059d58bbc4d7f
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 455
 --- !u!114 &3616141211388828907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8574,6 +12084,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
+--- !u!114 &3692243861002611624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttack
+  guid: 1302ebf0ffe03b478407c82ab4548289
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 720
+--- !u!114 &3716586784069190143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/DraggableObject
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/DraggableObject
+  guid: eae0f6e25a52df4497e34ae814de9804
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2250
 --- !u!114 &3745228085929473096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8632,7 +12188,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/Landing/Landing
   guid: c672a9a45e77bc45b4bb9c56cf1d581d
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -8698,6 +12254,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &4000916335704212609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Landing/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Landing/Landing
+  guid: c672a9a45e77bc45b4bb9c56cf1d581d
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 443
 --- !u!114 &4001624987378097953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8744,6 +12323,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2459
+--- !u!114 &4029568718900022677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  guid: 9cea05f388b5724eaf67d9f2d052c465
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4105340024276467655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8768,6 +12370,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1598
+--- !u!114 &4121261114522611534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/RecoverSword/RecoverSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/RecoverSword/RecoverSword
+  guid: eb9875031021774ea5509a7c81ab3505
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1187
 --- !u!114 &4134692662903626090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8791,6 +12416,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
+--- !u!114 &4146023537459924336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/ComboAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/ComboAttack
+  guid: c47fb86b0cff544fa8bc24670f14c477
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1731
 --- !u!114 &4149865558669306036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8806,7 +12454,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
   guid: 35bb4430b670bc4d911d085dbacb264b
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -8857,6 +12505,31 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &4249436085779942988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music II
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music II
+  guid: f1b2261d745ecc40bf62bb4365f5582d
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3848676430025141081}
+  - {fileID: 4683290765763852924}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 208021
 --- !u!114 &4251001225705454492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8898,6 +12571,75 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 542
+--- !u!114 &4266826642565678316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepWood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepWood
+  guid: 14d9b1bb0c13be4ea67059d58bbc4d7f
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 455
+--- !u!114 &4299256942215758207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Landing/Landing
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Landing/Landing
+  guid: c672a9a45e77bc45b4bb9c56cf1d581d
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 443
+--- !u!114 &4299750935930359720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/DraggableObject
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/DraggableObject
+  guid: eae0f6e25a52df4497e34ae814de9804
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2250
 --- !u!114 &4363857207011975427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8971,6 +12713,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
+--- !u!114 &4411367322834737246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/ConfettiPop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/ConfettiPop
+  guid: a61247dfb993bb43a82946e84c86bfca
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 353
 --- !u!114 &4464555651867745155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8994,6 +12759,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1795
+--- !u!114 &4478240621168319249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  guid: 50cc027ad025b64a824b9b8d8d2b0639
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
+--- !u!114 &4496625668231650530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  guid: 9a02f9677c63c249a570e091599e208a
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 440
 --- !u!114 &4503557498449548415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9081,6 +12892,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 7708
+--- !u!114 &4617456585451459168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyNotice/EnemyNotice
+  guid: 9cea05f388b5724eaf67d9f2d052c465
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4642861887494363241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOff
+  guid: 2129d8e4909d4f488281af9e26f15be0
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1598
 --- !u!114 &4657929183017069562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9104,6 +12961,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &4683290765763852924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &4690186406909113389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Checkpoint/Checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Checkpoint/Checkpoint
+  guid: 5d4d75a9de14f54a96ef3f0ab785ccdc
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1795
 --- !u!114 &4695038423393353112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9119,7 +13016,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/NailSword/NailSword
   guid: 018820bc4aae744f93549b6bf3fb45ba
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -9174,6 +13071,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 542
+--- !u!114 &4705670297828230983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOn
+  guid: 5922d9704a8bdc4d9ecf86825d93f0ee
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 545
 --- !u!114 &4719173395788961624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9287,7 +13207,7 @@ MonoBehaviour:
   Path: event:/SFX/Environment/DraggableObject
   guid: eae0f6e25a52df4497e34ae814de9804
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -9295,6 +13215,75 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2250
+--- !u!114 &4903927511831210046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/NailSword/NailSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/NailSword/NailSword
+  guid: 018820bc4aae744f93549b6bf3fb45ba
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1149
+--- !u!114 &4905667480579617882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/CrowdLoop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/CrowdLoop
+  guid: a85648accca2c449bc144ac0b8e2efce
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 8.55
+  Length: 49555
+--- !u!114 &4939130869777572132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music IV
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music IV
+  guid: b5713d559b074b4ab3c38c8474825661
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 114083
 --- !u!114 &4947186764833692940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9333,13 +13322,13 @@ MonoBehaviour:
   Path: event:/Music/Music III (Random Generator)
   guid: 06d1295a5329cc4fbb45c9d5f131774e
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -6381114182517807748}
-  - {fileID: -2406035955555061183}
+  - {fileID: 1659464553648637077}
+  - {fileID: -481078310250893174}
   MinDistance: 0
   MaxDistance: 0
   Length: 89253
@@ -9478,6 +13467,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 119
+--- !u!114 &5070806020275423814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharged
+  guid: 53b6998d5419764196e51eb5872eba8d
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 830
 --- !u!114 &5081674215204022128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9518,6 +13530,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2876
+--- !u!114 &5137517483054480043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/EnemyHit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/EnemyHit
+  guid: 624acd4ed7ade347ba3b702bb994d970
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 693
 --- !u!114 &5164265490810371047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9605,6 +13640,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8249
+--- !u!114 &5325624048065737928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerActive
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerActive
+  guid: 041ed7d300a2a34eab404b49c6089726
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 25958
 --- !u!114 &5329220902750230126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9628,6 +13686,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
+--- !u!114 &5331002543985682980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Steps/StepStone
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Steps/StepStone
+  guid: 5d909f0f9a507b489ff3238b6c2e19d4
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &5334238003403543429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9754,6 +13835,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 734
+--- !u!114 &5464202751581103516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Enemy1MetalCollision/Enemy1MetalCollision
+  guid: cddb0e4d61961d4793d6f14c7faf5868
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 789
+--- !u!114 &5507586629879837522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level Music I
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level Music I
+  guid: 3a7e29ca6ad95e4c81be7cb47d327161
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6970626971324371235}
+  - {fileID: 504309355598934326}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 291591
 --- !u!114 &5540606250038950927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9777,6 +13906,49 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 330
+--- !u!114 &5564447424991223827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  SubDir: 
+  lastModified: 637280138962724971
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3394
+  Exists: 1
+--- !u!114 &5599605478597209970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttack
+  guid: 1302ebf0ffe03b478407c82ab4548289
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 720
 --- !u!114 &5614869889637151562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9823,6 +13995,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 375
+--- !u!114 &5640304142250907856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/NailSword/NailSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/NailSword/NailSword
+  guid: 018820bc4aae744f93549b6bf3fb45ba
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1149
 --- !u!114 &5640467991234562833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9838,7 +14033,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/ObjectHit/Metal
   guid: e75aa0cb03ff3645ae04f482c9ee3cca
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -10046,7 +14241,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/Attack/Attack_2
   guid: 6be15f1342ffc145a421c60b36670d73
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -10100,6 +14295,98 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 25958
+--- !u!114 &6018313662697515384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Spawn/PipeSpawn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Spawn/PipeSpawn
+  guid: 9906ca348cf9284aa45cd03ffb6f7535
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
+--- !u!114 &6040148773997805499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/FinalRound
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/FinalRound
+  guid: de788fba6a261745889d6e1eb1e06e2e
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8249
+--- !u!114 &6050061577043426300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/RecieveDamage/ReceiveDamage
+  guid: 9a02f9677c63c249a570e091599e208a
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 440
+--- !u!114 &6063252366520916781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Applause
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Applause
+  guid: 37dd51014a2d3a4d8dceb99b06da869c
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2155
 --- !u!114 &6068041668440383789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10124,6 +14411,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 693
+--- !u!114 &6089987373252628454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/CrowdLoop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/CrowdLoop
+  guid: a85648accca2c449bc144ac0b8e2efce
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 8.55
+  Length: 49555
 --- !u!114 &6097919407403982440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10156,7 +14466,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/EnemyNotice/EnemyNotice
   guid: 9cea05f388b5724eaf67d9f2d052c465
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -10363,6 +14673,52 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 1
+--- !u!114 &6341545889959939663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerActive
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerActive
+  guid: 041ed7d300a2a34eab404b49c6089726
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 25958
+--- !u!114 &6348515779450500723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/EnemyHit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/EnemyHit
+  guid: 624acd4ed7ade347ba3b702bb994d970
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 693
 --- !u!114 &6350331195511531055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10424,7 +14780,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/Jump/Jump
   guid: d08623a720f59243877989b5ccd7e5ae
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -10467,7 +14823,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/AreaAttack/AreaAttack
   guid: 1302ebf0ffe03b478407c82ab4548289
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -10475,6 +14831,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 720
+--- !u!114 &6485157786969226368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Jump/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Jump/Jump
+  guid: d08623a720f59243877989b5ccd7e5ae
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &6485986440886448576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/FinalRound
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/FinalRound
+  guid: de788fba6a261745889d6e1eb1e06e2e
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8249
 --- !u!114 &6528853522211091086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10498,6 +14900,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 25958
+--- !u!114 &6539040491587614463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
+  guid: 50cc027ad025b64a824b9b8d8d2b0639
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
 --- !u!114 &6571059615847657892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10521,6 +14946,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 830
+--- !u!114 &6571525962183413736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Spawn/PipeSpawn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Spawn/PipeSpawn
+  guid: 9906ca348cf9284aa45cd03ffb6f7535
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
+--- !u!114 &6582871117845747580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &6598641245559335038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10536,7 +15001,7 @@ MonoBehaviour:
   Path: event:/SFX/Sword/AreaAttack/AreaAttackCharging_1
   guid: 50cc027ad025b64a824b9b8d8d2b0639
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -11046,6 +15511,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2459
+--- !u!114 &7003243029485936428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/CrowdLoop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/CrowdLoop
+  guid: a85648accca2c449bc144ac0b8e2efce
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 8.55
+  Length: 49555
 --- !u!114 &7013404521735365061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11086,6 +15574,52 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 1
+--- !u!114 &7067628345248502176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/ComboAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/ComboAttack
+  guid: c47fb86b0cff544fa8bc24670f14c477
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1731
+--- !u!114 &7089021647253768437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonNavigation
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonNavigation
+  guid: 3167e5858d32b345a9405f55d9049da0
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 119
 --- !u!114 &7104405559097966988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11133,6 +15667,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 677
+--- !u!114 &7218844240074744887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Environment/EnemyShadows/ChildCry
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Environment/EnemyShadows/ChildCry
+  guid: 65479ae61e75074ea37d768b205b8bc8
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4922
 --- !u!114 &7222537907772515254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11181,6 +15738,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 443
+--- !u!114 &7259784691144535668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Checkpoint/Checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Checkpoint/Checkpoint
+  guid: 5d4d75a9de14f54a96ef3f0ab785ccdc
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1795
 --- !u!114 &7289124302325869192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11244,7 +15824,7 @@ MonoBehaviour:
   Path: event:/SFX/Crowd/ConfettiPop
   guid: a61247dfb993bb43a82946e84c86bfca
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -11301,6 +15881,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 443
+--- !u!114 &7386349487487823213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/NailSword/NailSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/NailSword/NailSword
+  guid: 018820bc4aae744f93549b6bf3fb45ba
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1149
 --- !u!114 &7405476515154183643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11324,6 +15927,75 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 235
+--- !u!114 &7431812568852362508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyStep/EnemyStep
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyStep/EnemyStep
+  guid: ed9ad4d941141243a06f4f18b040bf5e
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 414
+--- !u!114 &7502059761763036893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyDeath/EnemyDeath
+  guid: 54386668ed338c4796d4a5a1178df269
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
+--- !u!114 &7508378134955617947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music V
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music V
+  guid: 4bfbbe1ad2d3bf4ba3dcf26eb4e1e566
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 310313
 --- !u!114 &7537102993229652593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11395,6 +16067,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1149
+--- !u!114 &7585224158174408948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/RecoverSword/RecoverSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/RecoverSword/RecoverSword
+  guid: eb9875031021774ea5509a7c81ab3505
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1187
 --- !u!114 &7593197553267394647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11418,6 +16113,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1598
+--- !u!114 &7616782569906137282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/Armor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/Armor
+  guid: 4f8074ccae648c46b7e1a464936c2786
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320
 --- !u!114 &7682304640261358588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11599,6 +16317,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 353
+--- !u!114 &7848948578855671138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/RecoverSword/RecoverSword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/RecoverSword/RecoverSword
+  guid: eb9875031021774ea5509a7c81ab3505
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1187
 --- !u!114 &7858542546172081662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11711,6 +16452,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 133
+--- !u!114 &7919829665322463661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/AreaAttack/AreaAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/AreaAttack/AreaAttack
+  guid: 1302ebf0ffe03b478407c82ab4548289
+  Banks:
+  - {fileID: -3121640615901865397}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 720
+--- !u!114 &7926222561290319909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &7958405640534212054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11737,6 +16518,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
+--- !u!114 &7975337065169972954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonNavigation
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonNavigation
+  guid: 3167e5858d32b345a9405f55d9049da0
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 119
 --- !u!114 &7983761513506567731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11760,6 +16564,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 211
+--- !u!114 &8017698438002087840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/EnemyHit/Armor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/EnemyHit/Armor
+  guid: 4f8074ccae648c46b7e1a464936c2786
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320
 --- !u!114 &8040328916293853153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11861,6 +16688,31 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 8.55
   Length: 49555
+--- !u!114 &8090663862517363487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music III (Random Generator)
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music III (Random Generator)
+  guid: 06d1295a5329cc4fbb45c9d5f131774e
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 233159674584806401}
+  - {fileID: -4524268896988829445}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 89253
 --- !u!114 &8110151551293434668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11907,6 +16759,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &8135846477268886718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_1
+  guid: 4d476289f0c74646971b4efc1bf0a126
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 133
+--- !u!114 &8152846421327077210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music IV
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music IV
+  guid: b5713d559b074b4ab3c38c8474825661
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 114083
 --- !u!114 &8188225035790211985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12037,6 +16935,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 545
+--- !u!114 &8259317247032047806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonClick
+  guid: e16a08816fb11a44abf360eef90104f3
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 60
 --- !u!114 &8271999913662725668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12107,6 +17028,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1290
+--- !u!114 &8357626531012035336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOn
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOn
+  guid: 5922d9704a8bdc4d9ecf86825d93f0ee
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 545
 --- !u!114 &8372959121349224632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12222,6 +17166,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 455
+--- !u!114 &8412281091474289255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Attack/Attack_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Attack/Attack_1
+  guid: 4d476289f0c74646971b4efc1bf0a126
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 133
 --- !u!114 &8421521981164722591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12250,6 +17217,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Level Music I/DEATH
+  m_EditorClassIdentifier: 
+  Name: DEATH
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &8457864003258305287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/DEATH
   m_EditorClassIdentifier: 
   Name: DEATH
   Min: 0
@@ -12297,6 +17281,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &8532310338066393328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music II/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8541198204133631233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12312,7 +17313,7 @@ MonoBehaviour:
   Path: event:/SFX/Enemies/EnemyDeath/EnemyDeath
   guid: 54386668ed338c4796d4a5a1178df269
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -12392,6 +17393,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 25958
+--- !u!114 &8652429001846799872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level Music I/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8673702244497526646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12430,7 +17448,7 @@ MonoBehaviour:
   Path: event:/SFX/MainCharacter/Steps/StepStone
   guid: 5d909f0f9a507b489ff3238b6c2e19d4
   Banks:
-  - {fileID: 2431818054673258163}
+  - {fileID: -7731248365918539196}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -12512,6 +17530,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 253628
+--- !u!114 &8744107178316906167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Death/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Death/Death
+  guid: f94cb4c08acc234fb8060f53fbe04e1f
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &8761656887701669075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12535,6 +17576,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 720
+--- !u!114 &8822556193140303837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/EnemyAttack/Enemy2Attack
+  guid: 35bb4430b670bc4d911d085dbacb264b
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237
 --- !u!114 &8830952075872855036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12621,6 +17685,75 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
+--- !u!114 &8886231638097530629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Sword/Scanner/ScannerOff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Sword/Scanner/ScannerOff
+  guid: 2129d8e4909d4f488281af9e26f15be0
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1598
+--- !u!114 &8890316481797435600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MainCharacter/Death/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MainCharacter/Death/Death
+  guid: f94cb4c08acc234fb8060f53fbe04e1f
+  Banks:
+  - {fileID: -1783378650033382053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
+--- !u!114 &8970000316789804588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Crowd/Applause
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Crowd/Applause
+  guid: 37dd51014a2d3a4d8dceb99b06da869c
+  Banks:
+  - {fileID: -707738958044835867}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2155
 --- !u!114 &8994496342706821168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12743,6 +17876,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 60
+--- !u!114 &9036573311858708746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music IV
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music IV
+  guid: b5713d559b074b4ab3c38c8474825661
+  Banks:
+  - {fileID: -7731248365918539196}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 114083
 --- !u!114 &9049433615618293161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12858,6 +18014,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1795
+--- !u!114 &9178968000760002274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music III (Random Generator)/PROGRESS
+  m_EditorClassIdentifier: 
+  Name: PROGRESS
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &9186335110981577594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ButtonNavigation
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ButtonNavigation
+  guid: 3167e5858d32b345a9405f55d9049da0
+  Banks:
+  - {fileID: 278229931108209845}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 119
 --- !u!114 &9203682451145975015
 MonoBehaviour:
   m_ObjectHideFlags: 0
