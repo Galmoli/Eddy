@@ -59,8 +59,12 @@ public class JumpState : State
         _controller.animator.SetBool("isOnAir", false);
         _controller.verticalSpeed = 0;
         _onEnemy = false;
-        
-        if (_controller.edgeAvailable && ValidEdge()) _controller.SetState(new EdgeState(_controller));
+
+        if (_controller.edgeAvailable && ValidEdge())
+        {
+            _controller.characterController.Move(-_controller.transform.forward * 0.1f);
+            _controller.SetState(new EdgeState(_controller));
+        }
         else _controller.SetState(new MoveState(_controller));
     }
     
