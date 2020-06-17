@@ -13,7 +13,19 @@ public class DeadState : State
     
     public override void Enter()
     {
-        _controller.animator.SetTrigger("Death");
+        //_controller.animator.SetTrigger("Death");
+        _controller.animator.gameObject.SetActive(false);
+        _controller.rag = GameObject.Instantiate(_controller.ragdollPrefab, _controller.gameObject.transform.position, Quaternion.identity);
+        CameraController cameraController = GameObject.FindObjectOfType<CameraController>();
+        cameraController.enabled = true;
+        HeadLookAt cameraLook = cameraController.gameObject.GetComponent<HeadLookAt>();
+        cameraLook.lookAtObj = _controller.rag.transform.GetChild(0).transform.GetChild(0).transform;
+        cameraLook.enabled = true;
+        //cameraController.target = rag.transform.GetChild(0).transform.GetChild(0).transform;
+        FovController fovController = GameObject.FindObjectOfType<FovController>();
+        fovController.activated = true;
+        fovController.isGoingToMin = true;
+
         _controller.characterController.enabled = false;
 
         _hadSwordUnlocked = _controller.scannerSword.SwordUnlocked();
