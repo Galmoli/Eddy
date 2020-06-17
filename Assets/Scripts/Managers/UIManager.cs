@@ -125,6 +125,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator ShowDeathMenu()
     {
         yield return new WaitForSeconds(timeToShowMenu);
+        AudioManager.Instance.StopAllEvents(false);
         deathMenu.SetActive(true);
     }
 
