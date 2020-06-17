@@ -11,14 +11,38 @@ public class ShadowEnemies : MonoBehaviour
     public float lerpSpeed = 0.1f;
     private bool hasBeenActivated;
 
+    private PlayerSounds sounds;
+
+    public enum CreepySounds
+    {
+        LAUGH_1,
+        LAUGH_2,
+        CRY
+    }
+
+    [Header("Sound")]
+    public bool playSound;
+    public CreepySounds chosenSound;
+
     void Start()
     {
         iniTarget = transform.position;
+
+        sounds = FindObjectOfType<PlayerSounds>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !hasBeenActivated) StartCoroutine("ActivateShadows");
+        if (other.gameObject.tag == "Player" && !hasBeenActivated)
+        {
+            StartCoroutine("ActivateShadows");
+
+            if (playSound)
+            {
+                CreepySound();
+            }
+
+        }
     }
 
     IEnumerator ActivateShadows()
@@ -35,5 +59,30 @@ public class ShadowEnemies : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         Destroy(gameObject);
+    }
+
+    private void CreepySound()
+    {
+        switch (chosenSound)
+        {
+            case CreepySounds.LAUGH_1:
+                if (AudioManager.Instance.ValidEvent(sounds.creepyShadowLaugh_1))
+                {
+                    AudioManager.Instance.PlayEvent(sounds.creepyShadowLaugh_1, sounds.transform);
+                }
+                break;
+            case CreepySounds.LAUGH_2:
+                if (AudioManager.Instance.ValidEvent(sounds.creepyShadowLaugh_2))
+                {
+                    AudioManager.Instance.PlayEvent(sounds.creepyShadowLaugh_2, sounds.transform);
+                }
+                break;
+            case CreepySounds.CRY:
+                if (AudioManager.Instance.ValidEvent(sounds.creepyShadowCry))
+                {
+                    AudioManager.Instance.PlayEvent(sounds.creepyShadowCry, sounds.transform);
+                }
+                break;
+        }
     }
 }
