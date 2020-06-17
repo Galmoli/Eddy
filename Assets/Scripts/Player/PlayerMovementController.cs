@@ -54,9 +54,12 @@ public class PlayerMovementController : StateMachine
 
     private EventInstance dragSoundEvent;
 
-
     [Header("Animation")]
     public Animator animator;
+
+    [Header("Death")]
+    public GameObject ragdollPrefab;
+    [HideInInspector] public GameObject rag;
 
     private void Awake()
     {

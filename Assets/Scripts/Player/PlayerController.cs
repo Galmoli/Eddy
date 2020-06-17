@@ -121,6 +121,16 @@ public class PlayerController : MonoBehaviour
         _movementController.Spawn();
         _movementController.SetState(new MoveState(_movementController));
         _combatController.SetState(new IdleState(_combatController));
+        _combatController.animator.gameObject.SetActive(true);
+        CameraController cameraController = GameObject.FindObjectOfType<CameraController>();
+        //cameraController.target = _movementController.transform;
+        cameraController.enabled = true;
+        HeadLookAt cameraLook = cameraController.gameObject.GetComponent<HeadLookAt>();
+        cameraLook.enabled = false;
+        FovController fovController = GameObject.FindObjectOfType<FovController>();
+        fovController.activated = true;
+        fovController.isGoingToMin = false;
+        if (_movementController.rag != null) Destroy(_movementController.rag);
         RestoreHealth();
     }
 
