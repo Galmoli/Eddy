@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 838697174251170029, guid: efe1bb20e3bf7a4428d07f578645d49d,
         type: 3}
       propertyPath: m_Name
-      value: Room_BedRoom
+      value: Room_BedRoom NO OVERRIDE
       objectReference: {fileID: 0}
     - target: {fileID: 838697174251170029, guid: efe1bb20e3bf7a4428d07f578645d49d,
         type: 3}
@@ -442,6 +442,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe1bb20e3bf7a4428d07f578645d49d, type: 3}
+--- !u!1 &304763181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304763183}
+  - component: {fileID: 304763182}
+  m_Layer: 0
+  m_Name: MainMenuMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &304763182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304763181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ee058d554c3c249a4848b2d462882a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuMusic: event:/Music/Music III (Random Generator)
+--- !u!4 &304763183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304763181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &390738632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5219180785015956500, guid: d7fafde62bc29a44eac73ea36f1eef96,
@@ -634,6 +678,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1663000875, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088253530, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2759435707727877112, guid: d7fafde62bc29a44eac73ea36f1eef96,
         type: 3}
       propertyPath: m_IsActive
@@ -642,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 5219180785004601457, guid: d7fafde62bc29a44eac73ea36f1eef96,
         type: 3}
       propertyPath: m_Name
-      value: GameCanvas
+      value: GameCanvas NO OVERRIDE
       objectReference: {fileID: 0}
     - target: {fileID: 5219180785004601469, guid: d7fafde62bc29a44eac73ea36f1eef96,
         type: 3}
@@ -754,7 +806,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2088253530, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
+    - {fileID: 1663000875, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7fafde62bc29a44eac73ea36f1eef96, type: 3}
 --- !u!1 &928084991
 GameObject:
@@ -1189,7 +1243,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-173636
+  m_Name: pb_Mesh-10494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1567,6 +1621,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2297656467901495538, guid: d361c2b5987747c468d63501cdee61bd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2451736071448990058, guid: d361c2b5987747c468d63501cdee61bd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1670,7 +1729,7 @@ PrefabInstance:
     - target: {fileID: 2980577294440884909, guid: d361c2b5987747c468d63501cdee61bd,
         type: 3}
       propertyPath: m_Name
-      value: Room_SwordObtaining
+      value: Room_SwordObtaining NO OVERRIDE
       objectReference: {fileID: 0}
     - target: {fileID: 3718312813280008000, guid: d361c2b5987747c468d63501cdee61bd,
         type: 3}
