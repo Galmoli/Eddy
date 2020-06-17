@@ -41,7 +41,7 @@ public class PushPullObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !canMove)
         {
             if (GetAngleBetweenForwardAndPlayer() <= angleToAllowMovement)
             {
@@ -80,8 +80,11 @@ public class PushPullObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //UI Helper
-            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Drag);
-            UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.NailSword);
+            if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.Drag))
+                UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.Drag);
+
+            if (UIHelperController.Instance.actionsToComplete.Contains(UIHelperController.HelperAction.NailSword))
+                UIHelperController.Instance.DisableHelper(UIHelperController.HelperAction.NailSword);
             canMove = false;
         }
     }

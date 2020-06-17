@@ -112,7 +112,7 @@ public class PlayerMovementController : StateMachine
 
     private void JumpInput()
     {
-        if (!onEdge && state.GetType() == typeof(MoveState) && !UIManager.Instance.paused)
+        if (!onEdge && state.GetType() == typeof(MoveState) && !UIManager.Instance.paused && !dontMove)
         {
             jump = true;
             animator.SetTrigger("Jump");
