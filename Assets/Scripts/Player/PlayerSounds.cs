@@ -36,6 +36,9 @@ public class PlayerSounds : MonoBehaviour
     [Header("Environment")]
     [FMODUnity.EventRef] public string draggableObjectSoundPath;
     [FMODUnity.EventRef] public string woodenPlanksSoundPath;
+    [FMODUnity.EventRef] public string creepyShadowLaugh_1;
+    [FMODUnity.EventRef] public string creepyShadowLaugh_2;
+    [FMODUnity.EventRef] public string creepyShadowCry;
 
     [Header("Crowd")]
     [FMODUnity.EventRef] public string crowdSoundPath;
