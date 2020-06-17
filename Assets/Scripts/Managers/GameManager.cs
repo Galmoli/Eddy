@@ -50,16 +50,19 @@ public class GameManager : MonoBehaviour
     {
         foreach (var e in enemySpawnManager.enemyList)
         {
-            if (e.enemyB.dead && !e.enemyB.respawnable)
+            if (e.enemyB.dead)
             {
-                Destroy(e.enemyO);
-            }
-            else
-            {
-                if (!e.enemyO) return;
-                if (!e.enemyO.activeSelf) e.enemyO.SetActive(true);
-                e.enemyO.transform.position = e.spawnPos;
-                e.enemyB.ResetHealth();
+                if (!e.enemyB.respawnable)
+                {
+                    Destroy(e.enemyO);
+                }
+                else
+                {
+                    if (!e.enemyO) return;
+                    if (!e.enemyO.activeSelf) e.enemyO.SetActive(true);
+                    e.enemyO.transform.position = e.spawnPos;
+                    e.enemyB.ResetHealth();
+                }
             }
         }  
     }
@@ -67,7 +70,6 @@ public class GameManager : MonoBehaviour
     private void RemoveDeadEnemies()
     {
         GameObject[] deadEnemys = GameObject.FindGameObjectsWithTag("EnemyDead");
-        Debug.Log(deadEnemys.Length);
         for (int i = 0; i < deadEnemys.Length; i++)
         {
             Destroy(deadEnemys[i]);
