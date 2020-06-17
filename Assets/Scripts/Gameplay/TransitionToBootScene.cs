@@ -14,5 +14,6 @@ public class TransitionToBootScene : MonoBehaviour
    public void LoadGame()
     {
         SceneManager.LoadScene("Additive_BootScene");
+        FindObjectOfType<CutsceneMusic>().StopMusic();
     }
 }
