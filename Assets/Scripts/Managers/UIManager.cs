@@ -38,10 +38,10 @@ public class UIManager : MonoBehaviour
         _input = new InputActions();
         _input.Enable();
 
-        _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
+        if(SceneManager.GetActiveScene().buildIndex != 0) _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _input.PlayerControls.Pause.started -= ctx => ShowPauseMenu();
     }

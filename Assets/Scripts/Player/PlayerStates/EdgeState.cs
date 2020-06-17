@@ -7,8 +7,6 @@ public class EdgeState : State
 {
     private PlayerMovementController _controller;
     private PlayerSwordScanner _scannerSword;
-    private SphereCollider _scannerCollider;
-    private EdgeDetection _edgeDetection;
     private bool autoStand;
     private Vector3 _projectedVector;
 
@@ -16,8 +14,6 @@ public class EdgeState : State
     {
         _controller = controller;
         _scannerSword = controller.scannerSword;
-        _scannerCollider = controller.scannerCollider;
-        _edgeDetection = GameObject.FindObjectOfType<EdgeDetection>();
     }
     public override void Enter()
     {

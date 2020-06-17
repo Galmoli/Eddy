@@ -52,6 +52,8 @@ public class PlayerMovementController : StateMachine
     [HideInInspector] public ScannerIntersectionManager scannerIntersect;
     [HideInInspector] public Rigidbody standRb;
 
+    [HideInInspector] public bool dontMove;
+
     private EventInstance dragSoundEvent;
 
     [Header("Animation")]
@@ -110,7 +112,7 @@ public class PlayerMovementController : StateMachine
 
     private void JumpInput()
     {
-        if (!onEdge && state.GetType() == typeof(MoveState) && !UIManager.Instance.paused)
+        if (!onEdge && state.GetType() == typeof(MoveState) && !UIManager.Instance.paused && !dontMove)
         {
             jump = true;
             animator.SetTrigger("Jump");

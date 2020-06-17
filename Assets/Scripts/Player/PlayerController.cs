@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public int initialHealth;
     public int health;
-    private bool _isDead;
+    private bool _isDead;   
 
     [Header("CameraShake")]
     private CameraShake cameraShake;
