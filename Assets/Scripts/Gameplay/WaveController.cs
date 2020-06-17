@@ -105,6 +105,8 @@ public class WaveController : MonoBehaviour
 
             activate = false;
 
+            FindObjectOfType<PlayerController>().RestoreHealth();
+
             StartCoroutine(WaveProducer());
         }
         else
