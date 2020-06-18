@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour
         _input = new InputActions();
         _input.Enable();
 
+        #if !UNITY_EDITOR
+        Cursor.lockState = CursorLockMode.Locked;
+        #endif
+        
         if(SceneManager.GetActiveScene().buildIndex != 0) _input.PlayerControls.Pause.started += ctx => ShowPauseMenu();
     }
 

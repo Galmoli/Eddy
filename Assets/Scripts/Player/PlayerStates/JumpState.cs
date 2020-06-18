@@ -17,7 +17,6 @@ public class JumpState : State
     }
     public override void Enter()
     {
-        Debug.Log("Jump State");
         _controller.jump = false;
         if(_controller.edgeAvailable && PlayerUtils.CanInteractWithEdge(_controller.transform.forward, _controller.edgeGameObject.transform.forward, _controller.angleToAllowClimbEdge)) ExitState();
         _controller.animator.SetBool("isOnAir", true);
