@@ -71,13 +71,11 @@ public class EdgeState : State
     {
         if (playerPos.y + _controller.edgeOffsetToWaist < edgePos.y) //Normal handing
         {
-            Debug.Log("Normal");
             if (_scannerSword.UsingScannerInHand()) _scannerSword.ScannerOff();
             return; 
         }
         if (playerPos.y + _controller.edgeOffsetToKnee > edgePos.y) //Trigger Knee animation
         {
-            Debug.Log("Knee");
             autoStand = true;
             //_controller.StandDeactivatePlayer();
             _controller.WaistStand();
@@ -85,7 +83,6 @@ public class EdgeState : State
         }
         else //Trigger waist animation
         {
-            Debug.Log("Waist");
             autoStand = true;
             //_controller.StandDeactivatePlayer();
             _controller.WaistStand();

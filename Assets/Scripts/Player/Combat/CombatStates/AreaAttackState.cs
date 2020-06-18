@@ -49,8 +49,6 @@ public class AreaAttackState : State
             {
                 _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().Hit(_attackObject.damage * _damageMultiplier, _controller.transform.forward);
 
-                Debug.Log("Enemy damaged: " + _attackObject.damage * _damageMultiplier);
-
                 if (_damageMultiplier == 1) _controller.swordTrigger.hitObject.GetComponent<EnemyBlackboard>().stunned = true;
 
                 VibrationManager.Instance.Vibrate(VibrationManager.Presets.NORMAL_HIT);
