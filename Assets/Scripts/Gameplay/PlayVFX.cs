@@ -11,9 +11,13 @@ public class PlayVFX : MonoBehaviour
     public float cooldown;
     private float iniCooldown;
 
+    PlayerSounds sounds;
+
     void Start()
     {
         iniCooldown = cooldown;
+
+        sounds = FindObjectOfType<PlayerSounds>();
     }
 
     void Update()
@@ -28,6 +32,7 @@ public class PlayVFX : MonoBehaviour
     public void PlayAndStopParticles()
     {
         StartCoroutine("PlayAndStop");
+        Sound();
     }
 
     IEnumerator PlayAndStop()
@@ -36,5 +41,13 @@ public class PlayVFX : MonoBehaviour
         vfx.Play();
         yield return new WaitForSeconds(timer);
         vfx.Stop();
+    }
+
+    private void Sound()
+    {
+        if (AudioManager.Instance.ValidEvent(sounds.confettiPopSoundPath))
+        {
+            AudioManager.Instance.PlayEvent(sounds.confettiPopSoundPath, transform);
+        }
     }
 }

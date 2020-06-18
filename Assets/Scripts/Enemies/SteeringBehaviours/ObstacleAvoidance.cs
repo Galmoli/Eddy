@@ -124,12 +124,12 @@ namespace Steerings
 
 		private static bool IntersectionCollider(GameObject go)
 		{
-			return (go.layer == LayerMask.NameToLayer("Normal") || go.layer == LayerMask.NameToLayer("inScanner")) && (go.tag == "SphereIntersectionCollider");
+			return go.tag == "SphereIntersectionCollider";
 		}
 
 		private static bool MovableObject(GameObject go)
 		{
-			return (go.layer == LayerMask.NameToLayer("Normal") || go.layer == LayerMask.NameToLayer("inScanner")) && (go.tag == "MoveObject");
+			return go.tag == "MoveObject";
 		}
 
 		private static bool OtherLayer(GameObject go)
