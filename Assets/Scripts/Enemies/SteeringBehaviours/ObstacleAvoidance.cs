@@ -109,7 +109,7 @@ namespace Steerings
 
 		private static bool ValidObstacle(RaycastHit hit, SphereCollider scanner)
 		{
-			return HideLayer(hit, scanner) || AppearLayer(hit, scanner) || IntersectionCollider(hit.collider.gameObject) || OtherLayer(hit.collider.gameObject);
+			return HideLayer(hit, scanner) || AppearLayer(hit, scanner) || IntersectionCollider(hit.collider.gameObject) || MovableObject(hit.collider.gameObject) || OtherLayer(hit.collider.gameObject);
 		}
 
 		private static bool HideLayer(RaycastHit hit, SphereCollider scanner)
@@ -124,7 +124,12 @@ namespace Steerings
 
 		private static bool IntersectionCollider(GameObject go)
 		{
-			return (go.layer != LayerMask.NameToLayer("Normal") || go.layer != LayerMask.NameToLayer("inScanner")) && go.tag == "SphereIntersectionCollider";
+			return (go.layer == LayerMask.NameToLayer("Normal") || go.layer == LayerMask.NameToLayer("inScanner")) && (go.tag == "SphereIntersectionCollider");
+		}
+
+		private static bool MovableObject(GameObject go)
+		{
+			return (go.layer == LayerMask.NameToLayer("Normal") || go.layer == LayerMask.NameToLayer("inScanner")) && (go.tag == "MoveObject");
 		}
 
 		private static bool OtherLayer(GameObject go)
