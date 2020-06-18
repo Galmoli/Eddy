@@ -28,5 +28,6 @@ public class InitialCameraTravelling : MonoBehaviour
         cameraController.enabled = true;
         animator.enabled = false;
         healthBar.SetActive(true);
+        UIHelperController.Instance.EnableHelper(UIHelperController.HelperAction.Move, playerMovementController.transform.position + Vector3.up * 2, playerMovementController.transform);
     }
 }
