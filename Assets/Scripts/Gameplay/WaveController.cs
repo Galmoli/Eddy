@@ -56,6 +56,7 @@ public class WaveController : MonoBehaviour
             closeAreaCols[1].SetActive(true);
             activate = false;
             aggyDialogueTrigger.SetActive(true);
+            currentEnemies.Clear();
         }
     }
 
