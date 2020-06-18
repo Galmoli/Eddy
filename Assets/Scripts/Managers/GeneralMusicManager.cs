@@ -75,6 +75,11 @@ public class GeneralMusicManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        ChangeMusic(0);
+    }
+
     public void ChangeMusic (int newMusic)
     {
         if (currentMusic == 1)
