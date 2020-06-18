@@ -19,7 +19,7 @@ public class ChopDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!end)
+        if (!end && Time.timeScale != 0)
             rb.AddForce(force * Vector3.down, ForceMode.Force);
     }
 
