@@ -15,7 +15,6 @@ public class PushState : State
 
     public override void Enter()
     {
-        Debug.Log("Push State");
         _controller.animator.SetBool("isGrabbing", true);
         if (_scannerSword.UsingScannerInHand())
         {

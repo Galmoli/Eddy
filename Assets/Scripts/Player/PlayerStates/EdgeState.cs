@@ -17,7 +17,6 @@ public class EdgeState : State
     }
     public override void Enter()
     {
-        Debug.Log("Edge State");
         _controller.onEdge = true;
         
         _projectedVector = _controller.GetProjectedVector();
