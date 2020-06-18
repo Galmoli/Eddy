@@ -13,7 +13,6 @@ public class DeadState : State
     
     public override void Enter()
     {
-        //_controller.animator.SetTrigger("Death");
         _controller.animator.gameObject.SetActive(false);
         _controller.rag = GameObject.Instantiate(_controller.ragdollPrefab, _controller.gameObject.transform.position, Quaternion.identity);
         CameraController cameraController = GameObject.FindObjectOfType<CameraController>();
