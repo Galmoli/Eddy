@@ -32,6 +32,7 @@ public class FinalBedScript : MonoBehaviour
     IEnumerator LoadFinalDialogue()
     {
         yield return new WaitForSeconds(2.0f);
+        AudioManager.Instance.StopAllEvents(false);
         SceneManager.LoadScene("LastDialogueScene");
     }
 }
