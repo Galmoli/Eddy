@@ -108,7 +108,6 @@ public class WaveController : MonoBehaviour
             if (currentWave == 3)
             {
                 InGameDialogue.Instance.EnableDialogue("PopUp_13");
-                waveScene.FinalRoundSound();
             }
 
             if (currentWave == 4)
