@@ -57,7 +57,6 @@ public class InGameDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) EnableDialogue("PopUp_1");
         if (dialogueImage.gameObject.activeSelf) DialoguePosition(true);
     }
 
