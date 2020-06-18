@@ -18,8 +18,6 @@ public class SimpleAttackState : State
 
     public override void Enter()
     {
-        Debug.Log("Simple Attack");
-        
         _controller.simpleAttackCount++;
 
         switch (_controller.simpleAttackCount)

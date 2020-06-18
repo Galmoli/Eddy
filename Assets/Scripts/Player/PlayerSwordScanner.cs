@@ -89,13 +89,6 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Update()
     {
-        //Shortcut
-        if (Input.GetKeyDown(KeyCode.Return) && !swordUnlocked)
-        {
-            UnlockSword();
-        }
-        //
-
         if (input.PlayerControls.Sword.triggered && CanStab() && swordUnlocked)
         {
             if (HoldingSword())

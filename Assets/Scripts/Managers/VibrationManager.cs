@@ -19,14 +19,6 @@ public class VibrationManager : MonoBehaviour
 
     public float testLeftAmount, testRightAmount, testTime;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Vibrate(Presets.TEST);
-        }
-    }
-
     public void Vibrate(Presets preset)
     {
         if (Gamepad.current != null)
