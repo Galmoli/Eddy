@@ -135,12 +135,14 @@ public class InGameDialogue : MonoBehaviour
             pos += offsetDialogueLeft * _canvas.scaleFactor;
             rPointer.SetActive(false);
             lPointer.SetActive(true);
+            text.alignment = TextAlignmentOptions.BottomLeft;
         }
         else
         {
             pos += offsetDialogueRight * _canvas.scaleFactor;
             rPointer.SetActive(true);
             lPointer.SetActive(false);
+            text.alignment = TextAlignmentOptions.BottomRight;
         }
 
         if (Vector3.Dot(_currentDialogue.target.position - _mainCamera.transform.position, _mainCamera.transform.forward) < 0)
