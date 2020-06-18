@@ -73,6 +73,14 @@ public class WaveController : MonoBehaviour
                         {
                             currentEnemies.RemoveAt(i);
                         }
+
+                        if (currentEnemies.Count > 0)
+                        {
+                            if ((currentEnemies[i].transform.position - transform.position).magnitude >= 100)
+                            {
+                                currentEnemies.RemoveAt(i);
+                            }
+                        }
                     }
                 }
                 else
