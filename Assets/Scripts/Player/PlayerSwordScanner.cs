@@ -436,7 +436,7 @@ public class PlayerSwordScanner : MonoBehaviour
         return activeScanner && HoldingSword();
     }
 
-    #region Sound
+    #region Sounds
     private void ScannerOnSound()
     {
         if (AudioManager.Instance.ValidEvent(playerSounds.scannerOnSoundPath))

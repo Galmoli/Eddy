@@ -216,7 +216,7 @@ public class PlayerMovementController : StateMachine
         if (AudioManager.Instance.ValidEvent(playerSounds.jumpSoundPath))
         {
             AudioManager.Instance.PlayEvent(playerSounds.jumpSoundPath, transform);
-        }  
+        }
     }
 
     public void LandingSound()
