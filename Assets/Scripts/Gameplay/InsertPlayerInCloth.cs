@@ -9,7 +9,9 @@ public class InsertPlayerInCloth : MonoBehaviour
     void Start()
     {
         cloth = GetComponent<Cloth>();
-        cloth.capsuleColliders[0] = GameObject.Find("PlayerDummyForPhysics").GetComponent<CapsuleCollider>();
+        CapsuleCollider[] array = cloth.capsuleColliders;
+        array[0] = GameObject.Find("PlayerDummyForPhysics").GetComponent<CapsuleCollider>();
+        cloth.capsuleColliders = array;
     }
 
 }
