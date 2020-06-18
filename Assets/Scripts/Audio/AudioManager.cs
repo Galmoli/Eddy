@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
                 PLAYBACK_STATE state;
                 EventInstance eventInst = positionEvents[i].GetEventInstance();
                 eventInst.getPlaybackState(out state);
-                if (state == PLAYBACK_STATE.STOPPED)
+                if (state == PLAYBACK_STATE.STOPPED || positionEvents[i].GetTransform() == null)
                 {
                     positionEvents.RemoveAt(i);
                 }
