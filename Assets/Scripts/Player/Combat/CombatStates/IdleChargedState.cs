@@ -14,8 +14,6 @@ public class IdleChargedState : State
     
     public override void Enter()
     {
-        Debug.Log("Idle Charged");
-        
         _controller.animator.SetTrigger("StartChargeAttack");
         _controller.SetMovementControllerCombatState();
         _controller.AreaAttackChargingSound_1();

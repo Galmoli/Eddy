@@ -16,7 +16,6 @@ public class MoveState : State
     
     public override void Enter()
     {
-        Debug.Log("Move State");
         _controller.edgeAvailable = false;
     }
 

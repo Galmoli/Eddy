@@ -42,23 +42,11 @@ public class PlayerController : MonoBehaviour
         cameraShake = FindObjectOfType<CameraShake>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Provisional to trigger death state
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Hit(3);
-        }   
-    }
-
     public void Hit(int damage)
     {
         if (_isDead) return;
         health -= damage;
-
-
-
+        
         if (health <= 0)
         {
             PlayDeathSound();

@@ -16,7 +16,6 @@ public class AreaAttackState : State
 
     public override void Enter()
     {
-        Debug.Log("Area Attack");
         //_controller.swordTrigger.EnableTrigger();
         _attackObject = _controller.areaAttack;
 

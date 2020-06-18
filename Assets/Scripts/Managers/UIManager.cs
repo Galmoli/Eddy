@@ -134,15 +134,6 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void ShowScannerWarning()
-    {
-        if (!scannerWarning.activeSelf)
-        {
-            scannerWarning.SetActive(true);
-            StartCoroutine(Co_HideScannerWarning());
-        }
-    }
-
     private void HideScannerWarning()
     {
         if (scannerWarning.activeSelf)
@@ -150,13 +141,6 @@ public class UIManager : MonoBehaviour
             scannerWarning.SetActive(false);
         }
     }
-    
-    private IEnumerator Co_HideScannerWarning()
-    {
-        yield return new WaitForSeconds(1.5f);
-        HideScannerWarning();
-    }
-
     public void DeathFade()
     {
         StartCoroutine(Co_DeathFade());

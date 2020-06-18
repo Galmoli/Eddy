@@ -89,13 +89,6 @@ public class PlayerSwordScanner : MonoBehaviour
 
     void Update()
     {
-        //Shortcut
-        if (Input.GetKeyDown(KeyCode.Return) && !swordUnlocked)
-        {
-            UnlockSword();
-        }
-        //
-
         if (input.PlayerControls.Sword.triggered && CanStab() && swordUnlocked)
         {
             if (HoldingSword())
@@ -225,7 +218,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanActivateScanner()) return;
 
-        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+        EnemyBlackboard[] enemies = FindObjectsOfType<EnemyBlackboard>();
 
         foreach (EnemyBlackboard enemy in enemies)
         {
@@ -252,7 +245,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
-        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+        EnemyBlackboard[] enemies = FindObjectsOfType<EnemyBlackboard>();
 
         foreach (EnemyBlackboard enemy in enemies)
         {
@@ -360,7 +353,7 @@ public class PlayerSwordScanner : MonoBehaviour
     {
         if (!_playerInsideVolume.CanDisableScanner()) return;
 
-        EnemyBlackboard[] enemies = GameObject.FindObjectsOfType<EnemyBlackboard>();
+        EnemyBlackboard[] enemies = FindObjectsOfType<EnemyBlackboard>();
 
         foreach (EnemyBlackboard enemy in enemies)
         {

@@ -65,11 +65,6 @@ public class GeneralDialogue : MonoBehaviour
         dialogueImage.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.G)) EnableDialogue("Conv");
-    }
-
     private IEnumerator AnimatedText(Conversation conv)
     {
         var line = new StringBuilder();
