@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPos;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
+    [HideInInspector] public List<GameObject> nonRespawnableEnemies;
     [HideInInspector] public int checkpointSceneIndex = 4;
     [HideInInspector] public AdditiveSceneManager asm;
     private PlayerController _playerController;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         checkpointSceneIndex = 4;
         _playerController = player.GetComponent<PlayerController>();
         enemySpawnManager = new EnemySpawnManager();
+        nonRespawnableEnemies = new List<GameObject>();
     }
 
     public void Respawn()
@@ -64,7 +66,12 @@ public class GameManager : MonoBehaviour
                     e.enemyB.ResetHealth();
                 }
             }
-        }  
+        }
+        
+        foreach (GameObject go in nonRespawnableEnemies)
+        {
+            Destroy(go);
+        }
     }
 
     private void RemoveDeadEnemies()

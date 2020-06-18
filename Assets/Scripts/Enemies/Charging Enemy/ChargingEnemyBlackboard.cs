@@ -114,10 +114,10 @@ public class ChargingEnemyBlackboard : EnemyBlackboard
         ownKS = GetComponent<KinematicState>();
         col = GetComponent<CapsuleCollider>();
 
-        /*if (respawnable)
+        if (respawnable)
             GameManager.Instance.enemySpawnManager.Add(this);
         else
-            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);*/
+            GameManager.Instance.nonRespawnableEnemies.Add(gameObject);
 
         healthPoints = initialHealthPoints;
 
