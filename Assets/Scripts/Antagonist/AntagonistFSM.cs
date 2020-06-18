@@ -11,11 +11,12 @@ public class AntagonistFSM : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Rigidbody rigidbody;
 
+    public GameObject vfxSmoke;
+
     int currentPipe;
 
     float timer = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -130,6 +131,7 @@ public class AntagonistFSM : MonoBehaviour
                 navMeshAgent.speed = blackboard.guardingSpeed;
                 break;
             case States.WAITINGFORPIPE:
+                GameObject.Instantiate(vfxSmoke, transform.position, Quaternion.identity);
                 navMeshAgent.enabled = false;
                 transform.position = blackboard.pipes[currentPipe].transform.position + Vector3.up * 4;
                 currentPipe++;
