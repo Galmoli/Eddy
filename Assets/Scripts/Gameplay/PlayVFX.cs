@@ -13,6 +13,9 @@ public class PlayVFX : MonoBehaviour
 
     PlayerSounds sounds;
 
+    [Header("Confetti")]
+    public bool isConfetti = false;
+
     void Start()
     {
         iniCooldown = cooldown;
@@ -32,7 +35,8 @@ public class PlayVFX : MonoBehaviour
     public void PlayAndStopParticles()
     {
         StartCoroutine("PlayAndStop");
-        Sound();
+        
+        if(isConfetti) ConfettiSound();
     }
 
     IEnumerator PlayAndStop()
@@ -43,7 +47,7 @@ public class PlayVFX : MonoBehaviour
         vfx.Stop();
     }
 
-    private void Sound()
+    private void ConfettiSound()
     {
         if (AudioManager.Instance.ValidEvent(sounds.confettiPopSoundPath))
         {
